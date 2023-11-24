@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/iv_imageDefault"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/default_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_namaKategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginStart="20dp"
+            android:text="Nama Kategori"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault"/>
+        <ImageView
+            android:id="@+id/iv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star_rating"
+            app:layout_constraintStart_toEndOf="@id/tv_namaKategory"
+            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toEndOf="@id/iv_2"
+            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault"
+            android:text="4.7"/>
+        <TextView
+            android:id="@+id/tv_titleCourse"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginStart="20dp"
+            android:text="Topic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_namaKategory"/>
+        <TextView
+            android:id="@+id/tv_publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginStart="20dp"
+            android:text="Publisher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_titleCourse"/>
+        <ImageView
+            android:id="@+id/iv_tingkatKesulitan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tingkat_kesulitan"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_publisher"/>
+
+        <TextView
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginStart="30dp"
+            android:text="Level Course"
+            app:layout_constraintStart_toStartOf="@id/iv_tingkatKesulitan"
+            app:layout_constraintTop_toBottomOf="@id/tv_publisher"/>
+        <ImageView
+            android:id="@+id/iv_modul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/modul"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toStartOf="@id/tv_level"
+            app:layout_constraintTop_toBottomOf="@id/tv_publisher"/>
+
+        <TextView
+            android:id="@+id/tv_modul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginStart="5dp"
+            android:text="7 Modul"
+            app:layout_constraintStart_toEndOf="@id/iv_modul"
+            app:layout_constraintTop_toBottomOf="@id/tv_publisher"/>
+
+        <ImageView
+            android:id="@+id/iv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_course"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_level"/>
+        <TextView
+            android:id="@+id/timerCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="30dp"
+            android:text="Total Times"
+            app:layout_constraintStart_toStartOf="@id/iv_timer"
+            app:layout_constraintTop_toBottomOf="@id/tv_modul"/>
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="#F3801E"
+            android:text="Beli "
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/timerCourse"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

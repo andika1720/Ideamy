@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment2"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/notifikasiFragment2"
+        android:title="Notifikasi"
+        android:icon="@drawable/notification"/>
+
+    <item
+        android:id="@+id/myClassFragment2"
+        android:title="Kelas"
+        android:icon="@drawable/kelas"/>
+
+    <item
+        android:id="@+id/myCourseFragment2"
+        android:title="Kursus"
+        android:icon="@drawable/kursus"/>
+
+    <item
+        android:id="@+id/settingFragment2"
+        android:title="Akun"
+        android:icon="@drawable/account"/>
+
+</menu>

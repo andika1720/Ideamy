@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/donker"
+    tools:context=".ui.activity.RegisterActivity">
+
+    <TextView
+        android:id="@+id/daftar_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Daftar"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="14dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_nama_regis"
+        />
+
+    <TextView
+        android:id="@+id/tv_nama_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Nama"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/textInput_Nama_Regis"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_Nama_Regis"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="Nama Lengkap"
+        app:hintTextColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/tv_email_login_regis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nama_regis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_email_login_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Email"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/textInput_Email_Regis"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_Email_Regis"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="Johncute21@gmail.com"
+        app:hintTextColor="@color/black"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_check"
+        app:helperText="@string/Required"
+        app:helperTextTextColor="@color/red"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        app:layout_constraintBottom_toTopOf="@id/tv_noHp_regis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_regis"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tv_noHp_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="No Telephone"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textInput_Nohp_regis"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_Nohp_regis"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="+62"
+        app:hintTextColor="@color/black"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_check"
+        app:helperText="@string/Required"
+        app:helperTextTextColor="@color/red"
+        app:counterEnabled="true"
+        app:counterMaxLength="13"
+        app:prefixText="+62"
+        app:prefixTextColor="@color/purple"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        app:layout_constraintBottom_toTopOf="@id/tv_password_regis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nohp_regis"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:maxLength="16"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_password_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Buat Password"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textField_Password_Regis"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField_Password_Regis"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="Buat password"
+        app:hintTextColor="@color/black"
+        app:endIconMode="password_toggle"
+        app:endIconDrawable="@drawable/ic_check"
+        app:layout_constraintBottom_toTopOf="@id/btn_Daftar_regis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="10dp"
+        app:errorEnabled="true"
+        app:helperText="@string/Required"
+        app:helperTextTextColor="@color/red"
+        app:errorIconDrawable="@drawable/ic_error"
+        android:layout_marginBottom="25dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_regis"
+            android:layout_width="match_parent"
+            android:inputType="textPassword"
+
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_Daftar_regis"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Daftar"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/haveanAcc_regis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/haveanAcc_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/white"
+        android:text="Sudah punya akun?"
+        android:textSize="16sp"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/masuk_disini_regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Masuk disini"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/haveanAcc_regis"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
