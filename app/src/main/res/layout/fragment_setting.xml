@@ -1,14 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.setting.SettingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.fragment.setting.SettingFragment"
+        android:padding="15dp"
+        android:background="@color/donker">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvjudulAkun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Akun"
+            android:textSize="24sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="150dp"/>
+
+        <!-- Profil Saya -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvjudulAkun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@android:color/white"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iconProfile"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/pencil"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/textProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil Saya"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/iconProfile"
+                app:layout_constraintTop_toTopOf="@+id/iconProfile"
+                app:layout_constraintBottom_toBottomOf="@+id/iconProfile"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Garis abu-abu -->
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Ubah Password -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutChangePassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/iconChangePassword"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/gear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/textChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ubah Password"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/iconChangePassword"
+                app:layout_constraintTop_toTopOf="@+id/iconChangePassword"
+                app:layout_constraintBottom_toBottomOf="@+id/iconChangePassword"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Garis abu-abu -->
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/layoutChangePassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Riwayat Pembayaran -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutPaymentHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/iconPaymentHistory"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/shopping_cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/textPaymentHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Riwayat Pembayaran"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/iconPaymentHistory"
+                app:layout_constraintTop_toTopOf="@+id/iconPaymentHistory"
+                app:layout_constraintBottom_toBottomOf="@+id/iconPaymentHistory"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Garis abu-abu -->
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/layoutPaymentHistory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Keluar -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutLogout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/iconLogout"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/textLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keluar"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/iconLogout"
+                app:layout_constraintTop_toTopOf="@+id/iconLogout"
+                app:layout_constraintBottom_toBottomOf="@+id/iconLogout"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/layoutLogout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/whiteSpace"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Version 1.0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/whiteSpace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
