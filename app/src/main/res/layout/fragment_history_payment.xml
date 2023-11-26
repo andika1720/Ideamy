@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#020346"
+
     tools:context=".ui.fragment.setting.HistoryPaymentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvPaymentHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Riwayat Pembayaran"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_free_premium_class"
+        app:layout_constraintTop_toBottomOf="@id/tvPaymentHistory"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
