@@ -51,7 +51,7 @@
             android:layout_height="60dp"
             android:text="Home"
             app:cornerRadius="15dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/navyblue"
             app:layout_constraintTop_toBottomOf="@id/iv_check_botshet"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="80dp"

@@ -191,7 +191,7 @@
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/navyblue"
         android:fontFamily="@font/poppins_bold"
         android:text="Daftar"
         android:textSize="16sp"

@@ -7,7 +7,7 @@
     android:background="@color/donker"
     tools:context=".ui.fragment.MyClassFragment">
 
-    <SearchView
+    <com.google.android.material.search.SearchBar
         android:id="@+id/item_searchViewCourse"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:queryHint="Cari Kursus Terbaik....."
+        android:hint="Cari Kursus Terbaik....."
         android:iconifiedByDefault="false"
         />
     <TextView
@@ -30,6 +30,8 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/item_searchViewCourse"
         android:text="Kelas Berjalan"/>
+
+
 
     <TextView
         android:id="@+id/tv_all"

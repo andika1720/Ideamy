@@ -4,21 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#020346"
-
+    android:background="@color/donker"
     tools:context=".ui.fragment.HomeFragment">
 
 
-    <SearchView
+    <com.google.android.material.search.SearchBar
         android:id="@+id/item_searchView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@color/white"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:queryHint="Cari Kursus Terbaik....."
+        android:hint="Cari Kursus Terbaik....."
         android:iconifiedByDefault="false"
         />
     <TextView
@@ -83,12 +82,28 @@
         tools:listitem="@layout/list_course"
         app:layout_constraintTop_toBottomOf="@id/tv_kursus"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleviewList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         tools:itemCount="1"
         tools:listitem="@layout/list_topic"
         app:layout_constraintTop_toBottomOf="@id/recycleviewCourse"/>
 
-
+    <ProgressBar
+        android:id="@+id/progresbar_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/recycleviewList"
+        app:layout_constraintStart_toStartOf="@id/recycleviewList"
+        app:layout_constraintEnd_toEndOf="@id/recycleviewList"
+        app:layout_constraintBottom_toBottomOf="@id/recycleviewList"/>
+    <ProgressBar
+        android:id="@+id/progressbar_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/recycleviewCategory"
+        app:layout_constraintStart_toStartOf="@id/recycleviewCategory"
+        app:layout_constraintEnd_toEndOf="@id/recycleviewCategory"
+        app:layout_constraintBottom_toBottomOf="@id/recycleviewCategory"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
