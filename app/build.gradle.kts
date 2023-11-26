@@ -92,4 +92,7 @@ dependencies {
     implementation ("io.insert-koin:koin-androidx-workmanager:3.5.0")
     implementation ("io.insert-koin:koin-androidx-navigation:3.5.0")
 
+    //exoplayer
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
 }
