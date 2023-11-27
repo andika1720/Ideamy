@@ -142,6 +142,7 @@
                 app:layout_constraintTop_toTopOf="@id/tv_module" />
 
             <TextView
+                android:id="@+id/tv_waktucourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -187,6 +188,26 @@
                 tools:listitem="@layout/fragment_detailcourse_tentang"
                 app:layout_constraintStart_toStartOf="@+id/btn_tentang"
                 app:layout_constraintTop_toBottomOf="@+id/btn_tentang" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/star_rating"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_tittleCourse"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rating"
+                app:layout_constraintTop_toTopOf="@+id/tv_tittleCourse" />
+
+            <TextView
+                android:id="@+id/tv_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:text="5.0"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
