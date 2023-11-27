@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    app:cardCornerRadius="15dp"
     android:layout_height="500dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -197,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="10dp"
-                    android:backgroundTint="@color/orange"
+                    android:backgroundTint="#489CFF"
                     app:cardCornerRadius="50dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/ic_level"
@@ -244,7 +245,7 @@
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="32dp"
-            android:backgroundTint="#EDEDED"
+            android:backgroundTint="@color/orange"
             app:cardCornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
