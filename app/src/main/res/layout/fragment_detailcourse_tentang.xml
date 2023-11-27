@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_joinTelegram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="@color/orange"
+        android:text="Join Grup Telegram"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tentangClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="22sp"
+        android:text="Tentang Class"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_joinTelegram" />
+
+    <TextView
+        android:id="@+id/tv_deskripsiTentang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi Tentang Kelas"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="@+id/tv_tentangClass"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tentangClass" />
+
+    <TextView
+        android:id="@+id/tv_kelasDitujukan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Kelas Ini Ditujukan Untuk"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_tentangClass"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deskripsiTentang" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi Kelas Ini Ditujukan Untuk"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="@+id/tv_kelasDitujukan"
+        app:layout_constraintTop_toBottomOf="@+id/tv_kelasDitujukan" />
+</androidx.constraintlayout.widget.ConstraintLayout>
