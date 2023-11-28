@@ -10,15 +10,14 @@
     <com.google.android.material.search.SearchBar
         android:id="@+id/item_searchViewCourse"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/white"
+        android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
         android:hint="Cari Kursus Terbaik....."
         android:iconifiedByDefault="false"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
@@ -89,8 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv2"
         tools:itemCount="2"
-        tools:listitem="@layout/list_category"
-        />
+        tools:listitem="@layout/list_category" />
 
 
 
