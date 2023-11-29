@@ -27,68 +27,38 @@
         android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="18sp"
+        android:fontFamily="@font/poppins_bold"
         app:layout_constraintTop_toBottomOf="@id/item_searchViewCourse"
         android:text="Kelas Berjalan"/>
 
 
 
-    <TextView
-        android:id="@+id/tv_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="70dp"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv1"
-        android:text="All"/>
-    <TextView
-        android:id="@+id/tv_inprogres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/tv_selesai"
-        app:layout_constraintStart_toEndOf="@id/tv_all"
-        app:layout_constraintTop_toBottomOf="@id/tv1"
-        android:text="In Progress"/>
-    <TextView
-        android:id="@+id/tv_selesai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@id/tv_inprogres"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_class"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/donker"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv1"
-        android:text="Selesai"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
-        android:id="@+id/recycleviewClassProses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:itemCount="1"
-        tools:listitem="@layout/list_kelas_berjalan"
-        app:layout_constraintTop_toBottomOf="@id/tv_selesai"/>
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginStart="15dp"
-        android:text="Kategori"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycleviewClassProses"/>
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorColor="@null"
+        app:tabIndicatorGravity="stretch"
+        app:tabIndicatorFullWidth="true"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv2"
-        tools:itemCount="2"
-        tools:listitem="@layout/list_category" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpage_class"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout_class"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 

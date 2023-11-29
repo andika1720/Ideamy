@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="480dp"
         android:layout_margin="10dp"
-        android:background="@color/donker">
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/close_botsheet_regis"
@@ -28,7 +28,7 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Registrasi\n Berhasil!"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
