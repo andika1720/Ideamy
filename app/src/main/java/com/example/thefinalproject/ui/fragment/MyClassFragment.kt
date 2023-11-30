@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterClassPage
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
-import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -23,7 +21,7 @@ class MyClassFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentMyClassBinding.inflate(layoutInflater,container,false)
         return binding.root

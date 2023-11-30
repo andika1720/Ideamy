@@ -1,19 +1,98 @@
 package com.example.thefinalproject.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
+import com.example.thefinalproject.adapter.AdapterCategory
+import com.example.thefinalproject.adapter.AdapterKursusPopuler
+import com.example.thefinalproject.databinding.FragmentHomeBinding
+import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
+import com.example.thefinalproject.network.model.CategoryResponse
+import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.util.Status
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
+
+    private lateinit var binding: FragmentHomeBinding
+    private val viewMode : ViewModelAll by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+
+        fetchCategory()
+        fetchList()
+
+        return binding.root
     }
 
+    private fun fetchCategory() {
+        viewMode.getAllCategory().observe(viewLifecycleOwner){
+            when (it.status){
+                Status.SUCCESS -> {
+                    showCategory(it.data)
+                    binding.progressbarCategory.isVisible = false
+
+                }
+                Status.ERROR -> {
+                    binding.progressbarCategory.isVisible = false
+                    Log.e("ERROR", it.message.toString())
+                }
+                Status.LOADING -> {
+                    binding.progressbarCategory.isVisible = true
+                }
+            }
+        }
+    }
+
+    private fun showCategory(data: CategoryResponse?){
+        val adapter = AdapterCategory()
+
+        adapter.sendCategory(data?.data ?: emptyList())
+        binding.recycleviewCategory.layoutManager= GridLayoutManager(requireActivity(), 2)
+        binding.recycleviewCategory.adapter = adapter
+    }
+
+    private fun fetchList() {
+        viewMode.getAllList().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    showListHorizontal(it.data)
+                    binding.progresbarList.isVisible = false
+
+                }
+
+                Status.ERROR -> {
+                    binding.progresbarList.isVisible = false
+                    Log.e("Errorr", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                    binding.progresbarList.isVisible = true
+                }
+            }
+
+
+        }
+    }
+
+    private fun showListHorizontal(data: ListResponse?) {
+        val adapter = AdapterKursusPopuler()
+
+        adapter.sendList(data?.data ?: emptyList())
+        binding.recycleviewList.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recycleviewList.adapter = adapter
+    }
 }

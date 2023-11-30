@@ -1,4 +1,10 @@
 package com.example.thefinalproject.mvvm.repository
 
-class Repository {
+import com.example.thefinalproject.network.api.ApiService
+
+class Repository(private val apiService: ApiService) {
+
+    suspend fun getCategory() = apiService.getCategory()
+
+    suspend fun getList() = apiService.getlist()
 }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 
 class ViewModelAll(private val repo: Repository) : ViewModel() {
 
-    /*
+
     fun getAllCategory() = liveData(Dispatchers.IO){
         try {
             emit(Resource.success(repo.getCategory()))
@@ -26,5 +26,5 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
-     */
+
 }

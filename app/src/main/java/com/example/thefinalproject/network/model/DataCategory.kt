@@ -3,7 +3,9 @@ package com.example.thefinalproject.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ListData(
+data class DataCategory(
+    @SerializedName("category")
+    val category: String?,
     @SerializedName("creator")
     val creator: String?,
     @SerializedName("description")
@@ -18,6 +20,8 @@ data class ListData(
     val price: Int?,
     @SerializedName("title")
     val title: String?,
+    @SerializedName("totalModule")
+    val totalModule: Int?,
     @SerializedName("type")
     val type: String?
 )

@@ -3,9 +3,9 @@ package com.example.thefinalproject.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailResponse(
+data class CategoryResponse(
     @SerializedName("data")
-    val `data`: DataDetail?,
+    val `data`: List<DataCategory>,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")

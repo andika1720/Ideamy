@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ListResponse(
     @SerializedName("data")
-    val `data`: List<ListData?>?,
+    val `data`: List<DataCategory>,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")
