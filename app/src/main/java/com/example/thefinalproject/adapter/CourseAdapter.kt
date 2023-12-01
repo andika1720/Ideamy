@@ -2,10 +2,12 @@ package com.example.thefinalproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
 import com.example.thefinalproject.network.model.DataCategory
 
@@ -53,7 +55,15 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
                 tvFreeLvlCourse.text = data.level
                 tvFreeModuls.text = "${data.totalModule} Modul"
                 tvFreeDurasi.text = "${data.totalDuration} Menit"
-                btnMulaiKelas.text = if (data.type == "premium") "Premium" else "Mulai Kelas"
+                if (data.type == "premium") {
+                    val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
+                    premiumDrawable?.setBounds(0, 0, premiumDrawable.intrinsicWidth / 2, premiumDrawable.intrinsicHeight / 2)
+                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
+                    btnMulaiKelas.text = "Premium"
+                } else {
+                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                    btnMulaiKelas.text = "Mulai Kelas"
+                }
             }
         }
     }
