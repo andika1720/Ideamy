@@ -8,7 +8,8 @@ import com.example.thefinalproject.ui.fragment.itemPage.ItemAllFragment
 import com.example.thefinalproject.ui.fragment.itemPage.ItemKelaspremiumFragment
 import com.example.thefinalproject.ui.fragment.itemPage.ItemKelasGeratis
 
-class AdapterCoursePage(fragment: Fragment): FragmentStateAdapter(fragment) {
+class AdapterCoursePage(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
     override fun getItemCount(): Int {
         return 3
     }
@@ -17,7 +18,17 @@ class AdapterCoursePage(fragment: Fragment): FragmentStateAdapter(fragment) {
         return when (position) {
             0 -> ItemAllFragment()
             1 -> ItemKelaspremiumFragment()
-            else ->ItemKelasGeratis ()
+            else -> ItemKelasGeratis()
         }
     }
+
+    fun getCourseType(position: Int): String {
+        return when (position) {
+            0 -> "all"
+            1 -> "premium"
+            else -> "gratis"
+        }
+    }
+
+
 }
