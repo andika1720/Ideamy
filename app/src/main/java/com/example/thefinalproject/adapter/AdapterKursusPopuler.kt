@@ -51,8 +51,9 @@ class AdapterKursusPopuler: RecyclerView.Adapter<AdapterKursusPopuler.ViewHolder
                 tvTitleCourse.text = data.title
                 tvPublisher.text = data.creator
                 tvLevel.text = "${data.level} Level"
-                tvModul.text= "${data.totalModule} Modul".toString()
-                btnBuy.text = "Beli Rp. ${data.price}".toString()
+                tvModul.text= "${data.totalModule} Modul"
+                btnBuy.text = "Beli  Rp.  ${data.price}"
+                timerCourse.text = "${data.totalDuration} Menit"
             }
         }
     }

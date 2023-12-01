@@ -18,8 +18,12 @@ data class DataCategory(
     val level: String?,
     @SerializedName("price")
     val price: Int?,
+    @SerializedName("telegram")
+    val telegram: String?,
     @SerializedName("title")
     val title: String?,
+    @SerializedName("totalDuration")
+    val totalDuration: Int?,
     @SerializedName("totalModule")
     val totalModule: Int?,
     @SerializedName("type")
