@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_settingFragment2_to_historyPaymentFragment"
             app:destination="@id/historyPaymentFragment" />
+        <action
+            android:id="@+id/action_settingFragment2_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyPaymentFragment"
@@ -60,4 +63,20 @@
         android:name="com.example.thefinalproject.ui.fragment.MyCourseFragment"
         android:label="fragment_my_course"
         tools:layout="@layout/fragment_my_course" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.thefinalproject.ui.fragment.setting.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.thefinalproject.ui.activity.LoginActivity"
+        android:label="activity_login">
+    </activity>
+
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.example.thefinalproject.ui.activity.RegisterActivity"
+        android:label="activity_register">
+    </activity>
 </navigation>
