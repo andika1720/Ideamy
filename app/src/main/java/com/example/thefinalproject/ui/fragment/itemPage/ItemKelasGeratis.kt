@@ -1,4 +1,3 @@
-// ItemKelasGeratis.kt
 package com.example.thefinalproject.ui.fragment.itemPage
 
 import android.os.Bundle

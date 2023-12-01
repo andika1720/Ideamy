@@ -24,48 +24,6 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
-    fun getFreeCourses(
-        categories: List<String>,
-        levels: List<String>
-    ) = liveData(Dispatchers.IO) {
-        try {
-            emit(Resource.loading(null))
-
-            val allCourses = repo.getList().data
-
-            val freeCourses = allCourses?.filter { course ->
-                course.type == "gratis" &&
-                        course.category in categories &&
-                        course.level in levels
-            } ?: emptyList()
-
-            emit(Resource.success(freeCourses))
-        } catch (exception: Exception) {
-            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
-        }
-    }
-
-    fun getPremiumCourses(
-        categories: List<String>,
-        levels: List<String>
-    ) = liveData(Dispatchers.IO) {
-        try {
-            emit(Resource.loading(null))
-
-            val allCourses = repo.getList().data
-
-            val premiumCourses = allCourses?.filter { course ->
-                course.type == "premium" &&
-                        course.category in categories &&
-                        course.level in levels
-            } ?: emptyList()
-
-            emit(Resource.success(premiumCourses))
-        } catch (exception: Exception) {
-            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
-        }
-    }
-
     fun getFilteredCourses(
         position: Int,
         categories: List<String>?,
@@ -84,15 +42,19 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
             val filteredCourses = allCourses?.filter { course ->
                 (categories == null || categories.isEmpty() || course.category in categories) &&
                         (levels == null || levels.isEmpty() || course.level in levels) &&
-                        course.type == type
+                        (type == null || course.type == type)
             } ?: emptyList()
 
-            // Jika kategori dan level kosong, tampilkan semua yang termasuk pada type nya
-            if (categories.isNullOrEmpty() && levels.isNullOrEmpty()) {
-                val allTypeCourses = allCourses?.filter { it.type == type } ?: emptyList()
-                emit(Resource.success(allTypeCourses))
+            if (type.isNullOrEmpty()) {
+                emit(Resource.success(allCourses))
             } else {
-                emit(Resource.success(filteredCourses))
+                // Jika kategori dan level kosong, tampilkan semua yang termasuk pada type nya
+                if (categories.isNullOrEmpty() && levels.isNullOrEmpty()) {
+                    val allTypeCourses = allCourses?.filter { it.type == type } ?: emptyList()
+                    emit(Resource.success(allTypeCourses))
+                } else {
+                    emit(Resource.success(filteredCourses))
+                }
             }
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
