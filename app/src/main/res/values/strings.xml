@@ -2,7 +2,7 @@
     <string name="app_name">Ideamy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btn_masuk">Masuk</string>
+    <string name="btn_masuk">Submit</string>
     <string name="Required">Required*</string>
     <string name="botsheet_belajar_text">     Mempunyai akun figma atau install Adobe XD\nMenggunakan internet minimal kecepatan 2Mbps\nBelajar di tempat yang nyaman</string>
 </resources>

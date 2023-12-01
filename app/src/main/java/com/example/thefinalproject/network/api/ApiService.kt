@@ -16,4 +16,8 @@ interface ApiService {
 
     @GET("/api/v1/course")
     suspend fun getCategory():CategoryResponse
+
+    @GET("/api/v1/course/{id}")
+    suspend fun getDataById(
+        @Path("id") id: String): DataCategory
 }
