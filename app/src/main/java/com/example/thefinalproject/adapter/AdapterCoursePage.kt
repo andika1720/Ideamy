@@ -22,13 +22,5 @@ class AdapterCoursePage(fragment: Fragment) : FragmentStateAdapter(fragment) {
         }
     }
 
-    fun getCourseType(position: Int): String {
-        return when (position) {
-            0 -> "all"
-            1 -> "premium"
-            else -> "gratis"
-        }
-    }
-
 
 }
