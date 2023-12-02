@@ -1,4 +1,4 @@
-package com.example.thefinalproject.adapter
+package com.example.thefinalproject.adapter.ForItemHomePage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.util.Utils
 
-class AdapterKursusPopuler: RecyclerView.Adapter<AdapterKursusPopuler.ViewHolder>() {
+class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {
 
     private val differ= object: DiffUtil.ItemCallback<DataCategory>(){
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -27,12 +27,12 @@ class AdapterKursusPopuler: RecyclerView.Adapter<AdapterKursusPopuler.ViewHolder
 
     fun sendList(value: List<DataCategory>) = dif.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterKursusPopuler.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
         return ViewHolder(ListTopicBinding.inflate(view,parent,false))
     }
 
-    override fun onBindViewHolder(holder: AdapterKursusPopuler.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = dif.currentList[position]
         data.let { holder.bind(data) }
     }
