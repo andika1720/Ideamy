@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class DataCategory(
     @SerializedName("category")
     val category: String?,
+    @SerializedName("chapters")
+    val chapters: List<Chapter>?,
     @SerializedName("creator")
     val creator: String?,
     @SerializedName("description")

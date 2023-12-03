@@ -74,7 +74,9 @@ class HomeFragment : Fragment() {
     private fun showCategory(data: CategoryResponse?){
         val adapter = AdapterCategory()
 
-        adapter.sendCategory(data?.data ?: emptyList())
+        val filteredList = data?.data?.groupBy { it.category }?.mapValues { it.value.first() }
+
+        adapter.sendCategory(filteredList?.values?.toList() ?: emptyList())
         binding.recycleviewCategory.layoutManager= GridLayoutManager(requireActivity(), 2)
         binding.recycleviewCategory.adapter = adapter
     }

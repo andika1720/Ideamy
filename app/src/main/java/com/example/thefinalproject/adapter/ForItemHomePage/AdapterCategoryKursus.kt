@@ -10,7 +10,7 @@ import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.util.Utils
 
-class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {
+class AdapterCategoryKursus: RecyclerView.Adapter<AdapterCategoryKursus.ViewHolder>() {
 
     private val differ= object: DiffUtil.ItemCallback<DataCategory>(){
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -41,7 +41,7 @@ class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.View
         return dif.currentList.size
     }
 
-    inner class ViewHolder(private var binding: ListTopicBinding ):RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private var binding: ListTopicBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(data: DataCategory){
             binding.apply {
                 Glide.with(this.ivImageDefault)

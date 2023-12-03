@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.ForItemHomePage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -71,7 +70,9 @@ private fun fetchList() {
 private fun showListHorizontal(data: ListResponse?) {
     val adapter = AdapterAllKursusPopuler()
 
-    adapter.sendList(data?.data ?: emptyList())
+
+    val filteredList = data?.data?.groupBy { it.category }?.mapValues { it.value.first() }
+    adapter.sendList(filteredList?.values?.toList() ?: emptyList())
     binding.rvHomeAllCategory.layoutManager =
         LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
     binding.rvHomeAllCategory.adapter = adapter
