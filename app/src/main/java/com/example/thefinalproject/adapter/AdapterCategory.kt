@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListCategoryBinding
 import com.example.thefinalproject.network.model.DataCategory
 
-class AdapterCategory: RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
+class AdapterCategory(private val onItemClick: OnClickListener): RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 
     private val differ= object: DiffUtil.ItemCallback<DataCategory>(){
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -22,6 +22,9 @@ class AdapterCategory: RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 
     }
 
+    interface OnClickListener {
+        fun itemClick(data: DataCategory)
+    }
     private val dif = AsyncListDiffer(this,differ)
 
     fun sendCategory(value: List<DataCategory>) = dif.submitList(value)
@@ -33,6 +36,10 @@ class AdapterCategory: RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
     override fun onBindViewHolder(holder: AdapterCategory.ViewHolder, position: Int) {
         val data = dif.currentList[position]
         data.let { holder.bind(data) }
+
+        holder.itemView.setOnClickListener{
+            onItemClick.itemClick(data)
+        }
     }
 
     override fun getItemCount(): Int {

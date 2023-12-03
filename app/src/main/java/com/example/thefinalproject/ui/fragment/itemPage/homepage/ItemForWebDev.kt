@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -55,9 +57,11 @@ class ItemForWebDev:Fragment() {
 
 
     private fun showListHorizontal(data: ListResponse?) {
-        val adapter = AdapterAllKursusPopuler()
+        val adapter = AdapterAllKursusPopuler(onButtonClick = {
+            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+        })
 
-        val filteredList = data?.data?.filter { it.id =="746112de-b9c0-464b-bc8e-74e524ec1408" }
+        val filteredList = data?.data?.filter { it.category == "Web Development" }
         adapter.sendList(filteredList?: emptyList())
         binding.rvHomeAllCategory.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_myCourseFragment2"
             app:destination="@id/myCourseFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_detailPaymentFragment"
+            app:destination="@id/detailPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/notifikasiFragment2"
@@ -79,4 +82,9 @@
         android:name="com.example.thefinalproject.ui.activity.RegisterActivity"
         android:label="activity_register">
     </activity>
+    <fragment
+        android:id="@+id/detailPaymentFragment"
+        android:name="com.example.thefinalproject.ui.fragment.DetailPaymentFragment"
+        android:label="fragment_detail_payment"
+        tools:layout="@layout/fragment_detail_payment" />
 </navigation>

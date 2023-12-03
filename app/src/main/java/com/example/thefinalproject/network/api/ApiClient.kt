@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://idea-academy.up.railway.app"
+    private const val BASE_URL = "https://idea-academy.up.railway.app/api/v1/"
     //belum diubah linknya
 
     private val logging: HttpLoggingInterceptor

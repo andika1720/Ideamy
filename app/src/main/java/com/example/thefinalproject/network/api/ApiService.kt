@@ -11,13 +11,12 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("/api/v1/course")
+    @GET("course")
     suspend fun getlist():ListResponse
 
-    @GET("/api/v1/course")
+    @GET("course")
     suspend fun getCategory():CategoryResponse
 
-    @GET("/api/v1/course/{id}")
-    suspend fun getDataById(
-        @Path("id") id: String): DataCategory
+    @GET("course/{id}")
+    suspend fun getDataById(@Query("id") id: String): DataCategory
 }

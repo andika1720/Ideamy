@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterHomePage
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.CategoryResponse
+import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -72,7 +76,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun showCategory(data: CategoryResponse?){
-        val adapter = AdapterCategory()
+        val adapter = AdapterCategory(object : AdapterCategory.OnClickListener{
+            override fun itemClick(data: DataCategory) {
+                navigatoToCourse(data)
+            }
+
+        })
 
         val filteredList = data?.data?.groupBy { it.category }?.mapValues { it.value.first() }
 
@@ -81,6 +90,11 @@ class HomeFragment : Fragment() {
         binding.recycleviewCategory.adapter = adapter
     }
 
+    private fun navigatoToCourse(data: DataCategory){
+
+        val bundle = bundleOf("key" to data)
+        findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2,bundle)
+    }
     /*
     private fun fetchList() {
         viewMode.getAllList().observe(viewLifecycleOwner) {

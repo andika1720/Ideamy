@@ -10,7 +10,7 @@ import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.util.Utils
 
-class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {
+class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {
 
     private val differ= object: DiffUtil.ItemCallback<DataCategory>(){
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -42,6 +42,13 @@ class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.View
     }
 
     inner class ViewHolder(private var binding: ListTopicBinding ):RecyclerView.ViewHolder(binding.root){
+
+        init {
+            binding.btnBuy.setOnClickListener {
+                val courseId = dif.currentList[adapterPosition].id
+                onButtonClick(courseId!!)
+            }
+        }
         fun bind(data: DataCategory){
             binding.apply {
                 Glide.with(this.ivImageDefault)
@@ -55,7 +62,6 @@ class AdapterAllKursusPopuler: RecyclerView.Adapter<AdapterAllKursusPopuler.View
                 tvModul.text= "${data.totalModule} Modul"
                 btnBuy.text = "Beli  ${Utils.formatCurrency(data.price)}"
                 timerCourse.text = "${data.totalDuration} Menit"
-
             }
         }
     }

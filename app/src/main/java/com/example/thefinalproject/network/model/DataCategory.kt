@@ -1,13 +1,14 @@
 package com.example.thefinalproject.network.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class DataCategory(
     @SerializedName("category")
     val category: String?,
-    @SerializedName("chapters")
-    val chapters: List<Chapter>?,
     @SerializedName("creator")
     val creator: String?,
     @SerializedName("description")
@@ -30,4 +31,4 @@ data class DataCategory(
     val totalModule: Int?,
     @SerializedName("type")
     val type: String?
-)
+):Parcelable

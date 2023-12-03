@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCoursePage
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
+import com.example.thefinalproject.network.model.DataCategory
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -66,6 +67,11 @@ class MyCourseFragment : Fragment() {
         bsDialog.show()
 
 
+
+    }
+
+    private fun setData() {
+        val bundle = arguments?.getParcelable<DataCategory>("key")
 
     }
 }

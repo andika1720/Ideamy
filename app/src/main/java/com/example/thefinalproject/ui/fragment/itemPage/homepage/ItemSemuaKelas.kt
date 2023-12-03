@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -68,7 +70,10 @@ private fun fetchList() {
 
 
 private fun showListHorizontal(data: ListResponse?) {
-    val adapter = AdapterAllKursusPopuler()
+    val adapter = AdapterAllKursusPopuler(onButtonClick = {
+        findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+    } )
+
 
 
     val filteredList = data?.data?.groupBy { it.category }?.mapValues { it.value.first() }
