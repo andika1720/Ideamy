@@ -1,4 +1,4 @@
-package com.example.thefinalproject.adapter.ForItemHomePage
+package com.example.thefinalproject.adapter.foritemhomepage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

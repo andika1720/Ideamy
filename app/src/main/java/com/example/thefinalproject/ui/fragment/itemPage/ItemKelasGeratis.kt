@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.adapter.CourseAdapter
-import com.example.thefinalproject.databinding.FragmentItemKelasgeratisBinding
+
+import com.example.thefinalproject.databinding.FragmentItemPageCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
@@ -16,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ItemKelasGeratis : Fragment() {
 
-    private lateinit var binding: FragmentItemKelasgeratisBinding
+    private lateinit var binding: FragmentItemPageCourseBinding
     private val viewModelAll: ViewModelAll by inject()
     private val courseAdapter: CourseAdapter by lazy { CourseAdapter() }
 
@@ -24,7 +25,7 @@ class ItemKelasGeratis : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentItemKelasgeratisBinding.inflate(inflater, container, false)
+        binding = FragmentItemPageCourseBinding.inflate(inflater, container, false)
         return binding.root
     }
 

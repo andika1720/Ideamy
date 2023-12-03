@@ -1,4 +1,4 @@
-package com.example.thefinalproject.ui.fragment.itemPage.HomePage
+package com.example.thefinalproject.ui.fragment.itemPage.homepage
 
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.thefinalproject.adapter.ForItemHomePage.AdapterAllKursusPopuler
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.ListResponse
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
-class ItemForWebDev:Fragment() {
+class ItemForUiux:Fragment() {
     private lateinit var binding: FragmentItemSemuaKelasBinding
     private val viewMode : ViewModelAll by inject()
 
@@ -57,7 +57,7 @@ class ItemForWebDev:Fragment() {
     private fun showListHorizontal(data: ListResponse?) {
         val adapter = AdapterAllKursusPopuler()
 
-        val filteredList = data?.data?.filter { it.id =="746112de-b9c0-464b-bc8e-74e524ec1408" }
+        val filteredList = data?.data?.filter { it.id =="7b20fea8-cccf-4673-b818-2826ca149f5f" }
         adapter.sendList(filteredList?: emptyList())
         binding.rvHomeAllCategory.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)

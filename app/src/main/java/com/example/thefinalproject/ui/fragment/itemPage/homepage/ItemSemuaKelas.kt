@@ -1,4 +1,4 @@
-package com.example.thefinalproject.ui.fragment.itemPage.HomePage
+package com.example.thefinalproject.ui.fragment.itemPage.homepage
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.thefinalproject.adapter.ForItemHomePage.AdapterAllKursusPopuler
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.ListResponse

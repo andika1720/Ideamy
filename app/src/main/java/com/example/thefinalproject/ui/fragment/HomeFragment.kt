@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.adapter.AdapterCategory
-import com.example.thefinalproject.adapter.ForItemHomePage.AdapterHomePage
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterHomePage
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.CategoryResponse
