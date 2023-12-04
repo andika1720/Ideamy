@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_bold"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/succes"
         android:text="Join Grup Telegram"
+        android:drawableRight="@drawable/gridicons_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
