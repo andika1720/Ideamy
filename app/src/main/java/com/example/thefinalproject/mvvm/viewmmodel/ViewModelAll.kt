@@ -24,38 +24,9 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
-    fun getFilteredCourses(
-        position: Int,
-        categories: List<String>?,
-        levels: List<String>?
-    ) = liveData(Dispatchers.IO) {
+    fun getFilteredCourses(type: String?, category: String?, level: String?) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.loading(null))
-            val type = when (position) {
-                0 -> "all"
-                1 -> "premium"
-                else -> "free"
-            }
-
-            val allCourses = repo.getList().data
-
-            val filteredCourses = allCourses?.filter { course ->
-                (categories == null || categories.isEmpty() || course.category in categories) &&
-                        (levels == null || levels.isEmpty() || course.level in levels) &&
-                        (type == null || course.type == type)
-            } ?: emptyList()
-
-            if (type == "all") {
-                emit(Resource.success(allCourses))
-            } else {
-                // Jika kategori dan level kosong, tampilkan semua yang termasuk pada type nya
-                if (categories.isNullOrEmpty() && levels.isNullOrEmpty()) {
-                    val allTypeCourses = allCourses?.filter { it.type == type } ?: emptyList()
-                    emit(Resource.success(allTypeCourses))
-                } else {
-                    emit(Resource.success(filteredCourses))
-                }
-            }
+            emit(Resource.success(repo.getFilteredCourses(type, category, level)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }

@@ -19,4 +19,11 @@ interface ApiService {
 
     @GET("course/{id}")
     suspend fun getDataById(@Query("id") id: String): DataCategory
+
+    @GET("course")
+    suspend fun getFilteredCourses(
+        @Query("type") type: String?,
+        @Query("category") category: String?,
+        @Query("level") level: String?
+    ): CategoryResponse
 }
