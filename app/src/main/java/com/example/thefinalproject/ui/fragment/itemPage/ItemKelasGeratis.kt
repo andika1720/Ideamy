@@ -13,7 +13,7 @@ import com.example.thefinalproject.databinding.FragmentItemPageCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ItemKelasGeratis : Fragment() {
 

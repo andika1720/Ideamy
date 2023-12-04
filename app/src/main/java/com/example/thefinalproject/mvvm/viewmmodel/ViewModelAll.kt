@@ -45,7 +45,7 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
                         (type == null || course.type == type)
             } ?: emptyList()
 
-            if (type.isNullOrEmpty()) {
+            if (type == "all") {
                 emit(Resource.success(allCourses))
             } else {
                 // Jika kategori dan level kosong, tampilkan semua yang termasuk pada type nya
