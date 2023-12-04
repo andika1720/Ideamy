@@ -42,14 +42,15 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
             val filteredCourses = allCourses?.filter { course ->
                 (categories == null || categories.isEmpty() || course.category in categories) &&
                         (levels == null || levels.isEmpty() || course.level in levels) &&
-                        (type == "all" || course.type == type)
+                        (type == null || course.type == type)
             } ?: emptyList()
 
             if (type == "all") {
                 emit(Resource.success(allCourses))
             } else {
+                // Jika kategori dan level kosong, tampilkan semua yang termasuk pada type nya
                 if (categories.isNullOrEmpty() && levels.isNullOrEmpty()) {
-                    val allTypeCourses = allCourses?.filter { it.type == "premium" || it.type == "free" } ?: emptyList()
+                    val allTypeCourses = allCourses?.filter { it.type == type } ?: emptyList()
                     emit(Resource.success(allTypeCourses))
                 } else {
                     emit(Resource.success(filteredCourses))
