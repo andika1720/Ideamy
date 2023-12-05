@@ -235,7 +235,7 @@
             android:layout_height="250dp"
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/btn_cardCredit">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -340,7 +340,8 @@
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/mastercard_logo"
+                    android:background=""
+                    android:src="@drawable/mastercard_logo_new"
                     app:layout_constraintEnd_toStartOf="@+id/imageView10"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -350,7 +351,7 @@
                     android:id="@+id/imageView9"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/paypal_logo"
+                    android:src="@drawable/paypal_logo_new"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
@@ -360,7 +361,7 @@
                     android:id="@+id/imageView10"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/visa_logo"
+                    android:src="@drawable/visa_logo_new"
                     app:layout_constraintEnd_toStartOf="@+id/imageView9"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
