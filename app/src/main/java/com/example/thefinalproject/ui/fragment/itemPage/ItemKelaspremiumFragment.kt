@@ -31,7 +31,7 @@ class ItemKelaspremiumFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observePremiumCourses()
+       // observePremiumCourses()
     }
 
     private fun setupRecyclerView() {
@@ -40,7 +40,7 @@ class ItemKelaspremiumFragment : Fragment() {
             adapter = courseAdapter
         }
     }
-
+/*
     private fun observePremiumCourses() {
         viewModelAll.getFilteredCourses("premium", null, null).observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
@@ -58,4 +58,6 @@ class ItemKelaspremiumFragment : Fragment() {
             }
         })
     }
+
+ */
 }

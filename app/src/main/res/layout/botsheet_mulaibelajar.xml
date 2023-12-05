@@ -73,7 +73,7 @@
             android:id="@+id/btn_to_class_botshet"
             android:layout_width="250dp"
             android:layout_height="60dp"
-            android:text="Mulai Belajar"
+            android:text="Ikuti Kelas"
             app:cornerRadius="15dp"
             android:backgroundTint="@color/navyblue"
             app:layout_constraintTop_toBottomOf="@id/tv3_mulai_belajar_botshet"

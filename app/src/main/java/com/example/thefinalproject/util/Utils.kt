@@ -17,33 +17,34 @@ object Utils {
         return "Rp. " + decimal.format(amount)
     }
 
-    fun toastMessage(context: Context, message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
-
-    fun setUpBottomNavigation(activity: Activity?, isGone: Boolean) {
-        val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        if (isGone) {
-            bottomNav?.visibility = View.GONE
-        } else {
-            bottomNav?.visibility = View.VISIBLE
+        fun toastMessage(context: Context, message: String) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
-    }
 
-    fun isValidUsername(username: String): Boolean {
-        return username.matches(Regex("[a-zA-Z0-9]+"))
-    }
+        fun setUpBottomNavigation(activity: Activity?, isGone: Boolean) {
+            val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+            if (isGone) {
+                bottomNav?.visibility = View.GONE
+            } else {
+                bottomNav?.visibility = View.VISIBLE
+            }
+        }
 
-    fun isValidEmail(email: String): Boolean {
-        val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
-        return email.matches(emailRegex.toRegex())
-    }
+        fun isValidUsername(username: String): Boolean {
+            return username.matches(Regex("[a-zA-Z0-9]+"))
+        }
 
-    fun isValidPhoneNumber(phoneNumber: String): Boolean {
-        return phoneNumber.matches(Regex("[0-9]+")) && phoneNumber.length >= 10
-    }
+        fun isValidEmail(email: String): Boolean {
+            val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+            return email.matches(emailRegex.toRegex())
+        }
 
-    fun isValidPassword(password: String): Boolean {
-        return password.length >= 6
-    }
+        fun isValidPhoneNumber(phoneNumber: String): Boolean {
+            return phoneNumber.matches(Regex("[0-9]+")) && phoneNumber.length >= 10
+        }
+
+        fun isValidPassword(password: String): Boolean {
+            return password.length >= 6
+        }
+
 }

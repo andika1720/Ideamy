@@ -3,7 +3,7 @@ package com.example.thefinalproject.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Chapter(
+data class ChapterX(
     @SerializedName("chapterNumber")
     val chapterNumber: Int?,
     @SerializedName("courseId")
@@ -13,7 +13,7 @@ data class Chapter(
     @SerializedName("id")
     val id: String?,
     @SerializedName("modules")
-    val modules: List<Module?>?,
+    val modules: List<ModuleX>?,
     @SerializedName("title")
     val title: String?
 )

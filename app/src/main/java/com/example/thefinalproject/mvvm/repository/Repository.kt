@@ -8,6 +8,9 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getList() = apiService.getlist()
 
-    suspend fun getFilteredCourses(type: String?, category: String?, level: String?) =
-        apiService.getFilteredCourses(type, category, level)
+    suspend fun getDataByid(id: String)= apiService.getDataById(id)
+
+   suspend fun getFilter(type:String?,category:String?,level:String?) = apiService.getFilteredCourses(type,category,level)
+
+
 }

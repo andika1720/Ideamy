@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
+import com.example.thefinalproject.network.model.DataCourse
 import com.example.thefinalproject.util.Utils
 
 class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {

@@ -32,7 +32,7 @@ class ItemAllFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeAllCourses()
+       // observeAllCourses()
     }
 
     private fun setupRecyclerView() {
@@ -41,9 +41,9 @@ class ItemAllFragment : Fragment() {
             adapter = courseAdapter
         }
     }
-
+/*
     private fun observeAllCourses() {
-        viewModelAll.getFilteredCourses(null, null, null).observe(viewLifecycleOwner, Observer { resource ->
+        viewModelAll.getFilteredCourses(0, null, null).observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
                 Status.SUCCESS -> {
                     resource.data?.data?.let { courses ->
@@ -59,4 +59,8 @@ class ItemAllFragment : Fragment() {
             }
         })
     }
+
+ */
+
+
 }

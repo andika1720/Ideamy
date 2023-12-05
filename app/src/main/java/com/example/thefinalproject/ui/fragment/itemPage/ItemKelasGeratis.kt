@@ -32,7 +32,7 @@ class ItemKelasGeratis : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeFreeCourses()
+        //observeFreeCourses()
     }
 
     private fun setupRecyclerView() {
@@ -41,7 +41,7 @@ class ItemKelasGeratis : Fragment() {
             adapter = courseAdapter
         }
     }
-
+/*
     private fun observeFreeCourses() {
         viewModelAll.getFilteredCourses("free", null, null).observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
@@ -59,4 +59,6 @@ class ItemKelasGeratis : Fragment() {
             }
         })
     }
+
+ */
 }

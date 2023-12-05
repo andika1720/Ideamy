@@ -13,7 +13,7 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.network.model.CategoryResponse
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
@@ -45,7 +45,8 @@ class ItemForProductm : Fragment() {
 
 
     private fun fetchList() {
-        viewMode.getAllList().observe(viewLifecycleOwner) {
+
+        viewMode.getFilter("null", "Product Management", "null").observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -68,18 +69,21 @@ class ItemForProductm : Fragment() {
     }
 
 
-    private fun showListHorizontal(data: ListResponse?) {
-        val adapter = AdapterAllKursusPopuler(onButtonClick = {
-            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+    private fun showListHorizontal(data: CategoryResponse?) {
+        data?.data?.let {
+            val adapter = AdapterAllKursusPopuler(onButtonClick = {
+                findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
 
-        })
+            })
 
 
-        val filteredList = data?.data?.filter { it.category == "Product Management" }
-        adapter.sendList(filteredList ?: emptyList())
+
+
+        adapter.sendList(it)
         binding.rvHomeAllCategory.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvHomeAllCategory.adapter = adapter
+    }
     }
 
 

@@ -33,6 +33,7 @@ class ItemForWebDev:Fragment() {
 
 
     private fun fetchList() {
+        val thisCategory = "Web Development"
         viewMode.getAllList().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {

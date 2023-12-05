@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,9 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
+import com.example.thefinalproject.network.model.DetailResponse
 import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.ui.fragment.DetailPaymentFragment
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
@@ -71,7 +74,10 @@ private fun fetchList() {
 
 private fun showListHorizontal(data: ListResponse?) {
     val adapter = AdapterAllKursusPopuler(onButtonClick = {
-        findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+      val bundle = Bundle().apply {
+          putString("selectedId", it)
+      }
+        findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
     } )
 
 
