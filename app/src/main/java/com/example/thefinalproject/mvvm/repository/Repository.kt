@@ -4,7 +4,7 @@ import com.example.thefinalproject.network.api.ApiService
 
 class Repository(private val apiService: ApiService) {
 
-    suspend fun getCategory() = apiService.getCategory()
+    suspend fun getCategory(category: String?) = apiService.getDataByCategory(category)
 
     suspend fun getList() = apiService.getlist()
 

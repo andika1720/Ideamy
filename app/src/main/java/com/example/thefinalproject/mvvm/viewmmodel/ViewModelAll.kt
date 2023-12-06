@@ -8,9 +8,9 @@ import kotlinx.coroutines.Dispatchers
 
 class ViewModelAll(private val repo: Repository) : ViewModel() {
 
-    fun getAllCategory() = liveData(Dispatchers.IO) {
+    fun getAllCategory(category: String?) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getCategory()))
+            emit(Resource.success(repo.getCategory(category)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }

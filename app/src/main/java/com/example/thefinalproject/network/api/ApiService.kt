@@ -20,7 +20,8 @@ interface ApiService {
     suspend fun getCategory():CategoryResponse
 
     @GET("course")
-    suspend fun getDataByCategory(@Query("category") category: String):Call<CategoryResponse>
+    suspend fun getDataByCategory(
+        @Query("category") category: String?):CategoryResponse
     @GET("course/{id}")
     suspend fun getDataById(@Path("id") id: String): DetailResponse
 
