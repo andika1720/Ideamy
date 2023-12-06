@@ -6,17 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.DetailResponse
 import com.example.thefinalproject.network.model.ListResponse
-import com.example.thefinalproject.ui.fragment.DetailPaymentFragment
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
@@ -40,7 +37,7 @@ class ItemSemuaKelas : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentItemSemuaKelasBinding.inflate(inflater,container,false)
-        fetchList()
+        fetchList(null,null,null,null)
 
 
         return binding.root
@@ -48,8 +45,8 @@ class ItemSemuaKelas : Fragment() {
     }
 
 
-private fun fetchList() {
-    viewMode.getAllList().observe(viewLifecycleOwner) {
+private fun fetchList(id: String?,category: String?,level: String?, type: String?) {
+    viewMode.getFilterCourse(id, category, level, type).observe(viewLifecycleOwner) {
         when (it.status) {
             Status.SUCCESS -> {
                 showListHorizontal(it.data)
@@ -73,7 +70,7 @@ private fun fetchList() {
 
 
 private fun showListHorizontal(data: ListResponse?) {
-    val adapter = AdapterAllKursusPopuler(onButtonClick = {
+    val adapter = AdapterKursusPopuler2(onButtonClick = {
       val bundle = Bundle().apply {
           putString("selectedId", it)
       }
@@ -82,8 +79,7 @@ private fun showListHorizontal(data: ListResponse?) {
 
 
 
-    val filteredList = data?.data?.groupBy { it.category }?.mapValues { it.value.first() }
-    adapter.sendList(filteredList?.values?.toList() ?: emptyList())
+    adapter.sendList(data?.data ?: emptyList())
     binding.rvHomeAllCategory.layoutManager =
         LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
     binding.rvHomeAllCategory.adapter = adapter

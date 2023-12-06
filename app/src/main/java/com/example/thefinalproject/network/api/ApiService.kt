@@ -30,4 +30,12 @@ interface ApiService {
         @Query("category") category: String?,
         @Query("level") level: String?
     ): CategoryResponse
+
+    @GET("course")
+    suspend fun getFilterCourse(
+        @Query("id") id: String?,
+        @Query("category") category: String?,
+        @Query("level") level: String?,
+        @Query("type") type: String?,
+    ) : ListResponse
 }

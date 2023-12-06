@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
-import com.example.thefinalproject.network.model.DataCourse
 import com.example.thefinalproject.util.Utils
 
-class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): RecyclerView.Adapter<AdapterAllKursusPopuler.ViewHolder>() {
+class AdapterKursusPopuler2 (private val onButtonClick: (String) -> Unit): RecyclerView.Adapter<AdapterKursusPopuler2.ViewHolder>() {
 
-    private val differ= object: DiffUtil.ItemCallback<DataCategory>(){
+    private val differ = object : DiffUtil.ItemCallback<DataCategory>() {
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
             return oldItem.id == newItem.id
         }
@@ -24,16 +23,16 @@ class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): Recy
 
     }
 
-    private val dif = AsyncListDiffer(this,differ)
+    private val dif = AsyncListDiffer(this, differ)
 
     fun sendList(value: List<DataCategory>) = dif.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-        return ViewHolder(ListTopicBinding.inflate(view,parent,false))
+        return ViewHolder(ListTopicBinding.inflate(view, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AdapterKursusPopuler2.ViewHolder, position: Int) {
         val data = dif.currentList[position]
         data.let { holder.bind(data) }
     }
@@ -42,15 +41,17 @@ class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): Recy
         return dif.currentList.size
     }
 
-    inner class ViewHolder(private var binding: ListTopicBinding ):RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private var binding: ListTopicBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.btnBuy.setOnClickListener {
                 val courseId = dif.currentList[adapterPosition].id
-                onButtonClick(courseId!!)
+                onButtonClick(courseId)
             }
         }
-        fun bind(data: DataCategory){
+
+        fun bind(data: DataCategory) {
             binding.apply {
                 Glide.with(this.ivImageDefault)
                     .load(data.image)
@@ -60,7 +61,7 @@ class AdapterAllKursusPopuler(private val onButtonClick: (String) -> Unit): Recy
                 tvTitleCourse.text = data.title
                 tvPublisher.text = data.creator
                 tvLevel.text = "${data.level} Level"
-                tvModul.text= "${data.totalModule} Modul"
+                tvModul.text = "${data.totalModule} Modul"
                 btnBuy.text = "Beli  ${Utils.formatCurrency(data.price)}"
                 timerCourse.text = "${data.totalDuration} Menit"
             }

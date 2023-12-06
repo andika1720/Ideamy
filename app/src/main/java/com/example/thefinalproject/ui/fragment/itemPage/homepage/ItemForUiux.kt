@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.ListResponse
@@ -27,13 +27,13 @@ class ItemForUiux:Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentItemSemuaKelasBinding.inflate(inflater, container, false)
-        fetchList()
+        fetchList(null,"UI/UX Design", null, null)
         return binding.root
     }
 
 
-    private fun fetchList() {
-        viewMode.getAllList().observe(viewLifecycleOwner) {
+    private fun fetchList(id: String?,category: String?,level: String?, type: String?) {
+        viewMode.getFilterCourse(id, category, level, type).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -57,12 +57,15 @@ class ItemForUiux:Fragment() {
 
 
     private fun showListHorizontal(data: ListResponse?) {
-        val adapter = AdapterAllKursusPopuler(onButtonClick = {
-            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+        val adapter = AdapterKursusPopuler2(onButtonClick = {
+            val bundle = Bundle().apply {
+                putString("selectedId", it)
+            }
+            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
         })
 
-        val filteredList = data?.data?.filter { it.category == "UI/UX Design" }
-        adapter.sendList(filteredList?: emptyList())
+
+        adapter.sendList(data?.data ?: emptyList())
         binding.rvHomeAllCategory.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvHomeAllCategory.adapter = adapter

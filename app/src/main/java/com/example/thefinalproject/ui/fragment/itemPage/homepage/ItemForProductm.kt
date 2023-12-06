@@ -10,10 +10,10 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterAllKursusPopuler
+import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentItemSemuaKelasBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.CategoryResponse
+import com.example.thefinalproject.network.model.ListResponse
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
@@ -22,11 +22,7 @@ import org.koin.android.ext.android.inject
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ItemForProductm.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ItemForProductm : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var binding: FragmentItemSemuaKelasBinding
@@ -39,14 +35,14 @@ class ItemForProductm : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentItemSemuaKelasBinding.inflate(inflater, container, false)
-        fetchList()
+        fetchList(null,"Product Management", null, null)
         return binding.root
     }
 
 
-    private fun fetchList() {
+    private fun fetchList(id: String?,category: String?,level: String?, type: String?) {
 
-        viewMode.getFilter("null", "Product Management", "null").observe(viewLifecycleOwner) {
+        viewMode.getFilterCourse(id, category, level, type).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -69,17 +65,20 @@ class ItemForProductm : Fragment() {
     }
 
 
-    private fun showListHorizontal(data: CategoryResponse?) {
+    private fun showListHorizontal(data: ListResponse?) {
         data?.data?.let {
-            val adapter = AdapterAllKursusPopuler(onButtonClick = {
-                findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment)
+            val adapter = AdapterKursusPopuler2(onButtonClick = {
+                val bundle = Bundle().apply {
+                    putString("selectedId", it)
+                }
+                findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
 
             })
 
 
 
 
-        adapter.sendList(it)
+        adapter.sendList(data?.data ?: emptyList())
         binding.rvHomeAllCategory.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvHomeAllCategory.adapter = adapter

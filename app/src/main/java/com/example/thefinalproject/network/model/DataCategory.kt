@@ -14,7 +14,7 @@ data class DataCategory(
     @SerializedName("description")
     val description: String?,
     @SerializedName("id")
-    val id: String?,
+    val id: String,
     @SerializedName("image")
     val image: String?,
     @SerializedName("level")
