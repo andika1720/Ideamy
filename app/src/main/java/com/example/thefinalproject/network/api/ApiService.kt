@@ -16,8 +16,6 @@ interface ApiService {
     @GET("course")
     suspend fun getlist():ListResponse
 
-    @GET("course")
-    suspend fun getCategory():CategoryResponse
 
     @GET("course")
     suspend fun getDataByCategory(
@@ -38,5 +36,7 @@ interface ApiService {
         @Query("category") category: String?,
         @Query("level") level: String?,
         @Query("type") type: String?,
+        @Query("search") search: String?,
     ) : ListResponse
+
 }

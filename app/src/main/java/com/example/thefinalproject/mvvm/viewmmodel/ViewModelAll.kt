@@ -41,9 +41,9 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
     }
 
     //percobaan
-    fun getFilterCourse(id: String?,category: String?,level: String?, type: String?) = liveData(Dispatchers.IO) {
+    fun getFilterCourse(id: String?,level: String?, category: String?,type: String?,search: String?) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getFilter2(id, category, level, type)))
+            emit(Resource.success(repo.getFilter2(id, level,category, type, search)))
         } catch (exception : Exception) {
             emit(Resource.error(data = null,exception.message?: "Error Occurred!"))
         }

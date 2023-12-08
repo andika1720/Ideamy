@@ -17,7 +17,7 @@ import com.example.thefinalproject.network.model.ListResponse
 import com.example.thefinalproject.util.Status
 import org.koin.android.ext.android.inject
 
-class ItemForWebDev:Fragment() {
+class ItemForAndroidDev:Fragment() {
     private lateinit var binding: FragmentItemSemuaKelasBinding
     private val viewMode : ViewModelAll by inject()
 
@@ -27,14 +27,14 @@ class ItemForWebDev:Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentItemSemuaKelasBinding.inflate(inflater, container, false)
-        fetchList(null,"Web Development", null, null)
+        fetchList(null,"Android Development", null, null,null)
         return binding.root
     }
 
 
-    private fun fetchList(id: String?,category: String?,level: String?, type: String?) {
+    private fun fetchList(id: String?,category: String?,level: String?, type: String?, search: String?) {
 
-        viewMode.getFilterCourse(id, category, level, type).observe(viewLifecycleOwner) {
+        viewMode.getFilterCourse(id, category, level, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)

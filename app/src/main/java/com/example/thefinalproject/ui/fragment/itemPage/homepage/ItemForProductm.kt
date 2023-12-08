@@ -35,14 +35,14 @@ class ItemForProductm : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentItemSemuaKelasBinding.inflate(inflater, container, false)
-        fetchList(null,"Product Management", null, null)
+        fetchList(null,"Product Management", null, null,null)
         return binding.root
     }
 
 
-    private fun fetchList(id: String?,category: String?,level: String?, type: String?) {
+    private fun fetchList(id: String?,category: String?,level: String?, type: String?,search: String?) {
 
-        viewMode.getFilterCourse(id, category, level, type).observe(viewLifecycleOwner) {
+        viewMode.getFilterCourse(id, category, level, type,search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)

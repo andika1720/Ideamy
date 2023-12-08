@@ -47,6 +47,7 @@ class AdapterKursusPopuler2 (private val onButtonClick: (String) -> Unit): Recyc
         init {
             binding.btnBuy.setOnClickListener {
                 val courseId = dif.currentList[adapterPosition].id
+                val type =dif.currentList[adapterPosition].type
                 onButtonClick(courseId)
             }
         }

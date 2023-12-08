@@ -22,25 +22,25 @@
             android:hint="Cari Kursus Terbaik....."
             android:iconifiedByDefault="false"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textSize="18sp"
-            android:textColor="@color/donker"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Kategori"
-            app:layout_constraintTop_toBottomOf="@id/item_searchView"/>
-        <TextView
-            android:id="@+id/lihatSemuaCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/donker"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/poppins_bold"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="18sp"
+                android:textColor="@color/donker"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Kategori"
+                app:layout_constraintTop_toBottomOf="@id/item_searchView"/>
+            <TextView
+                android:id="@+id/lihatSemuaCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/donker"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_bold"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Lihat Semua "
             app:layout_constraintTop_toBottomOf="@id/item_searchView"/>
@@ -97,13 +97,15 @@
             app:tabSelectedTextColor="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpage_kursus"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_kursuspopuler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/tabLayout_kursus"
             app:layout_constraintStart_toStartOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <ProgressBar
             android:id="@+id/progressbar_category"
@@ -113,6 +115,15 @@
             app:layout_constraintStart_toStartOf="@id/recycleviewCategory"
             app:layout_constraintEnd_toEndOf="@id/recycleviewCategory"
             app:layout_constraintBottom_toBottomOf="@id/recycleviewCategory"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar_kursus_populer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rv_kursuspopuler"
+            app:layout_constraintStart_toStartOf="@id/rv_kursuspopuler"
+            app:layout_constraintEnd_toEndOf="@id/rv_kursuspopuler"
+            app:layout_constraintBottom_toBottomOf="@id/rv_kursuspopuler"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
