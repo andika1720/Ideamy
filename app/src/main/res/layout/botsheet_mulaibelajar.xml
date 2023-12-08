@@ -75,7 +75,7 @@
             android:layout_height="60dp"
             android:text="Ikuti Kelas"
             app:cornerRadius="15dp"
-            android:backgroundTint="@color/navyblue"
+            android:backgroundTint="@drawable/button_selector"
             app:layout_constraintTop_toBottomOf="@id/tv3_mulai_belajar_botshet"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="30dp"

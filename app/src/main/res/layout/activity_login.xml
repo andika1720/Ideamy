@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="140dp"
-        android:backgroundTint="@color/navyblue"
+        android:backgroundTint="@drawable/button_selector"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/btn_masuk"
         app:cornerRadius="14dp"
