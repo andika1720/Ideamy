@@ -83,6 +83,9 @@ class HomeFragment : Fragment() {
             }
 
         })
+        binding.lihatSemuaKursus.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2)
+        }
         return binding.root
 
     }

@@ -30,5 +30,5 @@ data class DataCategory(
     @SerializedName("totalModule")
     val totalModule: Int?,
     @SerializedName("type")
-    val type: String?
+    val type: String
 ):Parcelable

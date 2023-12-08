@@ -2,10 +2,12 @@ package com.example.thefinalproject.adapter.foritemhomepage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.util.Utils
@@ -65,6 +67,20 @@ class AdapterKursusPopuler2 (private val onButtonClick: (String) -> Unit): Recyc
                 tvModul.text = "${data.totalModule} Modul"
                 btnBuy.text = "Beli  ${Utils.formatCurrency(data.price)}"
                 timerCourse.text = "${data.totalDuration} Menit"
+
+                if (data.type == "premium") {
+                    val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
+                    premiumDrawable?.setBounds(
+                        0,
+                        0,
+                        premiumDrawable.intrinsicWidth / 2,
+                        premiumDrawable.intrinsicHeight / 2
+                    )
+                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
+                } else {
+                    // Hapus gambar drawable start jika tidak "premium"
+                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                }
             }
         }
     }

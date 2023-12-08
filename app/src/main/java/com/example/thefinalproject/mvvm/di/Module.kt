@@ -1,6 +1,7 @@
 package com.example.thefinalproject.mvvm.di
 
 import com.example.thefinalproject.mvvm.repository.Repository
+import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.api.ApiClient
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -20,5 +21,6 @@ object Module {
     val uiModule
         get() = module {
             viewModel { ViewModelAll(get())}
+            viewModel { AuthViewModel(get()) }
         }
 }

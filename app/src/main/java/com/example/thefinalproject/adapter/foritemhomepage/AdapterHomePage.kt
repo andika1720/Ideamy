@@ -9,7 +9,7 @@ import com.example.thefinalproject.ui.fragment.itemPage.homepage.ItemSemuaKelas
 
 class AdapterHomePage(fragment: Fragment) : FragmentStateAdapter(fragment)  {
     override fun getItemCount(): Int {
-        return 4
+        return 2
     }
 
     override fun createFragment(position: Int): Fragment {

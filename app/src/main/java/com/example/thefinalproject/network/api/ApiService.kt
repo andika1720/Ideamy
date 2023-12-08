@@ -5,7 +5,12 @@ import com.example.thefinalproject.network.model.CategoryResponse
 import com.example.thefinalproject.network.model.DataCategory
 import com.example.thefinalproject.network.model.DetailResponse
 import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.network.model.user.login.LoginRequest
+import com.example.thefinalproject.network.model.user.login.LoginResponse
+import com.example.thefinalproject.network.model.user.register.RegisterRequest
+import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -38,5 +43,15 @@ interface ApiService {
         @Query("type") type: String?,
         @Query("search") search: String?,
     ) : ListResponse
+
+    @POST("login")
+    fun loginUser(
+        @Body loginRequest: LoginRequest
+    ): Call<LoginResponse>
+
+    @POST("register")
+    fun registerUser(
+        @Body registerRequest: RegisterRequest
+    ) : Call<RegisterResponse>
 
 }
