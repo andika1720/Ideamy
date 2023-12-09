@@ -1,4 +1,4 @@
-package com.example.thefinalproject.network.model
+package com.example.thefinalproject.network.model.course
 
 
 import android.os.Parcelable

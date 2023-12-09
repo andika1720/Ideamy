@@ -1,13 +1,13 @@
-package com.example.thefinalproject.network.model
+package com.example.thefinalproject.network.model.course
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DataCourse(
+data class DataCourseById(
     @SerializedName("category")
     val category: String?,
     @SerializedName("chapters")
-    val chapters: List<ChapterX>?,
+    val chapters: List<ChapterById>?,
     @SerializedName("creator")
     val creator: String?,
     @SerializedName("description")

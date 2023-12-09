@@ -1,6 +1,5 @@
 package com.example.thefinalproject.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,8 +14,8 @@ import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentDetailPaymentBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.DataCourse
-import com.example.thefinalproject.network.model.DetailResponse
+import com.example.thefinalproject.network.model.course.DataCourseById
+import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -124,7 +123,7 @@ class DetailPaymentFragment : Fragment() {
     }
 
     private fun showData(data: DetailResponse) {
-        val course: DataCourse? = data.data
+        val course: DataCourseById? = data.data
         Glide.with(this)
             .load(course?.image)
             .fitCenter()

@@ -6,30 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.AdapterCoursePage
-import com.example.thefinalproject.adapter.CourseAdapter
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterCourse
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.CategoryResponse
-import com.example.thefinalproject.network.model.DataCategory
-import com.example.thefinalproject.network.model.DataCourse
-import com.example.thefinalproject.network.model.DetailResponse
-import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.util.Status
-import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
 class MyCourseFragment : Fragment() {

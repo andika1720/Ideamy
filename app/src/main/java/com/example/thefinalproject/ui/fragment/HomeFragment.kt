@@ -18,9 +18,9 @@ import com.example.thefinalproject.adapter.foritemhomepage.AdapterHomePage
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.CategoryResponse
-import com.example.thefinalproject.network.model.DataCategory
-import com.example.thefinalproject.network.model.ListResponse
+import com.example.thefinalproject.network.model.course.CategoryResponse
+import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject

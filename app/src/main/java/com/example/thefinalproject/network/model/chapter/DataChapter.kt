@@ -1,19 +1,21 @@
-package com.example.thefinalproject.network.model
+package com.example.thefinalproject.network.model.chapter
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ChapterX(
+data class DataChapter(
     @SerializedName("chapterNumber")
     val chapterNumber: Int?,
     @SerializedName("courseId")
     val courseId: String?,
+    @SerializedName("createdAt")
+    val createdAt: String?,
     @SerializedName("duration")
     val duration: Int?,
     @SerializedName("id")
     val id: String?,
-    @SerializedName("modules")
-    val modules: List<ModuleX>?,
     @SerializedName("title")
-    val title: String?
+    val title: String?,
+    @SerializedName("updatedAt")
+    val updatedAt: String?
 )

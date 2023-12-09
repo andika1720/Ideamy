@@ -13,8 +13,7 @@ import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.AdapterClassPage
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.CategoryResponse
-import com.example.thefinalproject.network.model.DataCategory
+import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListCategoryBinding
-import com.example.thefinalproject.network.model.DataCategory
+import com.example.thefinalproject.network.model.course.DataCategory
 
 class AdapterCategory(private val onItemClick: OnClickListener?): RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 

@@ -1,11 +1,11 @@
-package com.example.thefinalproject.network.model
+package com.example.thefinalproject.network.model.chapter
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ListResponse(
+data class ChapterDetailResponseById(
     @SerializedName("data")
-    val `data`: List<DataCategory>,
+    val `data`: DataChapterById?,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")

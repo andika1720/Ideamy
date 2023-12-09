@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
-import com.example.thefinalproject.network.model.DataCategory
+import com.example.thefinalproject.network.model.course.DataCategory
 
 class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
 

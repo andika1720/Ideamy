@@ -1,9 +1,9 @@
-package com.example.thefinalproject.network.model
+package com.example.thefinalproject.network.model.course
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ModuleX(
+data class ModuleById(
     @SerializedName("chapterId")
     val chapterId: String?,
     @SerializedName("id")

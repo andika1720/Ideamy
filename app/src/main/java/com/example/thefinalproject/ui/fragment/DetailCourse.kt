@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.DataCourse
-import com.example.thefinalproject.network.model.DetailResponse
+import com.example.thefinalproject.network.model.course.DataCourseById
+import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.util.Status
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
 class DetailCourse : Fragment() {
@@ -88,7 +87,7 @@ class DetailCourse : Fragment() {
 
 
     private fun showData(data: DetailResponse){
-        val courseData: DataCourse? = data.data
+        val courseData: DataCourseById? = data.data
 
         binding.tvCategoryCourse.text = courseData?.category
         binding.tvTopicCourse.text = courseData?.title

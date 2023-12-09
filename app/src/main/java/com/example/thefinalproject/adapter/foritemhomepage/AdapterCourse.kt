@@ -2,14 +2,12 @@ package com.example.thefinalproject.adapter.foritemhomepage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
-import com.example.thefinalproject.network.model.DataCategory
+import com.example.thefinalproject.network.model.course.DataCategory
 
 class AdapterCourse(): RecyclerView.Adapter<AdapterCourse.ViewHolder>() {
 
