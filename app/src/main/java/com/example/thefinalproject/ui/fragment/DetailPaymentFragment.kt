@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentDetailPaymentBinding
@@ -92,7 +93,14 @@ class DetailPaymentFragment : Fragment() {
             }
 
             btnIkutiBelajar.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("message", "Hello from Bottom Sheet!")
 
+                // Set the bundle as the arguments for the fragment
+                val fragment = DetailPaymentFragment()
+                fragment.arguments = bundle
+                findNavController().navigate(R.id.action_detailPaymentFragment_to_detailCourse)
+                dialog.dismiss()
             }
             dialog.setCanceledOnTouchOutside(false)
             dialog.setContentView(view)

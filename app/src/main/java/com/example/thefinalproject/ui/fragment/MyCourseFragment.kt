@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.AdapterCoursePage
 import com.example.thefinalproject.adapter.CourseAdapter
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory

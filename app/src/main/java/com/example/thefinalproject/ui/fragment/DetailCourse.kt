@@ -73,6 +73,9 @@ class DetailCourse : Fragment() {
 
         showDetail(arg.toString())
 
+        val message: String? = arguments?.getString("message")
+        showDetail(message.toString())
+
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package com.example.thefinalproject.adapter.foritemhomepage
+package com.example.thefinalproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,7 +34,7 @@ class AdapterKursusPopuler2 (private val onButtonClick: (String) -> Unit): Recyc
         return ViewHolder(ListTopicBinding.inflate(view, parent, false))
     }
 
-    override fun onBindViewHolder(holder: AdapterKursusPopuler2.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = dif.currentList[position]
         data.let { holder.bind(data) }
     }

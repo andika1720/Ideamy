@@ -11,11 +11,9 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterHomePage
-import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
+import com.example.thefinalproject.adapter.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
@@ -29,9 +27,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewMode : ViewModelAll by inject()
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager2: ViewPager2
-    private lateinit var adapt: AdapterHomePage
     private var categorys: List<DataCategory> = emptyList()
 
     override fun onCreateView(
@@ -138,7 +133,7 @@ class HomeFragment : Fragment() {
             val bundle = Bundle().apply {
                 putString("selectedId", courseId)
             }
-            findNavController().navigate(R.id.action_homeFragment2_to_detailCourse,bundle)
+            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
         } )
 
         adapter.sendList(data?.data ?: emptyList())
