@@ -31,7 +31,7 @@ class DetailCourse : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
         _binding = FragmentDetailCourseBinding.inflate(inflater, container, false)
 
         val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelas())
@@ -73,12 +73,6 @@ class DetailCourse : Fragment() {
 
         showDetail(arg.toString())
 
-
-
-
-
-
-
         return binding.root
     }
 
@@ -88,7 +82,7 @@ class DetailCourse : Fragment() {
         viewMode.getDataById(id).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Log.d("TESTGETDATABYID", it.data.toString())
+
                     it.data?.let { data -> showData(data) }
                 }
 
@@ -97,7 +91,7 @@ class DetailCourse : Fragment() {
                 }
 
                 Status.LOADING -> {
-                    Log.d("TESTGETDATA", it.data.toString())
+                    Log.d("Data", it.data.toString())
                 }
             }
         }
@@ -109,18 +103,17 @@ class DetailCourse : Fragment() {
 
         binding.tvCategoryCourse.text = courseData?.category
         binding.tvTopicCourse.text = courseData?.title
+        binding.tvModule.text = "${courseData?.totalModule} Modul"
         binding.tvAuthorCourse.text = courseData?.creator
         binding.tvLevel.text = "${courseData?.level} Level"
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
-        binding.tvModule.text = "${courseData?.totalModule} Modul"
+
 
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
         bottomNavigationView.visibility = View.VISIBLE
     }
-
-    }
+ }
 

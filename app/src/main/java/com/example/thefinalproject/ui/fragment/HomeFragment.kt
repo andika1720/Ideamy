@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
 
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                // ...
+
             }
 
         })
@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
                 }
                 Status.ERROR -> {
                     binding.progressbarCategory.isVisible = false
-                    Log.e("ERROR", it.message.toString())
+                    Log.e("error", it.message.toString())
                 }
                 Status.LOADING -> {
                     binding.progressbarCategory.isVisible = true
@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
 
                 Status.ERROR -> {
                     binding.progressbarKursusPopuler.isVisible = false
-                    Log.e("Errorr", it.message.toString())
+                    Log.e("error", it.message.toString())
                 }
 
                 Status.LOADING -> {
