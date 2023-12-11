@@ -134,14 +134,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun showListHorizontal(data: ListResponse?) {
-        val adapter = AdapterKursusPopuler2(onButtonClick = {
+        val adapter = AdapterKursusPopuler2(onButtonClick = {courseId ->
             val bundle = Bundle().apply {
-                putString("selectedId", it)
+                putString("selectedId", courseId)
             }
-            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
+            findNavController().navigate(R.id.action_homeFragment2_to_detailCourse,bundle)
         } )
-
-
 
         adapter.sendList(data?.data ?: emptyList())
         binding.rvKursuspopuler.layoutManager =

@@ -25,7 +25,10 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
 
     private val dif = AsyncListDiffer(this, differ)
 
-    fun sendList(value: List<DataCategory>) = dif.submitList(value)
+    fun sendList(value: List<DataCategory>) {
+        dif.submitList(value)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemFreePremiumClassBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -57,12 +60,16 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
                 tvFreeDurasi.text = "${data.totalDuration} Menit"
                 if (data.type == "premium") {
                     val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
-                    premiumDrawable?.setBounds(0, 0, premiumDrawable.intrinsicWidth / 2, premiumDrawable.intrinsicHeight / 2)
+                    premiumDrawable?.setBounds(
+                        0,
+                        0,
+                        premiumDrawable.intrinsicWidth / 2,
+                        premiumDrawable.intrinsicHeight / 2
+                    )
                     btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
-                    btnMulaiKelas.text = "Premium"
                 } else {
+                    // Hapus gambar drawable start jika tidak "premium"
                     btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-                    btnMulaiKelas.text = "Mulai Kelas"
                 }
             }
         }

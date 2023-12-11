@@ -84,5 +84,9 @@
         android:id="@+id/detailCourse"
         android:name="com.example.thefinalproject.ui.fragment.DetailCourse"
         android:label="fragment_detail_course"
-        tools:layout="@layout/fragment_detail_course" />
+        tools:layout="@layout/fragment_detail_course" >
+        <action
+            android:id="@+id/action_detailCourse_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>

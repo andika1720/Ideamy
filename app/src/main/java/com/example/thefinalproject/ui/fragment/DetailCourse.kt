@@ -6,19 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.example.thefinalproject.R
+import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.ui.activity.MainActivity
+import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
+import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
 import com.example.thefinalproject.util.Status
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
 class DetailCourse : Fragment() {
 
     private var _binding: FragmentDetailCourseBinding? = null
-    private val binding = _binding!!
+    private val binding get() =  _binding!!
     private val viewMode: ViewModelAll by inject()
 
     override fun onCreateView(
@@ -27,11 +33,12 @@ class DetailCourse : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentDetailCourseBinding.inflate(inflater, container, false)
-       // val fragmentList1 = arrayListOf(ItemTentang(),TesterFragment())
+
+        val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelas())
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
-/*
+
         binding.apply {
-            viewPager2Course.adapter = AdapterTentang(fragmentList1, requireActivity().supportFragmentManager, lifecycle)
+            viewPager2Course.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
             TabLayoutMediator(tabLayoutDetailCourse, viewPager2Course) { tab, position ->
                 when(position) {
                     0 -> {tab.text = "Tentang"}
@@ -39,8 +46,6 @@ class DetailCourse : Fragment() {
                 }
             }.attach()
         }
-
- */
 
         binding.viewPager2Course.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -59,12 +64,25 @@ class DetailCourse : Fragment() {
                 }
             }
         })
+
+        binding.icArrowBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailCourse_to_homeFragment2)
+        }
+
         val arg =arguments?.getString("selectedId")
 
         showDetail(arg.toString())
 
+
+
+
+
+
+
         return binding.root
     }
+
+
 
     private fun showDetail(id: String) {
         viewMode.getDataById(id).observe(viewLifecycleOwner) {

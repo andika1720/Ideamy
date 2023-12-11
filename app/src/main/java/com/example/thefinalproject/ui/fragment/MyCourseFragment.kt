@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCoursePage
+import com.example.thefinalproject.adapter.CourseAdapter
 import com.example.thefinalproject.adapter.foritemhomepage.AdapterKursusPopuler2
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -22,11 +23,10 @@ import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
 class MyCourseFragment : Fragment() {
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager2: ViewPager2
+
     private var _binding: FragmentMyCourseBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: AdapterCoursePage
+
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
     override fun onCreateView(
@@ -47,6 +47,7 @@ class MyCourseFragment : Fragment() {
         viewMode.getFilterCourse(id, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
+                    categorys = it.data?.data ?: emptyList()
                     showTabLayouts(it.data)
                     showListHorizontal(it.data)
 
@@ -80,16 +81,15 @@ class MyCourseFragment : Fragment() {
 
     }
     private fun showListHorizontal(data: ListResponse?) {
-        categorys = data?.data ?: emptyList()
-        val adapter = AdapterKursusPopuler2(onButtonClick = {
 
-        })
+
+        val adapter = CourseAdapter()
 
         val uniqueType = data?.data?.distinctBy { it.type }
         adapter.sendList(data?.data ?: emptyList())
 
         binding.rvCourse.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvCourse.adapter = adapter
 
 
@@ -100,12 +100,12 @@ class MyCourseFragment : Fragment() {
         val  tabLayout = binding.tabLayoutKursus
         tabLayout.removeAllTabs()
 
-        val Tabs = tabLayout.newTab()
-        Tabs.text = "Semua Kelas"
-        tabLayout.addTab(Tabs)
+        val allClassesTab = tabLayout.newTab()
+        allClassesTab.text = "Semua Kelas"
+        tabLayout.addTab(allClassesTab)
 
         val uniqueCategories = data?.data?.distinctBy { it.type }
-        uniqueCategories?.forEach{type ->
+        uniqueCategories?.forEach { type ->
             val tab = tabLayout.newTab()
             tab.text = type.type
             tabLayout.addTab(tab)
@@ -115,11 +115,15 @@ class MyCourseFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> fetchList(null, null, null, null, null)
-                    else -> {
-                        // Logika untuk tab lainnya (position != 0 dan position != 2)
-                        val selectTabCategory = categorys[tab.position - 1].type
-                        Log.e("Tabs", tab.text.toString())
-                        fetchList(null, null, null, selectTabCategory, null)
+                    else ->  {
+                        val selectedTabIndex = tab.position - 1
+                        if (selectedTabIndex in 0 until categorys.size) {
+                            val selectTabCategory = categorys[selectedTabIndex].type
+                            Log.e("Tabs", tab.text.toString())
+                            fetchList(null, null, null, selectTabCategory, null)
+                        } else {
+                            Log.e("Tabs", "Error: Invalid category index")
+                        }
                     }
                 }
             }
@@ -134,5 +138,7 @@ class MyCourseFragment : Fragment() {
 
         })
 
+
     }
+
 }
