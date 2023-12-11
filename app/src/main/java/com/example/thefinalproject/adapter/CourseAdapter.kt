@@ -66,9 +66,11 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
                         premiumDrawable.intrinsicWidth / 2,
                         premiumDrawable.intrinsicHeight / 2
                     )
+                    btnMulaiKelas.text = "Premium"
                     btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
                 } else {
                     // Hapus gambar drawable start jika tidak "premium"
+                    btnMulaiKelas.text = "Mulai Kelas"
                     btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                 }
             }
