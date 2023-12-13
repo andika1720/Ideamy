@@ -93,13 +93,11 @@ class DetailPaymentFragment : Fragment() {
             }
 
             btnIkutiBelajar.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putString("message", "Hello from Bottom Sheet!")
-
-                // Set the bundle as the arguments for the fragment
-                val fragment = DetailPaymentFragment()
-                fragment.arguments = bundle
-                findNavController().navigate(R.id.action_detailPaymentFragment_to_detailCourse)
+                val courseId = arguments?.getString("selectedId")
+                    val bundle = Bundle().apply {
+                        putString("selectedId", courseId)
+                    }
+                    findNavController().navigate(R.id.action_detailPaymentFragment_to_detailCourse, bundle)
                 dialog.dismiss()
             }
             dialog.setCanceledOnTouchOutside(false)
