@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
+import com.example.thefinalproject.adapter.AdapterPageForDetail
 import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -38,7 +39,7 @@ class DetailCourse : Fragment() {
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
 
         binding.apply {
-            viewPager2Course.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+            viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
             TabLayoutMediator(tabLayoutDetailCourse, viewPager2Course) { tab, position ->
                 when(position) {
                     0 -> {tab.text = "Tentang"}
@@ -117,7 +118,7 @@ class DetailCourse : Fragment() {
         tentangFragment.arguments = bundle
 
         val fragmentList = arrayListOf(tentangFragment, MateriKelas())
-        binding.viewPager2Course.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+        binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
     }
     override fun onDestroyView() {

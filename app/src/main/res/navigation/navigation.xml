@@ -68,7 +68,14 @@
         android:id="@+id/myCourseFragment2"
         android:name="com.example.thefinalproject.ui.fragment.MyCourseFragment"
         android:label="fragment_my_course"
-        tools:layout="@layout/fragment_my_course" />
+        tools:layout="@layout/fragment_my_course" >
+        <action
+            android:id="@+id/action_myCourseFragment2_to_detailPaymentFragment"
+            app:destination="@id/detailPaymentFragment" />
+        <action
+            android:id="@+id/action_myCourseFragment2_to_detailCourse"
+            app:destination="@id/detailCourse" />
+    </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.thefinalproject.ui.fragment.setting.ChangePasswordFragment"

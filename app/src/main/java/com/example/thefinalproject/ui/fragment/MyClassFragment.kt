@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.thefinalproject.adapter.AdapterCategory
+import com.example.thefinalproject.adapter.AdapterPageForDetail
 import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -38,7 +39,7 @@ class MyClassFragment : Fragment() {
         val fragmentList = arrayListOf(SemuaKelasClass(), InProgressKelasFragment(), SelesaiFragment())
         val titleFragment = arrayListOf("Semua Kelas", "In Progress", "Selesai")
         binding.apply {
-            viewpageClass.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+            viewpageClass.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
             TabLayoutMediator(tabLayoutClass, viewpageClass) { tab, position ->
                 tab.text = titleFragment[position]
             }.attach()

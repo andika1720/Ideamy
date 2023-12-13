@@ -11,7 +11,7 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
 import com.example.thefinalproject.network.model.course.DataCategory
 
-class CourseAdapter(private val itemClickListener: CourseItemClickListener) : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
+class DetailCourseAdapter: RecyclerView.Adapter<DetailCourseAdapter.ViewHolder>() {
 
     private val differ = object : DiffUtil.ItemCallback<DataCategory>() {
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -44,27 +44,11 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener) : Re
         return dif.currentList.size
     }
 
-    interface CourseItemClickListener {
-        fun onCourseItemClick(data: DataCategory)
-    }
-
-    interface CourseItemClickListenerProvider {
-        fun setItemClickListener(itemClickListener: CourseAdapter.CourseItemClickListener)
-    }
 
     // Method to set CourseItemClickListener
 
     inner class ViewHolder(private var binding: ItemFreePremiumClassBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.btnMulaiKelas.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val data = dif.currentList[position]
-                    itemClickListener.onCourseItemClick(data)
-                }
-            }
-        }
         fun bind(data: DataCategory) {
             binding.apply {
                 Glide.with(itemView.context)

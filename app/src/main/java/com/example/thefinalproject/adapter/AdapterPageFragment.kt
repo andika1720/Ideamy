@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class AdapterPageFragment(
     var fragmentList: ArrayList<Fragment>,
+    private val courseItemClickListener: CourseAdapter.CourseItemClickListener,
     fm: FragmentManager,
     lifecycle: Lifecycle
 ): FragmentStateAdapter(fm, lifecycle) {
@@ -15,6 +16,10 @@ class AdapterPageFragment(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return fragmentList[position]
+        val fragment = fragmentList[position]
+        if (fragment is CourseAdapter.CourseItemClickListenerProvider) {
+            (fragment as CourseAdapter.CourseItemClickListenerProvider).setItemClickListener(courseItemClickListener)
+        }
+        return fragment
     }
 }
