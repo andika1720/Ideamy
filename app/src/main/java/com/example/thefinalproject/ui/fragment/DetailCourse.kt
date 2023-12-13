@@ -109,6 +109,15 @@ class DetailCourse : Fragment() {
         binding.tvLevel.text = "${courseData?.level} Level"
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
 
+        val bundle = Bundle()
+        bundle.putString("description", courseData?.description)
+        bundle.putString("telegramLink", courseData?.telegram)
+
+        val tentangFragment = DetailcourseTentangFragment()
+        tentangFragment.arguments = bundle
+
+        val fragmentList = arrayListOf(tentangFragment, MateriKelas())
+        binding.viewPager2Course.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
     }
     override fun onDestroyView() {
