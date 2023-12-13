@@ -1,13 +1,11 @@
 package com.example.thefinalproject.mvvm.viewmmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.util.Resource
-import com.example.thefinalproject.util.SharePref
 import kotlinx.coroutines.Dispatchers
 
 class AuthViewModel(private val repo: Repository): ViewModel() {

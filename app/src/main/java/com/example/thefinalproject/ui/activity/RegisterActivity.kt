@@ -4,15 +4,26 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityRegisterBinding
+import com.example.thefinalproject.mvvm.repository.Repository
+import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
+import com.example.thefinalproject.network.api.ApiClient
+import com.example.thefinalproject.network.model.user.register.RegisterRequest
+import com.example.thefinalproject.ui.fragment.OtpCode
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-
+    private val authViewModel:AuthViewModel by lazy {
+        AuthViewModel(Repository(ApiClient.instance))
+    }
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,9 +116,10 @@ class RegisterActivity : AppCompatActivity() {
             val noHpText = binding.etNohpRegis.text.toString()
             val emailText = binding.etEmailRegis.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
-            val intent = Intent(this, LoginActivity::class.java)
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+
 
             if (namaText.isBlank() || noHpText.isBlank() || emailText.isBlank() || passwordText.isBlank()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
@@ -129,50 +141,83 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
-                } else if (noHpText.length >= 13) {
-                    binding.textInputNohpRegis.error = "MAX 15 Number"
+                } else if (noHpText.length < 11 || noHpText.length > 11) {
+                    binding.textInputNohpRegis.error = "masukan 12 Number"
+
                     return@setOnClickListener
-                } else if (emailText.matches(emailPattern.toRegex())) {
-                    binding.textInputEmailRegis.error = "Invalid email format!"
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()){
+                    binding.etEmailRegis.error = "Email Tidak Valid"
+                    binding.etEmailRegis.requestFocus()
                     return@setOnClickListener
                 } else if (binding.textFieldPasswordRegis.error != null) {
                     Toast.makeText(this, "Please correct the password field", Toast.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
                 } else {
+                    val hpreal = "0$noHpText"
+                    Log.e("Isi telephon",hpreal)
 
-                    /*
-                when {
-                    namaText.isEmpty() -> {
-                     Toast.makeText(this, "Nama belum terisi", Toast.LENGTH_SHORT).show()
-                      binding.etNamaRegis.requestFocus()
-                        return@setOnClickListener
+                    // Call the registration API
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
+                            authViewModel.regisUser(
+                                RegisterRequest(
+                                    namaText,
+                                    hpreal,
+                                    emailText,
+                                    passwordText
+                                )
+                            )
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                "Registration successful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            // Redirect to login screen or perform any other action
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                "Registration failed: ${e.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+//                        val fragmentOTP = OtpCode()
+//                        supportFragmentManager.beginTransaction()
+//                            .replace(R.id.container2, fragmentOTP)
+//                            .addToBackStack(null)
+//                            .commit()
+
+                        /*
+                    when {
+                        namaText.isEmpty() -> {
+                         Toast.makeText(this, "Nama belum terisi", Toast.LENGTH_SHORT).show()
+                          binding.etNamaRegis.requestFocus()
+                            return@setOnClickListener
+                        }
+
+                        emailText.isEmpty() -> {
+                            Toast.makeText(this, "Email Belum terisi", Toast.LENGTH_SHORT).show()
+                            binding.etEmailRegis.requestFocus()
+                            return@setOnClickListener
+                        }
+
+                        noHpText.isEmpty() -> {
+                            Toast.makeText(this, "No Handphone belum terisi", Toast.LENGTH_SHORT).show()
+                            binding.etNohpRegis.requestFocus()
+                            return@setOnClickListener
+                        }
+
+                        passwordText.isEmpty() -> {
+                            Toast.makeText(this, "Password Belum terisi", Toast.LENGTH_SHORT).show()
+                            binding.etPasswordRegis.requestFocus()
+                            return@setOnClickListener
+                        }
                     }
 
-                    emailText.isEmpty() -> {
-                        Toast.makeText(this, "Email Belum terisi", Toast.LENGTH_SHORT).show()
-                        binding.etEmailRegis.requestFocus()
-                        return@setOnClickListener
-                    }
+                 */
 
-                    noHpText.isEmpty() -> {
-                        Toast.makeText(this, "No Handphone belum terisi", Toast.LENGTH_SHORT).show()
-                        binding.etNohpRegis.requestFocus()
-                        return@setOnClickListener
-                    }
-
-                    passwordText.isEmpty() -> {
-                        Toast.makeText(this, "Password Belum terisi", Toast.LENGTH_SHORT).show()
-                        binding.etPasswordRegis.requestFocus()
-                        return@setOnClickListener
-                    }
                 }
-
-
-             */
-                }
-
-//
             }
         }
     }
