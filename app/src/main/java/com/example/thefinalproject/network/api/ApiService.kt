@@ -35,6 +35,10 @@ interface ApiService {
     ): CategoryResponse
 
     @GET("course")
+    suspend fun getCourseByTitle(
+        @Query("title") title: String?
+    ) : CategoryResponse
+    @GET("course")
     suspend fun getFilterCourse(
         @Query("id") id: String?,
         @Query("category") category: String?,
@@ -46,7 +50,7 @@ interface ApiService {
     @POST("login")
     fun loginUser(
         @Body loginRequest: LoginRequest
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @POST("register")
     fun registerUser(

@@ -1,4 +1,4 @@
-package com.example.thefinalproject.ui.fragment
+package com.example.thefinalproject.ui.fragment.itemPage.course
 
 import android.os.Bundle
 import android.util.Log
@@ -9,61 +9,47 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.adapter.CourseAdapter
-import com.example.thefinalproject.databinding.FragmentMyCourseBinding
+import com.example.thefinalproject.databinding.FragmentKelasFreeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
-
-import com.example.thefinalproject.ui.fragment.itemPage.course.KelasFree
-import com.example.thefinalproject.ui.fragment.itemPage.course.KelasPremium
-import com.example.thefinalproject.ui.fragment.itemPage.course.SemuaKelasCourseFragment
+import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
-class MyCourseFragment : Fragment() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
-    private var _binding: FragmentMyCourseBinding? = null
+/**
+ * A simple [Fragment] subclass.
+ * Use the [KelasPremium.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class KelasPremium : Fragment() {
+    private var _binding: FragmentKelasFreeBinding? = null
     private val binding get() = _binding!!
-
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragmen
-        _binding = FragmentMyCourseBinding.inflate(layoutInflater,container,false)
-        val fragmentList = arrayListOf(SemuaKelasCourseFragment(), KelasPremium(), KelasFree())
-        val titleFragment = arrayListOf("Semua Kelas", "Premium", "Free")
-        binding.apply {
-            viewpageCourse.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
-            TabLayoutMediator(tabLayoutKursus, viewpageCourse) { tab, position ->
-                tab.text = titleFragment[position]
-            }.attach()
-        }
+    ): View? {
+        _binding = FragmentKelasFreeBinding.inflate(layoutInflater, container, false)
 
+        fetchList(null,null,null,"premium",null)
         return binding.root
     }
-
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fetchList(null,null,null,null,null)
-    }
-
     private fun fetchList(id: String?,level: String?,category: String?, type: String?, search: String?) {
         viewMode.getFilterCourse(id, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     categorys = it.data?.data ?: emptyList()
-
                     showListHorizontal(it.data)
-
-
                     binding.progressbarCourse.isVisible = false
 
                 }
@@ -107,10 +93,4 @@ class MyCourseFragment : Fragment() {
 
     }
 
-
-
-
-
-     */
 }
-
