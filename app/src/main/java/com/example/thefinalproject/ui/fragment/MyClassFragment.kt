@@ -8,22 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.adapter.AdapterCategory
-import com.example.thefinalproject.adapter.AdapterClassPage
+import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
+import com.example.thefinalproject.ui.fragment.itemPage.class1.InProgressKelasFragment
+import com.example.thefinalproject.ui.fragment.itemPage.class1.SelesaiFragment
+import com.example.thefinalproject.ui.fragment.itemPage.class1.SemuaKelasClass
 import com.example.thefinalproject.util.Status
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
 class MyClassFragment : Fragment() {
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager2: ViewPager2
-    private lateinit var adapter: AdapterClassPage
-    private lateinit var binding: FragmentMyClassBinding
+    private var _binding: FragmentMyClassBinding? = null
+    private val binding get() = _binding!!
     private val viewMode: ViewModelAll by inject()
 
 
@@ -31,47 +30,23 @@ class MyClassFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
-        binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
 
         fetchCategory(null)
-        /*
-        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
+        val fragmentList = arrayListOf(SemuaKelasClass(), InProgressKelasFragment(), SelesaiFragment())
+        val titleFragment = arrayListOf("Semua Kelas", "In Progress", "Selesai")
+        binding.apply {
+            viewpageClass.adapter = AdapterPageFragment(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+            TabLayoutMediator(tabLayoutClass, viewpageClass) { tab, position ->
+                tab.text = titleFragment[position]
+            }.attach()
+        }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-         */
 
         return binding.root
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        tabLayout = binding.tabLayoutClass
-        viewPager2 = binding.viewpageClass
-        adapter = AdapterClassPage(this)
-        viewPager2.adapter = adapter
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            when (position) {
-                0 -> tab.text = "Semua Kelas"
-                1 -> tab.text = "In Progress"
-                2 -> tab.text = "Selesai"
-            }
-        }.attach()
     }
 
 

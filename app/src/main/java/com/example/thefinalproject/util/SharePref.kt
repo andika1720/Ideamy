@@ -13,8 +13,8 @@ object SharePref {
         prefe = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     }
 
-    fun getPref(key: String, value: Boolean): Boolean{
-        return prefe.getBoolean(key, value)
+    fun getPref(key: String, value: String? = null): String?{
+        return prefe.getString(key, value)
     }
 
 
