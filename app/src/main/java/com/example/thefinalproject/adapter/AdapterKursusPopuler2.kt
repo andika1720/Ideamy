@@ -78,7 +78,7 @@ class AdapterKursusPopuler2 (private val onButtonClick: (String) -> Unit): Recyc
                     )
                     btnBuy.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
                 } else {
-                    // Hapus gambar drawable start jika tidak "premium"
+                    btnBuy.text = "Mulai Kelas"
                     btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                 }
             }

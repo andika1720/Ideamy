@@ -172,6 +172,7 @@ class HomeFragment : Fragment() {
 
     }
 
+
     private fun navigatoToCourse(data: DataCategory){
 
         val bundle = bundleOf("key" to data)

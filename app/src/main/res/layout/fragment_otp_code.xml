@@ -141,14 +141,16 @@
         app:layout_constraintTop_toBottomOf="@id/tv_kirimUlang"
         android:text="Minta kode baru via email"/>
 
-
-
-    
-
-
-
-
-
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="50dp"
+        app:layout_constraintCircleRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="KIRIM"
+        app:layout_constraintTop_toBottomOf="@+id/requestCodeEmail" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
