@@ -12,13 +12,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:padding="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"
-            android:padding="30dp"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="30dp">
 
