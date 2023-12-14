@@ -116,7 +116,7 @@ class RegisterActivity : AppCompatActivity() {
             val emailText = binding.etEmailRegis.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-            startActivity(Intent(this, LoginActivity::class.java))
+
                 // Fokus pada bidang nama jika belum terisi
                 if (namaText.isBlank()) {
                     binding.etNamaRegis.error = "Nama harus diisi"
