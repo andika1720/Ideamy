@@ -118,40 +118,42 @@ class RegisterActivity : AppCompatActivity() {
             val passwordText = binding.etPasswordRegis.text.toString()
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
 
 
-            if (namaText.isBlank() || noHpText.isBlank() || emailText.isBlank() || passwordText.isBlank()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 // Fokus pada bidang nama jika belum terisi
                 if (namaText.isBlank()) {
+                    binding.etNamaRegis.error = "Nama harus diisi"
                     binding.etNamaRegis.requestFocus()
+                    return@setOnClickListener
                 }
-            } else {
                 // Memeriksa panjang nama
-                if (namaText.length <= 6) {
-                    Toast.makeText(this, "Name must be at least 6 characters", Toast.LENGTH_SHORT)
-                        .show()
+                if (namaText.length < 6) {
+                    binding.etNamaRegis.error = "Name must be at least 6 characters"
                     binding.etNamaRegis.requestFocus()
                     return@setOnClickListener
-                } else if (binding.textInputNohpRegis.error != null) {
-                    Toast.makeText(
-                        this,
-                        "Please correct the phone number field",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                } else if (noHpText.length < 11 || noHpText.length > 11) {
-                    binding.textInputNohpRegis.error = "masukan 12 Number"
-
-                    return@setOnClickListener
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()){
-                    binding.etEmailRegis.error = "Email Tidak Valid"
+                } else if (emailText.isBlank()){
+                    binding.etEmailRegis.error = "Email harus diisi"
                     binding.etEmailRegis.requestFocus()
                     return@setOnClickListener
-                } else if (binding.textFieldPasswordRegis.error != null) {
-                    Toast.makeText(this, "Please correct the password field", Toast.LENGTH_SHORT)
-                        .show()
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()){
+                    binding.etEmailRegis.error = "Email tidak valid"
+                    binding.etEmailRegis.requestFocus()
+                    return@setOnClickListener
+                } else if (noHpText.isBlank()) {
+                    binding.etNohpRegis.error = "No HP harus diisi"
+                    binding.etNohpRegis.requestFocus()
+                    return@setOnClickListener
+                } else if (noHpText.length < 11 || noHpText.length > 11) {
+                    binding.etNohpRegis.error = "Masukan 12 angka"
+                    binding.etNohpRegis.requestFocus()
+                    return@setOnClickListener
+                } else if (passwordText.isBlank()) {
+                    binding.etPasswordRegis.error = "Password harus diisi"
+                    binding.etPasswordRegis.requestFocus()
+                    return@setOnClickListener
+                } else if (passwordText.length < 10 || passwordText.length > 10) {
+                    binding.etPasswordRegis.error = "Password harus 10 karakter"
+                    binding.etPasswordRegis.requestFocus()
                     return@setOnClickListener
                 } else {
                     val hpreal = "0$noHpText"
@@ -218,7 +220,7 @@ class RegisterActivity : AppCompatActivity() {
                  */
 
                 }
-            }
+
         }
     }
 }
