@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterPageForDetail
-import com.example.thefinalproject.adapter.AdapterPageFragment
+
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
@@ -100,6 +101,7 @@ class DetailCourse : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse){
         val courseData: DataCourseById? = data.data
 

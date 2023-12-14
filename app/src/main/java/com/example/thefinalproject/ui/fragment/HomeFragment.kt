@@ -14,16 +14,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.AdapterKursusPopuler2
+
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
+
+
+
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewMode : ViewModelAll by inject()
@@ -32,7 +36,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
 
@@ -129,12 +133,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showListHorizontal(data: ListResponse?) {
-        val adapter = AdapterKursusPopuler2(onButtonClick = {courseId ->
-            val bundle = Bundle().apply {
-                putString("selectedId", courseId)
-            }
-            findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
-        } )
+        val adapter = AdapterKursusPopuler2(this)
 
         adapter.sendList(data?.data ?: emptyList())
         binding.rvKursuspopuler.layoutManager =
@@ -150,9 +149,9 @@ class HomeFragment : Fragment() {
         })
             
         
-        val Tabs = binding.tabLayoutKursus.newTab()
-        Tabs.text = "Semua Kelas"
-        binding.tabLayoutKursus.addTab(Tabs)
+        val tabs = binding.tabLayoutKursus.newTab()
+        tabs.text = "Semua Kelas"
+        binding.tabLayoutKursus.addTab(tabs)
         val uniqueCategories = data?.data?.distinctBy { it.category }
 
         adapter.sendCategory(uniqueCategories ?: emptyList())
@@ -177,6 +176,24 @@ class HomeFragment : Fragment() {
 
         val bundle = bundleOf("key" to data)
         findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2,bundle)
+    }
+
+    override fun onCourseItemClick(data: DataCategory) {
+
+            val bundle = Bundle().apply {
+                putString("selectedId", data.id)
+            }
+            if (data.type == "premium") {
+               findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
+
+                // Navigasi ke halaman pembayaran untuk tipe premium
+
+            } else {
+                // Navigasi ke halaman detail untuk tipe free
+                findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+            }
+
+
     }
 
 }

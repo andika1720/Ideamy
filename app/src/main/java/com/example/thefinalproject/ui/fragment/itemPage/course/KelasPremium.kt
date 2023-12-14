@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment.itemPage.course
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.thefinalproject.databinding.FragmentKelasFreeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
@@ -70,6 +72,7 @@ class KelasPremium : Fragment(), CourseAdapter.CourseItemClickListener {
 
 
     }
+    @SuppressLint("SuspiciousIndentation")
     private fun showListHorizontal(data: ListResponse?) {
 
 

@@ -30,4 +30,12 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
     }
+
+     fun getCurrentUser(token: String) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(data = repo.getCurrentUser(token)))
+        } catch (exception: Exception){
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
 }

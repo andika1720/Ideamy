@@ -4,6 +4,7 @@ package com.example.thefinalproject.network.api
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.network.model.user.getuser.GetUserResponse
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
@@ -11,6 +12,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -48,13 +50,17 @@ interface ApiService {
     ) : ListResponse
 
     @POST("login")
-    fun loginUser(
+    suspend fun loginUser(
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
     @POST("register")
-    fun registerUser(
+    suspend fun registerUser(
         @Body registerRequest: RegisterRequest
     ) : Call<RegisterResponse>
 
+    @GET("current-user")
+    suspend fun getCurrentUser(
+        @Header("Authorization") token : String
+    ): GetUserResponse
 }

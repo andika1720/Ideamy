@@ -1,14 +1,13 @@
-package com.example.thefinalproject.network.model.user.login
+package com.example.thefinalproject.network.model.user.getuser
 
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse(
+data class GetUserResponse(
     @SerializedName("data")
     val `data`: Data?,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")
     val status: String?
-
 )

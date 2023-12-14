@@ -1,11 +1,10 @@
 package com.example.thefinalproject.mvvm.repository
 
-import androidx.lifecycle.liveData
+
 import com.example.thefinalproject.network.api.ApiService
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
-import com.example.thefinalproject.util.Resource
-import kotlinx.coroutines.Dispatchers
+
 
 class Repository(private val apiService: ApiService) {
 
@@ -13,6 +12,7 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun register(registerRequest: RegisterRequest) = apiService.registerUser(registerRequest)
 
+    suspend fun getCurrentUser(token: String) = apiService.getCurrentUser(token)
     suspend fun getCategory(category: String?) = apiService.getDataByCategory(category)
 
     suspend fun getList() = apiService.getlist()

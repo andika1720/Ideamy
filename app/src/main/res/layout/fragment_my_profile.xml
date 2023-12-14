@@ -17,6 +17,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp" />
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/pgrbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivProfile"
         android:layout_width="80dp"
@@ -41,28 +48,29 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/tvEmailValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="email@domain.com"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEmail"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="20dp"
         android:background="#F1F1F1"
-        android:textSize="14sp"
         android:fontFamily="@font/poppins_regular"
+        android:minHeight="48dp"
         android:padding="5dp"
-        android:textAlignment="center"/>
+        android:text="email@domain.com"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail" />
 
     <TextView
-        android:id="@+id/tvAlamat"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alamat"
+        android:text="Nama"
         android:textStyle="bold"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_regular"
@@ -71,22 +79,23 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
 
-    <TextView
-        android:id="@+id/tvAlamatValue"
+    <EditText
+        android:id="@+id/tvNamaValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="alamat"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAlamat"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="20dp"
         android:background="#F1F1F1"
-        android:textSize="14sp"
         android:fontFamily="@font/poppins_regular"
+        android:minHeight="48dp"
         android:padding="5dp"
-        android:textAlignment="center"/>
+        android:text="Nama"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
 
     <TextView
         android:id="@+id/tvMobile"
@@ -96,7 +105,7 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_regular"
-        app:layout_constraintTop_toBottomOf="@id/tvAlamatValue"
+        app:layout_constraintTop_toBottomOf="@id/tvNamaValue"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
@@ -119,10 +128,10 @@
         android:textAlignment="center"/>
 
     <TextView
-        android:id="@+id/tvCountry"
+        android:id="@+id/tvAdress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Negara"
+        android:text="Adress"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_regular"
         android:textStyle="bold"
@@ -131,52 +140,53 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
 
-    <TextView
-        android:id="@+id/tvCountryValue"
+    <EditText
+        android:id="@+id/tvAdressValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="jl indonesia"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCountry"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="20dp"
         android:background="#F1F1F1"
-        android:textSize="14sp"
         android:fontFamily="@font/poppins_regular"
+        android:minHeight="48dp"
         android:padding="5dp"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:id="@+id/tvCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:textSize="16sp"
-        android:fontFamily="@font/poppins_regular"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tvCountryValue"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
-
-    <TextView
-        android:id="@+id/tvCityValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="jl indonesia"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCity"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="#F1F1F1"
+        android:textAlignment="center"
         android:textSize="14sp"
-        android:fontFamily="@font/poppins_regular"
-        android:padding="5dp"
-        android:textAlignment="center"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAdress" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvCity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Address"-->
+<!--        android:textSize="16sp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvCountryValue"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginStart="20dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvCityValue"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="jl indonesia"-->
+<!--        android:layout_marginTop="7dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvCity"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:background="#F1F1F1"-->
+<!--        android:textSize="14sp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:padding="5dp"-->
+<!--        android:textAlignment="center"/>-->
 
     <Button
         android:id="@+id/btnSaveProfile"

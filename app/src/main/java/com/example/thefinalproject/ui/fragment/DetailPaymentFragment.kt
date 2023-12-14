@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
@@ -28,14 +28,17 @@ class DetailPaymentFragment : Fragment() {
     private lateinit var btnCreditCard: Button
     private lateinit var hiddenViewCardCredit: CardView
 
-    private lateinit var binding: FragmentDetailPaymentBinding
+    private var _binding: FragmentDetailPaymentBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: ViewModelAll by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDetailPaymentBinding.inflate(inflater ,container,false)
+    ): View {
+        _binding = FragmentDetailPaymentBinding.inflate(inflater ,container,false)
         // Inflate the layout for this fragment
+
         return binding.root
     }
 
@@ -62,6 +65,7 @@ class DetailPaymentFragment : Fragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun botSheetPaymentSuccess(){
       try {
           val dialog = BottomSheetDialog(requireContext())
@@ -82,6 +86,7 @@ class DetailPaymentFragment : Fragment() {
           Log.e("showbotPayment", "ErrorBotsheet", e)
       }
     }
+    @SuppressLint("InflateParams")
     private fun botSheetOnboard() {
         try {
             val dialog = BottomSheetDialog(requireContext())
@@ -109,7 +114,7 @@ class DetailPaymentFragment : Fragment() {
     }
 
     private fun detailPayment(courseId: String) {
-        viewModel.getDataById(courseId).observe(viewLifecycleOwner, Observer {
+        viewModel.getDataById(courseId).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
 
@@ -121,10 +126,10 @@ class DetailPaymentFragment : Fragment() {
                 }
 
                 Status.LOADING -> {
-                    Log.d("TESTGETDATA", it.data.toString())
+                    Log.d("load", it.data.toString())
                 }
             }
-        })
+        }
 
     }
 
@@ -138,10 +143,10 @@ class DetailPaymentFragment : Fragment() {
         val ppn: Double? = course?.price?.times(0.11)
         val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
         binding.tvTittleCourse.text = course?.category
-        binding.tvHarga.text = "${Utils.formatCurrency(hargaAwal)}"
-        binding.tvTotalBayar.text= "${Utils.formatCurrency(totalHarga)}"
+        binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
+        binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
 
-        binding.tvPpn.text = "${Utils.formatCurrency(ppn?.toInt())}"
+        binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
         binding.tvTopicCourse.text = course?.title
         binding.tvAuthorCourse.text = course?.creator
     }

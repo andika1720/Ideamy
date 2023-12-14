@@ -1,23 +1,26 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.adapter.CourseAdapter
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
-import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
 
 import com.example.thefinalproject.ui.fragment.itemPage.course.KelasFree
 import com.example.thefinalproject.ui.fragment.itemPage.course.KelasPremium
 import com.example.thefinalproject.ui.fragment.itemPage.course.SemuaKelasCourseFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
-import org.koin.android.ext.android.inject
 
 class MyCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
 
@@ -63,6 +66,27 @@ class MyCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
             findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
         }
     }
+
+    @SuppressLint("InflateParams")
+    private fun bonSheetSelangkah() {
+        try {
+            val dialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.botsheet_belicourse_detailcourse, null)
+            val btnSheetSelangkah = view.findViewById<Button>(R.id.btn_beliSekarang)
+            val btnClose = view.findViewById<ImageView>(R.id.ic_close)
+            btnSheetSelangkah.setOnClickListener {
+                dialog.dismiss()
+            }
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.setContentView(view)
+            dialog.show()
+        }catch (e: Exception) {
+            Log.e("showbotPayment", "ErrorBotsheet", e)
+        }
     }
+}
 
 

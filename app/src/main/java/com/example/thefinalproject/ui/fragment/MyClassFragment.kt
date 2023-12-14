@@ -10,7 +10,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.AdapterPageForDetail
-import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse

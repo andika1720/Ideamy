@@ -7,13 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
-import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityRegisterBinding
 import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.network.api.ApiClient
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
-import com.example.thefinalproject.ui.fragment.OtpCode
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -117,9 +116,7 @@ class RegisterActivity : AppCompatActivity() {
             val emailText = binding.etEmailRegis.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
             val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-            val intent = Intent(this, LoginActivity::class.java)
-
-
+            startActivity(Intent(this, LoginActivity::class.java))
                 // Fokus pada bidang nama jika belum terisi
                 if (namaText.isBlank()) {
                     binding.etNamaRegis.error = "Nama harus diisi"
