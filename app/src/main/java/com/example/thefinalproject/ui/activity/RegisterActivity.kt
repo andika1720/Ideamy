@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
     private val authViewModel:AuthViewModel by lazy {
         AuthViewModel(Repository(ApiClient.instance))
     }
-    @SuppressLint("UseCompatLoadingForDrawables")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -115,7 +115,6 @@ class RegisterActivity : AppCompatActivity() {
             val noHpText = binding.etNohpRegis.text.toString()
             val emailText = binding.etEmailRegis.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
-            val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
                 // Fokus pada bidang nama jika belum terisi
                 if (namaText.isBlank()) {
