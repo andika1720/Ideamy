@@ -1,233 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fillViewport="true"
     tools:context=".ui.activity.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
-        android:layout_margin="30dp">
-        <TextView
-            android:id="@+id/daftar_regist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Daftar"
-            android:textColor="@color/donker"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="25dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_nama_regis"
-            />
-        <TextView
-            android:id="@+id/tv_nama_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Nama"
-            android:textSize="18sp"
-            android:textColor="@color/donker"
-            app:layout_constraintBottom_toTopOf="@id/textInput_Nama_Regis"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
-            />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_Nama_Regis"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_margin="30dp"
+        android:padding="30dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="Nama Lengkap"
-            android:textColorHint="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/tv_email_login_regis"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="30dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_nama_regis"
+            <TextView
+                android:id="@+id/daftar_regist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Daftar"
+                android:textColor="@color/donker"
+                android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_nama_regis"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nama_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Nama"
+                android:textColor="@color/donker"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Nama_Regis"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Nama_Regis"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="Nama Lengkap"
+                android:textColorHint="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/tv_email_login_regis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tv_email_login_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Email"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/textInput_Email_Regis"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
-            />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_Email_Regis"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="Johncute21@gmail.com"
-            app:hintTextColor="@color/black"
-            app:endIconMode="custom"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_nama_regis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            app:helperTextTextColor="@color/red"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_error"
-            app:layout_constraintBottom_toTopOf="@id/tv_noHp_regis"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/tv_email_login_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Email_Regis"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email_regis"
-                android:inputType="textEmailAddress"
-                android:lines="1"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Email_Regis"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="Johncute21@gmail.com"
+                app:endIconMode="custom"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/tv_noHp_regis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email_regis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:lines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <TextView
-            android:id="@+id/tv_noHp_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="No Telephone"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textInput_Nohp_regis"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
-            />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_Nohp_regis"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="+62"
-            app:hintTextColor="@color/black"
-            app:endIconMode="custom"
+            <TextView
+                android:id="@+id/tv_noHp_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="No Telephone"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Nohp_regis"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            app:helperTextTextColor="@color/red"
-            app:prefixText="+62"
-            app:prefixTextColor="@color/purple"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_error"
-            app:layout_constraintBottom_toTopOf="@id/tv_password_regis"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_nohp_regis"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Nohp_regis"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:inputType="number"
-                android:maxLength="12"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="+62"
+                app:endIconMode="custom"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/tv_password_regis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:prefixText="+62"
+                app:prefixTextColor="@color/purple">
 
-        <TextView
-            android:id="@+id/tv_password_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Buat Password"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textField_Password_Regis"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
-            />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textField_Password_Regis"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="Buat password"
-            app:hintTextColor="@color/black"
-            app:endIconMode="password_toggle"
-            app:layout_constraintBottom_toTopOf="@id/btn_Daftar_regis"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="10dp"
-            app:errorEnabled="true"
-            app:helperTextTextColor="@color/red"
-            app:errorIconDrawable="@drawable/ic_error"
-            android:layout_marginBottom="25dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_nohp_regis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="12" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password_regis"
+                <FrameLayout
+                    android:id="@+id/container2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_password_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Buat Password"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/textField_Password_Regis"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField_Password_Regis"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:inputType="textPassword"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:background="@color/white"
+                android:hint="Buat password"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/btn_Daftar_regis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password_regis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_Daftar_regis"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="@drawable/button_selector"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Daftar"
-            android:textSize="16sp"
-            app:cornerRadius="14dp"
-            app:layout_constraintBottom_toTopOf="@id/haveanAcc_regis"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TextContrastCheck" />
-        <TextView
-            android:id="@+id/haveanAcc_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"
-            android:text="Sudah punya akun?"
-            android:textSize="16sp"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/masuk_disini_regis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Masuk disini"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/orange"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/haveanAcc_regis"
-            android:layout_marginBottom="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_Daftar_regis"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="@drawable/button_selector"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Daftar"
+                android:textSize="16sp"
+                app:cornerRadius="14dp"
+                app:layout_constraintBottom_toTopOf="@id/haveanAcc_regis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/haveanAcc_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="45dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Sudah punya akun?"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/masuk_disini_regis"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@+id/btn_Daftar_regis" />
+
+            <TextView
+                android:id="@+id/masuk_disini_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="45dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Masuk disini"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btn_Daftar_regis"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/haveanAcc_regis" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/container2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -94,5 +94,7 @@ dependencies {
 
     //exoplayer
     implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+    //lifeycle
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
 }

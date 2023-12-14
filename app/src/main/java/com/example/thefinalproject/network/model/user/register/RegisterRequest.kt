@@ -1,7 +1,10 @@
 package com.example.thefinalproject.network.model.user.register
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 class RegisterRequest (
     @SerializedName("name")
     val name: String?,
@@ -11,5 +14,4 @@ class RegisterRequest (
     val phoneNumber: String?,
     @SerializedName("encryptedPassword")
     val encryptedPassword: String?
-
-)
+):Parcelable

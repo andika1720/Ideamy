@@ -6,6 +6,8 @@ import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
+import com.example.thefinalproject.network.model.user.otp.OtpRequest
+import com.example.thefinalproject.network.model.user.otp.OtpResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import retrofit2.Call
@@ -56,5 +58,10 @@ interface ApiService {
     fun registerUser(
         @Body registerRequest: RegisterRequest
     ) : Call<RegisterResponse>
+
+    @POST ("account-verify")
+    fun checkOtp(
+        @Body otpRequest: OtpRequest
+    ): Call<OtpResponse>
 
 }
