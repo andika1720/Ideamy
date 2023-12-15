@@ -4,6 +4,7 @@ package com.example.thefinalproject.network.api
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.network.model.user.getuser.GetCurrentUser
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
@@ -13,6 +14,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -27,7 +29,10 @@ interface ApiService {
     suspend fun getDataByCategory(
         @Query("category") category: String?): CategoryResponse
     @GET("course/{id}")
-    suspend fun getDataById(@Path("id") id: String): DetailResponse
+    suspend fun getDataById(
+        @Header("Authorization") token : String?,
+        @Path("id") id: String
+    ): DetailResponse
 
     @GET("course")
     suspend fun getFilteredCourses(
@@ -57,11 +62,15 @@ interface ApiService {
     @POST("register")
     fun registerUser(
         @Body registerRequest: RegisterRequest
-    ) : Call<RegisterResponse>
+    ) : RegisterResponse
 
     @POST ("account-verify")
     fun checkOtp(
         @Body otpRequest: OtpRequest
     ): Call<OtpResponse>
 
+    @GET ("current-user")
+    fun currentUser(
+        @Header("Authorization") token : String?
+    ): GetCurrentUser
 }

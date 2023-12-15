@@ -4,6 +4,8 @@ package com.example.thefinalproject.network.model.course
 import com.google.gson.annotations.SerializedName
 
 data class DataCourseById(
+    @SerializedName("audience")
+    val audience: List<String?>?,
     @SerializedName("category")
     val category: String?,
     @SerializedName("chapters")
@@ -22,6 +24,8 @@ data class DataCourseById(
     val price: Int?,
     @SerializedName("telegram")
     val telegram: String?,
+    @SerializedName("rating")
+    val rating: Double?,
     @SerializedName("title")
     val title: String?,
     @SerializedName("totalDuration")

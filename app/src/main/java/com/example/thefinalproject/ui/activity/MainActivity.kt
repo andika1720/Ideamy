@@ -6,7 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityMainBinding
-import com.example.thefinalproject.util.SharePref
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

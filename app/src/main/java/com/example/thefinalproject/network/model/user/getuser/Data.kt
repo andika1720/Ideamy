@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class Data(
     @SerializedName("address")
     val address: String?,
+    @SerializedName("Courses")
+    val courses: List<Any?>?,
     @SerializedName("createdAt")
     val createdAt: String?,
     @SerializedName("email")
@@ -21,5 +23,7 @@ data class Data(
     @SerializedName("role")
     val role: String?,
     @SerializedName("updatedAt")
-    val updatedAt: String?
+    val updatedAt: String?,
+    @SerializedName("verified")
+    val verified: Boolean?
 )

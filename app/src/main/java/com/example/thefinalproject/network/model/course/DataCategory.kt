@@ -7,6 +7,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DataCategory(
+    @SerializedName("audience")
+    val audience: List<String?>?,
     @SerializedName("category")
     val category: String?,
     @SerializedName("creator")
@@ -21,6 +23,8 @@ data class DataCategory(
     val level: String?,
     @SerializedName("price")
     val price: Int?,
+    @SerializedName("rating")
+    val rating: Double?,
     @SerializedName("telegram")
     val telegram: String?,
     @SerializedName("title")

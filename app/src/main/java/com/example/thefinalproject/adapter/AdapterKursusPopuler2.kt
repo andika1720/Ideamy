@@ -68,6 +68,7 @@ class AdapterKursusPopuler2 (private val onButtonClick: CourseClick): RecyclerVi
                     .load(data.image)
                     .fitCenter()
                     .into(ivImageDefault)
+                tvRatings.text = data.rating.toString()
                 tvNamaKategory.text = data.category
                 tvTitleCourse.text = data.title
                 tvPublisher.text = data.creator

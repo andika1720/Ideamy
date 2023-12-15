@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import SharePref
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -46,7 +47,9 @@ class DetailPaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val arg =arguments?.getString("selectedId")
-        detailPayment(arg.toString())
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+
+        detailPayment(savedToken.toString(),arg.toString())
 
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
@@ -113,8 +116,8 @@ class DetailPaymentFragment : Fragment() {
         }
     }
 
-    private fun detailPayment(courseId: String) {
-        viewModel.getDataById(courseId).observe(viewLifecycleOwner) {
+    private fun detailPayment(token:String?,courseId: String) {
+        viewModel.getDataById(token,courseId).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
 

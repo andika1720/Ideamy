@@ -12,7 +12,6 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentMyProfileBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 
-import com.example.thefinalproject.util.SharePref
 
 import org.koin.android.ext.android.inject
 

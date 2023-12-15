@@ -38,9 +38,9 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
-    fun getDataById(id: String) = liveData(Dispatchers.IO) {
+    fun getDataById(token: String?,id: String) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getDataByid(id)))
+            emit(Resource.success(repo.getDataByid(token,id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }

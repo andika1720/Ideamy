@@ -44,7 +44,7 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
             startActivity(intent)
         }
 
-        showDetailCoroutines(courseId.toString())
+        showDetailCoroutines(null,courseId.toString())
         return binding.root
     }
 
@@ -67,9 +67,9 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
             .into(binding.imageView2)
     }
 
-    private fun showDetailCoroutines(id: String) {
+    private fun showDetailCoroutines(token:String?,id: String) {
 
-        viewModel.getDataById(id).observe(viewLifecycleOwner) {
+        viewModel.getDataById(token,id).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { data -> showData(data) }

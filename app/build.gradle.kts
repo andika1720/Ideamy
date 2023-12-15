@@ -97,4 +97,10 @@ dependencies {
     //lifeycle
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
+    //lotie
+    implementation ("com.airbnb.android:lottie:5.0.3")
+    //youtube
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+
 }

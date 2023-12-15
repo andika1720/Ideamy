@@ -14,13 +14,19 @@ import com.example.thefinalproject.adapter.AdapterPageForDetail
 
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
+import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
+import com.example.thefinalproject.network.model.course.ModuleById
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
+
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayoutMediator
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import org.koin.android.ext.android.inject
 
 class DetailCourse : Fragment() {
@@ -36,6 +42,7 @@ class DetailCourse : Fragment() {
 
         _binding = FragmentDetailCourseBinding.inflate(inflater, container, false)
 
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelas())
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
 
@@ -73,7 +80,7 @@ class DetailCourse : Fragment() {
 
         val arg =arguments?.getString("selectedId")
 
-        showDetail(arg.toString())
+        showDetail(savedToken.toString(),arg.toString())
 
 
         return binding.root
@@ -81,8 +88,8 @@ class DetailCourse : Fragment() {
 
 
 
-    private fun showDetail(id: String) {
-        viewMode.getDataById(id).observe(viewLifecycleOwner) {
+    private fun showDetail(token:String?,id: String) {
+        viewMode.getDataById("Bearer $token",id).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
 
@@ -105,6 +112,21 @@ class DetailCourse : Fragment() {
     private fun showData(data: DetailResponse){
         val courseData: DataCourseById? = data.data
 
+        val youTubePlayerView: YouTubePlayerView = binding.playerView
+        lifecycle.addObserver(youTubePlayerView)
+        youTubePlayerView.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+
+                val firstChapter: ChapterById? = courseData?.chapters?.getOrNull(0)
+                val firstModule: ModuleById? = firstChapter?.modules?.getOrNull(0)
+
+                val videoUrl = youtubeVidStatic(firstModule?.video ?: "")
+
+                Log.d("VIDEOID", videoUrl.toString())
+                youTubePlayer.loadVideo(videoUrl.toString(), 0F)
+            }
+        })
         binding.tvCategoryCourse.text = courseData?.category
         binding.tvTopicCourse.text = courseData?.title
         binding.tvModule.text = "${courseData?.totalModule} Modul"
@@ -112,9 +134,11 @@ class DetailCourse : Fragment() {
         binding.tvLevel.text = "${courseData?.level} Level"
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
 
+
         val bundle = Bundle()
-        bundle.putString("description", courseData?.description)
-        bundle.putString("telegramLink", courseData?.telegram)
+        bundle.putString("selectedId", courseData?.id)
+        //bundle.putString("audience", courseData?.audience.toString())
+        //bundle.putString("telegramLink", courseData?.telegram)
 
         val tentangFragment = DetailcourseTentangFragment()
         tentangFragment.arguments = bundle
@@ -123,6 +147,19 @@ class DetailCourse : Fragment() {
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
     }
+
+
+    private fun youtubeVidStatic(youtubeUrl: String): String? {
+        var videoId: String? = null
+        val pattern = Regex("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", RegexOption.IGNORE_CASE)
+        val matcher = pattern.find(youtubeUrl)
+        if (matcher != null && matcher.groupValues.size > 1) {
+            videoId = matcher.groupValues[1]
+        }
+        return videoId
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
