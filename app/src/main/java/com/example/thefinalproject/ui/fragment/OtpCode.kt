@@ -99,6 +99,9 @@ class OtpCode : Fragment() {
         }
 
     }
+    fun ahhaha(){
+
+    }
 
     private fun startCountDownTimer() {
         object : CountDownTimer(60000, 1000) {
