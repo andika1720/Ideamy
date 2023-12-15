@@ -143,8 +143,12 @@ class DetailCourse : Fragment() {
         val tentangFragment = DetailcourseTentangFragment()
         tentangFragment.arguments = bundle
 
+        val materiKelasFragment = MateriKelas()
+        materiKelasFragment.arguments = bundle
+
         val fragmentList = arrayListOf(tentangFragment, MateriKelas())
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+
 
     }
 
@@ -165,5 +169,6 @@ class DetailCourse : Fragment() {
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
         bottomNavigationView.visibility = View.VISIBLE
     }
+    
  }
 

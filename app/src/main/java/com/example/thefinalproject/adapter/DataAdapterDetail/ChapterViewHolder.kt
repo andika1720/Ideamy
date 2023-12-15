@@ -8,7 +8,7 @@ import com.example.thefinalproject.network.model.course.ChapterById
 
 class ChapterViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(chapter: ChapterById) {
-        itemView.findViewById<TextView>(R.id.tv_chapter1).text = "Chapter${chapter.chapterNumber} - ${chapter.title}"
-        itemView.findViewById<TextView>(R.id.textViewDurasii).text = "${chapter.duration} Menit"
+        itemView.findViewById<TextView>(R.id.tv_namaChapter).text = "Chapter${chapter.chapterNumber} - ${chapter.title}"
+        itemView.findViewById<TextView>(R.id.tv_durasi).text = "${chapter.duration} Menit"
     }
 }

@@ -7,24 +7,23 @@
     android:paddingHorizontal="10dp">
 
     <TextView
-        android:id="@+id/tv_chapter1"
+        android:id="@+id/tv_namaChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Chapter1"
-        android:textSize="16sp"/>
-
+        android:text="Chapter 1 - Pendahuluan"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewDurasii"
+        android:id="@+id/tv_durasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="60 Menit"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_chapter1" />
+        app:layout_constraintTop_toTopOf="@+id/tv_namaChapter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

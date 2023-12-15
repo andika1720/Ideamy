@@ -10,7 +10,7 @@ class AdapterDetailsMateri : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ChaptersViewHolder(private val binding: ItemmateriTitlechapterBinding):RecyclerView.ViewHolder(binding.root) {
         fun bindBannerView(banner: ChapterById) {
-            binding.tvChapter1.text = banner.title
+            binding.tvNamaChapter.text = banner.title
         }
     }
 

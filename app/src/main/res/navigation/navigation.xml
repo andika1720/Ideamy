@@ -106,10 +106,18 @@
         <action
             android:id="@+id/action_detailCourse_to_homeFragment2"
             app:destination="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_detailCourse_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <activity
         android:id="@+id/detailPaymentActivity"
         android:name="com.example.thefinalproject.ui.activity.DetailPaymentActivity"
         android:label="activity_detail_payment"
         tools:layout="@layout/activity_detail_payment" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.detail.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" />
 </navigation>
