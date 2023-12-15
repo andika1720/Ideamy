@@ -70,8 +70,13 @@ class DetailcourseTentangFragment : Fragment() {
     }
     private fun showData(data: DetailResponse) {
         val courseData: DataCourseById? = data.data
+        val audienceList = courseData?.audience
+        val formattedAudience = StringBuilder()
+        audienceList?.forEachIndexed { index, audience ->
+            formattedAudience.append("${index + 1}. $audience\n")
+        }
 
         binding.tvDeskripsiTentang.text = courseData?.description
-        binding.textView4.text = courseData?.audience.toString()
+        binding.textView4.text = formattedAudience.toString()
     }
 }
