@@ -77,8 +77,6 @@ class OtpCode : Fragment() {
             sendOtp(OtpRequest(getDataRegis?.email!!,combinedValue))
         }
 
-
-
     }
 
     fun sendOtp(otpRequest: OtpRequest){
