@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 class AuthViewModel(private val repo: Repository): ViewModel() {
 
 
-    suspend fun loginUser(loginRequest: LoginRequest) = liveData(Dispatchers.IO) {
+    fun loginUser(loginRequest: LoginRequest) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
 

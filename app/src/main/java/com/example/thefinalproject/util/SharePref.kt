@@ -19,10 +19,10 @@ object SharePref {
 
 
 
-    fun setPref(key: String, value: Boolean) {
+    fun setPref(key: String, value: String?) {
         val editor: SharedPreferences.Editor = prefe.edit()
         with(editor){
-            putBoolean(key, value)
+            putString(key, value)
             apply()
             commit()
         }

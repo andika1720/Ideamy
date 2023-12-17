@@ -55,12 +55,12 @@ interface ApiService {
     ) : ListResponse
 
     @POST("login")
-    fun loginUser(
+    suspend fun loginUser(
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
     @POST("register")
-    fun registerUser(
+    suspend fun registerUser(
         @Body registerRequest: RegisterRequest
     ) : RegisterResponse
 

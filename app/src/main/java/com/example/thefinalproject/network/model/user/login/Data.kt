@@ -23,5 +23,7 @@ data class Data(
     @SerializedName("token")
     val token: String?,
     @SerializedName("updatedAt")
-    val updatedAt: String?
+    val updatedAt: String?,
+    @SerializedName("verified")
+    val verified: Boolean?
 )

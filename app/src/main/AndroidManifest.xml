@@ -15,9 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheFinalProject"
         tools:targetApi="31" >
-        <activity
-            android:name=".ui.activity.DetailPaymentActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:exported="false" />
@@ -32,8 +30,7 @@
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

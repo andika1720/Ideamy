@@ -5,13 +5,9 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class RegisterRequest (
-    @SerializedName("name")
+data class RegisterRequest (
     val name: String?,
-    @SerializedName("email")
     val email: String?,
-    @SerializedName("phoneNumber")
     val phoneNumber: String?,
-    @SerializedName("encryptedPassword")
-    val encryptedPassword: String?
+    val password: String?
 ):Parcelable

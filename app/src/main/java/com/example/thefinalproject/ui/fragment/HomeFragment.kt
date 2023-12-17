@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import SharePref
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +21,8 @@ import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
-
+import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
+import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 
 
 import com.example.thefinalproject.util.Status
@@ -43,22 +45,6 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
 
         fetchCategory(null)
 
-        /*
-        tabLayout = binding.tabLayoutKursus
-        viewPager2 = binding.viewpageKursus
-        adapt= AdapterHomePage(this)
-        viewPager2.setOnTouchListener { _, _ -> true  }
-        viewPager2.adapter = adapt
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            when (position) {
-                0 -> tab.text = "Semua Kelas"
-                1 -> tab.text = "Product Management"
-                2 -> tab.text = "Android Development"
-                3 -> tab.text = "Data Science"
-            }
-        }.attach()
-
-         */
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -82,6 +68,17 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
             }
 
         })
+        val token = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        if (token != null) {
+
+            Log.d("TOKEN_CHECK", "Token is not null: $token")
+
+        } else {
+
+            Log.d("TOKEN_CHECK", "Token is null")
+
+
+        }
         binding.lihatSemuaKursus.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2)
         }
@@ -134,7 +131,16 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
 
     private fun showListHorizontal(data: ListResponse?) {
         val adapter = AdapterKursusPopuler2(this)
-
+        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+//        if (isLogin != null) {
+//            val bottomSheetFragment = BotsheetSelangkah()
+//            bottomSheetFragment.setCourseId(this)
+//            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+//        } else {
+//            val bottomSheetFragmentMustLogin = BotSheetLogin()
+//            bottomSheetFragmentMustLogin.show(childFragmentManager, bottomSheetFragmentMustLogin.tag)
+//
+//        }
         adapter.sendList(data?.data ?: emptyList())
         binding.rvKursuspopuler.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)

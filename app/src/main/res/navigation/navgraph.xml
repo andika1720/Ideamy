@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/materiKelas">
+
+    <fragment
+        android:id="@+id/materiKelas"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas"
+        android:label="fragment_materi_kelas"
+        tools:layout="@layout/fragment_materi_kelas" >
+        <action
+            android:id="@+id/action_materiKelas_to_detailcourseTentangFragment"
+            app:destination="@id/detailcourseTentangFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailcourseTentangFragment"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment"
+        android:label="fragment_detailcourse_tentang"
+        tools:layout="@layout/fragment_detailcourse_tentang" >
+        <action
+            android:id="@+id/action_detailcourseTentangFragment_to_materiKelas"
+            app:destination="@id/materiKelas" />
+    </fragment>
+</navigation>
