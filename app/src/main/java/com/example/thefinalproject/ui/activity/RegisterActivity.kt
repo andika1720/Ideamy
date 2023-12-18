@@ -83,8 +83,8 @@ class RegisterActivity : AppCompatActivity() {
                 binding.etPasswordRegis.error = "Password harus diisi"
                 binding.etPasswordRegis.requestFocus()
                 return@setOnClickListener
-            } else if (passwordText.length < 10 || passwordText.length > 10) {
-                binding.etPasswordRegis.error = "Password harus 10 karakter"
+            } else if (passwordText.length < 8 || passwordText.length > 12) {
+                binding.etPasswordRegis.error = "Password Harus Terdiri dari 8-12 Karakter"
                 binding.etPasswordRegis.requestFocus()
                 return@setOnClickListener
                 } else {
