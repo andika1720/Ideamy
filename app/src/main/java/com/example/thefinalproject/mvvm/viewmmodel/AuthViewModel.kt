@@ -33,7 +33,7 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
-    suspend fun regisUser(registerRequest: RegisterRequest) = liveData(
+     fun regisUser(registerRequest: RegisterRequest) = liveData(
         Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
@@ -42,7 +42,8 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
     }
-    suspend fun otpUser(otpRequest: OtpRequest) = liveData(Dispatchers.IO) {
+
+     fun otpUser(otpRequest: OtpRequest) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(repo.checkOtp(otpRequest)))

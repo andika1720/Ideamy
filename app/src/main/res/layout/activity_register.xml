@@ -13,12 +13,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:padding="30dp">
+       >
+        <FrameLayout
+            android:id="@+id/container2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/regisContent"
+            android:visibility="visible"
+            android:layout_margin="30dp"
+            android:padding="30dp"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="30dp">
 
@@ -146,10 +154,7 @@
                     android:inputType="number"
                     android:maxLength="12" />
 
-                <FrameLayout
-                    android:id="@+id/container2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
