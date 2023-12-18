@@ -3,6 +3,7 @@ package com.example.thefinalproject.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,16 +19,19 @@ import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.ui.activity.RegisterActivity
+import com.example.thefinalproject.util.Status
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class OtpCode : Fragment() {
     private lateinit var binding:FragmentOtpCodeBinding
-    private val authViewModel: AuthViewModel by lazy {
-        AuthViewModel(Repository(ApiClient.instance))
-    }
+    private val viewmodel: AuthViewModel by inject()
+//    private val authViewModel: AuthViewModel by lazy {
+//        AuthViewModel(Repository(ApiClient.instance))
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,21 +48,13 @@ class OtpCode : Fragment() {
             getActivity()?.startActivity(intent)
         }
 
+
         val getDataRegis = arguments?.getParcelable<RegisterRequest>("dataRegis")
-        binding.massage.text ="Ketik 6 digit kode yang dikirimkan ke ${getDataRegis?.phoneNumber}"
+        val email1 = getDataRegis?.email.toString()
 
-        object : CountDownTimer(60000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = millisUntilFinished / 1000
-                binding.tvKirimUlang.text = "Kirim Ulang OTP Dalam $secondsRemaining detik"
-            }
+        binding.massage.text ="Ketik 6 digit kode yang dikirimkan ke $email1"
 
-            override fun onFinish() {
-                // Logika ketika hitungan mundur selesai
-                binding.tvKirimUlang.text = "Kirim Ulang OTP Sekarang"
-            }
-        }.start()
-
+        startCountDownTimer()
         binding.tvKirimUlang.setOnClickListener {
             startCountDownTimer()
         }
@@ -74,33 +70,53 @@ class OtpCode : Fragment() {
 
 
         binding.kirimOtp.setOnClickListener {
-            sendOtp(OtpRequest(getDataRegis?.email!!,combinedValue))
+            sendOtp(email1,combinedValue)
         }
 
     }
+    private fun sendOtp(email: String, otp: String) {
+        val otpReq = OtpRequest(email, otp)
 
-    fun sendOtp(otpRequest: OtpRequest){
-        lifecycleScope.launch {
-            try {
-                authViewModel.otpUser(otpRequest)
-                Toast.makeText(
-                    requireContext(),
-                    "Registration successful",
-                    Toast.LENGTH_SHORT
-                ).show()
-                // Redirect to login screen or perform any other action
-            } catch (e: Exception) {
-                Toast.makeText(
-                    requireContext(),
-                    "Registration failed: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+        viewmodel.otpUser(otpReq).observe(viewLifecycleOwner) { resource ->
+            when (resource.status) {
+                Status.SUCCESS -> {
+                    Toast.makeText(requireContext(), "Verifikasi OTP selesai", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireActivity(), LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                Status.ERROR -> {
+                    val errorMessage = resource.message ?: "Error Occurred!"
+                    Log.d("errorOTP", errorMessage)
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+                Status.LOADING -> {
+                    Log.d("load", "Loading")
+                    // Tambahkan tindakan loading jika diperlukan
+                }
             }
         }
-
     }
-    fun ahhaha(){
 
+
+    fun sendOtp1(otpRequest: OtpRequest) {
+        viewmodel.otpUser(otpRequest).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    Toast.makeText(requireContext(),"Verifikasi OTP selesai",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireActivity(), LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                Status.ERROR -> {
+                    val errorMessage = it.message ?: "Error Occurred!"
+                    Log.d("errorOTP", errorMessage)
+
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+                Status.LOADING -> {
+                    Log.d("load", "Loading")
+                }
+            }
+        }
     }
 
     private fun startCountDownTimer() {
@@ -109,7 +125,6 @@ class OtpCode : Fragment() {
                 val secondsRemaining = millisUntilFinished / 1000
                 binding.tvKirimUlang.text = "Kirim Ulang OTP Dalam $secondsRemaining detik"
             }
-
             override fun onFinish() {
                 binding.tvKirimUlang.text = "Kirim Ulang OTP Sekarang"
             }
