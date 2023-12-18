@@ -59,18 +59,19 @@ class OtpCode : Fragment() {
             startCountDownTimer()
         }
 
-        // Mendapatkan nilai dari masing-masing EditText
-        val value1 = binding.otpBox1.text.toString()
-        val value2 = binding.otpBox2.text.toString()
-        val value3 = binding.otpBox3.text.toString()
-        val value4 = binding.otpBox4.text.toString()
-        val value5 = binding.otpBox5.text.toString()
-        val value6 = binding.otpBox6.text.toString()
-        val combinedValue = "$value1$value2$value3$value4$value5$value6"
-
 
         binding.kirimOtp.setOnClickListener {
-            sendOtp(email1,combinedValue)
+            val value1 = binding.otpBox1.text.toString()
+            val value2 = binding.otpBox2.text.toString()
+            val value3 = binding.otpBox3.text.toString()
+            val value4 = binding.otpBox4.text.toString()
+            val value5 = binding.otpBox5.text.toString()
+            val value6 = binding.otpBox6.text.toString()
+            val combinedValue = "$value1$value2$value3$value4$value5$value6"
+            sendOtp1(OtpRequest(email1.toString(),combinedValue))
+            Log.e("email ",email1)
+            Log.e("otp ",combinedValue)
+
         }
 
     }

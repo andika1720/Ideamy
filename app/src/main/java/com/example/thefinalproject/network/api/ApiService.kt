@@ -65,9 +65,9 @@ interface ApiService {
     ) : RegisterResponse
 
     @POST ("account-verify")
-    fun checkOtp(
+    suspend fun checkOtp(
         @Body otpRequest: OtpRequest
-    ): Call<OtpResponse>
+    ): OtpResponse
 
     @GET ("current-user")
     fun currentUser(
