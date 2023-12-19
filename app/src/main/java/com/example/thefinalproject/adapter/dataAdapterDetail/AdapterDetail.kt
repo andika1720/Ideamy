@@ -1,4 +1,4 @@
-package com.example.thefinalproject.adapter.DataAdapterDetail
+package com.example.thefinalproject.adapter.dataAdapterDetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,68 +8,66 @@ import com.example.thefinalproject.databinding.ItemmateriTitlechapterBinding
 import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.ModuleById
 
-class CourseMaterialAdapter(private val data: List<Any>, private var listener: ((String) -> Unit)? = null)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    companion object {
-        private const val ITEM_HEADER = 0
-        private const val ITEM_MATERIAL = 1
-    }
+class AdapterDetail(private val data: MutableList<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return when (data[position]) {
-            is ChapterById -> ITEM_HEADER
-            is ModuleById -> ITEM_MATERIAL
+            is ChapterById -> ITEM_CHAPTER
+            is ModuleById -> ITEM_MODULE
             else -> throw IllegalArgumentException("Undefined view type")
         }
     }
 
-    class MaterialViewHolder(private val binding: ItemmateriContentchapterBinding) :
+    class ChapterViewHolder(private val binding: ItemmateriTitlechapterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(data: ChapterById) {
+            binding.tvNoChapter.text = "Chapter - ${data.chapterNumber}"
+            binding.tvNamaChapter.text = data.title
+            binding.tvDurasi.text = "${data.duration} Menit"
+
+        }
+    }
+    class ModuleViewHolder(private val binding: ItemmateriContentchapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ModuleById) {
             binding.tvNamaContentChapter.text = data.title
+
         }
     }
-
-    class HeaderViewHolder(private val binding: ItemmateriTitlechapterBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ChapterById) {
-            binding.tvNamaChapter.text = data.title
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_HEADER -> {
+            ITEM_CHAPTER -> {
                 val binding =
                     ItemmateriTitlechapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                HeaderViewHolder(binding)
+                ChapterViewHolder(binding)
             }
 
-            ITEM_MATERIAL -> {
+            ITEM_MODULE -> {
                 val binding =
                     ItemmateriContentchapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                MaterialViewHolder(binding)
+                ModuleViewHolder(binding)
             }
 
-            else -> throw IllegalArgumentException("Undefined view type")
+            else -> throw throw IllegalArgumentException("Undefined view type")
         }
     }
+
+    override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
-            ITEM_HEADER -> {
-                val headerHolder = holder as HeaderViewHolder
+            ITEM_CHAPTER -> {
+                val headerHolder = holder as ChapterViewHolder
                 headerHolder.onBind(data[position] as ChapterById)
             }
 
-            ITEM_MATERIAL -> {
-                val materialHolder = holder as MaterialViewHolder
-                val listenerItem = data[position] as ModuleById
-                materialHolder.onBind(listenerItem)
+            ITEM_MODULE -> {
+                val moduleHolder = holder as ModuleViewHolder
+                val listenerItem = (data[position] as ModuleById)
+                moduleHolder.onBind(listenerItem)
 
                 holder.itemView.setOnClickListener {
-                    listener?.invoke(listenerItem.video ?: "")
+                    clickListener?.invoke(listenerItem.video!!)
                 }
             }
 
@@ -77,5 +75,9 @@ class CourseMaterialAdapter(private val data: List<Any>, private var listener: (
         }
     }
 
-    override fun getItemCount(): Int = data.size
+
+    companion object {
+        private const val ITEM_CHAPTER = 0
+        private const val ITEM_MODULE = 1
+    }
 }

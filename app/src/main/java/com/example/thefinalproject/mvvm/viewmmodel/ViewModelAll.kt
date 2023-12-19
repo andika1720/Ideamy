@@ -30,13 +30,7 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
     }
     fun observeSearchCoursesLiveData(): LiveData<List<DataCategory>> = searchCourseLiveData
 
-    fun getAllList() = liveData(Dispatchers.IO) {
-        try {
-            emit(Resource.success(repo.getList()))
-        } catch (exception: Exception) {
-            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
-        }
-    }
+
 
     fun getDataById(token: String?,id: String) = liveData(Dispatchers.IO) {
         try {

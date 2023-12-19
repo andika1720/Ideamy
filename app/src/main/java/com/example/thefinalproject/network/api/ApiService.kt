@@ -22,15 +22,11 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("courses")
-    suspend fun getlist(): ListResponse
-
-
-    @GET("courses")
     suspend fun getDataByCategory(
         @Query("category") category: String?): CategoryResponse
     @GET("courses/{id}")
     suspend fun getDataById(
-        @Header("Authorization") token : String?,
+        @Header("authorization") token : String?,
         @Path("id") id: String
     ): DetailResponse
 
@@ -38,13 +34,6 @@ interface ApiService {
     suspend fun getDataById1(
         @Path("id") id: String
     ): DetailResponse
-
-    @GET("courses")
-    suspend fun getFilteredCourses(
-        @Query("type") type: String?,
-        @Query("category") category: String?,
-        @Query("level") level: String?
-    ): CategoryResponse
 
     @GET("courses")
     suspend fun getCourseByTitle(
@@ -59,6 +48,8 @@ interface ApiService {
         @Query("search") search: String?,
     ) : ListResponse
 
+
+    //AUTH
     @POST("login")
     suspend fun loginUser(
         @Body loginRequest: LoginRequest
@@ -75,7 +66,7 @@ interface ApiService {
     ): OtpResponse
 
     @GET ("current-user")
-    fun currentUser(
-        @Header("Authorization") token : String?
+    suspend fun currentUser(
+        @Header("authorization") token : String?
     ): GetCurrentUser
 }

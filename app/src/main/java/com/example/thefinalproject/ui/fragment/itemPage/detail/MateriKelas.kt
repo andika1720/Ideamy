@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 
 
-import com.example.thefinalproject.adapter.DataAdapterDetail.AdapterDetail
+import com.example.thefinalproject.adapter.dataAdapterDetail.AdapterDetail
 
 import com.example.thefinalproject.databinding.FragmentDetailcourseMateriBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
