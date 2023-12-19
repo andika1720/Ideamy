@@ -37,7 +37,7 @@ class MateriAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindModulItem(modulItem: ModuleById) {
-            binding.tvNoContentChapter.text = modulItem.chapterId?: ""
+            binding.tvNamaContentChapter.text = modulItem.chapterId?: ""
             binding.tvNamaContentChapter.text = modulItem.title
             modulItem.video?.let {
                 Glide.with(binding.root.context)

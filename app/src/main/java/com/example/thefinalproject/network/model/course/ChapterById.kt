@@ -1,7 +1,9 @@
 package com.example.thefinalproject.network.model.course
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ChapterById(
     @SerializedName("chapterNumber")
@@ -13,7 +15,7 @@ data class ChapterById(
     @SerializedName("id")
     val id: String?,
     @SerializedName("modules")
-    val modules: List<ModuleById>?,
+    val modules: List<ModuleById?>?,
     @SerializedName("title")
     val title: String?
 )

@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.BotsheetBelicourseDetailcourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
@@ -38,13 +40,11 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
            dismiss()
         }
 
-        binding.btnBeliSekarang.setOnClickListener {
-            val intent = Intent(requireContext(), DetailPaymentFragment::class.java)
-            intent.putExtra("selectedId", courseId)
-            startActivity(intent)
-        }
 
-        showDetailCoroutines(null,courseId.toString())
+
+
+        val arg =arguments?.getString("selectedId")
+        showDetailCoroutines(null,arg.toString())
         return binding.root
     }
 
@@ -65,6 +65,14 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
             .load(courseData?.image)
             .fitCenter()
             .into(binding.imageView2)
+        val bundle = Bundle().apply {
+            putString("selectedId", courseData?.id)
+        }
+        binding.btnBeliSekarang.setOnClickListener {
+            findNavController().navigate(R.id.detailPaymentFragment,bundle)
+        }
+
+
     }
 
     private fun showDetailCoroutines(token:String?,id: String) {

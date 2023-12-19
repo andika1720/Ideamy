@@ -110,7 +110,7 @@ class DetailCourse : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse){
-        val courseData: DataCourseById? = data.data
+            val courseData: DataCourseById? = data.data
 
         val youTubePlayerView: YouTubePlayerView = binding.playerView
         lifecycle.addObserver(youTubePlayerView)
@@ -135,10 +135,11 @@ class DetailCourse : Fragment() {
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
 
 
+        val firstChapter: ChapterById? = courseData?.chapters?.getOrNull(0)
+        val firstModule: ModuleById? = firstChapter?.modules?.getOrNull(0)
         val bundle = Bundle()
         bundle.putString("selectedId", courseData?.id)
-        //bundle.putString("audience", courseData?.audience.toString())
-        //bundle.putString("telegramLink", courseData?.telegram)
+
 
         val tentangFragment = DetailcourseTentangFragment()
         tentangFragment.arguments = bundle
@@ -146,7 +147,7 @@ class DetailCourse : Fragment() {
         val materiKelasFragment = MateriKelas()
         materiKelasFragment.arguments = bundle
 
-        val fragmentList = arrayListOf(tentangFragment, MateriKelas())
+        val fragmentList = arrayListOf(tentangFragment, materiKelasFragment )
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
 

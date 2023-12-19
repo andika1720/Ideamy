@@ -47,6 +47,13 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
     }
 
 
+    fun getDataById1(id: String) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getDataByid1(id)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
     //percobaan
     fun getFilterCourse(id: String?,level: String?, category: String?,type: String?,search: String?) = liveData(Dispatchers.IO) {
         try {

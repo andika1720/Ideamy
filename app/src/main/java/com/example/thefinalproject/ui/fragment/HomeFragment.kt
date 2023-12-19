@@ -50,11 +50,12 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> fetchList(null, null, null, null,null)
-                    else -> {
-                        // Logika untuk tab lainnya (position != 0 dan position != 2)
-                        val selectTabCategory = categorys[tab.position - 1].category
-                        fetchList(null, null, selectTabCategory, null,null)
-                    }
+                    1 -> fetchList(null, null, "Web Development", null,null)
+                    2 -> fetchList(null, null, "Android Development", null,null)
+                    3 -> fetchList(null, null, "Data Science", null,null)
+                    4 -> fetchList(null, null, "UI/UX Design", null,null)
+                    5 -> fetchList(null, null, "Product Management", null,null)
+                    6 -> fetchList(null, null, "iOS Development", null,null)
                 }
             }
 
@@ -131,17 +132,9 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
 
     private fun showListHorizontal(data: ListResponse?) {
         val adapter = AdapterKursusPopuler2(this)
-        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-//        if (isLogin != null) {
-//            val bottomSheetFragment = BotsheetSelangkah()
-//            bottomSheetFragment.setCourseId(this)
-//            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-//        } else {
-//            val bottomSheetFragmentMustLogin = BotSheetLogin()
-//            bottomSheetFragmentMustLogin.show(childFragmentManager, bottomSheetFragmentMustLogin.tag)
-//
-//        }
-        adapter.sendList(data?.data ?: emptyList())
+
+        val uniqueCategories = data?.data?.distinctBy { it.category }
+        adapter.sendList(uniqueCategories ?: emptyList())
         binding.rvKursuspopuler.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvKursuspopuler.adapter = adapter
@@ -190,7 +183,17 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
                 putString("selectedId", data.id)
             }
             if (data.type == "premium") {
-               findNavController().navigate(R.id.action_homeFragment2_to_detailPaymentFragment,bundle)
+                val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+                if (isLogin != null) {
+                    val bottomSheetFragment = BotsheetSelangkah()
+                    bottomSheetFragment.setCourseId(requireContext())
+                    bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+                } else {
+                    val bottomSheetFragmentMustLogin = BotSheetLogin()
+                    bottomSheetFragmentMustLogin.show(childFragmentManager, bottomSheetFragmentMustLogin.tag)
+
+                }
+
 
                 // Navigasi ke halaman pembayaran untuk tipe premium
 

@@ -120,4 +120,9 @@
         android:name="com.example.thefinalproject.ui.fragment.itemPage.detail.WebViewFragment"
         android:label="fragment_web_view"
         tools:layout="@layout/fragment_web_view" />
+    <dialog
+        android:id="@+id/botsheetSelangkah"
+        android:name="com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah"
+        android:label="botsheet_belicourse_detailcourse"
+        tools:layout="@layout/botsheet_belicourse_detailcourse" />
 </navigation>

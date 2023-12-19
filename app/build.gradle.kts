@@ -100,6 +100,9 @@ dependencies {
 
     //lotie
     implementation ("com.airbnb.android:lottie:5.0.3")
+
+    //library untuk otp number
+    implementation ("io.github.chaosleung:pinview:1.4.4")
     //youtube
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")

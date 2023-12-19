@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentDetailcourseTentangBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.util.Utils
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.ext.android.inject
 
 class DetailcourseTentangFragment : Fragment() {
@@ -26,10 +28,11 @@ class DetailcourseTentangFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailcourseTentangBinding.inflate(inflater, container, false)
-
+        val bottomNavigationView: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
+        bottomNavigationView.visibility = View.GONE
 
         val args = arguments?.getString("selectedId")
-
+        Log.d("FragmentTag", "selectedIdTentang: $args")
 
         showTentang(null,args.toString())
 

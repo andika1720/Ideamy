@@ -22,5 +22,6 @@ object Module {
         get() = module {
             viewModel { ViewModelAll(get())}
             viewModel { AuthViewModel(get()) }
+
         }
 }

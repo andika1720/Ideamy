@@ -34,6 +34,11 @@ interface ApiService {
         @Path("id") id: String
     ): DetailResponse
 
+    @GET("courses/{id}")
+    suspend fun getDataById1(
+        @Path("id") id: String
+    ): DetailResponse
+
     @GET("courses")
     suspend fun getFilteredCourses(
         @Query("type") type: String?,

@@ -93,7 +93,7 @@
             app:tabIndicatorColor="@null"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="stretch"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             app:tabGravity="fill"
             app:tabSelectedTextColor="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />

@@ -3,6 +3,7 @@ package com.example.thefinalproject.ui.activity
 import SharePref
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.thefinalproject.R
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun hideBotNav(){
+        binding.bottomNavigationView.visibility = View.GONE
+
+    }
     fun getBottomNavigationView(): BottomNavigationView {
         return binding.bottomNavigationView
     }
