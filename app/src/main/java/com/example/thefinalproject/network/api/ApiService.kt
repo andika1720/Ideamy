@@ -21,31 +21,31 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("course")
+    @GET("courses")
     suspend fun getlist(): ListResponse
 
 
-    @GET("course")
+    @GET("courses")
     suspend fun getDataByCategory(
         @Query("category") category: String?): CategoryResponse
-    @GET("course/{id}")
+    @GET("courses/{id}")
     suspend fun getDataById(
         @Header("Authorization") token : String?,
         @Path("id") id: String
     ): DetailResponse
 
-    @GET("course")
+    @GET("courses")
     suspend fun getFilteredCourses(
         @Query("type") type: String?,
         @Query("category") category: String?,
         @Query("level") level: String?
     ): CategoryResponse
 
-    @GET("course")
+    @GET("courses")
     suspend fun getCourseByTitle(
         @Query("title") title: String?
     ) : CategoryResponse
-    @GET("course")
+    @GET("courses")
     suspend fun getFilterCourse(
         @Query("id") id: String?,
         @Query("category") category: String?,
