@@ -11,115 +11,123 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/image_back"
-
         android:layout_marginStart="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/image_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_masukanotp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Masukkan OTP"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@id/btnBack"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="Masukkan OTP"
         android:textColor="@color/white"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
     <TextView
         android:id="@+id/massage"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_masukanotp"
         android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Ketik 6 digit kode yang dikirimkan ke NOMORTELEPHONE"
         android:textColor="@color/white"
-        android:text="Ketik 6 digit kode yang dikirimkan ke NOMORTELEPHONE"/>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintTop_toBottomOf="@id/massage"
-        android:layout_gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_masukanotp" />
+
+
+    <!-- Define OTP boxes (You can customize the appearance as needed) -->
+    <EditText
+        android:id="@+id/otp_box1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/otp_box2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/massage" />
 
-        <!-- Define OTP boxes (You can customize the appearance as needed) -->
-        <EditText
-            android:id="@+id/otp_box1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
+    <EditText
+        android:id="@+id/otp_box2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/otp_box3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otp_box1"
+        app:layout_constraintTop_toTopOf="@+id/otp_box1" />
 
-        <EditText
-            android:id="@+id/otp_box2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
+    <EditText
+        android:id="@+id/otp_box3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/otp_box4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otp_box2"
+        app:layout_constraintTop_toTopOf="@+id/otp_box2" />
 
-        <EditText
-            android:id="@+id/otp_box3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
+    <EditText
+        android:id="@+id/otp_box4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/otp_box5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otp_box3"
+        app:layout_constraintTop_toTopOf="@+id/otp_box3" />
 
-        <EditText
-            android:id="@+id/otp_box4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
+    <EditText
+        android:id="@+id/otp_box5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/otp_box6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otp_box4"
+        app:layout_constraintTop_toTopOf="@+id/otp_box4" />
 
-        <EditText
-            android:id="@+id/otp_box5"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/otp_box6"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="18sp" />
-    </LinearLayout>
-
+    <EditText
+        android:id="@+id/otp_box6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otp_box5"
+        app:layout_constraintTop_toTopOf="@+id/otp_box5" />
 
     <TextView
         android:id="@+id/tv_kirimUlang"
@@ -129,8 +137,9 @@
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@id/otp_box3"
         android:text="Kirim ulang OTP dalam $60 detik "/>
+
     <TextView
         android:id="@+id/requestCodeEmail"
         android:layout_width="wrap_content"

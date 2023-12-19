@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.thefinalproject.R
@@ -20,6 +22,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.ui.activity.RegisterActivity
 import com.example.thefinalproject.util.Status
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -29,9 +32,7 @@ import org.koin.android.ext.android.inject
 class OtpCode : Fragment() {
     private lateinit var binding:FragmentOtpCodeBinding
     private val viewmodel: AuthViewModel by inject()
-//    private val authViewModel: AuthViewModel by lazy {
-//        AuthViewModel(Repository(ApiClient.instance))
-//    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +53,7 @@ class OtpCode : Fragment() {
         val getDataRegis = arguments?.getParcelable<RegisterRequest>("dataRegis")
         val email1 = getDataRegis?.email.toString()
 
+
         binding.massage.text ="Ketik 6 digit kode yang dikirimkan ke $email1"
 
         startCountDownTimer()
@@ -68,7 +70,7 @@ class OtpCode : Fragment() {
             val value5 = binding.otpBox5.text.toString()
             val value6 = binding.otpBox6.text.toString()
             val combinedValue = "$value1$value2$value3$value4$value5$value6"
-            sendOtp1(OtpRequest(email1.toString(),combinedValue))
+            sendOtp1(OtpRequest(email1,combinedValue))
             Log.e("email ",email1)
             Log.e("otp ",combinedValue)
 
@@ -104,13 +106,12 @@ class OtpCode : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireContext(),"Verifikasi OTP selesai",Toast.LENGTH_SHORT).show()
-                    val intent = Intent(requireActivity(), LoginActivity::class.java)
-                    startActivity(intent)
+                    botSheetRegistSuccess()
                 }
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-
+                    botSheetRegistSuccess()
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
                 Status.LOADING -> {
@@ -130,5 +131,27 @@ class OtpCode : Fragment() {
                 binding.tvKirimUlang.text = "Kirim Ulang OTP Sekarang"
             }
         }.start()
+    }
+
+    private fun botSheetRegistSuccess(){
+        try {
+            val dialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.botsheet_registrasi_berhasil,null)
+            val btnNext = view.findViewById<Button>(R.id.btn_to_home_botshet)
+            val btnClose = view.findViewById<ImageView>(R.id.close_botsheet_regis)
+            btnNext.setOnClickListener {
+                dialog.dismiss()
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
+                startActivity(intent)
+            }
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.setContentView(view)
+            dialog.show()
+        }catch (e: Exception) {
+            Log.e("showbotPayment", "ErrorBotsheet", e)
+        }
     }
 }
