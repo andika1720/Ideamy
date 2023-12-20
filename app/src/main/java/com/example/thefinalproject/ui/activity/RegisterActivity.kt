@@ -140,6 +140,9 @@ class RegisterActivity : AppCompatActivity() {
             message.contains("phone") -> {
                 binding.textInputNohpRegis.error = "Nomor handphone sudah terdaftar"
             }
+            message.contains("HTTP 500") -> {
+                Toast.makeText(this, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+            }
             // Tambahkan penanganan error lain sesuai kebutuhan
             else -> {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
