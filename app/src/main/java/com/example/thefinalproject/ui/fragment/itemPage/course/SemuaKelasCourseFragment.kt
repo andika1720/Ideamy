@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.CourseAdapter
@@ -15,21 +14,27 @@ import com.example.thefinalproject.databinding.FragmentKelasFreeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
 
 
-class SemuaKelasCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
+
+class SemuaKelasCourseFragment : Fragment(), CourseAdapter.CourseItemClickListenerProvider {
     private var _binding: FragmentKelasFreeBinding? = null
+    private lateinit var sharePref: SharePref
     private val binding get() = _binding!!
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
+    private lateinit var courseItemClickListener: CourseAdapter.CourseItemClickListener
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentKelasFreeBinding.inflate(layoutInflater, container, false)
+        sharePref = SharePref
+
 
         fetchList(null,null,null,null,null)
         return binding.root
@@ -71,11 +76,12 @@ class SemuaKelasCourseFragment : Fragment(), CourseAdapter.CourseItemClickListen
 
 
     }
+
+
     private fun showListHorizontal(data: ListResponse?) {
 
 
-        val adapter = CourseAdapter(this)
-
+        val adapter = CourseAdapter(courseItemClickListener)
         val uniqueType = data?.data?.distinctBy { it.type }
         adapter.sendList(data?.data ?: emptyList())
 
@@ -86,20 +92,11 @@ class SemuaKelasCourseFragment : Fragment(), CourseAdapter.CourseItemClickListen
 
     }
 
-    override fun onCourseItemClick(data: DataCategory) {
-        val bundle = Bundle().apply {
-            putString("selectedId", data.id)
-        }
-        if (data.type == "premium") {
-            // Navigasi ke halaman pembayaran untuk tipe premium
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailPaymentFragment, bundle)
-        } else {
-            // Navigasi ke halaman detail untuk tipe free
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
-        }
-
-
+    override fun setItemClickListener(itemClickListener: CourseAdapter.CourseItemClickListener) {
+        courseItemClickListener = itemClickListener
     }
+
+
 }
 
 

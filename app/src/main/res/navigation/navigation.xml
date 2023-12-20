@@ -125,4 +125,19 @@
         android:name="com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah"
         android:label="botsheet_belicourse_detailcourse"
         tools:layout="@layout/botsheet_belicourse_detailcourse" />
+    <fragment
+        android:id="@+id/semuaKelasCourseFragment"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.course.SemuaKelasCourseFragment"
+        android:label="fragment_semua_kelas_course"
+        tools:layout="@layout/fragment_semua_kelas_course" />
+    <fragment
+        android:id="@+id/kelasFree"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.course.KelasFree"
+        android:label="fragment_kelas_free"
+        tools:layout="@layout/fragment_kelas_free" />
+    <fragment
+        android:id="@+id/kelasPremium"
+        android:name="com.example.thefinalproject.ui.fragment.itemPage.course.KelasPremium"
+        android:label="fragment_kelas_premium"
+        tools:layout="@layout/fragment_kelas_premium" />
 </navigation>

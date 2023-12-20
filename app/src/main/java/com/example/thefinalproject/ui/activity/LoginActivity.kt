@@ -38,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        binding.masukWithoutLogin.setOnClickListener {
+           navigateToMainActivity()
+        }
         binding.btnMasukLogin.setOnClickListener {
             val emailText = binding.etEmailLogin.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()

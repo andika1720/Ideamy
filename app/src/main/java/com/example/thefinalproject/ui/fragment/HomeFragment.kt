@@ -182,24 +182,18 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
             val bundle = Bundle().apply {
                 putString("selectedId", data.id)
             }
-            if (data.type == "premium") {
-                val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-                if (isLogin != null) {
-                    val bottomSheetFragment = BotsheetSelangkah()
-                    bottomSheetFragment.setCourseId(requireContext())
-                    bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-                } else {
-                    val bottomSheetFragmentMustLogin = BotSheetLogin()
-                    bottomSheetFragmentMustLogin.show(childFragmentManager, bottomSheetFragmentMustLogin.tag)
-
+            val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+            if (isLogin != null) {
+                if (data.type == "premium") {
+                    val bottomSheetSelangkah = BotsheetSelangkah()
+                    bottomSheetSelangkah.setCourseId(bundle)
+                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+                } else if (data.type == "free") {
+                    findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
                 }
-
-
-                // Navigasi ke halaman pembayaran untuk tipe premium
-
             } else {
-                // Navigasi ke halaman detail untuk tipe free
-                findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+                val botsheetLogin = BotSheetLogin()
+                botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
             }
 
 

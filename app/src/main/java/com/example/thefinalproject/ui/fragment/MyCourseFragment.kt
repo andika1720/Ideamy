@@ -15,15 +15,18 @@ import com.example.thefinalproject.adapter.AdapterPageFragment
 import com.example.thefinalproject.adapter.CourseAdapter
 import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
+import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 
 import com.example.thefinalproject.ui.fragment.itemPage.course.KelasFree
 import com.example.thefinalproject.ui.fragment.itemPage.course.KelasPremium
 import com.example.thefinalproject.ui.fragment.itemPage.course.SemuaKelasCourseFragment
+import com.example.thefinalproject.util.SharePref
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MyCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
-
+    private lateinit var sharePref: SharePref
     private var _binding: FragmentMyCourseBinding? = null
     private val binding get() = _binding!!
 
@@ -34,6 +37,7 @@ class MyCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
     ): View {
         // Inflate the layout for this fragmen
         _binding = FragmentMyCourseBinding.inflate(layoutInflater,container,false)
+        sharePref = SharePref
         val fragmentList = arrayListOf( SemuaKelasCourseFragment(),
             KelasPremium(),
             KelasFree()
@@ -60,12 +64,23 @@ class MyCourseFragment : Fragment(), CourseAdapter.CourseItemClickListener {
         val bundle = Bundle().apply {
             putString("selectedId", data.id)
         }
-        if (data.type == "premium") {
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailPaymentFragment, bundle)
+        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        if (isLogin != null) {
+            if (data.type == "premium") {
+                val bottomSheetSelangkah = BotsheetSelangkah()
+                bottomSheetSelangkah.setCourseId(bundle)
+                bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+            } else if (data.type == "free") {
+                findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+            }
         } else {
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
+            val botsheetLogin = BotSheetLogin()
+            botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
         }
     }
+
+
+
 
     @SuppressLint("InflateParams")
     private fun bonSheetSelangkah() {

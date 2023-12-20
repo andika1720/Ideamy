@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.android.ext.android.inject
 
 class BotsheetSelangkah: BottomSheetDialogFragment() {
+
     private var _binding: BotsheetBelicourseDetailcourseBinding? = null
     private val binding get() = _binding!!
 

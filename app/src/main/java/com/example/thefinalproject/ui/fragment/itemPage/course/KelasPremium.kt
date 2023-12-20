@@ -16,22 +16,28 @@ import com.example.thefinalproject.databinding.FragmentKelasFreeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
 import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
+
+import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
 
+
+@Suppress("SameParameterValue")
 class KelasPremium : Fragment(), CourseAdapter.CourseItemClickListener {
     private var _binding: FragmentKelasFreeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sharePref: SharePref
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentKelasFreeBinding.inflate(layoutInflater, container, false)
-
+        sharePref = SharePref
         fetchList(null,null,null,"premium",null)
         return binding.root
 
@@ -78,7 +84,6 @@ class KelasPremium : Fragment(), CourseAdapter.CourseItemClickListener {
 
         val adapter = CourseAdapter(this)
 
-        val uniqueType = data?.data?.distinctBy { it.type }
         adapter.sendList(data?.data ?: emptyList())
 
         binding.rvCourse.layoutManager =
@@ -92,12 +97,16 @@ class KelasPremium : Fragment(), CourseAdapter.CourseItemClickListener {
         val bundle = Bundle().apply {
             putString("selectedId", data.id)
         }
-        if (data.type == "premium") {
-            // Navigasi ke halaman pembayaran untuk tipe premium
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailPaymentFragment, bundle)
-        } else {
-            // Navigasi ke halaman detail untuk tipe free
-            findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
+        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        if (isLogin != null) {
+            if(data.type == "premium") {
+                val bottomSheetSelangkah = BotsheetSelangkah()
+                bottomSheetSelangkah.setCourseId(bundle)
+                bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+            }
+        }else {
+            val bottomSheetFragmentMustLogin = BotSheetLogin()
+            bottomSheetFragmentMustLogin.show(childFragmentManager, bottomSheetFragmentMustLogin.tag)
         }
 
 

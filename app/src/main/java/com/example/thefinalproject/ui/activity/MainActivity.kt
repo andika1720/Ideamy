@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
             val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
             if (isLogin == null) {
                 when (destination.id) {
-                    R.id.notifikasiFragment2, R.id.settingFragment2, R.id.myClassFragment2 -> {
+                    R.id.notifikasiFragment2,
+                    R.id.settingFragment2,
+                    R.id.myClassFragment2, -> {
                         val bottomSheetFragmentMustLogin = BotSheetLogin()
                         bottomSheetFragmentMustLogin.show(supportFragmentManager, bottomSheetFragmentMustLogin.tag)
                         navController.navigate(R.id.homeFragment2)

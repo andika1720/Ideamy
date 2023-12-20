@@ -11,24 +11,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentOtpCodeBinding
-import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
-import com.example.thefinalproject.network.api.ApiClient
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.ui.activity.RegisterActivity
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
+@Suppress("DEPRECATION")
 class OtpCode : Fragment() {
     private lateinit var binding:FragmentOtpCodeBinding
     private val viewmodel: AuthViewModel by inject()
@@ -36,7 +30,7 @@ class OtpCode : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentOtpCodeBinding.inflate(inflater,container,false)
         return binding.root
@@ -77,28 +71,7 @@ class OtpCode : Fragment() {
         }
 
     }
-    private fun sendOtp(email: String, otp: String) {
-        val otpReq = OtpRequest(email, otp)
 
-        viewmodel.otpUser(otpReq).observe(viewLifecycleOwner) { resource ->
-            when (resource.status) {
-                Status.SUCCESS -> {
-                    Toast.makeText(requireContext(), "Verifikasi OTP selesai", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(requireActivity(), LoginActivity::class.java)
-                    startActivity(intent)
-                }
-                Status.ERROR -> {
-                    val errorMessage = resource.message ?: "Error Occurred!"
-                    Log.d("errorOTP", errorMessage)
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
-                }
-                Status.LOADING -> {
-                    Log.d("load", "Loading")
-                    // Tambahkan tindakan loading jika diperlukan
-                }
-            }
-        }
-    }
 
 
     fun sendOtp1(otpRequest: OtpRequest) {
