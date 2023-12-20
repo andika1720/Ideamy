@@ -9,6 +9,8 @@ import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.OtpResponse
+import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
+import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import retrofit2.Call
@@ -69,4 +71,9 @@ interface ApiService {
     suspend fun currentUser(
         @Header("authorization") token : String?
     ): GetCurrentUser
+
+    @POST ("resend-otp")
+    suspend fun resendOtp(
+        @Body resendOtpRequest: ResendOtpRequest
+    ): ResendOtpResponse
 }

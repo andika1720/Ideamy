@@ -133,14 +133,10 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerError(message: String) {
         when {
-            message.contains("email") -> {
-                binding.textInputEmailRegis.error = "Email sudah terdaftar"
-            }
-
-            message.contains("phone") -> {
-                binding.textInputNohpRegis.error = "Nomor handphone sudah terdaftar"
-            }
             message.contains("HTTP 500") -> {
+                Toast.makeText(this, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+            }
+            message.contains("HTTP 400") -> {
                 Toast.makeText(this, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
             }
             // Tambahkan penanganan error lain sesuai kebutuhan
