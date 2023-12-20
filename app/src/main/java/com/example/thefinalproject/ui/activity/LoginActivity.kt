@@ -33,6 +33,11 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.daftardisiniLogin.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+
+        }
+
         binding.btnMasukLogin.setOnClickListener {
             val emailText = binding.etEmailLogin.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
