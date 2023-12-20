@@ -1,6 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
-import SharePref
+import com.example.thefinalproject.util.SharePref
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log

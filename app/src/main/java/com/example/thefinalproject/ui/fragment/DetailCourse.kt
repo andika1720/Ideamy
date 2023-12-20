@@ -21,6 +21,7 @@ import com.example.thefinalproject.network.model.course.ModuleById
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
+import com.example.thefinalproject.util.SharePref
 
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayoutMediator
