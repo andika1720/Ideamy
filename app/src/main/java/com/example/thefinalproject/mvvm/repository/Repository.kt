@@ -4,6 +4,7 @@ package com.example.thefinalproject.mvvm.repository
 import com.example.thefinalproject.network.api.ApiService
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
+import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 
 
@@ -26,6 +27,8 @@ class Repository(private val apiService: ApiService) {
    suspend fun getFilter2(id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(id,level,category,type,search)
 
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)
+
+    suspend fun resendOtp(resendOtpRequest: ResendOtpRequest) = apiService.resendOtp(resendOtpRequest)
 
 
 }
