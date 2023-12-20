@@ -1,6 +1,6 @@
 package com.example.thefinalproject.ui.activity
 
-import SharePref
+import com.example.thefinalproject.util.SharePref
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
