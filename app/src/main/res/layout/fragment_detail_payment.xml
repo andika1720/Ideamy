@@ -12,15 +12,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.AppCompatImageView
-            android:tint="@color/black"
             android:id="@+id/tv_arrowBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_back"
-            app:layout_constraintTop_toTopOf="parent"
+            android:tint="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -216,27 +216,35 @@
             android:id="@+id/btn_cardCredit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:drawableRight="@drawable/expand_more"
-            android:text="Card Credit"
             android:layout_marginHorizontal="10dp"
-            android:textAlignment="textStart"
+            android:layout_marginTop="4dp"
             android:backgroundTint="@drawable/button_selector"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
-            android:textSize="14sp"
+            android:drawableRight="@drawable/expand_more"
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/btn_bankTransfer" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_bankTransfer"
+            tools:ignore="SpeakableTextPresentCheck" />
 
+        <TextView
+            android:id="@+id/tvCardCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card Credit"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_bankTransfer"
+            app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="24dp"/>
         <androidx.cardview.widget.CardView
             android:id="@+id/card_crediCard"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/btn_cardCredit">
 
             <androidx.constraintlayout.widget.ConstraintLayout

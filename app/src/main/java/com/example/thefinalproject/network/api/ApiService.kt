@@ -4,6 +4,10 @@ package com.example.thefinalproject.network.api
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
+import com.example.thefinalproject.network.model.order.PostResponse
+import com.example.thefinalproject.network.model.order.PutResponseOrder
+import com.example.thefinalproject.network.model.order.RequestPutOrder
 import com.example.thefinalproject.network.model.user.getuser.GetCurrentUser
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
@@ -18,6 +22,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -76,4 +81,24 @@ interface ApiService {
     suspend fun resendOtp(
         @Body resendOtpRequest: ResendOtpRequest
     ): ResendOtpResponse
+
+
+    //MYCOURSE
+    @GET("my-courses")
+    suspend fun myCourse(
+        @Header("authorization") token : String?
+    ): MyCourseResponse
+    //ORDER
+    @POST("orders/{id}")
+    suspend fun ordersId(
+        @Header("authorization") token : String?,
+        @Path("courseId") courseId: String?
+    ) : PostResponse
+
+    @PUT("orders/{id}")
+    suspend fun updatePayment(
+        @Header("authorization") token : String?,
+        @Path("id") id: String?,
+        @Body requestOrder: RequestPutOrder
+    ) : PutResponseOrder
 }

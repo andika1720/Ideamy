@@ -29,7 +29,8 @@ import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
-class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
+@Suppress("SameParameterValue")
+class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewMode : ViewModelAll by inject()
@@ -43,6 +44,11 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
 
 
+        binding.etSearch.setOnFocusChangeListener {_,focus ->
+            if (focus){
+                findNavController().navigate(R.id.searchFragment)
+            }
+        }
         fetchCategory(null)
 
 
@@ -69,6 +75,9 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
             }
 
         })
+
+
+
         val token = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         if (token != null) {
 
@@ -186,7 +195,7 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
             if (isLogin != null) {
                 if (data.type == "premium") {
                     val bottomSheetSelangkah = BotsheetSelangkah()
-                    bottomSheetSelangkah.setCourseId(bundle)
+                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
                     bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
                 } else if (data.type == "free") {
                     findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
@@ -198,5 +207,8 @@ class HomeFragment : Fragment(),AdapterKursusPopuler2.CourseClick {
 
 
     }
+
+
+
 
 }

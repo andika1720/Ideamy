@@ -3,6 +3,7 @@ package com.example.thefinalproject.ui.fragment
 import com.example.thefinalproject.util.SharePref
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +16,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentDetailPaymentBinding
+import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
+import com.example.thefinalproject.network.model.order.DataPutOrder
+import com.example.thefinalproject.network.model.order.PutResponseOrder
+import com.example.thefinalproject.network.model.order.RequestPutOrder
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -33,6 +38,7 @@ class DetailPaymentFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ViewModelAll by inject()
+    private val authViewModel: AuthViewModel by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +52,11 @@ class DetailPaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvArrowBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         val arg =arguments?.getString("selectedId")
+        val getId = arguments?.getString("id")
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
         detailPayment(savedToken.toString(),arg.toString())
@@ -64,7 +74,14 @@ class DetailPaymentFragment : Fragment() {
         }
 
         binding.btnBeliSekarang.setOnClickListener {
-            botSheetPaymentSuccess()
+
+            val cardHolderName = binding.etCardHolderName.text.toString()
+            val cardNumber = binding.etCardNumber.text.toString()
+            val cvv = binding.etCvv.text.toString()
+            val expiryDate = binding.etExpiryDate.text.toString()
+            val paymentMethod = binding.btnCardCredit.text.toString()
+            updatePayment(savedToken.toString(), getId.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethod)
+
         }
     }
 
@@ -152,5 +169,38 @@ class DetailPaymentFragment : Fragment() {
         binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
         binding.tvTopicCourse.text = course?.title
         binding.tvAuthorCourse.text = course?.creator
+    }
+
+
+    private fun updatePayment(token:String?,id: String,cardHolderName: String?, cardNumber: String?, cvv: String?, expiryDate: String?, paymentMethod: String?) {
+        val updateRequest = RequestPutOrder(cardHolderName, cardNumber, cvv, expiryDate, paymentMethod
+        )
+        authViewModel.updatePayment(token,id, updateRequest).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    Log.d("updatPaymentSuc", "Succes")
+                    it.data?.let { data -> showUpdatePayment(data) }
+                    botSheetPaymentSuccess()
+                }
+
+                Status.ERROR -> {
+                    Log.d("updatPaymentError", "Error Occurred!")
+                }
+
+                Status.LOADING -> {
+                    Log.d("updatPaymentLoad", it.data.toString())
+                }
+            }
+        }
+
+    }
+    private fun showUpdatePayment(data: PutResponseOrder) {
+        val course: DataPutOrder? = data.data
+        binding.tvCardCredit.text = course?.paymentMethod
+        binding.etCardNumber.text = Editable.Factory.getInstance().newEditable(course?.cardNumber.toString())
+        binding.etCardHolderName.text = Editable.Factory.getInstance().newEditable(course?.cardHolderName.toString())
+        binding.etCvv.text =Editable.Factory.getInstance().newEditable(course?.cvv.toString())
+        binding.etExpiryDate.text =Editable.Factory.getInstance().newEditable(course?.expiryDate.toString())
+
     }
 }

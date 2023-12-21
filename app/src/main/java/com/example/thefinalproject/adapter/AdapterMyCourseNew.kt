@@ -11,7 +11,7 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
 import com.example.thefinalproject.network.model.course.DataCategory
 
-class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
+class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.Adapter<AdapterMyCourseNew.ViewHolder>() {
 
     private val differ = object : DiffUtil.ItemCallback<DataCategory>() {
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -21,17 +21,14 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : R
         override fun areContentsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
             return oldItem.id == newItem.id
         }
-    }
 
+    }
     private val dif = AsyncListDiffer(this, differ)
 
-    fun sendList(value: List<DataCategory>) {
-        dif.submitList(value)
-    }
-
+    fun sendList(value: List<DataCategory>) = dif.submitList(value)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemFreePremiumClassBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+        return ViewHolder(ItemFreePremiumClassBinding.inflate(view, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,24 +40,20 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : R
         return dif.currentList.size
     }
 
-    interface CourseItemClickListener {
+
+    interface CourseClick {
         fun onCourseItemClick(data: DataCategory)
     }
 
-    interface CourseItemClickListenerProvider {
-        fun setItemClickListener(itemClickListener: CourseItemClickListener)
-    }
-
-    // Method to set CourseItemClickListener
-
-    inner class ViewHolder(private var binding: ItemFreePremiumClassBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private var binding: ItemFreePremiumClassBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.btnMulaiKelas.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val data = dif.currentList[position]
-                    itemClickListener?.onCourseItemClick(data)
+                    onButtonClick?.onCourseItemClick(data)
                 }
             }
         }

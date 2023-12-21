@@ -3,6 +3,7 @@ package com.example.thefinalproject.mvvm.viewmmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.thefinalproject.mvvm.repository.Repository
+import com.example.thefinalproject.network.model.order.RequestPutOrder
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
@@ -61,6 +62,34 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
+    }
 
+
+    //ORDERS
+    fun ordersId(token: String?,courseId:String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.ordersId(token, courseId)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+    }
+
+    fun updatePayment(token: String?,id:String?,requestPutOrder: RequestPutOrder) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.updatePayment(token, id,requestPutOrder)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+    }
+
+    fun myCourse(token: String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.myCourse(token)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
     }
 }

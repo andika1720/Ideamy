@@ -140,4 +140,9 @@
         android:name="com.example.thefinalproject.ui.fragment.itemPage.course.KelasPremium"
         android:label="fragment_kelas_premium"
         tools:layout="@layout/fragment_kelas_premium" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.thefinalproject.ui.fragment.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

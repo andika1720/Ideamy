@@ -2,6 +2,7 @@ package com.example.thefinalproject.mvvm.repository
 
 
 import com.example.thefinalproject.network.api.ApiService
+import com.example.thefinalproject.network.model.order.RequestPutOrder
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
@@ -31,4 +32,11 @@ class Repository(private val apiService: ApiService) {
     suspend fun resendOtp(resendOtpRequest: ResendOtpRequest) = apiService.resendOtp(resendOtpRequest)
 
 
+    //ORDER
+    suspend fun ordersId(token: String?,courseId: String?) = apiService.ordersId(token, courseId)
+
+    suspend fun updatePayment(token: String?,id: String?,requestPutOrder: RequestPutOrder) = apiService.updatePayment(token, id,requestPutOrder)
+
+    //MyCourse
+    suspend fun myCourse(token: String?) = apiService.myCourse(token)
 }

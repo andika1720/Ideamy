@@ -1,5 +1,6 @@
-package com.example.thefinalproject.adapter
+package com.example.thefinalproject.adapter.adapterSearch
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
+import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.util.Utils
 
-class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
+class AdapterKursusSearch (private val onButtonClick: CourseClick): RecyclerView.Adapter<AdapterKursusSearch.ViewHolder>() {
 
     private val differ = object : DiffUtil.ItemCallback<DataCategory>() {
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -21,17 +24,20 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : R
         override fun areContentsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
             return oldItem.id == newItem.id
         }
+
+    }
+
+    interface CourseClick {
+        fun onCourseItemClick(data: DataCategory)
     }
 
     private val dif = AsyncListDiffer(this, differ)
 
-    fun sendList(value: List<DataCategory>) {
-        dif.submitList(value)
-    }
+    fun sendList(value: List<DataCategory>) = dif.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemFreePremiumClassBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+        return ViewHolder(ItemFreePremiumClassBinding.inflate(view, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,27 +49,20 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : R
         return dif.currentList.size
     }
 
-    interface CourseItemClickListener {
-        fun onCourseItemClick(data: DataCategory)
-    }
-
-    interface CourseItemClickListenerProvider {
-        fun setItemClickListener(itemClickListener: CourseItemClickListener)
-    }
-
-    // Method to set CourseItemClickListener
-
-    inner class ViewHolder(private var binding: ItemFreePremiumClassBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private var binding: ItemFreePremiumClassBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.btnMulaiKelas.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val data = dif.currentList[position]
-                    itemClickListener?.onCourseItemClick(data)
+                    onButtonClick.onCourseItemClick(data)
                 }
             }
         }
+
+        @SuppressLint("SetTextI18n")
         fun bind(data: DataCategory) {
             binding.apply {
                 Glide.with(itemView.context)
@@ -77,6 +76,7 @@ class CourseAdapter(private val itemClickListener: CourseItemClickListener?) : R
                 tvFreeLvlCourse.text = data.level
                 tvFreeModuls.text = "${data.totalModule} Modul"
                 tvFreeDurasi.text = "${data.totalDuration} Menit"
+
                 if (data.type == "premium") {
                     val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
                     premiumDrawable?.setBounds(

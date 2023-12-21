@@ -13,8 +13,7 @@ import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityRegisterBinding
 import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
-import com.example.thefinalproject.network.api.ApiClient
-import com.example.thefinalproject.network.model.user.login.LoginRequest
+
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.fragment.OtpCode
 import com.example.thefinalproject.util.Status

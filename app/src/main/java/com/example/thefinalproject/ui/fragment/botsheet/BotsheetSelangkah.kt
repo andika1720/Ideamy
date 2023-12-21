@@ -10,10 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.BotsheetBelicourseDetailcourseBinding
+import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
+import com.example.thefinalproject.network.model.order.DataPost
+import com.example.thefinalproject.network.model.order.PostResponse
 import com.example.thefinalproject.ui.fragment.DetailPaymentFragment
+import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -23,9 +27,10 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
     private var _binding: BotsheetBelicourseDetailcourseBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var sharePref: SharePref
     private var courseId: String? = null
     private val viewModel: ViewModelAll by inject()
+    private val authViewModel: AuthViewModel by inject()
 
     fun setCourseId(courseId: Any) {
         this.courseId = courseId.toString()
@@ -37,15 +42,16 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
     ): View? {
         _binding = BotsheetBelicourseDetailcourseBinding.inflate(inflater, container, false)
 
+        sharePref = SharePref
         binding.icClose.setOnClickListener {
            dismiss()
         }
 
 
 
+        postOrderCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value),courseId ?: "")
+        showDetailCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value), courseId ?: "")
 
-        val arg =arguments?.getString("selectedId")
-        showDetailCoroutines(null,arg.toString())
         return binding.root
     }
 
@@ -71,6 +77,7 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
         }
         binding.btnBeliSekarang.setOnClickListener {
             findNavController().navigate(R.id.detailPaymentFragment,bundle)
+            dismiss()
         }
 
 
@@ -93,8 +100,43 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
         }
     }
 
+
+    private fun postOrder(data: PostResponse) {
+        val courseData: DataPost? = data.data
+        val bundle = Bundle().apply {
+            putString("selectedId", courseData?.courseId)
+        }
+        binding.btnBeliSekarang.setOnClickListener {
+            findNavController().navigate(R.id.detailPaymentFragment,bundle)
+            dismiss()
+        }
+
+
+    }
+
+    private fun postOrderCoroutines(token:String?,courseId: String) {
+
+        authViewModel.ordersId(token,courseId).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { data -> postOrder(data) }
+                }
+                Status.ERROR -> {
+                    Log.d("ErrorPost", it.data.toString())
+                }
+                Status.LOADING -> {
+                    Log.d("loadPost", it.data.toString())
+                }
+            }
+        }
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    fun dismissBottomSheet() {
+        dismissAllowingStateLoss()
     }
 }

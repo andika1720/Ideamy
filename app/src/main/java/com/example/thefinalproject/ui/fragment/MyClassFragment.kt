@@ -6,49 +6,79 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
-import com.example.thefinalproject.adapter.AdapterPageForDetail
+import com.example.thefinalproject.adapter.adapterSearch.AdapterMyClass
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
+import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
-import com.example.thefinalproject.ui.fragment.itemPage.class1.InProgressKelasFragment
-import com.example.thefinalproject.ui.fragment.itemPage.class1.SelesaiFragment
-import com.example.thefinalproject.ui.fragment.itemPage.class1.SemuaKelasClass
+import com.example.thefinalproject.network.model.mycourse.DataMyCourse
+import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
+import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
-import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
+@Suppress("SameParameterValue")
 class MyClassFragment : Fragment() {
     private var _binding: FragmentMyClassBinding? = null
     private val binding get() = _binding!!
     private val viewMode: ViewModelAll by inject()
-
+    private lateinit var sharePref: SharePref
+    private val authViewModel: AuthViewModel by inject()
+    private var categorys: List<DataMyCourse> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        // Inflate the layout for this fragment
         _binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
-
-        fetchCategory(null)
-        val fragmentList = arrayListOf(SemuaKelasClass(), InProgressKelasFragment(), SelesaiFragment())
-        val titleFragment = arrayListOf("Semua Kelas", "In Progress", "Selesai")
-        binding.apply {
-            viewpageClass.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
-            TabLayoutMediator(tabLayoutClass, viewpageClass) { tab, position ->
-                tab.text = titleFragment[position]
-            }.attach()
+        sharePref = SharePref
+        tabLayout()
+        binding.etSearch.setOnFocusChangeListener {_,focus ->
+            if (focus){
+                findNavController().navigate(R.id.searchFragment)
+            }
         }
-
+        fetchCategory(null)
 
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        fetchMyCourse(savedToken)
+        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> {
+                        fetchMyCourse(savedToken)
+                    }
+                    1 -> {
+                        fetchMyCourse(savedToken)
+                    }
+                    2 -> {
+                        fetchMyCourse(savedToken)
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+        })
+    }
 
     private fun fetchCategory(category: String?) {
         viewMode.getAllCategory(category).observe(viewLifecycleOwner) {
@@ -78,5 +108,65 @@ class MyClassFragment : Fragment() {
         adapter.sendCategory(uniqueCategories ?: emptyList())
         binding.rvCategory.layoutManager = GridLayoutManager(requireActivity(), 2)
         binding.rvCategory.adapter = adapter
+    }
+
+    private fun tabLayout(){
+        val allTab = binding.tabLayoutClass.newTab()
+        allTab.text = "SemuaKelas"
+        binding.tabLayoutClass.addTab(allTab)
+
+        val premiumTab = binding.tabLayoutClass.newTab()
+        premiumTab.text = "In Progress"
+        binding.tabLayoutClass.addTab(premiumTab)
+
+        val freeTab = binding.tabLayoutClass.newTab()
+        freeTab.text = "Selesai"
+        binding.tabLayoutClass.addTab(freeTab)
+    }
+
+
+    private fun fetchMyCourse(token: String?) {
+        authViewModel.myCourse(token).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    showListCourse(it.data)
+                    Log.d("fetchCoursesucces", it.message.toString())
+                    binding.progressbarCategory.isVisible = false
+
+                }
+
+                Status.ERROR -> {
+                    binding.progressbarCategory.isVisible = false
+                    Log.e("fetcherror", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                    binding.progressbarCategory.isVisible = true
+                    Log.d("fetchload", it.message.toString())
+                }
+            }
+        }
+    }
+
+
+
+    private fun showListCourse(data: MyCourseResponse?){
+        val adapter = AdapterMyClass(object : AdapterMyClass.OnClickListener{
+
+            override fun itemClick(data: DataMyCourse) {
+               navigatoToCourse(data)
+            }
+        })
+
+        adapter.sendItem(data?.data)
+        binding.rvClassBerjalan.layoutManager=  LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvClassBerjalan.adapter = adapter
+    }
+
+
+    private fun navigatoToCourse(data: DataMyCourse){
+
+        val bundle = bundleOf("selectedId" to data)
+        findNavController().navigate(R.id.detailCourse,bundle)
     }
 }
