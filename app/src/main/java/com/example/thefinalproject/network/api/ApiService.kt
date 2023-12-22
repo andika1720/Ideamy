@@ -92,13 +92,13 @@ interface ApiService {
     @POST("orders/{id}")
     suspend fun ordersId(
         @Header("authorization") token : String?,
-        @Path("courseId") courseId: String?
+        @Path("id") courseId: String?
     ) : PostResponse
 
     @PUT("orders/{id}")
     suspend fun updatePayment(
-        @Header("authorization") token : String?,
-        @Path("id") id: String?,
+        @Header("authorization") token : String,
+        @Path("id") id: String,
         @Body requestOrder: RequestPutOrder
     ) : PutResponseOrder
 }

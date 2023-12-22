@@ -8,6 +8,8 @@ data class DataPost(
     val cardHolderName: Any?,
     @SerializedName("cardNumber")
     val cardNumber: Any?,
+    @SerializedName("course")
+    val course: DataCoursePost?,
     @SerializedName("courseId")
     val courseId: String?,
     @SerializedName("createdAt")

@@ -75,7 +75,7 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
-    fun updatePayment(token: String?,id:String?,requestPutOrder: RequestPutOrder) = liveData(Dispatchers.IO) {
+    fun updatePayment(token: String,id:String,requestPutOrder: RequestPutOrder) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(repo.updatePayment(token, id,requestPutOrder)))
