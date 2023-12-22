@@ -49,12 +49,13 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
         }
 
 
-        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-        postOrderCoroutines(savedToken,courseId ?: "")
+
+        postOrderCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value),courseId ?: "")
         showDetailCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value), courseId ?: "")
 
         return binding.root
     }
+
 
 
     private fun showData(data: DetailResponse) {
@@ -73,15 +74,7 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
             .fitCenter()
             .into(binding.imageView2)
 
-
-
     }
-
-
-
-
-
-
 
     private fun showDetailCoroutines(token:String?,id: String) {
 
@@ -101,36 +94,17 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
     }
 
 
-
-
-
-
     private fun postOrder(data: PostResponse) {
         val courseData: DataPost? = data.data
-        val courseData1 = courseData?.course
-        val hargaAwal: Int? = courseData1?.price
-        binding.tvCategoryCourse.text = courseData1?.category
-        binding.tvTopicCourse.text = courseData1?.title
-        ///binding.tvAuthorCourse.text = courseData1?.creator
-        binding.textView8.text = "${Utils.formatCurrency(hargaAwal)}"
-        binding.tvLevel.text = "${courseData1?.level} Level"
-        //binding.tvWaktucourse.text = "${courseData1?.totalDuration} Menit"
-       // binding.tvModule.text = "${courseData1?.totalModule} Modul"
-        Glide.with(this)
-            .load(courseData1?.image)
-            .fitCenter()
-            .into(binding.imageView2)
-
         val bundle = Bundle().apply {
-            putString("selectedId", courseData?.id)
-            putString("courseId", courseData?.courseId)
+            putString("selectedId", courseData?.courseId)
+            putString("orderId",data.data?.id)
         }
         binding.btnBeliSekarang.setOnClickListener {
             findNavController().navigate(R.id.detailPaymentFragment,bundle)
             dismiss()
         }
 
-      
 
     }
 

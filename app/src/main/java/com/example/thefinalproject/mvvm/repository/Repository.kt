@@ -35,9 +35,13 @@ class Repository(private val apiService: ApiService) {
 
 
     //ORDER
+    suspend fun getOrders(token: String?) = apiService.getOrders(token)
+
     suspend fun ordersId(token: String?,courseId: String?) = apiService.ordersId(token, courseId)
 
-    suspend fun updatePayment(token: String,id: String,requestPutOrder: RequestPutOrder) = apiService.updatePayment(token, id,requestPutOrder)
+    suspend fun updatePayment(token: String?,id: String?,requestPutOrder: RequestPutOrder) = apiService.updatePayment(token, id,requestPutOrder)
+
+    suspend fun deletePayment(token: String?,id: String?) = apiService.deletePayment(token,id)
 
     //MyCourse
     suspend fun myCourse(token: String?) = apiService.myCourse(token)

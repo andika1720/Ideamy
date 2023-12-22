@@ -61,7 +61,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                     3 -> fetchList(null, null, "Data Science", null,null)
                     4 -> fetchList(null, null, "UI/UX Design", null,null)
                     5 -> fetchList(null, null, "Product Management", null,null)
-                    6 -> fetchList(null, null, "IOS Development", null,null)
+                    6 -> fetchList(null, null, "iOS Development", null,null)
                 }
             }
 

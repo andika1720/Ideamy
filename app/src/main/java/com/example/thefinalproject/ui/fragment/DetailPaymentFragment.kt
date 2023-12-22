@@ -51,25 +51,15 @@ class DetailPaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+
         binding.tvArrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
         val arg =arguments?.getString("selectedId")
-        val get =arguments?.getString("courseId")
-        Log.d("arg",arg.toString())
-        Log.d("get",get.toString())
-        binding.btnBeliSekarang.setOnClickListener {
-        val cardHolderName = binding.etCardHolderName.text.toString()
-        val cardNumber = binding.etCardNumber.text.toString()
-        val cvv = binding.etCvv.text.toString()
-        val expiryDate = binding.etExpiryDate.text.toString()
-        val paymentMethod = binding.tvCardCredit.text.toString()
-        updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethod)
-        botSheetPaymentSuccess()
-        }
-        detailPayment(savedToken.toString(),get.toString())
+        val getId = arguments?.getString("orderId")
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
+        detailPayment(savedToken.toString(),arg.toString())
 
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
@@ -83,7 +73,16 @@ class DetailPaymentFragment : Fragment() {
             }
         }
 
+        binding.btnBeliSekarang.setOnClickListener {
 
+            val cardHolderName = binding.etCardHolderName.text.toString()
+            val cardNumber = binding.etCardNumber.text.toString()
+            val cvv = binding.etCvv.text.toString()
+            val expiryDate = binding.etExpiryDate.text.toString()
+            val paymentMethod = "Credit Card"
+            updatePayment(savedToken.toString(), getId.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethod)
+
+        }
     }
 
     @SuppressLint("InflateParams")
@@ -119,7 +118,7 @@ class DetailPaymentFragment : Fragment() {
             }
 
             btnIkutiBelajar.setOnClickListener {
-                val courseId = arguments?.getString("courseId")
+                val courseId = arguments?.getString("selectedId")
                     val bundle = Bundle().apply {
                         putString("selectedId", courseId)
                     }
@@ -133,7 +132,6 @@ class DetailPaymentFragment : Fragment() {
             Log.e("YourFragment", "Error in showBotsheet", e)
         }
     }
-
 
     private fun detailPayment(token:String?,courseId: String) {
         viewModel.getDataById("Bearer $token",courseId).observe(viewLifecycleOwner) {
@@ -157,9 +155,6 @@ class DetailPaymentFragment : Fragment() {
 
     }
 
-
-
-
     private fun showData(data: DetailResponse) {
         val course: DataCourseById? = data.data
         Glide.with(this)
@@ -176,28 +171,23 @@ class DetailPaymentFragment : Fragment() {
         binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
         binding.tvTopicCourse.text = course?.title
         binding.tvAuthorCourse.text = course?.creator
-
     }
 
 
-
-
-
-
-    private fun updatePayment(token:String,id: String,cardHolderName: String?, cardNumber: String?, cvv: String?, expiryDate: String?, paymentMethod: String?) {
+    private fun updatePayment(token:String?,id: String,cardHolderName: String?, cardNumber: String?, cvv: String?, expiryDate: String?, paymentMethod: String?) {
+        Log.d("PMETHOD", paymentMethod.toString())
         val updateRequest = RequestPutOrder(cardHolderName, cardNumber, cvv, expiryDate, paymentMethod
         )
         authViewModel.updatePayment("Bearer $token",id, updateRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-
-                    Log.d("updatPaymentSuc", "Succes")
+                    Log.d("updatePaymentSuc", "Succes")
                     it.data?.let { data -> showUpdatePayment(data) }
-
+                    botSheetPaymentSuccess()
                 }
 
                 Status.ERROR -> {
-                    Log.d("updatPaymentError", "Error Occurred!")
+                    Log.d("updatePaymentError", it.message.toString())
                 }
 
                 Status.LOADING -> {
@@ -209,31 +199,11 @@ class DetailPaymentFragment : Fragment() {
     }
     private fun showUpdatePayment(data: PutResponseOrder) {
         val course: DataPutOrder? = data.data
-        val course1 = course?.course
-
         binding.tvCardCredit.text = course?.paymentMethod
         binding.etCardNumber.text = Editable.Factory.getInstance().newEditable(course?.cardNumber.toString())
         binding.etCardHolderName.text = Editable.Factory.getInstance().newEditable(course?.cardHolderName.toString())
         binding.etCvv.text =Editable.Factory.getInstance().newEditable(course?.cvv.toString())
         binding.etExpiryDate.text =Editable.Factory.getInstance().newEditable(course?.expiryDate.toString())
-
-        Glide.with(this)
-            .load(course1?.image)
-            .fitCenter()
-            .into(binding.imageView2)
-        val hargaAwal: Int? = course1?.price
-        val ppn: Double? = course1?.price?.times(0.11)
-        val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
-        binding.tvTittleCourse.text = course1?.category
-        binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
-        binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
-
-        binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
-        binding.tvTopicCourse.text = course1?.title
-
-        //binding.tvAuthorCourse.text = course1?.creator
-
-
 
     }
 }

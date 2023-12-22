@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListKelasBerjalanBinding
-import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.mycourse.Course
 import com.example.thefinalproject.network.model.mycourse.DataMyCourse
 
@@ -35,7 +34,6 @@ class AdapterMyClass(private val onItemClick: OnClickListener?): RecyclerView.Ad
         val view = LayoutInflater.from(parent.context)
         return ViewHolder(ListKelasBerjalanBinding.inflate(view,parent,false))
     }
-
 
     fun sendItem(data: DataMyCourse?) {
         dif.submitList(data?.let { listOf(it) } ?: emptyList())
