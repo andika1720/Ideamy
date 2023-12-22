@@ -17,7 +17,8 @@ import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpReq
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
-import retrofit2.Call
+import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
+import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -81,6 +82,12 @@ interface ApiService {
     suspend fun resendOtp(
         @Body resendOtpRequest: ResendOtpRequest
     ): ResendOtpResponse
+
+    @PUT ("reset-password")
+    suspend fun resetPasswordUser(
+        @Header("authorization") token : String?,
+        @Body changePasswordRequest: ChangePasswordRequest
+    ): ChangePasswordResponse
 
 
     //MYCOURSE

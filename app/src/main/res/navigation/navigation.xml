@@ -87,7 +87,11 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.thefinalproject.ui.fragment.setting.ChangePasswordFragment"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" />
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_settingFragment2"
+            app:destination="@id/settingFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailPaymentFragment"
