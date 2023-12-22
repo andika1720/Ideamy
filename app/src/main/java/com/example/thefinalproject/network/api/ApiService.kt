@@ -5,6 +5,8 @@ import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
+import com.example.thefinalproject.network.model.order.DeleteResponseOrder
+import com.example.thefinalproject.network.model.order.GetResponse
 import com.example.thefinalproject.network.model.order.PostResponse
 import com.example.thefinalproject.network.model.order.PutResponseOrder
 import com.example.thefinalproject.network.model.order.RequestPutOrder
@@ -20,6 +22,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -95,17 +98,30 @@ interface ApiService {
     suspend fun myCourse(
         @Header("authorization") token : String?
     ): MyCourseResponse
+
     //ORDER
-    @POST("orders/{id}")
+    @GET("orders")
+    suspend fun getOrders(
+        @Header("authorization") token : String?
+    ) : GetResponse
+
+    @POST("orders/{courseId}")
     suspend fun ordersId(
         @Header("authorization") token : String?,
-        @Path("id") courseId: String?
+        @Path("courseId") courseId: String?
     ) : PostResponse
 
     @PUT("orders/{id}")
     suspend fun updatePayment(
-        @Header("authorization") token : String,
-        @Path("id") id: String,
+        @Header("authorization") token : String?,
+        @Path("id") id: String?,
         @Body requestOrder: RequestPutOrder
     ) : PutResponseOrder
+
+    @DELETE("orders/{id}")
+    suspend fun deletePayment(
+        @Header("authorization") token : String?,
+        @Path("id") id: String?
+    ) : DeleteResponseOrder
+
 }

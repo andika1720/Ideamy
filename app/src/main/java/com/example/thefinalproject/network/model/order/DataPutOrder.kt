@@ -8,8 +8,6 @@ data class DataPutOrder(
     val cardHolderName: String?,
     @SerializedName("cardNumber")
     val cardNumber: String?,
-    @SerializedName("course")
-    val course: DataCoursePut?,
     @SerializedName("courseId")
     val courseId: String?,
     @SerializedName("createdAt")

@@ -1,6 +1,8 @@
 package com.example.thefinalproject.network.model.order
 
 
+import com.example.thefinalproject.network.model.course.DataCourseById
+import com.example.thefinalproject.network.model.mycourse.Course
 import com.google.gson.annotations.SerializedName
 
 data class DataPost(
@@ -8,8 +10,6 @@ data class DataPost(
     val cardHolderName: Any?,
     @SerializedName("cardNumber")
     val cardNumber: Any?,
-    @SerializedName("course")
-    val course: DataCoursePost?,
     @SerializedName("courseId")
     val courseId: String?,
     @SerializedName("createdAt")
@@ -29,5 +29,7 @@ data class DataPost(
     @SerializedName("updatedAt")
     val updatedAt: String?,
     @SerializedName("userId")
-    val userId: String?
+    val userId: String?,
+    @SerializedName("Course")
+    val course: Course?
 )

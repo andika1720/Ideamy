@@ -26,10 +26,9 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
     }
 
 
-    suspend fun getCurrentUser(token: String?) = liveData(Dispatchers.IO) {
+    fun getCurrentUser(token: String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-
             emit(Resource.success(repo.getCurrentUser(token)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
@@ -76,6 +75,15 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
 
 
     //ORDERS
+    fun getOrders(token: String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.getOrders(token)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+    }
+
     fun ordersId(token: String?,courseId:String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
@@ -85,10 +93,19 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
-    fun updatePayment(token: String,id:String,requestPutOrder: RequestPutOrder) = liveData(Dispatchers.IO) {
+    fun updatePayment(token: String?,id:String?,requestPutOrder: RequestPutOrder) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(repo.updatePayment(token, id,requestPutOrder)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+    }
+
+    fun deletePayment(token: String?,id:String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.deletePayment(token, id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }

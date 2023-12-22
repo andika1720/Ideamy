@@ -56,7 +56,14 @@
         android:id="@+id/historyPaymentFragment"
         android:name="com.example.thefinalproject.ui.fragment.setting.HistoryPaymentFragment"
         android:label="fragment_history_payment"
-        tools:layout="@layout/fragment_history_payment" />
+        tools:layout="@layout/fragment_history_payment" >
+        <action
+            android:id="@+id/action_historyPaymentFragment_to_settingFragment2"
+            app:destination="@id/settingFragment2" />
+        <action
+            android:id="@+id/action_historyPaymentFragment_to_detailCourse"
+            app:destination="@id/detailCourse" />
+    </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.thefinalproject.ui.fragment.setting.MyProfileFragment"
