@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.thefinalproject.databinding.ActivityLoginBinding
 import com.example.thefinalproject.network.model.user.login.LoginRequest
@@ -122,6 +123,8 @@ class LoginActivity : AppCompatActivity() {
             binding.textInputEmailRegis.error = "Email not registered"
         } else if (message.contains("password")) {
             binding.textInputPasswordLogin.error = "Incorrect password"
+        } else if(message.contains("HTTP 404")){
+            Toast.makeText(this, "Email or password is invalid", Toast.LENGTH_SHORT).show()
         } else {
             binding.textInputEmailRegis.error = null
             binding.textInputPasswordLogin.error = null
