@@ -8,6 +8,7 @@ import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
+import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.util.Resource
 import kotlinx.coroutines.Dispatchers
 
@@ -49,6 +50,15 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(repo.checkOtp(otpRequest)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+
+    }
+    fun resetPasswordUser(token: String?,changePasswordRequest: ChangePasswordRequest) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.changePassword(token,changePasswordRequest)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
