@@ -33,6 +33,7 @@ class DetailPaymentFragment : Fragment() {
     private lateinit var btnBankTransfer: Button
     private lateinit var btnCreditCard: Button
     private lateinit var hiddenViewCardCredit: CardView
+    private lateinit var hiddenViewBankTransfer: CardView
 
     private var _binding: FragmentDetailPaymentBinding? = null
     private val binding get() = _binding!!
@@ -64,15 +65,16 @@ class DetailPaymentFragment : Fragment() {
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
         hiddenViewCardCredit = view.findViewById(R.id.card_crediCard)
+        hiddenViewBankTransfer = view.findViewById(R.id.card_bankTransfer)
+
 
         btnCreditCard.setOnClickListener {
-            if (hiddenViewCardCredit.visibility == View.VISIBLE) {
-                hiddenViewCardCredit.visibility = View.GONE
-            } else {
-                hiddenViewCardCredit.visibility = View.VISIBLE
-            }
+            toggleVisibility(hiddenViewCardCredit, hiddenViewBankTransfer)
         }
 
+        btnBankTransfer.setOnClickListener {
+            toggleVisibility(hiddenViewBankTransfer, hiddenViewCardCredit)
+        }
         binding.btnBeliSekarang.setOnClickListener {
 
             val cardHolderName = binding.etCardHolderName.text.toString()
@@ -205,5 +207,15 @@ class DetailPaymentFragment : Fragment() {
         binding.etCvv.text =Editable.Factory.getInstance().newEditable(course?.cvv.toString())
         binding.etExpiryDate.text =Editable.Factory.getInstance().newEditable(course?.expiryDate.toString())
 
+    }
+
+    private fun toggleVisibility(showView: View, hideView: View) {
+        if (hideView.visibility == View.VISIBLE) {
+            hideView.visibility = View.GONE
+        }
+
+        if (showView.visibility != View.VISIBLE) {
+            showView.visibility = View.VISIBLE
+        }
     }
 }

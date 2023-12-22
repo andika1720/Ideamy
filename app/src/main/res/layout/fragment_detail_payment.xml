@@ -202,7 +202,6 @@
             android:layout_marginHorizontal="10dp"
             android:textAlignment="textStart"
             android:drawableRight="@drawable/expand_more"
-            android:text="Bank Transfer"
             android:backgroundTint="@drawable/button_selector"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/white"
@@ -210,7 +209,65 @@
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <TextView
+            android:id="@+id/tvBankTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Bank Transfer"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_bankTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="16dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/btn_bankTransfer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_cardBankTransfer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Virtual Bank Number"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:text="Silakan lakukan pembayaran melalui transfer bank ke rekening berikut:\n\nNama Bank: Bank Contoh\nNomor Rekening: 1234567890\nNama Pemilik Rekening: Contoh Penerima\nJumlah Pembayaran: [Jumlah Pembayaran]\n\nMohon lakukan pembayaran dalam waktu 3 hari untuk menghindari pembatalan otomatis."
+                    app:layout_constraintEnd_toEndOf="@+id/tv_cardBankTransfer"
+                    app:layout_constraintStart_toStartOf="@+id/tv_cardBankTransfer"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cardCredit"
@@ -223,28 +280,29 @@
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/btn_bankTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/card_bankTransfer"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/tvCardCredit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Card Credit"
+            android:text="Credit Card"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/btn_bankTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/card_bankTransfer"
             app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
             android:layout_marginTop="18dp"
             android:layout_marginStart="24dp"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_crediCard"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="16dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/btn_cardCredit">
 
             <androidx.constraintlayout.widget.ConstraintLayout
