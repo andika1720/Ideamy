@@ -3,6 +3,8 @@ package com.example.thefinalproject.mvvm.repository
 
 import com.example.thefinalproject.network.api.ApiService
 import com.example.thefinalproject.network.model.order.RequestPutOrder
+import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
+import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
@@ -51,4 +53,9 @@ class Repository(private val apiService: ApiService) {
 
     //MyCourse
     suspend fun myCourse(token: String?) = apiService.myCourse(token)
+
+    // forgot password
+    suspend fun inputForgotPassword(postForgotPassRequest: PostForgotPassRequest) = apiService.inputEmailForgot(postForgotPassRequest)
+
+    suspend fun putForgotPassword(putForgotPasswordRequest: PutForgotPassRequest) = apiService.inputOtpForgot(putForgotPasswordRequest)
 }

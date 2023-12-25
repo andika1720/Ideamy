@@ -4,13 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityLoginBinding
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
+import com.example.thefinalproject.ui.fragment.OtpCode
+import com.example.thefinalproject.ui.fragment.forgotpass.InputEmail
 import com.example.thefinalproject.util.SharePref
 import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
@@ -18,6 +23,7 @@ import org.koin.android.ext.android.inject
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewmodel: AuthViewModel by inject()
+    private lateinit var hiddenViewContent: ConstraintLayout
     private lateinit var sharePref: SharePref
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +52,24 @@ class LoginActivity : AppCompatActivity() {
             val emailText = binding.etEmailLogin.text.toString()
             val passwordText = binding.etPasswordRegis.text.toString()
             login(emailText, passwordText)
+        }
+        binding.lupaPwLogin.setOnClickListener {
+            val fragment = InputEmail()
+            val bundle = Bundle()
+            fragment.arguments = bundle
+            hiddenViewContent = findViewById(R.id.login_content)
+
+            if (hiddenViewContent.visibility == View.VISIBLE) {
+                hiddenViewContent.visibility = View.GONE
+            } else {
+                hiddenViewContent.visibility = View.VISIBLE
+            }
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container3, fragment)
+                .commit()
+
+
         }
     }
 

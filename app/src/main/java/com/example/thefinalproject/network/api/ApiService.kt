@@ -14,6 +14,10 @@ import com.example.thefinalproject.network.model.order.GetResponse
 import com.example.thefinalproject.network.model.order.PostResponse
 import com.example.thefinalproject.network.model.order.PutResponseOrder
 import com.example.thefinalproject.network.model.order.RequestPutOrder
+import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
+import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassResponse
+import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
+import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassResponse
 import com.example.thefinalproject.network.model.user.getuser.GetCurrentUser
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.login.LoginResponse
@@ -144,5 +148,18 @@ interface ApiService {
         @Header("authorization") token : String?,
         @Path("id") id: String?
     ) : DeleteResponseOrder
+
+    @POST ("forgot-password")
+    suspend fun inputEmailForgot(
+        @Body forgotPassRequest: PostForgotPassRequest
+    ): PostForgotPassResponse
+    @PUT ("forgot-password")
+    suspend fun inputOtpForgot(
+        @Body forgotPassRequest: PutForgotPassRequest
+    ): PutForgotPassResponse
+
+
+
+
 
 }

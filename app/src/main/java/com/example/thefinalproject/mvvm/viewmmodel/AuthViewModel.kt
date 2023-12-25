@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.network.model.order.RequestPutOrder
+import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
+import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
@@ -118,5 +120,24 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
+    }
+
+    fun forgotPassword(postForgotPassRequest: PostForgotPassRequest) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.inputForgotPassword(postForgotPassRequest)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+
+    }
+    fun putForgotPassword(putForgotPassRequest: PutForgotPassRequest) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.putForgotPassword(putForgotPassRequest)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+
     }
 }
