@@ -198,7 +198,9 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                     bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
                     bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
                 } else if (data.type == "free") {
-                    findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+                    val bottomSheetSelangkah = BotsheetSelangkah()
+                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
+                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
                 }
             } else {
                 val botsheetLogin = BotSheetLogin()

@@ -67,7 +67,7 @@ class AdapterDetail(private val data: MutableList<Any>,private var clickListener
                 moduleHolder.onBind(listenerItem)
 
                 holder.itemView.setOnClickListener {
-                    clickListener?.invoke(listenerItem.video!!)
+                    //clickListener?.invoke(listenerItem.video!!)
                 }
             }
 

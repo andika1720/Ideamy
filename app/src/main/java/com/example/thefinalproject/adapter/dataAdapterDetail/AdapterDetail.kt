@@ -1,12 +1,17 @@
 package com.example.thefinalproject.adapter.dataAdapterDetail
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thefinalproject.databinding.ItemmateriContentchapterBinding
 import com.example.thefinalproject.databinding.ItemmateriTitlechapterBinding
+import com.example.thefinalproject.network.model.chapters.DataChapters1
+import com.example.thefinalproject.network.model.chapters.DataChaptersNew
 import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.ModuleById
+import com.example.thefinalproject.network.model.modules.DataModules1
+import com.example.thefinalproject.network.model.modules.all.DataModulesNew
 
 class AdapterDetail(private val data: MutableList<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

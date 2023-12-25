@@ -60,7 +60,7 @@ class DetailPaymentFragment : Fragment() {
         val getId = arguments?.getString("orderId")
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
-        detailPayment(savedToken.toString(),arg.toString())
+        detailPayment(savedToken.toString(),getId.toString())
 
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
@@ -81,10 +81,11 @@ class DetailPaymentFragment : Fragment() {
             val cardNumber = binding.etCardNumber.text.toString()
             val cvv = binding.etCvv.text.toString()
             val expiryDate = binding.etExpiryDate.text.toString()
-            val paymentMethod = "Credit Card"
-            updatePayment(savedToken.toString(), getId.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethod)
+            val paymentMethodCreditCard = binding.tvCardCredit.text.toString()
+            updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
 
         }
+
     }
 
     @SuppressLint("InflateParams")
@@ -202,6 +203,7 @@ class DetailPaymentFragment : Fragment() {
     private fun showUpdatePayment(data: PutResponseOrder) {
         val course: DataPutOrder? = data.data
         binding.tvCardCredit.text = course?.paymentMethod
+        binding.tvBankTransfer.text = course?.paymentMethod
         binding.etCardNumber.text = Editable.Factory.getInstance().newEditable(course?.cardNumber.toString())
         binding.etCardHolderName.text = Editable.Factory.getInstance().newEditable(course?.cardHolderName.toString())
         binding.etCvv.text =Editable.Factory.getInstance().newEditable(course?.cvv.toString())

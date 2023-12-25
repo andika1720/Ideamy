@@ -48,6 +48,22 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
     }
+
+    fun getChapterById(id: String) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getChapterById(id)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
+
+    fun getModulesById(id: String) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getModulesById(id)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
     //percobaan
     fun getFilterCourse(id: String?,level: String?, category: String?,type: String?,search: String?) = liveData(Dispatchers.IO) {
         try {
@@ -57,7 +73,21 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
+    fun getChapters(courseId: String?) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getChapters(courseId)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
 
+    fun getModules(chapterId: String?) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getModules(chapterId)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
 
 
 }

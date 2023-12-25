@@ -6,18 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
-import com.example.thefinalproject.adapter.adapterSearch.AdapterMyClass
+import com.example.thefinalproject.adapter.adapterSearch.MyClassAdapter
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
+import com.example.thefinalproject.network.model.mycourse.Course
 import com.example.thefinalproject.network.model.mycourse.DataMyCourse
 import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
 import com.example.thefinalproject.util.SharePref
@@ -47,7 +47,6 @@ class MyClassFragment : Fragment() {
             }
         }
         fetchCategory(null)
-
 
         return binding.root
     }
@@ -150,23 +149,24 @@ class MyClassFragment : Fragment() {
 
 
 
-    private fun showListCourse(data: MyCourseResponse?){
-        val adapter = AdapterMyClass(object : AdapterMyClass.OnClickListener{
+    private fun showListCourse(data: MyCourseResponse?) {
+        val adapter = MyClassAdapter { clickedCourse ->
+            navigatoToCourse(clickedCourse)
+        }
 
-            override fun itemClick(data: DataMyCourse) {
-               navigatoToCourse(data)
-            }
-        })
+        data?.data?.let { dataMyCourse ->
+            val courses = dataMyCourse?.courses ?: emptyList()
+            adapter.submitList(courses)
+        }
 
-        adapter.sendItem(data?.data)
-        binding.rvClassBerjalan.layoutManager=  LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvClassBerjalan.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvClassBerjalan.adapter = adapter
     }
 
 
-    private fun navigatoToCourse(data: DataMyCourse){
-
-        val bundle = bundleOf("selectedId" to data)
+    private fun navigatoToCourse(data: Course){
+        val bundle = Bundle()
+        bundle.putString("selectedId", data?.id)
         findNavController().navigate(R.id.detailCourse,bundle)
     }
 }

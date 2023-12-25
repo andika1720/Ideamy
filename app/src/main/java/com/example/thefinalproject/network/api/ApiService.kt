@@ -1,9 +1,13 @@
 package com.example.thefinalproject.network.api
 
 
+import com.example.thefinalproject.network.model.chapters.ChaptersById1Response
+import com.example.thefinalproject.network.model.chapters.ChaptersResponseList
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.course.ListResponse
+import com.example.thefinalproject.network.model.modules.ResponseModuleById1
+import com.example.thefinalproject.network.model.modules.all.ModulesResponseAll
 import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
 import com.example.thefinalproject.network.model.order.DeleteResponseOrder
 import com.example.thefinalproject.network.model.order.GetResponse
@@ -50,6 +54,23 @@ interface ApiService {
         @Path("id") id: String
     ): DetailResponse
 
+    @GET("chapters")
+    suspend fun getChapters(
+        @Query("courseId") courseId: String?
+    ): ChaptersResponseList
+    @GET("chapters/{id}")
+    suspend fun getChaptersById(
+        @Path("id") id: String
+    ): ChaptersById1Response
+
+    @GET("modules")
+    suspend fun getModules(
+        @Query("chapterId") chapterId: String?
+    ): ModulesResponseAll
+    @GET("modules/{id}")
+    suspend fun getModulesById(
+        @Path("id") id: String
+    ): ResponseModuleById1
     @GET("courses")
     suspend fun getCourseByTitle(
         @Query("title") title: String?
