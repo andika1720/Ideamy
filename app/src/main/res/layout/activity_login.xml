@@ -1,166 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
-    android:layout_margin="30dp"
+    android:fillViewport="true"
     android:background="@color/white"
     tools:context=".ui.activity.LoginActivity">
-
-    <TextView
-        android:id="@+id/masuk_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Masuk"
-        android:textColor="@color/donker"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_email_login" />
-    
-    <TextView
-        android:id="@+id/tv_email_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Email/Nomor Telepon"
-        android:textSize="18sp"
-        android:textColor="@color/donker"
-        app:layout_constraintBottom_toTopOf="@id/textInput_Email_Regis"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInput_Email_Regis"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="Contoh: johncute21@gmail.com"
-        app:hintTextColor="@color/black"
-        app:endIconMode="clear_text"
-        app:layout_constraintBottom_toTopOf="@id/tv_password_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="14dp"
-        android:layout_marginBottom="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email_login"
+        android:layout_height="match_parent"
+        >
+        <FrameLayout
+            android:id="@+id/container3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/tv_password_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Password"
-        android:textSize="18sp"
-        android:textColor="@color/donker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textInput_Password_Login"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        />
-
-    <TextView
-        android:id="@+id/lupaPw_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Lupa Kata Sandi"
-        android:textColor="@color/orange"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@id/textInput_Password_Login"
-        app:layout_constraintEnd_toEndOf="@id/textInput_Password_Login"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInput_Password_Login"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="Masukkan Password"
-        app:hintTextColor="@color/black"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@id/btn_masuk_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="14dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password_regis"
+            android:layout_height="match_parent"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/login_content"
             android:layout_width="match_parent"
-            android:inputType="textPassword"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            >
+            <TextView
+                android:id="@+id/masuk_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Masuk"
+                android:textColor="@color/donker"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="25dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_email_login" />
 
-    <Button
-        android:id="@+id/btn_masuk_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="140dp"
-        android:backgroundTint="@drawable/button_selector"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/btn_masuk"
-        android:textSize="16sp"
-        app:cornerRadius="14dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_belum_punya_acc_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck" />
+            <TextView
+                android:id="@+id/tv_email_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Email/Nomor Telepon"
+                android:textSize="18sp"
+                android:textColor="@color/donker"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Email_Regis"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                />
 
-    <TextView
-        android:id="@+id/tv_belum_punya_acc_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        app:layout_constraintBottom_toTopOf="@id/masuk_without_login"
-        android:text="Belum Punya Akun?"
-        android:layout_marginStart="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/daftardisini_login"
-        android:textColor="@color/black"
-        android:layout_marginBottom="5dp"
-        android:textSize="16sp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Email_Regis"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="Contoh: johncute21@gmail.com"
+                app:hintTextColor="@color/black"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@id/tv_password_login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginBottom="10dp">
 
-    <TextView
-        android:id="@+id/daftardisini_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        app:layout_constraintBottom_toTopOf="@id/masuk_without_login"
-        android:text="Daftar di sini"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintStart_toEndOf="@id/tv_belum_punya_acc_login"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/masuk_without_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:text="Masuk Tanpa Login"
-        android:textColor="@color/gray_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="15dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_password_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Password"
+                android:textSize="18sp"
+                android:textColor="@color/donker"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Password_Login"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:id="@+id/lupaPw_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Lupa Kata Sandi"
+                android:textColor="@color/orange"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/textInput_Password_Login"
+                app:layout_constraintEnd_toEndOf="@id/textInput_Password_Login"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Password_Login"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="Masukkan Password"
+                app:hintTextColor="@color/black"
+                app:endIconMode="password_toggle"
+                app:layout_constraintBottom_toTopOf="@id/btn_masuk_login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password_regis"
+                    android:layout_width="match_parent"
+                    android:inputType="textPassword"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_masuk_login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="140dp"
+                android:backgroundTint="@drawable/button_selector"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/btn_masuk"
+                android:textSize="16sp"
+                app:cornerRadius="14dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_belum_punya_acc_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tv_belum_punya_acc_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintBottom_toTopOf="@id/masuk_without_login"
+                android:text="Belum Punya Akun?"
+                android:layout_marginStart="70dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/daftardisini_login"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/daftardisini_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintBottom_toTopOf="@id/masuk_without_login"
+                android:text="Daftar di sini"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="70dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintStart_toEndOf="@id/tv_belum_punya_acc_login"/>
+
+            <TextView
+                android:id="@+id/masuk_without_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Masuk Tanpa Login"
+                android:textColor="@color/gray_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="15dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
