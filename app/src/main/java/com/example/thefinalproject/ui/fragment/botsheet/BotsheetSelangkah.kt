@@ -48,10 +48,10 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
            dismiss()
         }
 
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
-
-        postOrderCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value),courseId ?: "")
-        showDetailCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value), courseId ?: "")
+        postOrderCoroutines(savedToken.toString(),courseId ?: "")
+        showDetailCoroutines(savedToken.toString(), courseId ?: "")
 
         return binding.root
     }
@@ -64,6 +64,7 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
         binding.tvCategoryCourse.text = courseData?.category
         binding.tvTopicCourse.text = courseData?.title
+        binding.types.text = courseData?.type
         binding.tvAuthorCourse.text = courseData?.creator
         binding.textView8.text = "${Utils.formatCurrency(hargaAwal)}"
         binding.tvLevel.text = "${courseData?.level} Level"

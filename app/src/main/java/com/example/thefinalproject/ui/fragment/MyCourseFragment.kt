@@ -139,14 +139,10 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         }
         val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         if (isLogin != null) {
-            if (data.type == "premium") {
                 val bottomSheetSelangkah = BotsheetSelangkah()
                 bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
                 bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-            } else if (data.type == "free") {
-                findNavController().navigate(
-                    R.id.action_myCourseFragment2_to_detailCourse, bundle)
-            }
+
         } else {
             val botsheetLogin = BotSheetLogin()
             botsheetLogin.show(childFragmentManager, botsheetLogin.tag)

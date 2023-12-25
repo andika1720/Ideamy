@@ -8,35 +8,48 @@
     android:layout_marginTop="10dp"
     android:paddingVertical="10dp">
 
-    <ImageView
-        android:id="@+id/materialCardView"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:src="@drawable/list_titik"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <TextView
         android:id="@+id/tv_namaContentChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
+
         android:fontFamily="@font/poppins_regular"
         android:text="Tujuan Mengikuti Kelas Design System"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView"
-        app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv1"
+        app:layout_constraintStart_toEndOf="@+id/circleiv"
+        app:layout_constraintTop_toTopOf="@+id/tv1" />
 
     <ImageView
         android:id="@+id/ic_playContentChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+
+        app:layout_constraintBottom_toBottomOf="@+id/tv1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/materialCardView"
+        app:layout_constraintTop_toTopOf="@+id/tv1"
         app:srcCompat="@drawable/play_course" />
+
+    <ImageView
+        android:id="@+id/circleiv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="1"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/circleiv"
+        app:layout_constraintTop_toTopOf="@id/circleiv"
+        app:layout_constraintEnd_toEndOf="@id/circleiv"
+        app:layout_constraintBottom_toBottomOf="@id/circleiv"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

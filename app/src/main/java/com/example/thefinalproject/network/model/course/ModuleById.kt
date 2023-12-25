@@ -9,10 +9,14 @@ import kotlinx.parcelize.Parcelize
 data class ModuleById(
     @SerializedName("chapterId")
     val chapterId: String?,
+    @SerializedName("createdAt")
+    val createdAt: String?,
     @SerializedName("id")
     val id: String?,
     @SerializedName("title")
     val title: String?,
     @SerializedName("video")
-    val video: String?
+    val video: String?,
+    @SerializedName("updatedAt")
+    val updatedAt: String?
 )
