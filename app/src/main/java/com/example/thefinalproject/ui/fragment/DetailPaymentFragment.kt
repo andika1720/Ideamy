@@ -60,7 +60,8 @@ class DetailPaymentFragment : Fragment() {
         val getId = arguments?.getString("orderId")
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
-        detailPayment(savedToken.toString(),getId.toString())
+        detailPayment(savedToken.toString(),arg.toString())
+//        detailPayment(savedToken.toString(),getId.toString())
 
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
@@ -82,7 +83,8 @@ class DetailPaymentFragment : Fragment() {
             val cvv = binding.etCvv.text.toString()
             val expiryDate = binding.etExpiryDate.text.toString()
             val paymentMethodCreditCard = binding.tvCardCredit.text.toString()
-            updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
+            updatePayment(savedToken.toString(), getId.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
+//            updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
 
         }
 
