@@ -29,6 +29,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordResponse
+import com.example.thefinalproject.network.model.user.testNotif.NotipResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -157,6 +158,11 @@ interface ApiService {
     suspend fun inputOtpForgot(
         @Body forgotPassRequest: PutForgotPassRequest
     ): PutForgotPassResponse
+
+    @GET("notifications")
+    suspend fun getNotification(
+        @Header("authorization") token: String?,
+    ):NotipResponse
 
 
 

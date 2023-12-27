@@ -58,4 +58,6 @@ class Repository(private val apiService: ApiService) {
     suspend fun inputForgotPassword(postForgotPassRequest: PostForgotPassRequest) = apiService.inputEmailForgot(postForgotPassRequest)
 
     suspend fun putForgotPassword(putForgotPasswordRequest: PutForgotPassRequest) = apiService.inputOtpForgot(putForgotPasswordRequest)
+
+    suspend fun getNotification(token: String?) = apiService.getNotification(token)
 }

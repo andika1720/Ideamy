@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.util.Resource
 import kotlinx.coroutines.Dispatchers
 
@@ -87,6 +88,15 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
+    }
+    fun getAllNotification(token: String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.getNotification(token)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+
     }
 
 
