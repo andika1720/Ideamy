@@ -12,7 +12,6 @@ import com.example.thefinalproject.network.model.modules.DataModules1
 class AdapterDetailTESTER (private val data: List<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
-        try {
             return when (data[position]) {
                 is DataChapters1 -> ITEM_CHAPTER
                 is DataModules1 -> ITEM_MODULE
@@ -21,10 +20,7 @@ class AdapterDetailTESTER (private val data: List<Any>,private var clickListener
                     throw IllegalArgumentException("Undefined view type")
                 }
             }
-        } catch (e: IndexOutOfBoundsException) {
-            Log.e("AdapterDetail", "Index out of bounds at position $position")
-            throw e
-        }
+
     }
 
     class ChapterViewHolder(private val binding: ItemmateriTitlechapterBinding) :
@@ -41,8 +37,7 @@ class AdapterDetailTESTER (private val data: List<Any>,private var clickListener
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: DataModules1) {
             binding.tvNamaContentChapter.text = data.title
-            val data1 =data.courseChapter
-            binding.tv1.text = data1?.chapterNumber.toString()
+
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -86,12 +81,12 @@ class AdapterDetailTESTER (private val data: List<Any>,private var clickListener
 
             ITEM_MODULE -> {
                 val moduleHolder = holder as ModuleViewHolder
-                val listenerItem = (data[position] as DataModules1)
-                moduleHolder.onBind(listenerItem)
+                val itemClickListener = (data[position] as DataModules1)
+                moduleHolder.onBind(itemClickListener)
 
                 holder.itemView.setOnClickListener {
-                    if (listenerItem.video != null) {
-                        clickListener?.invoke(listenerItem.video!!)
+                    if (itemClickListener.video != null) {
+                        clickListener?.invoke(itemClickListener.video)
                     } else {
                         Log.e("AdapterDetail", "Video is null at position: $position")
                     }

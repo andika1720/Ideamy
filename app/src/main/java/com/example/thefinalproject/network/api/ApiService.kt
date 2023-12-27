@@ -41,6 +41,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.ArrayList
 
 interface ApiService {
 
@@ -64,6 +65,7 @@ interface ApiService {
     ): ChaptersResponseList
     @GET("chapters/{id}")
     suspend fun getChaptersById(
+        @Header("authorization") token : String?,
         @Path("id") id: String
     ): ChaptersById1Response
 
@@ -73,6 +75,7 @@ interface ApiService {
     ): ModulesResponseAll
     @GET("modules/{id}")
     suspend fun getModulesById(
+        @Header("authorization") token : String?,
         @Path("id") id: String
     ): ResponseModuleById1
     @GET("courses")

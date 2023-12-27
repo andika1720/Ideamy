@@ -57,11 +57,9 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                 when (tab.position) {
                     0 -> fetchList(null, null, null, null,null)
                     1 -> fetchList(null, null, "Web Development", null,null)
-                    2 -> fetchList(null, null, "Android Development", null,null)
-                    3 -> fetchList(null, null, "DataUser Science", null,null)
-                    4 -> fetchList(null, null, "UI/UX Design", null,null)
-                    5 -> fetchList(null, null, "Product Management", null,null)
-                    6 -> fetchList(null, null, "iOS Development", null,null)
+                    2 -> fetchList(null, null, "UI/UX Design", null,null)
+                    3 -> fetchList(null, null, "Product Management", null,null)
+                    4 -> fetchList(null, null, "IOS Development", null,null)
                 }
             }
 

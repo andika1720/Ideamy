@@ -9,6 +9,7 @@ import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.util.Resource
 import kotlinx.coroutines.Dispatchers
+import java.util.ArrayList
 
 class ViewModelAll(private val repo: Repository) : ViewModel() {
     private var searchCourseLiveData = MutableLiveData<List<DataCategory>>()
@@ -29,7 +30,6 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
             emit(Resource.error(null,exception.message ?: "Error Occurred!"))
         }
     }
-    fun observeSearchCoursesLiveData(): LiveData<List<DataCategory>> = searchCourseLiveData
 
 
 
@@ -50,17 +50,17 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
-    fun getChapterById(id: String) = liveData(Dispatchers.IO) {
+    fun getChapterById(token: String?,id: String) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getChapterById(id)))
+            emit(Resource.success(repo.getChapterById(token,id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
     }
 
-    fun getModulesById(id: String) = liveData(Dispatchers.IO) {
+    fun getModulesById(token: String?,id: String) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getModulesById(id)))
+            emit(Resource.success(repo.getModulesById(token,id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }

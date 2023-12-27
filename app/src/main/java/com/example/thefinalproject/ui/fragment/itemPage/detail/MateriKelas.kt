@@ -74,13 +74,15 @@ class MateriKelas : Fragment() {
         viewmodel.getDataById1(id).observe(viewLifecycleOwner){
             when(it.status){
                 Status.SUCCESS -> {
-                    Log.e("cek datatersedia", Gson().toJson(it.data))
+                    Log.d("cek datatersedia", "chapter :${it.data}")
 
                     val data = it.data?.data
                     data?.chapters?.forEach {chapter ->
                         if (chapter != null) {
                             materiList.add(chapter)
+                            Log.d("dataChaps", "chapter :$chapter")
                             chapter.modules?.forEach {module ->
+                                Log.d("dataChaps", "module :$module")
                                 materiList.add(module!!)
                             }
                         }

@@ -21,6 +21,7 @@ import com.example.thefinalproject.network.model.course.ModuleById
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
+import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelasTESTER
 import com.example.thefinalproject.util.SharePref
 
 import com.example.thefinalproject.util.Status
@@ -44,7 +45,7 @@ class DetailCourse : Fragment() {
         _binding = FragmentDetailCourseBinding.inflate(inflater, container, false)
 
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-        val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelas())
+        val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelasTESTER())
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
 
         binding.apply {
@@ -136,10 +137,35 @@ class DetailCourse : Fragment() {
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
 
 
-        val firstChapter: ChapterById? = courseData?.chapters?.getOrNull(0)
-        val firstModule: ModuleById? = firstChapter?.modules?.getOrNull(0)
+        // Mendapatkan semua ID module dari semua chapter
+
+
+
+        //bundle.putString("chapterIds", chapterIds4String)
+        //bundle.putString("moduleIds", moduleIds4String)
+        val chapterIdsList = mutableListOf<String?>()
+        val moduleIdsList = mutableListOf<String?>()
         val bundle = Bundle()
         bundle.putString("selectedId", courseData?.id)
+
+        Log.d("Kirimchaps", "chapter: $chapterIdsList")
+        Log.d("Kirimchaps", "module: $moduleIdsList")
+
+
+
+        courseData?.chapters?.forEach { chapter ->
+            val chapterId: String? = chapter?.id
+            chapterIdsList.add(chapterId)
+            bundle.putStringArrayList("chapterIds", ArrayList(chapterIdsList))
+            Log.d("kirimChaps", "Chapter: $chapterId")
+
+            chapter?.modules?.forEach { module ->
+                val moduleId: String? = module?.id
+                moduleIdsList.add(moduleId)
+                bundle.putStringArrayList("moduleIds", ArrayList(moduleIdsList))
+                Log.d("kirimModule", "Module: $moduleId")
+            }
+        }
 
 
         val tentangFragment = DetailcourseTentangFragment()
@@ -148,7 +174,10 @@ class DetailCourse : Fragment() {
         val materiKelasFragment = MateriKelas()
         materiKelasFragment.arguments = bundle
 
-        val fragmentList = arrayListOf(tentangFragment, materiKelasFragment )
+        val materiKelasFragmentTester = MateriKelasTESTER()
+        materiKelasFragmentTester.arguments = bundle
+
+        val fragmentList = arrayListOf(tentangFragment, materiKelasFragmentTester )
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
 

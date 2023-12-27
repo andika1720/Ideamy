@@ -10,7 +10,6 @@ import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
-import com.example.thefinalproject.network.model.user.updateprofile.DataUser
 import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 
 
@@ -30,9 +29,9 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getDataByid1(id: String)= apiService.getDataById1(id)
 
-    suspend fun getChapterById(id: String) = apiService.getChaptersById(id)
+    suspend fun getChapterById(token: String?,id: String) = apiService.getChaptersById(token,id)
 
-    suspend fun getModulesById(id: String) = apiService.getModulesById(id)
+    suspend fun getModulesById(token: String?,id: String) = apiService.getModulesById(token,id)
 
     suspend fun getCoursesByTitle(title:String) = apiService.getCourseByTitle(title)
 
