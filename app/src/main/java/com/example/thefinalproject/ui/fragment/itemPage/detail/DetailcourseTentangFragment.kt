@@ -66,7 +66,7 @@ class DetailcourseTentangFragment : Fragment() {
                 }
 
                 Status.LOADING -> {
-                    Log.d("Data", it.data.toString())
+                    Log.d("DataUser", it.data.toString())
                 }
             }
         }

@@ -10,6 +10,8 @@ import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
+import com.example.thefinalproject.network.model.user.updateprofile.DataUser
+import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 
 
 class Repository(private val apiService: ApiService) {
@@ -53,6 +55,9 @@ class Repository(private val apiService: ApiService) {
 
     //MyCourse
     suspend fun myCourse(token: String?) = apiService.myCourse(token)
+
+    //UpdateProfile
+    suspend fun updateProfile(dataUser: ReqNewUser) = apiService.updateProfile(dataUser)
 
     // forgot password
     suspend fun inputForgotPassword(postForgotPassRequest: PostForgotPassRequest) = apiService.inputEmailForgot(postForgotPassRequest)

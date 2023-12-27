@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_settingFragment2"
             app:destination="@id/settingFragment2" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_updateProfileragment"
+            app:destination="@id/updateProfileragment" />
     </fragment>
     <fragment
         android:id="@+id/myClassFragment2"
@@ -156,4 +159,9 @@
         android:name="com.example.thefinalproject.ui.fragment.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/updateProfileragment"
+        android:name="com.example.thefinalproject.ui.fragment.setting.profile.UpdateProfileragment"
+        android:label="fragment_update_profileragment"
+        tools:layout="@layout/fragment_update_profileragment" />
 </navigation>

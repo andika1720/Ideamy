@@ -10,6 +10,8 @@ import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.network.model.user.otp.OtpRequest
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
+import com.example.thefinalproject.network.model.user.updateprofile.DataUser
+import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.util.Resource
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,7 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
     fun getCurrentUser(token: String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
+
             emit(Resource.success(repo.getCurrentUser(token)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
@@ -139,5 +142,14 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }
 
+    }
+
+    fun updateProfile (dataUser: ReqNewUser) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.updateProfile( dataUser)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
     }
 }

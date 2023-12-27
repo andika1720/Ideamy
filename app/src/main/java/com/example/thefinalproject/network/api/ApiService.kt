@@ -27,6 +27,9 @@ import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpReq
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
+import com.example.thefinalproject.network.model.user.updateprofile.DataUser
+import com.example.thefinalproject.network.model.user.updateprofile.PutDataUser
+import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordResponse
 import com.example.thefinalproject.network.model.user.testNotif.NotipResponse
@@ -164,8 +167,10 @@ interface ApiService {
         @Header("authorization") token: String?,
     ):NotipResponse
 
-
-
-
-
+    @PUT("user")
+    suspend fun updateProfile(
+//        @Header("authorization") token : String?,
+//        @Path("id") id: String?,
+        @Body dataUser: ReqNewUser
+    ) : PutDataUser
 }
