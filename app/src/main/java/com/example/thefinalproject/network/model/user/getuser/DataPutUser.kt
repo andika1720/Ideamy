@@ -3,7 +3,7 @@ package com.example.thefinalproject.network.model.user.getuser
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class DataPutUser(
     @SerializedName("address")
     val address: String?,
     @SerializedName("country")
