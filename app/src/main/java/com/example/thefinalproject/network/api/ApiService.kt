@@ -137,10 +137,10 @@ interface ApiService {
         @Header("authorization") token : String?
     ) : GetResponse
 
-    @POST("orders/{courseId}")
+    @POST("orders/{id}")
     suspend fun ordersId(
         @Header("authorization") token : String?,
-        @Path("courseId") courseId: String?
+        @Path("id") id: String?
     ) : PostResponse
 
     @PUT("orders/{id}")
