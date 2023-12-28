@@ -166,14 +166,23 @@ class DetailPaymentFragment : Fragment() {
             .load(course?.image)
             .fitCenter()
             .into(binding.imageView2)
-        val hargaAwal: Int? = course?.price
-        val ppn: Double? = course?.price?.times(0.11)
-        val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
-        binding.tvTittleCourse.text = course?.category
-        binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
-        binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
+        if(course?.type == "premium"){
+            val hargaAwal: Int? = course?.price
+            val ppn: Double? = course?.price?.times(0.11)
+            val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
+            binding.tvTittleCourse.text = course?.category
+            binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
+            binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
+            binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
+        }else{
+            val hargaFree: Int? = 0
+            val ppnFree: Double? = hargaFree?.times(0.11)
+            val totalHarga: Int? = hargaFree?.plus(ppnFree!!.toInt())
+            binding.tvHarga.text = Utils.formatCurrency(hargaFree)
+            binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
+            binding.tvPpn.text = Utils.formatCurrency(ppnFree?.toInt())
+        }
 
-        binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
         binding.tvTopicCourse.text = course?.title
         binding.tvAuthorCourse.text = course?.creator
     }

@@ -60,13 +60,18 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
     private fun showData(data: DetailResponse) {
         val courseData: DataCourseById? = data.data
-        val hargaAwal: Int? = courseData?.price
 
         binding.tvCategoryCourse.text = courseData?.category
         binding.tvTopicCourse.text = courseData?.title
         binding.types.text = courseData?.type
         binding.tvAuthorCourse.text = courseData?.creator
-        binding.textView8.text = "${Utils.formatCurrency(hargaAwal)}"
+        if(courseData?.type == "premium"){
+            val hargaAwal: Int? = courseData?.price
+            binding.textView8.text = "${Utils.formatCurrency(hargaAwal)}"
+        }else{
+            val hargaFree: Int = 0
+            binding.textView8.text = "${Utils.formatCurrency(hargaFree)}"
+        }
         binding.tvLevel.text = "${courseData?.level} Level"
         binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
         binding.tvModule.text = "${courseData?.totalModule} Modul"
