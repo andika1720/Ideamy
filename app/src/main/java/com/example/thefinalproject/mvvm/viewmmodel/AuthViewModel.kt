@@ -89,10 +89,10 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
-    fun ordersId(token: String?,courseId:String?) = liveData(Dispatchers.IO) {
+    fun ordersId(token: String?,id:String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repo.ordersId(token, courseId)))
+            emit(Resource.success(repo.ordersId(token, id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }

@@ -131,7 +131,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvMobileValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,35 +179,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAdress" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvCity"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Address"-->
-<!--        android:textSize="16sp"-->
-<!--        android:fontFamily="@font/poppins_regular"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvCountryValue"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="20dp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvCity"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Address"-->
+    <!--        android:textSize="16sp"-->
+    <!--        android:fontFamily="@font/poppins_regular"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tvCountryValue"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_marginStart="20dp" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvCityValue"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="jl indonesia"-->
-<!--        android:layout_marginTop="7dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvCity"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:background="#F1F1F1"-->
-<!--        android:textSize="14sp"-->
-<!--        android:fontFamily="@font/poppins_regular"-->
-<!--        android:padding="5dp"-->
-<!--        android:textAlignment="center"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvCityValue"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="jl indonesia"-->
+    <!--        android:layout_marginTop="7dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tvCity"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:background="#F1F1F1"-->
+    <!--        android:textSize="14sp"-->
+    <!--        android:fontFamily="@font/poppins_regular"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:textAlignment="center"/>-->
 
     <Button
         android:id="@+id/btnSaveProfile"
@@ -217,11 +217,11 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/btn_masuk"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAdressValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginTop="70dp" />
 
 
 

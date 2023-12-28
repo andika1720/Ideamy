@@ -109,9 +109,9 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
     }
 
-    private fun postOrderCoroutines(token:String?,courseId: String) {
+    private fun postOrderCoroutines(token:String?,id: String) {
 
-        authViewModel.ordersId("Bearer $token",courseId).observe(viewLifecycleOwner) {
+        authViewModel.ordersId("Bearer $token",id).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { data -> postOrder(data) }
