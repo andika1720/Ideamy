@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/navyblue"
     tools:context=".ui.activity.SplashActivity">
 
     <ImageView
@@ -11,12 +12,15 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/logo_ideamy"
+        app:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.40" />
+
+
 
     <TextView
         android:id="@+id/tv_brand"
@@ -25,6 +29,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Ideamy"
         android:textSize="30sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_gravity="bottom|end"
@@ -37,6 +42,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="Idea Academy made easy"
         android:textSize="15sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_brand" />
