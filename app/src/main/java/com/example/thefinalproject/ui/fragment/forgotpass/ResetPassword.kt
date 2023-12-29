@@ -76,7 +76,7 @@ class ResetPassword : Fragment() {
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-                    Utils.toastMessage(requireContext(), errorMessage)
+                    resetPassError(it.message.toString())
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")
@@ -97,5 +97,19 @@ class ResetPassword : Fragment() {
         fragmentTransaction.replace(containerId, nextFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+    }
+
+    private fun resetPassError(message: String) {
+        when {
+            message.contains("HTTP 500") -> {
+                Utils.toastMessage(requireContext(), "Email tidak valid")
+            }
+            message.contains("HTTP 400") -> {
+                Utils.toastMessage(requireContext(), "Email tidak valid")
+            }
+            else -> {
+                Utils.toastMessage(requireContext(), message)
+            }
+        }
     }
 }

@@ -83,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                         val token = it.data?.data?.token
                         sharePref.setPref(SharePref.Enum.PREF_NAME.value, token)
                         sharePref.setLoginStatus(true)
+                        Utils.toastMessage(this, "Login berhasil")
                         navigateToMainActivity()
                         Log.d("LoginBerhasil", "Token= $token")
                     }
@@ -147,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
         } else if (message.contains("password")) {
             binding.textInputPasswordLogin.error = "Incorrect password"
         } else if(message.contains("HTTP 404")){
-            Utils.toastMessage(this, "Email or password is invalid")
+            Utils.toastMessage(this, "Email atau password tidak valid")
         } else {
             binding.textInputEmailRegis.error = null
             binding.textInputPasswordLogin.error = null
