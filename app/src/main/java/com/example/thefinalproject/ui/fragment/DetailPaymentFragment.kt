@@ -190,6 +190,7 @@ class DetailPaymentFragment : Fragment() {
             val ppn: Double? = course.price?.times(0.11)
             val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
             binding.tvTittleCourse.text = course.category
+            binding.tvJumlah.text = Utils.formatCurrency(totalHarga)
             binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
             binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
             binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())

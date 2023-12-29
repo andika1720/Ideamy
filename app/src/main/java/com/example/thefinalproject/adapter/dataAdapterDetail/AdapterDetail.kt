@@ -1,15 +1,20 @@
 package com.example.thefinalproject.adapter.dataAdapterDetail
 
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemmateriContentchapterBinding
 import com.example.thefinalproject.databinding.ItemmateriTitlechapterBinding
 import com.example.thefinalproject.network.model.chapters.DataChapters1
 import com.example.thefinalproject.network.model.chapters.DataChaptersNew
 import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.ModuleById
+import kotlin.math.log
 
 
 class AdapterDetail(private val data: List<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -47,6 +52,10 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
         fun onBind(data: ModuleById) {
             binding.tvNamaContentChapter.text = data.title
 
+            if(data.done){
+                binding.icPlayContentChapter.setImageResource(R.drawable.doneplay)
+                Log.d("CekTrue", "done= ${data.done}")
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

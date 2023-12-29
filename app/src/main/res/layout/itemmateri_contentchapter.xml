@@ -13,44 +13,47 @@
 
     <TextView
         android:id="@+id/tv_namaContentChapter"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
 
         android:fontFamily="@font/poppins_regular"
         android:text="Tujuan Mengikuti Kelas Design System"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv1"
+        app:layout_constraintBottom_toBottomOf="@+id/circleiv"
         app:layout_constraintStart_toEndOf="@+id/circleiv"
-        app:layout_constraintTop_toTopOf="@+id/tv1" />
+        app:layout_constraintTop_toTopOf="@+id/circleiv" />
 
     <ImageView
         android:id="@+id/ic_playContentChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:srcCompat="@drawable/play_course"
 
-        app:layout_constraintBottom_toBottomOf="@+id/tv1"
+        app:layout_constraintBottom_toBottomOf="@+id/circleiv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv1"
-        app:srcCompat="@drawable/play_course" />
+        app:layout_constraintTop_toTopOf="@+id/circleiv"
+        />
+
+
+    <ImageView
+        android:id="@+id/ic_playContentChapter2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/doneplay"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/circleiv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/circleiv"
+        />
 
     <ImageView
         android:id="@+id/circleiv"
-        android:layout_width="30dp"
+        android:layout_width="20dp"
         android:layout_height="30dp"
-        android:src="@drawable/circle"
+        android:src="@drawable/list_titik"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="1"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/circleiv"
-        app:layout_constraintTop_toTopOf="@id/circleiv"
-        app:layout_constraintEnd_toEndOf="@id/circleiv"
-        app:layout_constraintBottom_toBottomOf="@id/circleiv"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

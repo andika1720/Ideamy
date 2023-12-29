@@ -12,7 +12,7 @@ data class ModuleById(
     @SerializedName("createdAt")
     val createdAt: String?,
     @SerializedName("done")
-    val done: Boolean?,
+    val done: Boolean,
     @SerializedName("id")
     val id: String,
     @SerializedName("title")

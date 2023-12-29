@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
-import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.adapter.AdapterKursusPopuler2
+import com.example.thefinalproject.adapter.adapterhome.AdapterCategoryHome
 
 import com.example.thefinalproject.databinding.FragmentHomeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
@@ -23,6 +23,7 @@ import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
 import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
+import com.example.thefinalproject.ui.fragment.botsheet.BottomSheetDetailCategory
 
 
 import com.example.thefinalproject.util.Status
@@ -32,7 +33,8 @@ import org.koin.android.ext.android.inject
 @Suppress("SameParameterValue")
 class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
 
@@ -40,9 +42,13 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
 
+        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        binding.lihatSemuaCategory.setOnClickListener {
+            val botsheetCategory = BottomSheetDetailCategory()
+            botsheetCategory.show(childFragmentManager, botsheetCategory.tag)
+        }
 
         binding.etSearch.setOnFocusChangeListener {_,focus ->
             if (focus){
@@ -88,7 +94,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
         }
         binding.lihatSemuaKursus.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2)
+            findNavController().navigate(R.id.myCourseFragment2)
+
         }
         return binding.root
 
@@ -148,7 +155,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
     }
     private fun showCategory(data: CategoryResponse?){
         categorys = data?.data ?: emptyList()
-        val adapter = AdapterCategory(object : AdapterCategory.OnClickListener{
+        val adapter = AdapterCategoryHome(object : AdapterCategoryHome.OnClickListener{
             override fun itemClick(data: DataCategory) {
                 navigatoToCourse(data)
             }

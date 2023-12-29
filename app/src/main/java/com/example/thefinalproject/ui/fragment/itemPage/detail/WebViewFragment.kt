@@ -26,13 +26,15 @@ import java.util.regex.Pattern
 class WebViewFragment : Fragment() {
     private var _binding: FragmentWebViewBinding? = null
     private val binding get() = _binding!!
+
+    private var playbackPosition: Float = 0f
     private var isFullScreen = false
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed()  {
             if (isFullScreen) {
                 youTubePlayer.toggleFullscreen()
             } else {
-
+                requireActivity().finish()
             }
 
         }
@@ -112,9 +114,16 @@ class WebViewFragment : Fragment() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 this@WebViewFragment.youTubePlayer = youTubePlayer
                 val videoId = extractVideoId(urlIntro)
-                youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0f)
+                youTubePlayer.loadOrCueVideo(lifecycle, videoId, playbackPosition)
+            }
+
+            override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
+                super.onCurrentSecond(youTubePlayer, second)
+
+                playbackPosition = second
             }
         }
+
 
         val iFramePlayerOptions = IFramePlayerOptions.Builder()
             .controls(1)
@@ -150,7 +159,17 @@ class WebViewFragment : Fragment() {
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putFloat("playbackPosition", playbackPosition)
+    }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (savedInstanceState != null) {
+            playbackPosition = savedInstanceState.getFloat("playbackPosition", 0f)
+        }
+    }
     override fun onResume() {
         super.onResume()
 

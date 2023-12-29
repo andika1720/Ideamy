@@ -75,9 +75,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_class_berjalan"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="270dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +91,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_bold"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@id/rv_category"
+        android:layout_marginTop="5dp"
         android:text="Kategori"
         app:layout_constraintTop_toBottomOf="@id/rv_class_berjalan"/>
 
