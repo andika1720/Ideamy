@@ -6,7 +6,6 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.thefinalproject.R
@@ -14,9 +13,9 @@ import com.example.thefinalproject.databinding.ActivityLoginBinding
 import com.example.thefinalproject.network.model.user.login.LoginRequest
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
-import com.example.thefinalproject.ui.fragment.OtpCode
 import com.example.thefinalproject.ui.fragment.forgotpass.InputEmail
 import com.example.thefinalproject.util.SharePref
+import com.example.thefinalproject.util.Utils
 import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
 
@@ -148,7 +147,7 @@ class LoginActivity : AppCompatActivity() {
         } else if (message.contains("password")) {
             binding.textInputPasswordLogin.error = "Incorrect password"
         } else if(message.contains("HTTP 404")){
-            Toast.makeText(this, "Email or password is invalid", Toast.LENGTH_SHORT).show()
+            Utils.toastMessage(this, "Email or password is invalid")
         } else {
             binding.textInputEmailRegis.error = null
             binding.textInputPasswordLogin.error = null

@@ -7,19 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ActivityRegisterBinding
-import com.example.thefinalproject.mvvm.repository.Repository
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.fragment.OtpCode
 import com.example.thefinalproject.util.Status
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.thefinalproject.util.Utils
 import org.koin.android.ext.android.inject
 
 
@@ -133,14 +129,13 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerError(message: String) {
         when {
             message.contains("HTTP 500") -> {
-                Toast.makeText(this, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(this, "Email sudah digunakan")
             }
             message.contains("HTTP 400") -> {
-                Toast.makeText(this, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(this, "Email sudah digunakan")
             }
-            // Tambahkan penanganan error lain sesuai kebutuhan
             else -> {
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(this, message)
             }
         }
     }

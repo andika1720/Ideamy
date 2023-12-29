@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
@@ -20,6 +19,7 @@ import com.example.thefinalproject.network.model.user.updateprofile.PutDataUser
 import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
+import com.example.thefinalproject.util.Utils
 import org.koin.android.ext.android.inject
 
 class MyProfileFragment : Fragment() {
@@ -69,7 +69,7 @@ class MyProfileFragment : Fragment() {
             )
 
             updateProfile(token,newUser)
-            Toast.makeText(requireContext(),"Profile berhasil diubah",Toast.LENGTH_SHORT).show()
+            Utils.toastMessage(requireContext(), "Profile berhasil diubah")
         }
     }
 

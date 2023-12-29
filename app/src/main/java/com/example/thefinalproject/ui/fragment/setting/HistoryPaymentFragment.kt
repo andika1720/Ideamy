@@ -1,26 +1,23 @@
 package com.example.thefinalproject.ui.fragment.setting
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterOrder
-import com.example.thefinalproject.databinding.BotsheetBelicourseDetailcourseBinding
 import com.example.thefinalproject.databinding.FragmentHistoryPaymentBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
-import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.order.DataPost
 import com.example.thefinalproject.network.model.order.GetResponse
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
+import com.example.thefinalproject.util.Utils
 import org.koin.android.ext.android.inject
 
 class HistoryPaymentFragment : Fragment() {
@@ -83,11 +80,11 @@ class HistoryPaymentFragment : Fragment() {
                 Status.SUCCESS -> {
                     it.data?.let { data ->
                         showOrderCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value))
-                        Toast.makeText(requireContext(),"Berhasil membatalkan pesanan",Toast.LENGTH_SHORT).show()
+                        Utils.toastMessage(requireContext(), "Berhasil membatalkan pesanan")
                     }
                 }
                 Status.ERROR -> {
-                    Toast.makeText(requireContext(),"Gagal membatalkan pesanan : ${it.message.toString()}",Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), "Gagal membatalkan pesanan : ${it.message.toString()}")
                     Log.d("ErrorPost", it.message.toString())
                 }
                 Status.LOADING -> {
