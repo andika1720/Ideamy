@@ -11,8 +11,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentOtpCodeBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
@@ -22,6 +20,7 @@ import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.ui.activity.RegisterActivity
 import com.example.thefinalproject.util.Status
+import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
 
@@ -67,7 +66,7 @@ class OtpCode : Fragment() {
             val value6 = binding.otpBox6.text.toString()
             // Check if any OTP box is empty
             if (value1.isEmpty() || value2.isEmpty() || value3.isEmpty() || value4.isEmpty() || value5.isEmpty() || value6.isEmpty()) {
-                Toast.makeText(requireContext(), "Mohon masukan semua kode OTP", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(requireContext(), "Mohon Masukkan semua kode OTP")
             } else {
                 val combinedValue = "$value1$value2$value3$value4$value5$value6"
                 sendOtp1(OtpRequest(email1, combinedValue))
@@ -85,7 +84,7 @@ class OtpCode : Fragment() {
         viewmodel.otpUser(otpRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(requireContext(),"Verifikasi OTP selesai",Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), "Verifikasi OTP selesai")
                     botSheetRegistSuccess()
                 }
                 Status.ERROR -> {
@@ -150,12 +149,12 @@ class OtpCode : Fragment() {
         viewmodel.resendOtpUser(resendOtpRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(requireContext(),"Otp berhasil di kirim ulang",Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), "Otp berhasil di kirim ulang")
                 }
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), errorMessage)
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")
@@ -167,14 +166,14 @@ class OtpCode : Fragment() {
     private fun otpError(message: String) {
         when {
             message.contains("HTTP 500") -> {
-                Toast.makeText(requireContext(), "Kode OTP expired", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(requireContext(), "Kode OTP expired")
             }
             message.contains("HTTP 400") -> {
-                Toast.makeText(requireContext(), "Masukan kode OTP dengan benar", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(requireContext(), "Masukkan kode OTP dengan benar")
             }
             // Tambahkan penanganan error lain sesuai kebutuhan
             else -> {
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(requireContext(), message)
             }
         }
     }

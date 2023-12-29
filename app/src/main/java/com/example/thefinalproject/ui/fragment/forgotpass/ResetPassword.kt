@@ -6,15 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.thefinalproject.R
-import com.example.thefinalproject.databinding.FragmentOtpCodeBinding
 import com.example.thefinalproject.databinding.FragmentResetPasswordBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
-import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
 import com.example.thefinalproject.util.Status
+import com.example.thefinalproject.util.Utils
 import org.koin.android.ext.android.inject
 
 class ResetPassword : Fragment() {
@@ -61,7 +59,7 @@ class ResetPassword : Fragment() {
         viewmodel.forgotPassword(PostForgotPassRequest(email)).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(requireContext(),"OTP Dikirim Ke email", Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), "OTP Dikirim Ke email")
                     val fragment = OtpForgotPassword()
                     val bundle = Bundle()
                     bundle.putString("emailForgot1",email)
@@ -78,7 +76,7 @@ class ResetPassword : Fragment() {
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), errorMessage)
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")

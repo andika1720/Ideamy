@@ -2,24 +2,20 @@ package com.example.thefinalproject.ui.fragment.forgotpass
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.thefinalproject.R
-import com.example.thefinalproject.databinding.FragmentInputEmailBinding
 import com.example.thefinalproject.databinding.FragmentOtpForgotPasswordBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
-import com.example.thefinalproject.network.model.user.otp.OtpRequest
-import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.util.Status
+import com.example.thefinalproject.util.Utils
 import org.koin.android.ext.android.inject
 
 
@@ -60,7 +56,7 @@ class OtpForgotPassword : Fragment() {
             val combinedValue = "$value1$value2$value3$value4$value5$value6"
             // Check if any OTP box is empty
             if (value1.isEmpty() || value2.isEmpty() || value3.isEmpty() || value4.isEmpty() || value5.isEmpty() || value6.isEmpty()) {
-                Toast.makeText(requireContext(), "Mohon masukan semua kode OTP", Toast.LENGTH_SHORT).show()
+                Utils.toastMessage(requireContext(), "Mohon masukan semua kode OTP")
             } else {
                 checkForgotPassword(PutForgotPassRequest(emailForgote,combinedValue,password))
             }
@@ -73,7 +69,7 @@ class OtpForgotPassword : Fragment() {
         viewmodel.putForgotPassword(putForgotPassRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(requireContext(),"Password Berhasil Di Ubah", Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), "Password Berhasil Di Ubah")
                     val intent = Intent (getActivity(), LoginActivity::class.java)
                     getActivity()?.startActivity(intent)
 
@@ -81,7 +77,7 @@ class OtpForgotPassword : Fragment() {
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    Utils.toastMessage(requireContext(), errorMessage)
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")
