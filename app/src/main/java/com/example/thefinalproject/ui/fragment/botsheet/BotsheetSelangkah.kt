@@ -17,7 +17,7 @@ import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.mycourse.Course
 import com.example.thefinalproject.network.model.order.DataPost
 import com.example.thefinalproject.network.model.order.PostResponse
-import com.example.thefinalproject.ui.fragment.DetailPaymentFragment
+
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
 import com.example.thefinalproject.util.Utils

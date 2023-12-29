@@ -12,7 +12,7 @@ import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.ModuleById
 
 
-class AdapterDetail(private val data: MutableList<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterDetail(private val data: List<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return when (data[position]) {
@@ -22,7 +22,7 @@ class AdapterDetail(private val data: MutableList<Any>,private var clickListener
         }
     }
 
-    class ChapterViewHolder(private val binding: ItemmateriTitlechapterBinding) :
+    inner class ChapterViewHolder(private val binding: ItemmateriTitlechapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ChapterById) {
             binding.tvNoChapter.text = "Chapter - ${data.chapterNumber}"
@@ -31,8 +31,19 @@ class AdapterDetail(private val data: MutableList<Any>,private var clickListener
 
         }
     }
-    class ModuleViewHolder(private val binding: ItemmateriContentchapterBinding) :
+    inner class ModuleViewHolder(private val binding: ItemmateriContentchapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.constraint.setOnClickListener {
+                val position = adapterPosition
+                if(position != RecyclerView.NO_POSITION){
+                    val clickedItem = data[position]
+                    if (clickedItem is ModuleById) {
+                        clickListener?.invoke(clickedItem.id)
+                    }
+                }
+            }
+        }
         fun onBind(data: ModuleById) {
             binding.tvNamaContentChapter.text = data.title
 
@@ -69,10 +80,6 @@ class AdapterDetail(private val data: MutableList<Any>,private var clickListener
                 val moduleHolder = holder as ModuleViewHolder
                 val listenerItem = (data[position] as ModuleById)
                 moduleHolder.onBind(listenerItem)
-
-                holder.itemView.setOnClickListener {
-                    clickListener?.invoke(listenerItem.video!!)
-                }
             }
 
             else -> throw IllegalArgumentException("Undefined view type")

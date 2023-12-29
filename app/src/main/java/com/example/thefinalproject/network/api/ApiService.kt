@@ -5,6 +5,7 @@ import com.example.thefinalproject.network.model.chapters.ChaptersById1Response
 import com.example.thefinalproject.network.model.chapters.ChaptersResponseList
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
+import com.example.thefinalproject.network.model.course.FilterResponse
 import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.modules.ResponseModuleById1
 import com.example.thefinalproject.network.model.modules.all.ModulesResponseAll
@@ -91,7 +92,13 @@ interface ApiService {
         @Query("search") search: String?,
     ) : ListResponse
 
-
+    @GET("courses")
+    suspend fun filterGet(
+        @Query("category") category: String?,
+        @Query("level") level: String?,
+        @Query("createdAt") createdAt: String?,
+        @Query("rating") rating: String?
+    ) : FilterResponse
     //AUTH
     @POST("login")
     suspend fun loginUser(
@@ -170,9 +177,10 @@ interface ApiService {
         @Header("authorization") token: String?,
     ):NotipResponse
 
-    @PUT("user")
+
+    @PUT("users")
     suspend fun updateProfile(
-//        @Header("authorization") token : String?,
+        @Header("authorization") token : String?,
 //        @Path("id") id: String?,
         @Body dataUser: ReqNewUser
     ) : PutDataUser

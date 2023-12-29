@@ -35,8 +35,9 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getCoursesByTitle(title:String) = apiService.getCourseByTitle(title)
 
-   suspend fun getFilter2(id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(id,level,category,type,search)
+    suspend fun getFilter2(id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(id,level,category,type,search)
 
+    suspend fun getFiltersCourse(category: String?,level: String?, createdAt:String?, rating:String) = apiService.filterGet(category,level,createdAt,rating)
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)
     suspend fun changePassword(token: String?,changePasswordRequest: ChangePasswordRequest)=apiService.resetPasswordUser(token,changePasswordRequest)
 
@@ -56,7 +57,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun myCourse(token: String?) = apiService.myCourse(token)
 
     //UpdateProfile
-    suspend fun updateProfile(dataUser: ReqNewUser) = apiService.updateProfile(dataUser)
+    suspend fun updateProfile(token: String?,dataUser: ReqNewUser) = apiService.updateProfile(token,dataUser)
 
     // forgot password
     suspend fun inputForgotPassword(postForgotPassRequest: PostForgotPassRequest) = apiService.inputEmailForgot(postForgotPassRequest)

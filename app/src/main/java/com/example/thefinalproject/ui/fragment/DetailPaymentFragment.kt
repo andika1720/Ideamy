@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -59,7 +60,7 @@ class DetailPaymentFragment : Fragment() {
         val arg =arguments?.getString("selectedId")
         val getId = arguments?.getString("orderId")
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-
+        var paymentMethod: String = ""
         detailPayment(savedToken.toString(),arg.toString())
 //        detailPayment(savedToken.toString(),getId.toString())
 
@@ -70,20 +71,31 @@ class DetailPaymentFragment : Fragment() {
 
 
         btnCreditCard.setOnClickListener {
+            paymentMethod = "Credit Card"
             toggleVisibility(hiddenViewCardCredit, hiddenViewBankTransfer)
+
         }
 
         btnBankTransfer.setOnClickListener {
+            paymentMethod = "Bank Transfer"
             toggleVisibility(hiddenViewBankTransfer, hiddenViewCardCredit)
         }
         binding.btnBeliSekarang.setOnClickListener {
 
+            val method =  "${binding.btnBankTransfer.text} ${binding.btnCardCredit.text}"
             val cardHolderName = binding.etCardHolderName.text.toString()
             val cardNumber = binding.etCardNumber.text.toString()
             val cvv = binding.etCvv.text.toString()
             val expiryDate = binding.etExpiryDate.text.toString()
-            val paymentMethodCreditCard = binding.tvCardCredit.text.toString()
-            updatePayment(savedToken.toString(), getId.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
+            updatePayment(
+                savedToken.toString(),
+                getId.toString(),
+                cardHolderName,
+                cardNumber,
+                cvv,
+                expiryDate,
+                paymentMethod
+            )
 //            updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
 
         }
@@ -97,6 +109,11 @@ class DetailPaymentFragment : Fragment() {
           val view = layoutInflater.inflate(R.layout.botsheet_payment_succses,null)
           val btnMulaiBelajar = view.findViewById<Button>(R.id.btn_to_class_botshet)
           val btnClose = view.findViewById<ImageView>(R.id.close_botsheet_payment)
+          val btnHomeFragment = view.findViewById<TextView>(R.id.tv_to_homepage)
+          btnHomeFragment.setOnClickListener {
+              findNavController().navigate(R.id.homeFragment2)
+              dialog.dismiss()
+          }
           btnMulaiBelajar.setOnClickListener {
               dialog.dismiss()
               botSheetOnboard()
@@ -111,16 +128,18 @@ class DetailPaymentFragment : Fragment() {
           Log.e("showbotPayment", "ErrorBotsheet", e)
       }
     }
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "MissingInflatedId")
     private fun botSheetOnboard() {
         try {
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.botsheet_mulaibelajar, null)
             val btnClose = view.findViewById<ImageView>(R.id.close_botsheet_mulaibelajar)
             val btnIkutiBelajar = view.findViewById<Button>(R.id.btn_to_class_botshet)
+
             btnClose.setOnClickListener {
                 dialog.dismiss()
             }
+
 
             btnIkutiBelajar.setOnClickListener {
                 val courseId = arguments?.getString("selectedId")
@@ -161,30 +180,30 @@ class DetailPaymentFragment : Fragment() {
     }
 
     private fun showData(data: DetailResponse) {
-        val course: DataCourseById? = data.data
+        val course: DataCourseById = data.data
         Glide.with(this)
-            .load(course?.image)
+            .load(course.image)
             .fitCenter()
             .into(binding.imageView2)
-        if(course?.type == "premium"){
-            val hargaAwal: Int? = course?.price
-            val ppn: Double? = course?.price?.times(0.11)
+        if(course.type == "premium"){
+            val hargaAwal: Int? = course.price
+            val ppn: Double? = course.price?.times(0.11)
             val totalHarga: Int? = hargaAwal?.plus(ppn!!.toInt())
-            binding.tvTittleCourse.text = course?.category
+            binding.tvTittleCourse.text = course.category
             binding.tvHarga.text = Utils.formatCurrency(hargaAwal)
             binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
             binding.tvPpn.text = Utils.formatCurrency(ppn?.toInt())
         }else{
-            val hargaFree: Int? = 0
-            val ppnFree: Double? = hargaFree?.times(0.11)
-            val totalHarga: Int? = hargaFree?.plus(ppnFree!!.toInt())
+            val hargaFree = 0
+            val ppnFree: Double = hargaFree.times(0.11)
+            val totalHarga: Int = hargaFree.plus(ppnFree.toInt())
             binding.tvHarga.text = Utils.formatCurrency(hargaFree)
             binding.tvTotalBayar.text= Utils.formatCurrency(totalHarga)
-            binding.tvPpn.text = Utils.formatCurrency(ppnFree?.toInt())
+            binding.tvPpn.text = Utils.formatCurrency(ppnFree.toInt())
         }
 
-        binding.tvTopicCourse.text = course?.title
-        binding.tvAuthorCourse.text = course?.creator
+        binding.tvTopicCourse.text = course.title
+        binding.tvAuthorCourse.text = course.creator
     }
 
 
@@ -213,8 +232,8 @@ class DetailPaymentFragment : Fragment() {
     }
     private fun showUpdatePayment(data: PutResponseOrder) {
         val course: DataPutOrder? = data.data
-        binding.tvCardCredit.text = course?.paymentMethod
-        binding.tvBankTransfer.text = course?.paymentMethod
+        binding.btnCardCredit.text = course?.paymentMethod
+        binding.btnBankTransfer.text = course?.paymentMethod
         binding.etCardNumber.text = Editable.Factory.getInstance().newEditable(course?.cardNumber.toString())
         binding.etCardHolderName.text = Editable.Factory.getInstance().newEditable(course?.cardHolderName.toString())
         binding.etCvv.text =Editable.Factory.getInstance().newEditable(course?.cvv.toString())
@@ -231,4 +250,6 @@ class DetailPaymentFragment : Fragment() {
             showView.visibility = View.VISIBLE
         }
     }
+
+
 }

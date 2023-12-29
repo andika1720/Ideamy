@@ -74,6 +74,13 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
+    fun getFilterInCourse(category: String?,level: String?, createdAt:String?, rating:String) = liveData(Dispatchers.IO) {
+        try {
+            emit(Resource.success(repo.getFiltersCourse(category,level, createdAt, rating)))
+        } catch (exception : Exception) {
+            emit(Resource.error(data = null,exception.message?: "Error Occurred!"))
+        }
+    }
     fun getChapters(courseId: String?) = liveData(Dispatchers.IO) {
         try {
             emit(Resource.success(repo.getChapters(courseId)))

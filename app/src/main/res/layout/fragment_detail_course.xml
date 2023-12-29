@@ -31,12 +31,12 @@
         app:layout_constraintStart_toEndOf="@+id/ic_arrowBack"
         app:layout_constraintTop_toTopOf="@+id/ic_arrowBack" />
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+    <ImageView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="2dp"
-
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_arrowBack" />
@@ -170,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/gray_dark"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/material_card"
@@ -180,8 +180,9 @@
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorGravity="stretch"
         app:tabMode="fixed"
+
         app:tabGravity="fill"
-        app:tabSelectedTextColor="@color/donker" />
+        app:tabSelectedTextColor="@color/white" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

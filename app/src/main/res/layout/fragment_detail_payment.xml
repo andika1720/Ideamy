@@ -199,6 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:text="Bank Transfer"
             android:layout_marginHorizontal="10dp"
             android:textAlignment="textStart"
             android:drawableRight="@drawable/expand_more"
@@ -211,19 +212,6 @@
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
             tools:ignore="SpeakableTextPresentCheck"/>
-
-        <TextView
-            android:id="@+id/tvBankTransfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Bank Transfer"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_bankTransfer"
@@ -275,6 +263,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
+            android:text="Credit Card"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textAlignment="textStart"
             android:backgroundTint="@drawable/button_selector"
             android:drawableRight="@drawable/expand_more"
             app:cornerRadius="4dp"
@@ -282,19 +275,6 @@
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/card_bankTransfer"
             tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/tvCardCredit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Credit Card"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/card_bankTransfer"
-            app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
-            android:layout_marginTop="18dp"
-            android:layout_marginStart="24dp"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_crediCard"

@@ -9,26 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterPageForDetail
 
 import com.example.thefinalproject.databinding.FragmentDetailCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
-import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
-import com.example.thefinalproject.network.model.course.ModuleById
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelasTESTER
 import com.example.thefinalproject.util.SharePref
-
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayoutMediator
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import org.koin.android.ext.android.inject
 
 class DetailCourse : Fragment() {
@@ -45,7 +40,7 @@ class DetailCourse : Fragment() {
         _binding = FragmentDetailCourseBinding.inflate(inflater, container, false)
 
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-        val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelasTESTER())
+        val fragmentList = arrayListOf(DetailcourseTentangFragment(), MateriKelas())
         val bottomNavigationView = (requireActivity() as MainActivity).getBottomNavigationView()
 
         binding.apply {
@@ -112,29 +107,19 @@ class DetailCourse : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse){
-            val courseData: DataCourseById? = data.data
+            val courseData: DataCourseById = data.data
 
-        val youTubePlayerView: YouTubePlayerView = binding.playerView
-        lifecycle.addObserver(youTubePlayerView)
-        youTubePlayerView.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                super.onReady(youTubePlayer)
 
-                val firstChapter: ChapterById? = courseData?.chapters?.getOrNull(0)
-                val firstModule: ModuleById? = firstChapter?.modules?.getOrNull(0)
-
-                val videoUrl = youtubeVidStatic(firstModule?.video ?: "")
-
-                Log.d("VIDEOID", videoUrl.toString())
-                youTubePlayer.loadVideo(videoUrl.toString(), 0F)
-            }
-        })
-        binding.tvCategoryCourse.text = courseData?.category
-        binding.tvTopicCourse.text = courseData?.title
-        binding.tvModule.text = "${courseData?.totalModule} Modul"
-        binding.tvAuthorCourse.text = courseData?.creator
-        binding.tvLevel.text = "${courseData?.level} Level"
-        binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
+        Glide.with(this)
+            .load(courseData.image)
+            .fitCenter()
+            .into(binding.playerView)
+        binding.tvCategoryCourse.text = courseData.category
+        binding.tvTopicCourse.text = courseData.title
+        binding.tvModule.text = "${courseData.totalModule} Modul"
+        binding.tvAuthorCourse.text = courseData.creator
+        binding.tvLevel.text = "${courseData.level} Level"
+        binding.tvWaktucourse.text = "${courseData.totalDuration} Menit"
 
 
         // Mendapatkan semua ID module dari semua chapter
@@ -146,14 +131,14 @@ class DetailCourse : Fragment() {
         val chapterIdsList = mutableListOf<String?>()
         val moduleIdsList = mutableListOf<String?>()
         val bundle = Bundle()
-        bundle.putString("selectedId", courseData?.id)
+        bundle.putString("selectedId", courseData.id)
 
         Log.d("Kirimchaps", "chapter: $chapterIdsList")
         Log.d("Kirimchaps", "module: $moduleIdsList")
 
 
 
-        courseData?.chapters?.forEach { chapter ->
+        courseData.chapters?.forEach { chapter ->
             val chapterId: String? = chapter?.id
             chapterIdsList.add(chapterId)
             bundle.putStringArrayList("chapterIds", ArrayList(chapterIdsList))
@@ -177,22 +162,13 @@ class DetailCourse : Fragment() {
         val materiKelasFragmentTester = MateriKelasTESTER()
         materiKelasFragmentTester.arguments = bundle
 
-        val fragmentList = arrayListOf(tentangFragment, materiKelasFragmentTester )
+        val fragmentList = arrayListOf(tentangFragment, materiKelasFragment )
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
 
     }
 
 
-    private fun youtubeVidStatic(youtubeUrl: String): String? {
-        var videoId: String? = null
-        val pattern = Regex("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", RegexOption.IGNORE_CASE)
-        val matcher = pattern.find(youtubeUrl)
-        if (matcher != null && matcher.groupValues.size > 1) {
-            videoId = matcher.groupValues[1]
-        }
-        return videoId
-    }
 
 
     override fun onDestroyView() {

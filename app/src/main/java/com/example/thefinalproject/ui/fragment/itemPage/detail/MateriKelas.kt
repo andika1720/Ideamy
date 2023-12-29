@@ -17,6 +17,7 @@ import com.example.thefinalproject.adapter.dataAdapterDetail.AdapterDetail
 
 import com.example.thefinalproject.databinding.FragmentDetailcourseMateriBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
+import com.example.thefinalproject.util.SharePref
 
 
 import com.example.thefinalproject.util.Status
@@ -27,7 +28,7 @@ import org.koin.android.ext.android.inject
 class MateriKelas : Fragment() {
     private lateinit var binding: FragmentDetailcourseMateriBinding
     private val viewmodel:ViewModelAll by inject()
-
+    private val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
     private var materiList: MutableList<Any> = mutableListOf()
     private lateinit var adapter: AdapterDetail
     override fun onCreateView(
@@ -90,8 +91,7 @@ class MateriKelas : Fragment() {
 
                     adapter = AdapterDetail(materiList,
                         clickListener  = { url ->
-                            val bundle = bundleOf("youtube" to url)
-                            findNavController().navigate(R.id.webViewFragment,bundle)
+                        getModules(savedToken,url)
                         } )
 
                     binding.rvMateri.adapter = adapter
@@ -116,4 +116,33 @@ class MateriKelas : Fragment() {
         }
     }
 
+    private fun getModules(token:String?,chapterId: String) {
+        viewmodel.getModulesById(token, chapterId).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    Log.e("cekDataModules", "Modules : $it")
+
+
+                    val modulesData = it.data?.data
+                    val linkyoutube = modulesData?.video
+                    val vidio = linkyoutube
+                    val bundle = bundleOf("youtube" to vidio)
+                    findNavController().navigate(R.id.webViewFragment, bundle)
+                }
+
+                Status.ERROR -> {
+                    Log.e("cek errormodules", it.message.toString())
+                }
+
+                Status.LOADING -> {
+
+                }
+            }
+
+        }
+
+    }
+
 }
+
+

@@ -144,10 +144,10 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
 
     }
 
-    fun updateProfile (dataUser: ReqNewUser) = liveData(Dispatchers.IO) {
+    fun updateProfile (token: String?,dataUser: ReqNewUser) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repo.updateProfile( dataUser)))
+            emit(Resource.success(repo.updateProfile(token, dataUser)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.navigation.fragment.findNavController
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentWebViewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -27,12 +28,13 @@ class WebViewFragment : Fragment() {
     private val binding get() = _binding!!
     private var isFullScreen = false
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
+        override fun handleOnBackPressed()  {
             if (isFullScreen) {
                 youTubePlayer.toggleFullscreen()
             } else {
-                requireActivity().finish()
+
             }
+
         }
     }
     private lateinit var youTubePlayer: YouTubePlayer
@@ -52,6 +54,9 @@ class WebViewFragment : Fragment() {
 
         val urlIntro = arguments?.getString("youtube")
 
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         onBackPressedCallback.isEnabled = true
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
@@ -144,6 +149,7 @@ class WebViewFragment : Fragment() {
         }
 
     }
+
 
     override fun onResume() {
         super.onResume()

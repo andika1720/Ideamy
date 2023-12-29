@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
@@ -30,7 +31,7 @@ class MyProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
 
         binding.btnBack.setOnClickListener {
@@ -44,7 +45,6 @@ class MyProfileFragment : Fragment() {
 
         // Ambil ID pengguna dari argumen
         val args = arguments?.getString("selectedId")
-        val getId = arguments?.getString("id")
         val token = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         Log.d("FragmentTag", "selectedIdUser: $args")
 
@@ -60,19 +60,16 @@ class MyProfileFragment : Fragment() {
 
             val newUser = ReqNewUser(
                 address = address,
-                country = null,
-                createdAt = null,
+
                 email = email,
                 encryptedPassword = null,
-                id = null,
                 image = image,
                 name = name,
                 phoneNumber = phoneNumber,
-                role = null,
-                updatedAt = null
             )
 
-            updateProfile(newUser)
+            updateProfile(token,newUser)
+            Toast.makeText(requireContext(),"Profile berhasil diubah",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -105,8 +102,8 @@ class MyProfileFragment : Fragment() {
     }
 
 
-    private fun updateProfile(user: ReqNewUser ){
-        viewModel.updateProfile(user).observe(viewLifecycleOwner){
+    private fun updateProfile(token: String?,user: ReqNewUser ){
+        viewModel.updateProfile(token,user).observe(viewLifecycleOwner){
             when(it.status) {
                 Status.SUCCESS -> {
                     Log.d("Update Profile", "Success")

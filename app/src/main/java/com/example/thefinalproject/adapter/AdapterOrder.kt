@@ -1,6 +1,7 @@
 package com.example.thefinalproject.adapter
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -77,8 +78,9 @@ class AdapterOrder (private val onButtonClick: CourseClick): RecyclerView.Adapte
                     btnMulaiKelas.text="Waiting Payment"
                 } else {
                     btnMulaiKelas.text="PAID"
+                    btnMulaiKelas.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.succes))
+                }
                 }
             }
         }
     }
-}

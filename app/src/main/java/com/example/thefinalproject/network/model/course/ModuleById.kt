@@ -8,11 +8,13 @@ import kotlinx.parcelize.Parcelize
 
 data class ModuleById(
     @SerializedName("chapterId")
-    val chapterId: String?,
+    val chapterId: String,
     @SerializedName("createdAt")
     val createdAt: String?,
+    @SerializedName("done")
+    val done: Boolean?,
     @SerializedName("id")
-    val id: String?,
+    val id: String,
     @SerializedName("title")
     val title: String?,
     @SerializedName("video")
