@@ -1,12 +1,18 @@
 package com.example.thefinalproject.ui.fragment.setting
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
@@ -28,6 +34,8 @@ class MyProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: AuthViewModel by inject()
 
+    private var selectedImageUri: Uri? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +45,11 @@ class MyProfileFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_myProfileFragment_to_settingFragment2)
         }
+
+        binding.ivEditImage.setOnClickListener {
+            openImageChooser()
+        }
+
         return binding.root
     }
 
@@ -52,7 +65,6 @@ class MyProfileFragment : Fragment() {
         detailUser(token.toString())
 
         binding.btnSaveProfile.setOnClickListener {
-            val image = binding.ivEditImage.toString()
             val email = binding.tvEmailValue.text.toString()
             val name = binding.tvNamaValue.text.toString()
             val phoneNumber = binding.tvMobileValue.text.toString()
@@ -60,15 +72,14 @@ class MyProfileFragment : Fragment() {
 
             val newUser = ReqNewUser(
                 address = address,
-
                 email = email,
                 encryptedPassword = null,
-                image = image,
+                image = selectedImageUri.toString(), // Menggunakan URI gambar yang dipilih
                 name = name,
                 phoneNumber = phoneNumber,
             )
 
-            updateProfile(token,newUser)
+            updateProfile(token, newUser)
             Utils.toastMessage(requireContext(), "Profile berhasil diubah")
         }
     }
@@ -96,15 +107,20 @@ class MyProfileFragment : Fragment() {
             binding.tvNamaValue.text = Editable.Factory.getInstance().newEditable(data?.name.toString())
             binding.tvMobileValue.text = Editable.Factory.getInstance().newEditable(data?.phoneNumber.toString())
             binding.tvAdressValue.text = Editable.Factory.getInstance().newEditable(data?.address.toString())
+
+            // Tampilkan foto profil jika tersedia
+            Glide.with(this)
+                .load(data?.image)
+                .fitCenter()
+                .into(binding.ivProfile)
         } else {
-            Log.d("Data Profile", "Profile tidak di temukan")
+            Log.d("Data Profile", "Profile tidak ditemukan")
         }
     }
 
-
-    private fun updateProfile(token: String?,user: ReqNewUser ){
-        viewModel.updateProfile(token,user).observe(viewLifecycleOwner){
-            when(it.status) {
+    private fun updateProfile(token: String?, user: ReqNewUser) {
+        viewModel.updateProfile(token, user).observe(viewLifecycleOwner) {
+            when (it.status) {
                 Status.SUCCESS -> {
                     Log.d("Update Profile", "Success")
                     it.data?.let { data -> showUpdateProfile(data) }
@@ -129,6 +145,22 @@ class MyProfileFragment : Fragment() {
         binding.tvNamaValue.text = Editable.Factory.getInstance().newEditable(userData?.name.toString())
         binding.tvMobileValue.text = Editable.Factory.getInstance().newEditable(userData?.phoneNumber.toString())
         binding.tvAdressValue.text = Editable.Factory.getInstance().newEditable(userData?.address.toString())
+    }
+
+    private fun openImageChooser() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        resultLauncher.launch(intent)
+    }
+
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+            val selectedImage: Uri? = result.data?.data
+            selectedImageUri = selectedImage
+            Glide.with(this)
+                .load(selectedImage)
+                .fitCenter()
+                .into(binding.ivProfile)
+        }
     }
 
     override fun onDestroyView() {
