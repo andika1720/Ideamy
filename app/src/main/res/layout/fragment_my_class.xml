@@ -82,6 +82,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabLayout_class" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/kelasKosong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/rv_class_berjalan"
+        app:layout_constraintEnd_toEndOf="@id/rv_class_berjalan"
+        app:layout_constraintBottom_toBottomOf="@id/rv_class_berjalan"
+        app:layout_constraintTop_toTopOf="@id/rv_class_berjalan">
+        <ImageView
+
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo_ideamy"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:text="UPSS! Anda belum memiliki sebuah kelas"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
     <TextView
         android:id="@+id/tv_category"
         android:layout_width="wrap_content"

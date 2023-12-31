@@ -54,6 +54,7 @@ class MyClassFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
+
         fetchMyCourse(savedToken)
         binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -156,6 +157,13 @@ class MyClassFragment : Fragment() {
 
         data?.data?.let { dataMyCourse ->
             val courses = dataMyCourse?.courses ?: emptyList()
+            if (courses.isEmpty()) {
+                // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
+                binding.kelasKosong.visibility = View.VISIBLE
+            } else {
+                // Jika data tidak kosong, atur visibility kelasKosong menjadi GONE
+                binding.kelasKosong.visibility = View.GONE
+            }
             adapter.submitList(courses)
         }
 

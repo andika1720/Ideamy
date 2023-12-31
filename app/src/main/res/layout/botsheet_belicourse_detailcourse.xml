@@ -67,7 +67,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/default_image" />
+                    app:srcCompat="@drawable/default_image"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_categoryCourse"
@@ -113,7 +114,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_categoryCourse"
                     app:layout_constraintEnd_toStartOf="@+id/tv_rating"
                     app:layout_constraintTop_toTopOf="@+id/tv_categoryCourse"
-                    app:srcCompat="@drawable/star_rating" />
+                    app:srcCompat="@drawable/star_rating"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_topicCourse"

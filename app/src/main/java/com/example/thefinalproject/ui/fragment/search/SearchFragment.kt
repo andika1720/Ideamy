@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
@@ -37,11 +36,11 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
 
-
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         binding.etSearch.requestFocus()
         binding.imgSearch.setOnClickListener {
             hideKeyboardAndClearFocus()
-            fetchList(null,null,null,null,binding.etSearch.text.toString())
+            fetchList(null,null,null,null,null,binding.etSearch.text.toString())
         }
         return binding.root
     }
@@ -70,8 +69,8 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         binding.rvKursuspopuler.adapter = adapter
     }
 
-    private fun fetchList(id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)

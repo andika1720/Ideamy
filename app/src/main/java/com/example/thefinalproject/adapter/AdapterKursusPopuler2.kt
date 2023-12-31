@@ -76,19 +76,30 @@ class AdapterKursusPopuler2 (private val onButtonClick: CourseClick): RecyclerVi
                 tvModul.text = "${data.totalModule} Modul"
                 btnBuy.text = "Beli  ${Utils.formatCurrency(data.price)}"
                 timerCourse.text = "${data.totalDuration} Menit"
+                if (data.statusPayment) {
+                    // Jika status pembayaran true, mulai kelas
 
-                if (data.type == "premium") {
-                    val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
-                    premiumDrawable?.setBounds(
-                        0,
-                        0,
-                        premiumDrawable.intrinsicWidth / 2,
-                        premiumDrawable.intrinsicHeight / 2
-                    )
-                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
-                } else {
                     btnBuy.text = "Mulai Kelas"
                     btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                } else {
+                    if (data.type == "premium") {
+                        val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
+                        premiumDrawable?.setBounds(
+                            0,
+                            0,
+                            premiumDrawable.intrinsicWidth / 2,
+                            premiumDrawable.intrinsicHeight / 2
+                        )
+                        btnBuy.setCompoundDrawablesWithIntrinsicBounds(
+                            premiumDrawable,
+                            null,
+                            null,
+                            null
+                        )
+                    } else {
+                        btnBuy.text = "Free"
+                        btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                    }
                 }
             }
         }

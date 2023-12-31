@@ -27,7 +27,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun getModules(chapterId: String?) = apiService.getModules(chapterId)
     suspend fun getDataByid(token: String?,id: String)= apiService.getDataById(token,id)
 
-    suspend fun getDataByid1(id: String)= apiService.getDataById1(id)
+    suspend fun getDataByid1(token: String?,id: String)= apiService.getDataById1(token,id)
 
     suspend fun getChapterById(token: String?,id: String) = apiService.getChaptersById(token,id)
 
@@ -35,7 +35,7 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getCoursesByTitle(title:String) = apiService.getCourseByTitle(title)
 
-    suspend fun getFilter2(id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(id,level,category,type,search)
+    suspend fun getFilter2(token: String?,id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(token,id,level,category,type,search)
 
     suspend fun getFiltersCourse(category: String?,level: String?, createdAt:String?, rating:String) = apiService.filterGet(category,level,createdAt,rating)
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)
@@ -46,6 +46,8 @@ class Repository(private val apiService: ApiService) {
 
     //ORDER
     suspend fun getOrders(token: String?) = apiService.getOrders(token)
+
+    suspend fun getOrdersById(token: String?,id: String?) = apiService.getOrdersById(token,id)
 
     suspend fun ordersId(token: String?,id: String?) = apiService.ordersId(token, id)
 

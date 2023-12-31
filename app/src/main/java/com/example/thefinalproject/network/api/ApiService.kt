@@ -15,6 +15,7 @@ import com.example.thefinalproject.network.model.order.GetResponse
 import com.example.thefinalproject.network.model.order.PostResponse
 import com.example.thefinalproject.network.model.order.PutResponseOrder
 import com.example.thefinalproject.network.model.order.RequestPutOrder
+import com.example.thefinalproject.network.model.order.getById.OrderResponseById
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassResponse
 import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
@@ -28,7 +29,6 @@ import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpReq
 import com.example.thefinalproject.network.model.user.otp.resendotp.ResendOtpResponse
 import com.example.thefinalproject.network.model.user.register.RegisterRequest
 import com.example.thefinalproject.network.model.user.register.RegisterResponse
-import com.example.thefinalproject.network.model.user.updateprofile.DataUser
 import com.example.thefinalproject.network.model.user.updateprofile.PutDataUser
 import com.example.thefinalproject.network.model.user.updateprofile.ReqNewUser
 import com.example.thefinalproject.network.model.user.resetpassword.ChangePasswordRequest
@@ -42,7 +42,6 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.ArrayList
 
 interface ApiService {
 
@@ -57,6 +56,7 @@ interface ApiService {
 
     @GET("courses/{id}")
     suspend fun getDataById1(
+        @Header("authorization") token : String?,
         @Path("id") id: String
     ): DetailResponse
 
@@ -85,6 +85,7 @@ interface ApiService {
     ) : CategoryResponse
     @GET("courses")
     suspend fun getFilterCourse(
+        @Header("authorization") token : String?,
         @Query("id") id: String?,
         @Query("category") category: String?,
         @Query("level") level: String?,
@@ -144,6 +145,11 @@ interface ApiService {
         @Header("authorization") token : String?
     ) : GetResponse
 
+    @GET("orders/{id}")
+    suspend fun getOrdersById(
+        @Header("authorization") token : String?,
+        @Path("id") id: String?
+    ) : OrderResponseById
     @POST("orders/{id}")
     suspend fun ordersId(
         @Header("authorization") token : String?,

@@ -17,6 +17,8 @@ import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.network.model.mycourse.Course
 import com.example.thefinalproject.network.model.order.DataPost
 import com.example.thefinalproject.network.model.order.PostResponse
+import com.example.thefinalproject.network.model.order.getById.DataOrdersById
+import com.example.thefinalproject.network.model.order.getById.OrderResponseById
 
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
@@ -101,10 +103,10 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
 
     private fun postOrder(data: PostResponse) {
-        val courseData: DataPost? = data.data
+        val courseData: DataPost = data.data
         val bundle = Bundle().apply {
-            putString("selectedId", courseData?.courseId)
-            putString("orderId",data.data?.id)
+            putString("selectedId", courseData.courseId)
+            putString("orderId",data.data.id)
         }
         binding.btnBeliSekarang.setOnClickListener {
             findNavController().navigate(R.id.detailPaymentFragment,bundle)

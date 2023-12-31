@@ -42,9 +42,9 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
     }
 
 
-    fun getDataById1(id: String) = liveData(Dispatchers.IO) {
+    fun getDataById1(token: String?,id: String) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getDataByid1(id)))
+            emit(Resource.success(repo.getDataByid1(token,id)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
@@ -66,9 +66,9 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
     //percobaan
-    fun getFilterCourse(id: String?,level: String?, category: String?,type: String?,search: String?) = liveData(Dispatchers.IO) {
+    fun getFilterCourse(token: String?,id: String?,level: String?, category: String?,type: String?,search: String?) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(repo.getFilter2(id, level,category, type, search)))
+            emit(Resource.success(repo.getFilter2(token,id, level,category, type, search)))
         } catch (exception : Exception) {
             emit(Resource.error(data = null,exception.message?: "Error Occurred!"))
         }

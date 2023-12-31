@@ -1,20 +1,15 @@
 package com.example.thefinalproject.adapter.dataAdapterDetail
 
-import android.graphics.PorterDuff
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemmateriContentchapterBinding
 import com.example.thefinalproject.databinding.ItemmateriTitlechapterBinding
-import com.example.thefinalproject.network.model.chapters.DataChapters1
-import com.example.thefinalproject.network.model.chapters.DataChaptersNew
 import com.example.thefinalproject.network.model.course.ChapterById
 import com.example.thefinalproject.network.model.course.ModuleById
-import kotlin.math.log
 
 
 class AdapterDetail(private val data: List<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,6 +24,7 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
 
     inner class ChapterViewHolder(private val binding: ItemmateriTitlechapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun onBind(data: ChapterById) {
             binding.tvNoChapter.text = "Chapter - ${data.chapterNumber}"
             binding.tvNamaChapter.text = data.title
@@ -36,6 +32,7 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
 
         }
     }
+    @Suppress("DEPRECATION")
     inner class ModuleViewHolder(private val binding: ItemmateriContentchapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
@@ -44,18 +41,23 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = data[position]
                     if (clickedItem is ModuleById) {
+
                         clickListener?.invoke(clickedItem.id)
+
                     }
                 }
+
             }
         }
         fun onBind(data: ModuleById) {
             binding.tvNamaContentChapter.text = data.title
-
+            Log.d("CekTrue", "done= ${data}")
             if(data.done){
                 binding.icPlayContentChapter.setImageResource(R.drawable.doneplay)
                 Log.d("CekTrue", "done= ${data.done}")
             }
+
+
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -87,8 +89,7 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
 
             ITEM_MODULE -> {
                 val moduleHolder = holder as ModuleViewHolder
-                val listenerItem = (data[position] as ModuleById)
-                moduleHolder.onBind(listenerItem)
+                moduleHolder.onBind(data[position] as ModuleById)
             }
 
             else -> throw IllegalArgumentException("Undefined view type")

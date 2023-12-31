@@ -129,7 +129,7 @@
             app:cornerRadius="18dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:backgroundTint="#F3801E"
+            android:backgroundTint="@color/navyblue"
             android:fontFamily="@font/poppins_bold"
             android:text="Beli"
             android:textColor="@color/white"

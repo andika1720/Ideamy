@@ -71,20 +71,28 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                 tvFreeLvlCourse.text = data.level
                 tvFreeModuls.text = "${data.totalModule} Modul"
                 tvFreeDurasi.text = "${data.totalDuration} Menit"
-                if (data.type == "premium") {
-                    val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
-                    premiumDrawable?.setBounds(
-                        0,
-                        0,
-                        premiumDrawable.intrinsicWidth / 2,
-                        premiumDrawable.intrinsicHeight / 2
-                    )
-                    btnMulaiKelas.text = "Premium"
-                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
-                } else {
-                    // Hapus gambar drawable start jika tidak "premium"
+                if (data.statusPayment) {
+                    // Jika status pembayaran true, mulai kelas
                     btnMulaiKelas.text = "Mulai Kelas"
                     btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                } else {
+                    // Jika status pembayaran false, sesuaikan dengan tipe data
+                    if (data.type == "premium") {
+                        // Jika tipe data premium, tampilkan teks dan gambar premium
+                        val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
+                        premiumDrawable?.setBounds(
+                            0,
+                            0,
+                            premiumDrawable.intrinsicWidth / 2,
+                            premiumDrawable.intrinsicHeight / 2
+                        )
+                        btnMulaiKelas.text = "Premium"
+                        btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(premiumDrawable, null, null, null)
+                    } else {
+                        // Jika tipe data free, tampilkan teks "Free" dan hapus gambar
+                        btnMulaiKelas.text = "Free"
+                        btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                    }
                 }
             }
         }

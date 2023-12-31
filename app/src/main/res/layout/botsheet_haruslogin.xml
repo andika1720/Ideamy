@@ -41,7 +41,7 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/default_image"
+            android:src="@drawable/logo_ideamy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_regis_succses_botshet" />
@@ -64,10 +64,11 @@
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
-            android:fontFamily="@font/poppins_regular"
-            android:backgroundTint="@drawable/button_selector"
+            android:fontFamily="@font/poppins_bold"
+            android:backgroundTint="@color/navyblue"
             android:text="Login"
             app:cornerRadius="15dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_maafAnda_botshet" />

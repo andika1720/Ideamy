@@ -80,7 +80,7 @@
         android:fontFamily="@font/poppins_regular"
         android:minHeight="48dp"
         android:padding="5dp"
-        android:text="email@domain.com"
+
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,6 @@
         android:fontFamily="@font/poppins_regular"
         android:minHeight="48dp"
         android:padding="5dp"
-        android:text="Nama"
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +134,7 @@
         android:id="@+id/tvMobileValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+62 853 1234 7301"
+
         android:layout_marginTop="7dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,12 +171,13 @@
         android:fontFamily="@font/poppins_regular"
         android:minHeight="48dp"
         android:padding="5dp"
-        android:text="jl indonesia"
+
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAdress" />
+        app:layout_constraintTop_toBottomOf="@id/tvAdress"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <!--    <TextView-->
     <!--        android:id="@+id/tvCity"-->

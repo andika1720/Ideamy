@@ -57,15 +57,20 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         }
         fetchCategory(null)
 
+        var rating = 4.7
+        rating >= 4.3
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
                 when (tab.position) {
-                    0 -> fetchList(null, null, null, null,null)
-                    1 -> fetchList(null, null, "Web Development", null,null)
-                    2 -> fetchList(null, null, "UI/UX Design", null,null)
-                    3 -> fetchList(null, null, "Product Management", null,null)
-                    4 -> fetchList(null, null, "IOS Development", null,null)
+                    0 -> fetchList(savedToken,null, null, null, null,null)
+                    1 -> fetchList(savedToken,null, null, "Web Development", null,null)
+                    2 -> fetchList(savedToken,null, null, "Android Development", null,null)
+                    3 -> fetchList(savedToken,null, null, "Data Science", null,null)
+                    4 -> fetchList(savedToken,null, null, "UI/UX Design", null,null)
+                    5 -> fetchList(savedToken,null, null, "Product Management", null,null)
+                    6 -> fetchList(savedToken,null, null, "IOS Development", null,null)
                 }
             }
 
@@ -121,8 +126,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         }
     }
 
-    private fun fetchList(id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token: String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -193,24 +198,25 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
     override fun onCourseItemClick(data: DataCategory) {
 
-            val bundle = Bundle().apply {
+        val bundle = Bundle().apply {
                 putString("selectedId", data.id)
-            }
-            val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-            if (isLogin != null) {
-                if (data.type == "premium") {
-                    val bottomSheetSelangkah = BotsheetSelangkah()
-                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-                } else if (data.type == "free") {
-                    val bottomSheetSelangkah = BotsheetSelangkah()
-                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-                }
+        }
+        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        if (isLogin != null) {
+            if (data.statusPayment) {
+                // Jika statusPayment true, pindah ke navigation detailCourse
+                findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+                Log.d("CekStatus", "STATUS= $data")
             } else {
-                val botsheetLogin = BotSheetLogin()
-                botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
+                // Jika statusPayment false, tampilkan bottom sheet
+                val bottomSheetSelangkah = BotsheetSelangkah()
+                bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
+                bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
             }
+        } else {
+            val botsheetLogin = BotSheetLogin()
+            botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
+        }
 
 
     }

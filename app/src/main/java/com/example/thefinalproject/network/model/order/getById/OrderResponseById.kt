@@ -1,11 +1,11 @@
-package com.example.thefinalproject.network.model.order
+package com.example.thefinalproject.network.model.order.getById
 
 
 import com.google.gson.annotations.SerializedName
 
-data class PostResponse(
+data class OrderResponseById(
     @SerializedName("data")
-    val `data`: DataPost,
+    val `data`: DataOrdersById?,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")

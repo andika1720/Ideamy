@@ -25,6 +25,8 @@ data class DataCategory(
     val price: Int?,
     @SerializedName("rating")
     val rating: Double?,
+    @SerializedName("statusPayment")
+    val statusPayment: Boolean,
     @SerializedName("telegram")
     val telegram: String?,
     @SerializedName("title")

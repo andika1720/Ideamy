@@ -1,13 +1,11 @@
 package com.example.thefinalproject.ui.fragment.itemPage.detail
 
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 
@@ -24,7 +22,6 @@ import com.example.thefinalproject.util.SharePref
 
 import com.example.thefinalproject.util.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.gson.Gson
 import org.koin.android.ext.android.inject
 
 class MateriKelas : Fragment() {
@@ -53,14 +50,14 @@ class MateriKelas : Fragment() {
         val selectedModuleId = arguments?.getString("selectedModuleId")
         val arg = arguments?.getString("selectedId")
         Log.d("FragmentTag", "selectedId: $arg")
-        getCourseDetail(arg.toString())
+        getCourseDetail(savedToken.toString(),arg.toString())
         if (selectedChapterId != null) {
-           getCourseDetail(selectedChapterId)
+           getCourseDetail(savedToken.toString(),selectedChapterId)
             Log.d("FragmentTag", "selectedChapter: $selectedChapterId")
         }
 
         if (selectedModuleId != null) {
-            getCourseDetail(selectedModuleId)
+            getCourseDetail(savedToken.toString(),selectedModuleId)
             Log.d("FragmentTag", "selectedModule: $selectedModuleId")
         }
         // Inisialisasi RecyclerView dan adapter
@@ -73,8 +70,8 @@ class MateriKelas : Fragment() {
 
 
     }
-    private fun getCourseDetail( id: String) {
-        viewmodel.getDataById1(id).observe(viewLifecycleOwner){
+    private fun getCourseDetail(token:String,id: String) {
+        viewmodel.getDataById1(token,id).observe(viewLifecycleOwner){
             when(it.status){
                 Status.SUCCESS -> {
                     Log.d("cek datatersedia", "chapter :${it.data}")
@@ -94,8 +91,8 @@ class MateriKelas : Fragment() {
                     }
 
                     adapter = AdapterDetail(materiList,
-                        clickListener  = { url ->
-                        getModules(savedToken,url)
+                        clickListener  = { id ->
+                        getModules(savedToken,id)
                         } )
 
                     binding.rvMateri.adapter = adapter
@@ -129,8 +126,7 @@ class MateriKelas : Fragment() {
 
                     val modulesData = it.data?.data
                     val linkyoutube = modulesData?.video
-                    val vidio = linkyoutube
-                    val bundle = bundleOf("youtube" to vidio)
+                    val bundle = bundleOf("youtube" to linkyoutube)
                     findNavController().navigate(R.id.webViewFragment, bundle)
                 }
 

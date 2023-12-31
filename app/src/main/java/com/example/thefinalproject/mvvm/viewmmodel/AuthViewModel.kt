@@ -89,6 +89,15 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
+    fun getOrdersById(token: String?,id:String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repo.getOrdersById(token,id)))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
+        }
+    }
+
     fun ordersId(token: String?,id:String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {

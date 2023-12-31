@@ -1,7 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +19,6 @@ import com.example.thefinalproject.databinding.FragmentMyCourseBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCategory
 import com.example.thefinalproject.network.model.course.ListResponse
-import com.example.thefinalproject.ui.activity.LoginActivity
 import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
 import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 import com.example.thefinalproject.util.SharePref
@@ -67,19 +65,19 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        fetchList(null,null,null,null,null)
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        fetchList(savedToken,null,null,null,null,null)
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> {
-                        fetchList(null,null,null,null,null)
+                        fetchList(savedToken,null,null,null,null,null)
                     }
                     1 -> {
-                        fetchList(null,null,null,"premium",null)
+                        fetchList(savedToken,null,null,null,"premium",null)
                     }
                     else -> {
-                        fetchList(null,null,null,"free",null)
+                        fetchList(savedToken,null,null,null,"free",null)
                     }
                 }
             }
@@ -131,8 +129,8 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         binding.tabLayoutKursus.addTab(freeTab)
     }
 
-    private fun fetchList(id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     categorys = it.data?.data ?: emptyList()
@@ -160,10 +158,15 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         }
         val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         if (isLogin != null) {
+            if (data.statusPayment) {
+                // Jika statusPayment true, pindah ke navigation detailCourse
+                findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
+            } else {
+                // Jika statusPayment false, tampilkan bottom sheet
                 val bottomSheetSelangkah = BotsheetSelangkah()
                 bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
                 bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-
+            }
         } else {
             val botsheetLogin = BotSheetLogin()
             botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
@@ -268,13 +271,13 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
 //
 //                adapter1.updateDataset(filteredData)
                 if (level1 == ""){
-                    fetchList(null,null,category1,null,null)
+                    fetchList(null,null,null,category1,null,null)
 
                 }else if(category1 == ""){
-                    fetchList(null,level1.toLowerCase(),null,null,null)
+                    fetchList(null,null,level1.toLowerCase(),null,null,null)
 
                 }else{
-                    fetchList(null,level1,category1,null,null)
+                    fetchList(null,null,level1,category1,null,null)
 
                 }
 

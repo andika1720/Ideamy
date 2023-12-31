@@ -106,8 +106,9 @@ class MyProfileFragment : Fragment() {
             binding.tvEmailValue.text = Editable.Factory.getInstance().newEditable(data?.email.toString())
             binding.tvNamaValue.text = Editable.Factory.getInstance().newEditable(data?.name.toString())
             binding.tvMobileValue.text = Editable.Factory.getInstance().newEditable(data?.phoneNumber.toString())
-            binding.tvAdressValue.text = Editable.Factory.getInstance().newEditable(data?.address.toString())
 
+            val addressText = data?.address ?: " "
+            binding.tvAdressValue.text = Editable.Factory.getInstance().newEditable(addressText)
             // Tampilkan foto profil jika tersedia
             Glide.with(this)
                 .load(data?.image)
