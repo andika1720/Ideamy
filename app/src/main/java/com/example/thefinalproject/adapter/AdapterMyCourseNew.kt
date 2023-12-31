@@ -12,6 +12,7 @@ import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
 import com.example.thefinalproject.network.model.course.DataCategory
 
 class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.Adapter<AdapterMyCourseNew.ViewHolder>() {
+    private var dataset: List<DataCategory> = emptyList()
 
     private val differ = object : DiffUtil.ItemCallback<DataCategory>() {
         override fun areItemsTheSame(oldItem: DataCategory, newItem: DataCategory): Boolean {
@@ -87,5 +88,16 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                 }
             }
         }
+    }
+    fun updateDataset(filteredData: List<DataCategory>) {
+        dif.submitList(filteredData)
+        dataset = filteredData
+        notifyDataSetChanged()
+    }
+
+    fun clearAndAddData(data: List<DataCategory>) {
+        dif.submitList(data)
+        dataset = data
+        notifyDataSetChanged()
     }
 }
