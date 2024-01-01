@@ -48,6 +48,16 @@ interface ApiService {
     @GET("courses")
     suspend fun getDataByCategory(
         @Query("category") category: String?): CategoryResponse
+
+    @GET("courses")
+    suspend fun getFiltersNew(
+        @Header("authorization") token : String?,
+        @Query("rating") rating: Double?,
+        @Query("level") level: String?,
+        @Query("createAt") terbaru: String?,
+        @Query("category") category: String?,
+
+    ): CategoryResponse
     @GET("courses/{id}")
     suspend fun getDataById(
         @Header("authorization") token : String?,
@@ -136,7 +146,8 @@ interface ApiService {
     //MYCOURSE
     @GET("my-courses")
     suspend fun myCourse(
-        @Header("authorization") token : String?
+        @Header("authorization") token : String?,
+        @Query("search") search: String?,
     ): MyCourseResponse
 
     //ORDER

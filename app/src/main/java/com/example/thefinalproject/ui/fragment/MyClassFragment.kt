@@ -1,6 +1,8 @@
 package com.example.thefinalproject.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,13 +43,15 @@ class MyClassFragment : Fragment() {
         _binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
         sharePref = SharePref
         tabLayout()
-        binding.etSearch.setOnFocusChangeListener {_,focus ->
-            if (focus){
-                findNavController().navigate(R.id.searchFragment)
-            }
-        }
-        fetchCategory(null)
+//        binding.etSearch.setOnFocusChangeListener {_,focus ->
+//            if (focus){
+//                findNavController().navigate(R.id.searchFragment)
+//            }
+//        }
 
+
+        fetchCategory(null)
+        featureSearch()
         return binding.root
     }
 
@@ -55,18 +59,18 @@ class MyClassFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
-        fetchMyCourse(savedToken)
+        fetchMyCourse(savedToken,null)
         binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> {
-                        fetchMyCourse(savedToken)
+                        fetchMyCourse(savedToken,null)
                     }
                     1 -> {
-                        fetchMyCourse(savedToken)
+                        fetchMyCourse(savedToken,null)
                     }
                     2 -> {
-                        fetchMyCourse(savedToken)
+                        fetchMyCourse(savedToken,null)
                     }
                 }
             }
@@ -125,8 +129,8 @@ class MyClassFragment : Fragment() {
     }
 
 
-    private fun fetchMyCourse(token: String?) {
-        authViewModel.myCourse(token).observe(viewLifecycleOwner) {
+    private fun fetchMyCourse(token: String?,search: String?) {
+        authViewModel.myCourse(token,search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListCourse(it.data)
@@ -160,6 +164,10 @@ class MyClassFragment : Fragment() {
             if (courses.isEmpty()) {
                 // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
                 binding.kelasKosong.visibility = View.VISIBLE
+                binding.carikelas.setOnClickListener {
+                    findNavController().navigate(R.id.action_myClassFragment2_to_myCourseFragment2)
+
+                }
             } else {
                 // Jika data tidak kosong, atur visibility kelasKosong menjadi GONE
                 binding.kelasKosong.visibility = View.GONE
@@ -171,6 +179,101 @@ class MyClassFragment : Fragment() {
         binding.rvClassBerjalan.adapter = adapter
     }
 
+    private fun featureSearch(){
+        val searchEt = binding.etSearch
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        searchEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrEmpty()) {
+                    binding.rvCategory.visibility = View.VISIBLE
+                    binding.rvClassBerjalan.visibility = View.VISIBLE
+                    binding.tv1.visibility = View.VISIBLE
+                    binding.tvCategory.visibility = View.VISIBLE
+                    binding.tabLayoutClass.visibility = View.VISIBLE
+                    binding.rvSearch.visibility = View.GONE
+                    binding.notFounds.visibility = View.GONE
+                } else if (s.length >= 3) {
+                    binding.rvCategory.visibility = View.GONE
+                    binding.rvClassBerjalan.visibility = View.GONE
+                    binding.tvCategory.visibility = View.GONE
+                    binding.tv1.visibility = View.GONE
+                    binding.tabLayoutClass.visibility = View.GONE
+                    fetchMyCourseSearch(savedToken,s.toString())
+                } else {
+                    binding.rvCategory.visibility = View.VISIBLE
+                    binding.rvClassBerjalan.visibility = View.VISIBLE
+                    binding.tv1.visibility = View.VISIBLE
+                    binding.tvCategory.visibility = View.VISIBLE
+                    binding.tabLayoutClass.visibility = View.VISIBLE
+                    binding.notFounds.visibility = View.GONE
+                    binding.rvSearch.visibility = View.GONE
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+    private fun fetchMyCourseSearch(token: String?,search: String?) {
+        authViewModel.myCourse(token,search).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val data1 = it.data?.data
+                    val dataLength = data1?.courses?.size
+                    if (dataLength!! < 1) {
+                        binding.notFounds.visibility = View.VISIBLE
+                        binding.rvSearch.visibility = View.GONE
+                    }else{
+                        showListCourseSearch(it.data)
+                        Log.d("fetchCoursesucces", it.message.toString())
+                        binding.rvSearch.visibility = View.VISIBLE
+                        binding.notFounds.visibility = View.GONE
+
+                    }
+                }
+
+                Status.ERROR -> {
+                    binding.progressbarCategory.isVisible = false
+                    Log.e("fetcherror", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                    Log.d("fetchload", it.message.toString())
+                }
+            }
+        }
+    }
+
+    private fun showListCourseSearch(data: MyCourseResponse?) {
+        val adapter = MyClassAdapter { clickedCourse ->
+            navigatoToCourse(clickedCourse)
+        }
+
+        data?.data?.let { dataMyCourse ->
+            val courses = dataMyCourse?.courses ?: emptyList()
+            if (courses.isEmpty()) {
+                // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
+                binding.kelasKosong.visibility = View.VISIBLE
+                binding.carikelas.setOnClickListener {
+                    findNavController().navigate(R.id.action_myClassFragment2_to_myCourseFragment2)
+                }
+
+            } else {
+                binding.kelasKosong.visibility = View.GONE
+
+            }
+            adapter.submitList(courses)
+        }
+
+        binding.rvSearch.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSearch.adapter = adapter
+    }
 
     private fun navigatoToCourse(data: Course){
         val bundle = Bundle()

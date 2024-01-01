@@ -2,6 +2,8 @@ package com.example.thefinalproject.ui.fragment
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -54,11 +56,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         tabLayout()
 
 
-        binding.etSearch.setOnFocusChangeListener {_,focus ->
-            if (focus){
-                findNavController().navigate(R.id.searchFragment)
-            }
-        }
+        featureSearch()
         return binding.root
     }
 
@@ -173,6 +171,84 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         }
     }
 
+
+    private fun featureSearch(){
+        val searchEt = binding.etSearch
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        searchEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrEmpty()) {
+                    binding.rvCourse.visibility = View.VISIBLE
+                    binding.tv1Topic.visibility = View.VISIBLE
+                    binding.tvFilterKursus.visibility = View.VISIBLE
+                    binding.tabLayoutKursus.visibility = View.VISIBLE
+                    binding.rvSearch.visibility = View.GONE
+                    binding.notFounds.visibility = View.GONE
+                } else if (s.length >= 2) {
+                    binding.rvCourse.visibility = View.GONE
+                    binding.tvFilterKursus.visibility = View.GONE
+                    binding.tv1Topic.visibility = View.GONE
+                    binding.tabLayoutKursus.visibility = View.GONE
+                    binding.notFounds.visibility = View.GONE
+                    fetchListSearch(savedToken, null, null,null,null, s.toString())
+                } else {
+                    binding.rvCourse.visibility = View.VISIBLE
+                    binding.tv1Topic.visibility = View.VISIBLE
+                    binding.tvFilterKursus.visibility = View.VISIBLE
+                    binding.tabLayoutKursus.visibility = View.VISIBLE
+                    binding.notFounds.visibility = View.GONE
+                    binding.rvSearch.visibility = View.GONE
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    private fun fetchListSearch(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val length = it.data?.data?.size
+                    if (length!! < 1) {
+                        binding.notFounds.visibility = View.VISIBLE
+                        binding.rvSearch.visibility = View.GONE
+                    }else{
+                        showListHorizontalSearch(it.data)
+                        binding.rvSearch.visibility = View.VISIBLE
+                        binding.notFounds.visibility = View.GONE
+
+                    }
+                }
+
+                Status.ERROR -> {
+                    binding.progressbarCourse.isVisible = false
+                    Log.e("Errorr", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                    binding.progressbarCourse.isVisible = true
+                }
+            }
+
+
+        }
+    }
+
+    private fun showListHorizontalSearch(data: ListResponse?) {
+        val adapter = AdapterMyCourseNew(this)
+        adapter.sendList(data?.data ?: emptyList())
+        binding.rvSearch.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.rvSearch.adapter = adapter
+    }
     private fun botSheetFilter(){
         try {
             val dialog = BottomSheetDialog(requireContext())

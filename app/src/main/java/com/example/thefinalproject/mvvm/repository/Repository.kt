@@ -22,7 +22,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun getCurrentUser(token: String?) = apiService.currentUser(token)
     suspend fun getCategory(category: String?) = apiService.getDataByCategory(category)
 
-
+    suspend fun getFilter(token: String?,rating: Double?,category: String?,level: String?, terbaru: String?) = apiService.getFiltersNew(token, rating, level, terbaru, category)
     suspend fun getChapters(courseId: String?) = apiService.getChapters(courseId)
     suspend fun getModules(chapterId: String?) = apiService.getModules(chapterId)
     suspend fun getDataByid(token: String?,id: String)= apiService.getDataById(token,id)
@@ -56,7 +56,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun deletePayment(token: String?,id: String?) = apiService.deletePayment(token,id)
 
     //MyCourse
-    suspend fun myCourse(token: String?) = apiService.myCourse(token)
+    suspend fun myCourse(token: String?,search: String?) = apiService.myCourse(token,search)
 
     //UpdateProfile
     suspend fun updateProfile(token: String?,dataUser: ReqNewUser) = apiService.updateProfile(token,dataUser)

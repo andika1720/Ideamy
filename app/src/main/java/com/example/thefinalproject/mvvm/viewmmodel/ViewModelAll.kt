@@ -4,16 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.thefinalproject.mvvm.repository.Repository
+import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.util.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 class ViewModelAll(private val repo: Repository) : ViewModel() {
-    private var searchCourseLiveData = MutableLiveData<List<DataCategory>>()
-
+    private val _filteredData = MutableLiveData<Resource<CategoryResponse>>()
+    val filteredData: LiveData<Resource<CategoryResponse>>
+        get() = _filteredData
     fun getAllCategory(category: String?) = liveData(Dispatchers.IO) {
         try {
             emit(Resource.success(repo.getCategory(category)))
@@ -22,6 +27,15 @@ class ViewModelAll(private val repo: Repository) : ViewModel() {
         }
     }
 
+    fun getFilter(token: String?, rating: Double?, category: String?, level: String?, terbaru: String?) = liveData(Dispatchers.IO) {
+        try {
+            // Gantilah dengan metode yang sesuai di dalam repo
+            val result = repo.getFilter(token, rating, category, level, terbaru)
+            emit(Resource.success(result))
+        } catch (exception: Exception) {
+            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+        }
+    }
 
     fun getCourseByTitle(title : String) = liveData(Dispatchers.IO) {
         try {

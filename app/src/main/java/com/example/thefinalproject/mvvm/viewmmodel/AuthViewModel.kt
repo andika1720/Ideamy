@@ -125,10 +125,10 @@ class AuthViewModel(private val repo: Repository): ViewModel() {
         }
     }
 
-    fun myCourse(token: String?) = liveData(Dispatchers.IO) {
+    fun myCourse(token: String?,search: String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repo.myCourse(token)))
+            emit(Resource.success(repo.myCourse(token,search)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!!"))
         }

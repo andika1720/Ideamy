@@ -11,9 +11,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/item_searchView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"
+        app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,19 +28,45 @@
 
 
     </com.google.android.material.textfield.TextInputLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_searchView"
+        />
 
-    <ImageButton
-        android:id="@+id/img_search"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notFounds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/gray_light"
-        android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@id/item_searchView"
-        app:layout_constraintEnd_toEndOf="@id/item_searchView"
-        app:layout_constraintTop_toTopOf="@id/item_searchView"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@id/item_searchView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:layout_marginTop="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <include
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/layoutnotfound" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <ImageButton-->
+<!--        android:id="@+id/img_search"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:backgroundTint="@color/gray_light"-->
+<!--        android:src="@drawable/ic_search"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/item_searchView"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/item_searchView"-->
+<!--        app:layout_constraintTop_toTopOf="@id/item_searchView"-->
+<!--        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
 
     <TextView
         android:id="@+id/tv1_topic"

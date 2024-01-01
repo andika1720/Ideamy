@@ -80,7 +80,11 @@
         android:id="@+id/myClassFragment2"
         android:name="com.example.thefinalproject.ui.fragment.MyClassFragment"
         android:label="fragment_my_class"
-        tools:layout="@layout/fragment_my_class" />
+        tools:layout="@layout/fragment_my_class" >
+        <action
+            android:id="@+id/action_myClassFragment2_to_myCourseFragment2"
+            app:destination="@id/myCourseFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/myCourseFragment2"
         android:name="com.example.thefinalproject.ui.fragment.MyCourseFragment"

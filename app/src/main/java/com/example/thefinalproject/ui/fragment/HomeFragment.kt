@@ -2,6 +2,8 @@ package com.example.thefinalproject.ui.fragment
 
 import com.example.thefinalproject.util.SharePref
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -50,15 +52,17 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
             botsheetCategory.show(childFragmentManager, botsheetCategory.tag)
         }
 
-        binding.etSearch.setOnFocusChangeListener {_,focus ->
-            if (focus){
-                findNavController().navigate(R.id.searchFragment)
-            }
-        }
+        featureSearch()
+        Log.d("Fitur", "Data = ${featureSearch()}")
+
+//        binding.etSearch.setOnFocusChangeListener {_,focus ->
+//            if (focus){
+//                findNavController().navigate(R.id.searchFragment)
+//            }
+//        }
         fetchCategory(null)
 
-        var rating = 4.7
-        rating >= 4.3
+
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -222,6 +226,94 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
     }
 
 
+    private fun featureSearch(){
+        val searchEt = binding.etSearch
+        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        searchEt.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrEmpty()) {
+                    binding.rvKursuspopuler.visibility = View.VISIBLE
+                    binding.recycleviewCategory.visibility = View.VISIBLE
+                    binding.tvKategorys.visibility = View.VISIBLE
+                    binding.lihatSemuaKursus.visibility = View.VISIBLE
+                    binding.lihatSemuaCategory.visibility = View.VISIBLE
+                    binding.tabLayoutKursus.visibility = View.VISIBLE
+                    binding.tvKursus.visibility = View.VISIBLE
+                    binding.rvSearch.visibility = View.GONE
+                    binding.notFounds.visibility = View.GONE
+                } else if (s.length >= 3) {
+                    binding.rvKursuspopuler.visibility = View.GONE
+                    binding.recycleviewCategory.visibility = View.GONE
+                    binding.tvKategorys.visibility = View.GONE
+                    binding.lihatSemuaKursus.visibility = View.GONE
+                    binding.lihatSemuaCategory.visibility = View.GONE
+                    binding.tabLayoutKursus.visibility = View.GONE
+                    binding.tvKursus.visibility = View.GONE
+                    fetchCourseSearch(savedToken, null, null,null,null, s.toString())
+                } else {
+                    binding.rvKursuspopuler.visibility = View.VISIBLE
+                    binding.recycleviewCategory.visibility = View.VISIBLE
+                    binding.tvKategorys.visibility = View.VISIBLE
+                    binding.lihatSemuaCategory.visibility = View.VISIBLE
+                    binding.tvKursus.visibility = View.VISIBLE
+                    binding.lihatSemuaKursus.visibility = View.VISIBLE
+                    binding.tabLayoutKursus.visibility = View.VISIBLE
+                    binding.notFounds.visibility = View.GONE
+                    binding.rvSearch.visibility = View.GONE
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    private fun fetchCourseSearch(token: String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val dataLength = it.data?.data?.size
+                    if (dataLength!! < 1) {
+                        binding.notFounds.visibility = View.VISIBLE
+                        binding.rvSearch.visibility = View.GONE
+                    }else{
+                        showListHorizontal2(it.data)
+                        binding.rvSearch.visibility = View.VISIBLE
+                        binding.notFounds.visibility = View.GONE
+
+                    }
+                }
+
+                Status.ERROR -> {
+                    binding.progressbarKursusPopuler.isVisible = false
+                    Log.e("error", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                    binding.progressbarKursusPopuler.isVisible = true
+                }
+            }
 
 
+        }
+    }
+
+    private fun showListHorizontal2(data: ListResponse?) {
+        val adapter = AdapterKursusPopuler2(this)
+
+        adapter.sendList(data?.data ?: emptyList())
+        binding.rvSearch.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSearch.adapter = adapter
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
