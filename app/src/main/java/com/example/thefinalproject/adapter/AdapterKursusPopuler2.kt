@@ -78,9 +78,16 @@ class AdapterKursusPopuler2 (private val onButtonClick: CourseClick): RecyclerVi
                 timerCourse.text = "${data.totalDuration} Menit"
                 if (data.statusPayment) {
                     // Jika status pembayaran true, mulai kelas
-
+                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
+                    playcircle?.setBounds(
+                        0,
+                        0,
+                        playcircle.intrinsicWidth / 2,
+                        playcircle.intrinsicHeight / 2
+                    )
+                    btnBuy.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.navyblue))
                     btnBuy.text = "Mulai Kelas"
-                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
                 } else {
                     if (data.type == "premium") {
                         val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)

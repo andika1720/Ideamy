@@ -28,6 +28,15 @@
 
 
     </com.google.android.material.textfield.TextInputLayout>
+<!--    <ImageView-->
+<!--        android:id="@+id/icsearch"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:src="@drawable/ic_search"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/item_searchView"-->
+<!--        app:layout_constraintTop_toTopOf="@id/item_searchView"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/item_searchView"-->
+<!--        android:layout_margin="10dp"/>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"
         android:layout_width="match_parent"

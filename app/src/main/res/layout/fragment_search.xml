@@ -30,6 +30,21 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notFounds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/item_searchView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <include
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/layoutnotfound" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
             android:id="@+id/img_search"
@@ -56,7 +71,41 @@
 
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/kelasKosong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/rv_kursuspopuler"
+            app:layout_constraintEnd_toEndOf="@id/rv_kursuspopuler"
+            app:layout_constraintBottom_toBottomOf="@id/rv_kursuspopuler"
+            app:layout_constraintTop_toTopOf="@id/rv_kursuspopuler">
+            <ImageView
 
+                android:layout_width="200dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo_ideamy"
+                android:layout_gravity="center"
+                android:contentDescription="@string/logo"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:text="@string/upss_anda_belum_memiliki_sebuah_kelas"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/carikelas"
+                android:layout_marginTop="10dp"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:text="@string/cari_kelas"
+                android:backgroundTint="@color/navyblue"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

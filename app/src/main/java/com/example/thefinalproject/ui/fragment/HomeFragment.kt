@@ -74,10 +74,10 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                         0 -> fetchList(savedToken, null, null, null, null, null)
                         1 -> fetchList(savedToken, null, null, "Web Development", null, null)
                         2 -> fetchList(savedToken, null, null, "Android Development", null, null)
-                        3 -> fetchList(savedToken, 4.5, null, "Data Science", null, null)
+                        3 -> fetchList(savedToken, null, null, "Data Science", null, null)
                         4 -> fetchList(savedToken, null, null, "UI/UX Design", null, null)
-                        5 -> fetchList(savedToken, 4.8, null, "Product Management", null, null)
-                        6 -> fetchList(savedToken, 4.4, null, "IOS Development", null, null)
+                        5 -> fetchList(savedToken, null, null, "Product Management", null, null)
+                        6 -> fetchList(savedToken, null, null, "IOS Development", null, null)
                     }
 
             }

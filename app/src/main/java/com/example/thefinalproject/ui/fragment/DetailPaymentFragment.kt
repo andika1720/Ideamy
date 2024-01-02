@@ -62,7 +62,6 @@ class DetailPaymentFragment : Fragment() {
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         var paymentMethod = ""
         detailPayment(savedToken.toString(),arg.toString())
-//        detailPayment(savedToken.toString(),getId.toString())
 
         btnBankTransfer = view.findViewById(R.id.btn_bankTransfer)
         btnCreditCard = view.findViewById(R.id.btn_cardCredit)
@@ -95,7 +94,6 @@ class DetailPaymentFragment : Fragment() {
                 expiryDate,
                 paymentMethod
             )
-//            updatePayment(savedToken.toString(), arg.toString(), cardHolderName, cardNumber, cvv, expiryDate, paymentMethodCreditCard)
 
         }
 
