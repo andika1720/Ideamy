@@ -37,12 +37,13 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/desk_otp"
         android:textColor="@color/black"
-        android:fontFamily="@font/poppins_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_masukanotp" />
+        app:layout_constraintTop_toBottomOf="@id/tv_masukanotp"
+        tools:ignore="TextSizeCheck" />
 
 
     <!-- Define OTP boxes (You can customize the appearance as needed) -->
@@ -60,7 +61,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/massage" />
+        app:layout_constraintTop_toBottomOf="@id/massage"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/otp_box2"
@@ -74,7 +76,8 @@
         app:layout_constraintEnd_toStartOf="@+id/otp_box3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otp_box1"
-        app:layout_constraintTop_toTopOf="@+id/otp_box1" />
+        app:layout_constraintTop_toTopOf="@+id/otp_box1"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/otp_box3"
@@ -88,7 +91,8 @@
         app:layout_constraintEnd_toStartOf="@+id/otp_box4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otp_box2"
-        app:layout_constraintTop_toTopOf="@+id/otp_box2" />
+        app:layout_constraintTop_toTopOf="@+id/otp_box2"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/otp_box4"
@@ -102,7 +106,8 @@
         app:layout_constraintEnd_toStartOf="@+id/otp_box5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otp_box3"
-        app:layout_constraintTop_toTopOf="@+id/otp_box3" />
+        app:layout_constraintTop_toTopOf="@+id/otp_box3"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/otp_box5"
@@ -116,7 +121,8 @@
         app:layout_constraintEnd_toStartOf="@+id/otp_box6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otp_box4"
-        app:layout_constraintTop_toTopOf="@+id/otp_box4" />
+        app:layout_constraintTop_toTopOf="@+id/otp_box4"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/otp_box6"
@@ -130,7 +136,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otp_box5"
-        app:layout_constraintTop_toTopOf="@+id/otp_box5" />
+        app:layout_constraintTop_toTopOf="@+id/otp_box5"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/tv_kirimUlang"
@@ -150,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Minta kode baru via email"
+        android:text="@string/minta_kode_baru_via_email"
         android:textColor="@color/red"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"

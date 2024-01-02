@@ -23,7 +23,8 @@
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="80dp" />
+            android:paddingEnd="80dp"
+            tools:ignore="RtlSymmetry,VisualLintTextFieldSize" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +91,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_class_berjalan"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="240dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +113,7 @@
             android:layout_height="120dp"
             android:src="@drawable/logo_ideamy"
             android:layout_gravity="center"
+            android:contentDescription="@string/logo"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -119,13 +121,13 @@
             android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:text="UPSS! Anda belum memiliki sebuah kelas"/>
+            android:text="@string/upss_anda_belum_memiliki_sebuah_kelas"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/carikelas"
             android:layout_marginTop="10dp"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Cari Kelas"
+            android:text="@string/cari_kelas"
             android:backgroundTint="@color/navyblue"
             android:layout_gravity="center"
             app:cornerRadius="8dp"/>

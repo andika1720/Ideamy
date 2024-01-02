@@ -19,9 +19,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
+            android:contentDescription="@string/close"
             android:src="@drawable/close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv_regis_succses_botshet"
@@ -29,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Oopss!"
+            android:text="@string/oopss"
             android:textColor="@color/black"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +44,7 @@
             android:layout_height="180dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/logo_ideamy"
+            android:contentDescription="@string/logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_regis_succses_botshet" />
@@ -52,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Maaf,Anda harus login terlebih dahulu"
+            android:text="@string/maaf_anda_harus_login_terlebih_dahulu"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import com.example.thefinalproject.util.SharePref
 import android.os.Bundle
 import android.text.Editable
@@ -65,14 +66,16 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("SuspiciousIndentation")
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+
                     when (tab.position) {
-                        0 -> fetchList(savedToken, 5.toDouble(), null, null, null, null)
-                        1 -> fetchList(savedToken, 5.toDouble(), null, "Web Development", null, null)
-                        2 -> fetchList(savedToken, 5.toDouble(), null, "Android Development", null, null)
+                        0 -> fetchList(savedToken, null, null, null, null, null)
+                        1 -> fetchList(savedToken, null, null, "Web Development", null, null)
+                        2 -> fetchList(savedToken, null, null, "Android Development", null, null)
                         3 -> fetchList(savedToken, 4.5, null, "Data Science", null, null)
-                        4 -> fetchList(savedToken, 5.toDouble(), null, "UI/UX Design", null, null)
+                        4 -> fetchList(savedToken, null, null, "UI/UX Design", null, null)
                         5 -> fetchList(savedToken, 4.8, null, "Product Management", null, null)
                         6 -> fetchList(savedToken, 4.4, null, "IOS Development", null, null)
                     }

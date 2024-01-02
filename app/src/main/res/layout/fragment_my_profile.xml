@@ -188,16 +188,16 @@
         android:id="@+id/btnSaveProfile"
         android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_marginTop="70dp"
         android:backgroundTint="@drawable/button_selector"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/submit"
         android:textSize="16sp"
         app:cornerRadius="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvAdressValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck,VisualLintButtonSize"
-        android:layout_marginTop="70dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvAdressValue"
+        tools:ignore="TextContrastCheck,VisualLintButtonSize,SpeakableTextPresentCheck" />
 
 
 

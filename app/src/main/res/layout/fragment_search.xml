@@ -25,7 +25,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -38,6 +39,7 @@
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/gray_light"
             android:src="@drawable/ic_search"
+            android:contentDescription="@string/search"
             app:layout_constraintBottom_toBottomOf="@id/item_searchView"
             app:layout_constraintEnd_toEndOf="@id/item_searchView"
             app:layout_constraintTop_toTopOf="@id/item_searchView"

@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/doneplay"
         android:visibility="gone"
+        android:contentDescription="@string/cast_play"
         app:layout_constraintBottom_toBottomOf="@+id/circleiv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/circleiv"

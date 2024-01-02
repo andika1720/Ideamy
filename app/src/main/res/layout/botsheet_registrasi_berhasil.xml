@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -17,9 +18,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
+            android:contentDescription="@string/close"
             android:src="@drawable/close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv_regis_succses_botshet"
@@ -27,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Registrasi\n Berhasil!"
+            android:text="@string/registrasi_n_berhasil"
             android:textColor="@color/black"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,11 +42,13 @@
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/berhasil"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_check"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_regis_succses_botshet" />
+            app:layout_constraintTop_toBottomOf="@id/tv_regis_succses_botshet"
+            tools:ignore="ImageContrastCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_to_home_botshet"
@@ -51,7 +56,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="80dp"
             android:backgroundTint="@drawable/button_selector"
-            android:text="Beranda"
+            android:text="@string/beranda"
             app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

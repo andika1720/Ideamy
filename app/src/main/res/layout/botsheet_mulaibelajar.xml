@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -15,10 +16,12 @@
             android:id="@+id/close_botsheet_mulaibelajar"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/close"
             android:src="@drawable/close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="5dp"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv1_mulai_belajar_botshet"
@@ -41,6 +44,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv1_mulai_belajar_botshet"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/imagebelajarbotsheet"
             android:layout_marginTop="10dp"/>
 
         <TextView
