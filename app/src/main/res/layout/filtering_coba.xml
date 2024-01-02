@@ -13,9 +13,11 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/close"
         android:src="@drawable/close"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
 
     <RadioGroup
@@ -30,7 +32,8 @@
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Paling Baru"
+            android:text="@string/paling_baru"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -38,7 +41,8 @@
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Paling Populer"
+            android:text="@string/paling_populer"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -46,7 +50,8 @@
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Promo"
+            android:text="@string/promo"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -59,10 +64,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Kategori"
+        android:text="@string/kategori"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter1" />
+        app:layout_constraintTop_toBottomOf="@+id/filter1"
+        tools:ignore="TextSizeCheck" />
 
     <RadioGroup
         android:id="@+id/filter2"
@@ -76,7 +82,8 @@
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="UI/UX Design"
+            android:text="@string/ui_ux_design"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -84,7 +91,8 @@
             android:id="@+id/radioButton5"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Web Development"
+            android:text="@string/web_development"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -92,7 +100,8 @@
             android:id="@+id/radioButton6"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Android Development"
+            android:text="@string/android_development"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -100,7 +109,8 @@
             android:id="@+id/radioButton7"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Data Science"
+            android:text="@string/data_science"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -108,7 +118,8 @@
             android:id="@+id/radioButton8"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Product Management"
+            android:text="@string/product_management"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -116,7 +127,8 @@
             android:id="@+id/radioButton13"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="IOS Development"
+            android:text="@string/ios_development"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -129,10 +141,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Level Kesulitan"
+        android:text="@string/level_kesulitan"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter2" />
+        app:layout_constraintTop_toBottomOf="@+id/filter2"
+        tools:ignore="TextSizeCheck" />
 
     <RadioGroup
         android:id="@+id/filter3"
@@ -143,18 +156,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11">
 
         <RadioButton
-            android:id="@+id/radioButton9"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Semua Level"
-            tools:layout_editor_absoluteX="217dp"
-            tools:layout_editor_absoluteY="106dp" />
-
-        <RadioButton
             android:id="@+id/radioButton10"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Beginner"
+            android:text="@string/beginner"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -162,7 +168,8 @@
             android:id="@+id/radioButton11"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Intermediate"
+            android:text="@string/intermediate"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -170,7 +177,8 @@
             android:id="@+id/radioButton12"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="Advance"
+            android:text="@string/advance"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="106dp" />
 
@@ -182,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="32dp"
-        android:text="Terapkan Filter"
+        android:text="@string/terapkan_filter2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

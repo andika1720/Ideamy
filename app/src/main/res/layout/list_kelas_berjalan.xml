@@ -1,157 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="30dp"
     app:cardCornerRadius="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:ignore="TextSizeCheck">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/iv_imageDefault"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/default_image"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/imagedefault"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_namaKategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
             android:layout_marginStart="20dp"
-            android:textSize="14sp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/nama_kategori"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault" />
+
         <ImageView
             android:id="@+id/iv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/star_rating"
-
-            app:layout_constraintTop_toTopOf="@id/tv_rating"
+            android:contentDescription="@string/bintang"
             app:layout_constraintBottom_toBottomOf="@id/tv_rating"
-            app:layout_constraintEnd_toStartOf="@id/tv_rating"/>
+            app:layout_constraintEnd_toStartOf="@id/tv_rating"
+            app:layout_constraintTop_toTopOf="@id/tv_rating" />
+
         <TextView
             android:id="@+id/tv_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="8dp"
+            android:text="@string/kelas_rate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault"
-            android:text="@string/kelas_rate"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_imageDefault" />
+
         <TextView
             android:id="@+id/tv_titleCourse"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
             android:layout_marginStart="20dp"
-            android:textSize="14sp"
             android:layout_marginTop="3dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/topic"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_namaKategory"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_namaKategory" />
+
         <TextView
             android:id="@+id/tv_publisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
             android:layout_marginStart="20dp"
-            android:textSize="12sp"
-            android:text="@string/publis"
             android:layout_marginTop="3dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/publis"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_titleCourse"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_titleCourse" />
+
         <ImageView
             android:id="@+id/iv_tingkatKesulitan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tingkat_kesulitan"
             android:layout_marginStart="20dp"
+            android:src="@drawable/tingkat_kesulitan"
+            android:contentDescription="@string/level"
+            app:layout_constraintBottom_toBottomOf="@id/tv_level"
             app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="@id/tv_level"
-            app:layout_constraintBottom_toBottomOf="@id/tv_level"/>
+            app:layout_constraintTop_toTopOf="@id/tv_level" />
 
         <TextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
             android:layout_marginStart="30dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/lvl_course"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/iv_tingkatKesulitan"
-            app:layout_constraintTop_toBottomOf="@id/tv_publisher"/>
-        <ImageView
-            android:id="@+id/iv_modul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/modul"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintTop_toTopOf="@id/tv_modul"
-            app:layout_constraintBottom_toBottomOf="@id/tv_modul"
-            app:layout_constraintEnd_toStartOf="@id/tv_modul"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_publisher" />
 
-        <TextView
-            android:id="@+id/tv_modul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginEnd="5dp"
-            android:textSize="12sp"
-            android:text="@string/jml_modul"
-            app:layout_constraintTop_toTopOf="@id/tv_level"
-            app:layout_constraintBottom_toBottomOf="@id/tv_level"
-            app:layout_constraintEnd_toEndOf="parent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_modul"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:src="@drawable/modul"-->
+<!--            android:contentDescription="@string/moduleContent"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/tv_modul"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/tv_modul"-->
+<!--            app:layout_constraintTop_toTopOf="@id/tv_modul" />-->
 
-        <ImageView
-            android:id="@+id/iv_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/time_course"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toBottomOf="@id/timerCourse"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/timerCourse"/>
-        <TextView
-            android:id="@+id/timerCourse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="30dp"
-            android:text="@string/total_durasi"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/iv_timer"
-            app:layout_constraintTop_toBottomOf="@id/tv_level"/>
-        <ImageView
-            android:id="@+id/iv_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/timerCourse"
-            android:src="@drawable/timer_progresbar"/>
-        <ProgressBar
-            android:id="@+id/determinateBar"
-            app:layout_constraintStart_toStartOf="@id/iv_progress"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            app:layout_constraintTop_toBottomOf="@id/timerCourse"
-            android:layout_width="150dp"
-            android:layout_height="18dp"
-            android:progress="40"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_modul"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:text="@string/jml_modul"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/tv_level"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/tv_level" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_timer"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:src="@drawable/time_course"-->
+<!--            android:contentDescription="@string/timer"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/timerCourse"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/timerCourse" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/timerCourse"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:text="@string/total_durasi"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_timer"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_level" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_progress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:contentDescription="@string/progressbar"-->
+<!--            android:src="@drawable/timer_progresbar"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/timerCourse" />-->
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/determinateBar"-->
+<!--            style="@android:style/Widget.ProgressBar.Horizontal"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:progress="40"-->
+<!--            app:layout_constraintStart_toStartOf="@id/iv_progress"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/timerCourse" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -37,8 +37,8 @@ class HistoryPaymentFragment : Fragment() {
             override fun onCourseItemClick(data: DataPost) {
                 if(data.status.equals("PENDING")) {
                     val alertDialogBuilder = AlertDialog.Builder(requireContext())
-                    alertDialogBuilder.setTitle("Your Dialog Title")
-                    alertDialogBuilder.setMessage("Your Dialog Message")
+                    alertDialogBuilder.setTitle("Lanjutkan Pembayaran")
+                    alertDialogBuilder.setMessage("Apakah anda ingin melanjutkan atau membatalkan pembayaran?")
                     alertDialogBuilder.setPositiveButton("Batalkan Pembayaran") { _, _ ->
                         batalOrder(data.id)
                     }

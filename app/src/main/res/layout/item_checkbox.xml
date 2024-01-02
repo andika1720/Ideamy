@@ -12,7 +12,7 @@
         android:button="@drawable/boxcek"
         android:textSize="12sp"
         android:checked="false"
-        android:text=" Android"
+        android:text="@string/android"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

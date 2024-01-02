@@ -34,6 +34,7 @@ import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 import java.util.Locale
 
+
 @Suppress("SameParameterValue")
 class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
     private lateinit var sharePref: SharePref
@@ -41,7 +42,6 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
     private val binding get() = _binding!!
     private val viewMode : ViewModelAll by inject()
     private var categorys: List<DataCategory> = emptyList()
-    private var valueAllCheckbox = ArrayList<String>()
     private var valueCheckBoxCategory = ArrayList<String>()
     private var valueCheckBoxLevel = ArrayList<String>()
 
@@ -89,7 +89,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
 
         })
         binding.tvFilterKursus.setOnClickListener {
-            botSheetFilter()
+            botSheetFilter(savedToken!!)
         }
 
     }
@@ -241,7 +241,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         binding.rvSearch.adapter = adapter
     }
     @SuppressLint("InflateParams", "DefaultLocale")
-    private fun botSheetFilter(){
+    private fun botSheetFilter(savedToken: String){
         try {
             val dialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.filtering_coba,null)
@@ -254,6 +254,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             var category1 = ""
             var level1 = ""
             var rating = ""
+            var valueRating = 0.0
             val radioGroupSort = view.findViewById<RadioGroup>(R.id.filter1)
             val radioGroup = view.findViewById<RadioGroup>(R.id.filter2)
             val radioGroupLevel = view.findViewById<RadioGroup>(R.id.filter3)
@@ -278,12 +279,29 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             }
 
             btnNext.setOnClickListener {
-                if (level1 == ""){
-                    fetchList(null,null,null,category1,null,null)
-                }else if(category1 == ""){
-                    fetchList(null,null, level1.lowercase(Locale.getDefault()),null,null,null)
+                if (rating == "Paling Populer"){
+                    valueRating = 5.0
+                }
+
+                if(rating == "" && category1=="" ){
+                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),null,null,null)
+
+                }else if(rating=="" && level1 == "") {
+                    fetchList(savedToken, null, null, category1, null, null)
+
+                }else if(category1 == "" && level1 == ""){
+                    fetchList(savedToken, valueRating, null, null, null, null)
+                } else if(rating == "" ){
+                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),category1,null,null)
+                }else if (category1 == "") {
+                    fetchList(savedToken, valueRating,
+                        level1.lowercase(Locale.getDefault()), null, null, null)
+
+                }else if (level1 == ""){
+                    fetchList(savedToken,valueRating,null,category1,null,null)
                 }else{
-                    fetchList(null,null,level1,category1,null,null)
+                    fetchList(savedToken,valueRating,
+                        level1.lowercase(Locale.getDefault()),category1,null,null)
                 }
                 Log.e("Isi Check Box Category",valueCheckBoxCategory.toString())
                 Log.e("Isi Check Box Level",valueCheckBoxLevel.toString())

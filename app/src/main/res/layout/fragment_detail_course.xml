@@ -29,7 +29,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ic_arrowBack"
         app:layout_constraintStart_toEndOf="@+id/ic_arrowBack"
-        app:layout_constraintTop_toTopOf="@+id/ic_arrowBack" />
+        app:layout_constraintTop_toTopOf="@+id/ic_arrowBack"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/playerView"
@@ -37,6 +38,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="2dp"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/playerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_arrowBack" />
@@ -96,9 +98,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/level"
                 android:src="@drawable/level"
                 app:layout_constraintStart_toStartOf="@id/tv_authorCourse"
-                app:layout_constraintTop_toBottomOf="@id/tv_authorCourse" />
+                app:layout_constraintTop_toBottomOf="@id/tv_authorCourse"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_level"
@@ -118,10 +122,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:contentDescription="@string/moduleContent"
                 android:src="@drawable/module"
                 app:layout_constraintBottom_toBottomOf="@id/tv_level"
                 app:layout_constraintStart_toEndOf="@id/tv_level"
-                app:layout_constraintTop_toTopOf="@id/tv_level" />
+                app:layout_constraintTop_toTopOf="@id/tv_level"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_module"
@@ -141,10 +147,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:contentDescription="@string/timer"
                 android:src="@drawable/time"
                 app:layout_constraintBottom_toBottomOf="@id/tv_module"
                 app:layout_constraintStart_toEndOf="@id/tv_module"
-                app:layout_constraintTop_toTopOf="@id/tv_module" />
+                app:layout_constraintTop_toTopOf="@id/tv_module"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_waktucourse"
@@ -174,15 +182,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/material_card"
+        app:tabGravity="fill"
         app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorColor="@null"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorGravity="stretch"
-        app:tabMode="fixed"
 
-        app:tabGravity="fill"
-        app:tabSelectedTextColor="@color/white" />
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

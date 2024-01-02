@@ -57,6 +57,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:scaleType="centerCrop"
+                            android:contentDescription="@string/imagedefault"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -86,7 +87,8 @@
                             android:textSize="10sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@+id/tv_tittleCourse"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_tittleCourse" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_tittleCourse"
+                            tools:ignore="SmallSp" />
 
                         <TextView
                             android:id="@+id/tv_authorCourse"
@@ -97,7 +99,8 @@
                             android:textColor="@color/black"
                             android:textSize="10sp"
                             app:layout_constraintStart_toStartOf="@id/tv_topicCourse"
-                            app:layout_constraintTop_toBottomOf="@id/tv_topicCourse" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_topicCourse"
+                            tools:ignore="SmallSp" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -211,7 +214,7 @@
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
-            tools:ignore="SpeakableTextPresentCheck"/>
+            tools:ignore="RtlHardcoded,SpeakableTextPresentCheck,VisualLintButtonSize"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_bankTransfer"
@@ -352,7 +355,7 @@
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/card_bankTransfer"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="RtlHardcoded,SpeakableTextPresentCheck,VisualLintButtonSize" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_crediCard"
@@ -390,7 +393,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView14"
                     app:layout_constraintTop_toBottomOf="@+id/textView14"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="Autofill,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -413,7 +416,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="Autofill,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -436,7 +439,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toBottomOf="@+id/textView16"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="Autofill,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -458,7 +461,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView17"
                     app:layout_constraintTop_toBottomOf="@+id/textView17"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="Autofill,TouchTargetSizeCheck" />
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -467,6 +470,7 @@
                     android:layout_marginTop="8dp"
                     android:src="@drawable/mastercard_logo_new"
                     app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                    android:contentDescription="@string/mastercard"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_cvv" />
@@ -478,8 +482,10 @@
                     android:src="@drawable/paypal_logo_new"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
+                    android:contentDescription="@string/paypal"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
-                    app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView8"
+                   />
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -488,6 +494,7 @@
                     android:src="@drawable/visa_logo_new"
                     app:layout_constraintEnd_toStartOf="@+id/imageView9"
                     app:layout_constraintHorizontal_bias="0.5"
+                    android:contentDescription="@string/visa"
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
                     app:layout_constraintTop_toTopOf="@+id/imageView9" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -512,6 +519,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/btn_cardCredit"
             app:layout_constraintTop_toBottomOf="@id/card_crediCard"
-            app:layout_constraintVertical_bias="0.469" />
+            app:layout_constraintVertical_bias="0.469"
+            tools:ignore="VisualLintButtonSize" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
