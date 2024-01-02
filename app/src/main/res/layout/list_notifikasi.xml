@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="Pengumuman"
+            android:text="@string/Pengumuman"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_notification"/>
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="10dp"
-            android:text="Tanggal Notifikasi"
+            android:text="@string/tanggal_notifikasi"
             app:layout_constraintEnd_toStartOf="@id/iv_indikator"/>
         <TextView
             android:id="@+id/tv_isiPesan"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="35dp"
-            android:text="Isi Pesan Yang Di Sampaikan "
+            android:text="@string/isi_notif"
             app:layout_constraintTop_toBottomOf="@id/tv_pengumuman"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

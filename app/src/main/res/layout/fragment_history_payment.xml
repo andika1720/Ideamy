@@ -20,7 +20,7 @@
         android:id="@+id/tvPaymentHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Riwayat Pembayaran"
+        android:text="@string/riwayat_pembayaran"
         android:textSize="24sp"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintStart_toStartOf="parent"

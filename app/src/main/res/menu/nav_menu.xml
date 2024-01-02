@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment2"
-        android:title="@string/home"
+        android:title="@string/Beranda"
         android:icon="@drawable/home"/>
     <item
         android:id="@+id/notifikasiFragment2"
@@ -11,17 +11,17 @@
 
     <item
         android:id="@+id/myClassFragment2"
-        android:title="Kelas"
+        android:title="@string/Kelas"
         android:icon="@drawable/kelas"/>
 
     <item
         android:id="@+id/myCourseFragment2"
-        android:title="Kursus"
+        android:title="@string/Kursus"
         android:icon="@drawable/kursus"/>
 
     <item
         android:id="@+id/settingFragment2"
-        android:title="Akun"
+        android:title="@string/Akun"
         android:icon="@drawable/account"/>
 
 </menu>

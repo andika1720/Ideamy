@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="20dp"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -29,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Paling baru"
+                android:text="@string/filter_new"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_btn_1"
@@ -44,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Paling populer"
+                android:text="@string/filter_populer"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_btn_2"
@@ -59,7 +60,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Baru"
+                android:text="@string/filter_baru"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_btn_3"
@@ -69,7 +70,7 @@
                 android:id="@+id/tv_kategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kategori"
+                android:text="@string/kategori"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="20sp"
                 android:textColor="@color/black"
@@ -84,7 +85,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UI/UX Design"
+                android:text="@string/kategori_ui"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_category_1"
@@ -99,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Web Development"
+                android:text="@string/kategori_web_dev"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_category_2"
@@ -114,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Android development"
+                android:text="@string/kategori_and_dev"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_category_3"
@@ -129,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data Science"
+                android:text="@string/kategori_data_scie"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_category_4"
@@ -144,7 +145,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Business Intelligence"
+                android:text="@string/kategori_business_int"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_category_5"
@@ -154,7 +155,7 @@
                 android:id="@+id/tv_lvl_course"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Level Kesulitan"
+                android:text="@string/level"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="20sp"
                 android:textColor="@color/black"
@@ -169,7 +170,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Semua Level"
+                android:text="@string/level_all"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_lvl_1"
@@ -184,7 +185,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beginner Level"
+                android:text="@string/level_beginner"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_lvl_2"
@@ -199,7 +200,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Intermediate Level"
+                android:text="@string/level_medium"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_lvl_3"
@@ -214,7 +215,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Advanced Level"
+                android:text="@string/level_hard"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toEndOf="@id/check_lvl_4"
@@ -224,7 +225,7 @@
                 android:id="@+id/btn_terapkan_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terapkan Filter"
+                android:text="@string/btn_terapkan_filter"
                 android:fontFamily="@font/poppins_bold"
                 android:backgroundTint="@drawable/button_selector"
                 app:layout_constraintTop_toBottomOf="@id/check_lvl_4"
@@ -234,7 +235,7 @@
                 android:id="@+id/btn_terapkan_Nofilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hapus Filter"
+                android:text="@string/text_delete_filter"
                 android:textColor="@color/red"
                 android:fontFamily="@font/poppins_bold"
                 app:layout_constraintTop_toBottomOf="@id/btn_terapkan_filter"

@@ -66,7 +66,7 @@
             android:layout_marginTop="60dp"
             android:fontFamily="@font/poppins_bold"
             android:backgroundTint="@color/navyblue"
-            android:text="Login"
+            android:text="@string/btn_masuk"
             app:cornerRadius="15dp"
 
             app:layout_constraintEnd_toEndOf="parent"

@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Materi Lainnya"
+            android:text="@string/materi_lain"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/white"

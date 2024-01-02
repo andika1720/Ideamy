@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
         android:text="Notifikasi"
-        android:textSize="20sp"/>
+        android:textSize="25sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notifikasi"

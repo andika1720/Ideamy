@@ -18,7 +18,7 @@
         android:fontFamily="@font/poppins_bold"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="Kategori" />
+        android:text="@string/kategori" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDetail"

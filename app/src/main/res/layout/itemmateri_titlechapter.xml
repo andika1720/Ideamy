@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Chapter"
+        android:text="@string/chapter"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Pendahuluan"
+        android:text="@string/jdl_chap"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/tv_noChapter"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:id="@+id/tv_durasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1 Menit"
+        android:text="@string/durasi_chp"
         android:textSize="16sp"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintEnd_toEndOf="parent"

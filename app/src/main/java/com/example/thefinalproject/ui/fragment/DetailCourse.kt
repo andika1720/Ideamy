@@ -98,7 +98,7 @@ class DetailCourse : Fragment() {
                 }
 
                 Status.LOADING -> {
-                    Log.d("DataUser", it.data.toString())
+                    Log.d("SetProfilePic", it.data.toString())
                 }
             }
         }

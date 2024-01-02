@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Materi Belajar"
+        android:text="@string/materi"
         android:fontFamily="@font/poppins_bold"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"

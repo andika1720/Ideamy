@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Cari Kursus Terbaik.....">
+        android:hint="@string/hint_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSearch"
@@ -66,7 +66,7 @@
         android:textSize="18sp"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintTop_toBottomOf="@id/item_searchView"
-        android:text="Kelas Berjalan"/>
+        android:text="@string/kelas_berjalan"/>
 
 
 
@@ -142,7 +142,7 @@
         android:fontFamily="@font/poppins_bold"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="Kategori"
+        android:text="@string/kategori"
         app:layout_constraintTop_toBottomOf="@id/rv_class_berjalan"/>
 
     <androidx.recyclerview.widget.RecyclerView

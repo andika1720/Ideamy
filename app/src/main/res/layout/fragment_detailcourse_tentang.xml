@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_bold"
         android:backgroundTint="@color/succes"
-        android:text="Join Grup Telegram"
+        android:text="@string/join_tele"
         android:drawableRight="@drawable/gridicons_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_bold"
         android:textSize="22sp"
-        android:text="Tentang Class"
+        android:text="@string/kelas_tentang"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_joinTelegram" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/tv_deskripsiTentang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deskripsi Tentang Kelas"
+        android:text="@string/des_tentang_kelas"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="@+id/tv_tentangClass"
         app:layout_constraintTop_toBottomOf="@+id/tv_tentangClass" />
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Kelas Ini Ditujukan Untuk"
+        android:text="@string/kelas_ditujukan"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="@+id/tv_tentangClass"
         app:layout_constraintTop_toBottomOf="@+id/tv_deskripsiTentang" />
@@ -55,7 +55,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deskripsi Kelas Ini Ditujukan Untuk"
+        android:text="@string/desk_kelas_ditujukan"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="@+id/tv_kelasDitujukan"
         app:layout_constraintTop_toBottomOf="@+id/tv_kelasDitujukan" />
