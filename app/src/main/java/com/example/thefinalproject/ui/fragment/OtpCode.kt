@@ -92,7 +92,7 @@ class OtpCode : Fragment() {
                 Status.ERROR -> {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
-                    otpError(errorMessage)
+                    Utils.toastMessage(requireContext(), "OTP is invalid")
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")
@@ -167,18 +167,4 @@ class OtpCode : Fragment() {
         }
     }
 
-    private fun otpError(message: String) {
-        when {
-            message.contains("HTTP 500") -> {
-                Utils.toastMessage(requireContext(), "Kode OTP expired")
-            }
-            message.contains("HTTP 400") -> {
-                Utils.toastMessage(requireContext(), "Masukkan kode OTP dengan benar")
-            }
-            // Tambahkan penanganan error lain sesuai kebutuhan
-            else -> {
-                Utils.toastMessage(requireContext(), message)
-            }
-        }
-    }
 }

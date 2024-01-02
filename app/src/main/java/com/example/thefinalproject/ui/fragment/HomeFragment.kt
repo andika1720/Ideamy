@@ -1,6 +1,5 @@
 package com.example.thefinalproject.ui.fragment
 
-import android.annotation.SuppressLint
 import com.example.thefinalproject.util.SharePref
 import android.os.Bundle
 import android.text.Editable
@@ -66,7 +65,6 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            @SuppressLint("SuspiciousIndentation")
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
