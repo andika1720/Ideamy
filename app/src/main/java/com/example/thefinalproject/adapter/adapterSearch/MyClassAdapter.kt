@@ -39,17 +39,17 @@ class MyClassAdapter(private val onItemClickListener: (Course) -> Unit) :
         fun bind(course: Course) {
 
 
-            course?.let { course ->
+            course.let { course1 ->
                 binding.apply {
                     Glide.with(this.ivImageDefault)
-                        .load(course.image)
+                        .load(course1.image)
                         .fitCenter()
                         .into(ivImageDefault)
-                    tvRating.text = course.rating.toString()
-                    tvNamaKategory.text = course.category
-                    tvTitleCourse.text = course.title
-                    tvPublisher.text = course.creator
-                    tvLevel.text = "${course.level} Level"
+                    tvRating.text = course1.rating.toString()
+                    tvNamaKategory.text = course1.category
+                    tvTitleCourse.text = course1.title
+                    tvPublisher.text = course1.creator
+                    tvLevel.text = "${course1.level} Level"
                 }
             }
         }

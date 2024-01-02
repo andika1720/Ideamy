@@ -60,7 +60,7 @@ class DetailPaymentFragment : Fragment() {
         val arg =arguments?.getString("selectedId")
         val getId = arguments?.getString("orderId")
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-        var paymentMethod: String = ""
+        var paymentMethod = ""
         detailPayment(savedToken.toString(),arg.toString())
 //        detailPayment(savedToken.toString(),getId.toString())
 
@@ -82,7 +82,6 @@ class DetailPaymentFragment : Fragment() {
         }
         binding.btnBeliSekarang.setOnClickListener {
 
-            val method =  "${binding.btnBankTransfer.text} ${binding.btnCardCredit.text}"
             val cardHolderName = binding.etCardHolderName.text.toString()
             val cardNumber = binding.etCardNumber.text.toString()
             val cvv = binding.etCvv.text.toString()

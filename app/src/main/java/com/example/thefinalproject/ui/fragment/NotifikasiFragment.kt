@@ -6,17 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.thefinalproject.adapter.AdapterNotification
 import com.example.thefinalproject.databinding.FragmentNotifikasiBinding
-import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.user.testNotif.NotipResponse
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
-import okhttp3.Response
 import org.koin.android.ext.android.inject
 
 

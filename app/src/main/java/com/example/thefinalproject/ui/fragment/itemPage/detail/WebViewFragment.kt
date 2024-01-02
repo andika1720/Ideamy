@@ -164,6 +164,8 @@ class WebViewFragment : Fragment() {
         outState.putFloat("playbackPosition", playbackPosition)
     }
 
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (savedInstanceState != null) {

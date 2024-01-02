@@ -17,6 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/close"
+            android:contentDescription="@string/close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +128,8 @@
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/tv_categoryCourse"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_categoryCourse" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_categoryCourse"
+                    tools:ignore="SmallSp" />
 
                 <TextView
                     android:id="@+id/tv_authorCourse"
@@ -138,7 +140,8 @@
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     app:layout_constraintStart_toStartOf="@id/tv_topicCourse"
-                    app:layout_constraintTop_toBottomOf="@id/tv_topicCourse" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_topicCourse"
+                    tools:ignore="SmallSp" />
 
                 <ImageView
                     android:id="@+id/ic_level"

@@ -67,7 +67,6 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-
                     when (tab.position) {
                         0 -> fetchList(savedToken, 5.toDouble(), null, null, null, null)
                         1 -> fetchList(savedToken, 5.toDouble(), null, "Web Development", null, null)
@@ -158,7 +157,6 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
     private fun showListHorizontal(data: ListResponse?) {
         val adapter = AdapterKursusPopuler2(this)
 
-        val uniqueCategories = data?.data?.distinctBy { it.category }
         adapter.sendList(data?.data ?: emptyList())
         binding.rvKursuspopuler.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)

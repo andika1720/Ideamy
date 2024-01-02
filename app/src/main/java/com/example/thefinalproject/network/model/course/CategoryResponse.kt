@@ -1,7 +1,6 @@
 package com.example.thefinalproject.network.model.course
 
 
-import com.example.thefinalproject.network.model.course.DataCategory
 import com.google.gson.annotations.SerializedName
 
 data class CategoryResponse(

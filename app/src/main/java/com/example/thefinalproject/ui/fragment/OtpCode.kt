@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -40,11 +41,12 @@ class OtpCode : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnBack.setOnClickListener {
-            val intent = Intent (getActivity(), RegisterActivity::class.java)
-            getActivity()?.startActivity(intent)
+            val intent = Intent (activity, RegisterActivity::class.java)
+            activity?.startActivity(intent)
         }
 
 
@@ -80,7 +82,7 @@ class OtpCode : Fragment() {
 
 
 
-    fun sendOtp1(otpRequest: OtpRequest) {
+    private fun sendOtp1(otpRequest: OtpRequest) {
         viewmodel.otpUser(otpRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -101,6 +103,7 @@ class OtpCode : Fragment() {
 
     private fun startCountDownTimer(email: String) {
         object : CountDownTimer(60000, 1000) {
+            @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = (millisUntilFinished / 1000) % 60
                 binding.tvKirimUlang.text = "Kirim Ulang OTP Dalam $seconds detik"
@@ -123,6 +126,7 @@ class OtpCode : Fragment() {
         }.start()
     }
 
+    @SuppressLint("InflateParams")
     private fun botSheetRegistSuccess(){
         try {
             val dialog = BottomSheetDialog(requireContext())

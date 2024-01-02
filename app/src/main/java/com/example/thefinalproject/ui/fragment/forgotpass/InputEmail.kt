@@ -2,34 +2,25 @@ package com.example.thefinalproject.ui.fragment.forgotpass
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentInputEmailBinding
-import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
-import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.ui.activity.LoginActivity
-import com.example.thefinalproject.ui.activity.RegisterActivity
-import com.example.thefinalproject.util.Status
-import org.koin.android.ext.android.inject
 
 
 class InputEmail : Fragment() {
     private lateinit var binding:FragmentInputEmailBinding
-    private val viewmodel: AuthViewModel by inject()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentInputEmailBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -37,8 +28,8 @@ class InputEmail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnBack.setOnClickListener {
-            val intent = Intent (getActivity(), LoginActivity::class.java)
-            getActivity()?.startActivity(intent)
+            val intent = Intent (activity, LoginActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.btnForgotPass.setOnClickListener {

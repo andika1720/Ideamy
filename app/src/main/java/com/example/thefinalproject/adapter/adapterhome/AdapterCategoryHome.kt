@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.thefinalproject.adapter.AdapterCategory
 import com.example.thefinalproject.databinding.ListCategoryBinding
 import com.example.thefinalproject.network.model.course.DataCategory
 
@@ -44,11 +43,11 @@ class AdapterCategoryHome (private val onItemClick: OnClickListener?): RecyclerV
     }
 
     override fun getItemCount(): Int {
-        if (showAllItems || dif.currentList.size <= 4) {
-            return dif.currentList.size
+        return if (showAllItems || dif.currentList.size <= 4) {
+            dif.currentList.size
         } else {
             // Jika showAllItems adalah false dan jumlah item lebih dari 4, kembalikan 4
-            return 4
+            4
         }
     }
 

@@ -49,9 +49,10 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
 
             }
         }
+        @Suppress("KotlinConstantConditions")
         fun onBind(data: ModuleById) {
             binding.tvNamaContentChapter.text = data.title
-            Log.d("CekTrue", "done= ${data}")
+            Log.d("CekTrue", "done= $data")
             if(data.done){
                 binding.icPlayContentChapter.setImageResource(R.drawable.doneplay)
                 Log.d("CekTrue", "done= ${data.done}")

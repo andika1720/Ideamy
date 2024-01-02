@@ -1,7 +1,6 @@
 package com.example.thefinalproject.network.model.order
 
 
-import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.mycourse.Course
 import com.google.gson.annotations.SerializedName
 

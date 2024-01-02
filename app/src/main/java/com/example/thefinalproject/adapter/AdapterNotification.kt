@@ -1,5 +1,6 @@
 package com.example.thefinalproject.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class AdapterNotification (private val notification: List<com.example.thefinalpr
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val notifications = notification[position]
         val notip = notifications.createdAt
@@ -40,7 +42,7 @@ class AdapterNotification (private val notification: List<com.example.thefinalpr
         val messageText: TextView = itemView.findViewById(R.id.tv_isiPesan)
         val tanggalNotification: TextView = itemView.findViewById(R.id.tv_tanggal)
     }
-    fun integerToMonthString(month: Int): String {
+    private fun integerToMonthString(month: Int): String {
         return when (month) {
             1 -> "Januari"
             2 -> "Februari"
@@ -58,17 +60,17 @@ class AdapterNotification (private val notification: List<com.example.thefinalpr
         }
     }
 
-    fun timeNotification(waktu:String):String{
+    private fun timeNotification(waktu:String):String{
         val hours = waktu.substring(0,2).toInt()
         val seconds = waktu.substring(3).toInt()
 
-        if (hours >= 12 && seconds >= 0){
+        return if (hours >= 12 && seconds >= 0){
 
-            return "$waktu PM"
+            "$waktu PM"
             // PM
 
         }else{
-            return "$waktu AM"
+            "$waktu AM"
             //AM
         }
     }

@@ -34,7 +34,6 @@ class MyClassFragment : Fragment() {
     private val viewMode: ViewModelAll by inject()
     private lateinit var sharePref: SharePref
     private val authViewModel: AuthViewModel by inject()
-    private var categorys: List<DataMyCourse> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +41,7 @@ class MyClassFragment : Fragment() {
     ): View {
         _binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
         sharePref = SharePref
-        tabLayout()
+        //tabLayout()
 //        binding.etSearch.setOnFocusChangeListener {_,focus ->
 //            if (focus){
 //                findNavController().navigate(R.id.searchFragment)
@@ -60,28 +59,28 @@ class MyClassFragment : Fragment() {
         val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
         fetchMyCourse(savedToken,null)
-        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                when (tab.position) {
-                    0 -> {
-                        fetchMyCourse(savedToken,null)
-                    }
-                    1 -> {
-                        fetchMyCourse(savedToken,null)
-                    }
-                    2 -> {
-                        fetchMyCourse(savedToken,null)
-                    }
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
-        })
+//        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+//            override fun onTabSelected(tab: TabLayout.Tab) {
+//                when (tab.position) {
+//                    0 -> {
+//                        fetchMyCourse(savedToken,null)
+//                    }
+//                    1 -> {
+//                        fetchMyCourse(savedToken,null)
+//                    }
+//                    2 -> {
+//                        fetchMyCourse(savedToken,null)
+//                    }
+//                }
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//            }
+//
+//        })
     }
 
     private fun fetchCategory(category: String?) {
@@ -160,7 +159,7 @@ class MyClassFragment : Fragment() {
         }
 
         data?.data?.let { dataMyCourse ->
-            val courses = dataMyCourse?.courses ?: emptyList()
+            val courses = dataMyCourse.courses ?: emptyList()
             if (courses.isEmpty()) {
                 // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
                 binding.kelasKosong.visibility = View.VISIBLE
@@ -259,7 +258,7 @@ class MyClassFragment : Fragment() {
         }
 
         data?.data?.let { dataMyCourse ->
-            val courses = dataMyCourse?.courses ?: emptyList()
+            val courses = dataMyCourse.courses ?: emptyList()
             if (courses.isEmpty()) {
                 // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
                 binding.kelasKosong.visibility = View.VISIBLE
@@ -281,7 +280,7 @@ class MyClassFragment : Fragment() {
 
     private fun navigatoToCourse(data: Course){
         val bundle = Bundle()
-        bundle.putString("selectedId", data?.id)
+        bundle.putString("selectedId", data.id)
         findNavController().navigate(R.id.detailCourse,bundle)
     }
 }

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.FragmentChangePasswordBinding
@@ -27,7 +26,7 @@ class ChangePasswordFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentChangePasswordBinding.inflate(inflater,container,false)
         return binding.root
@@ -70,7 +69,7 @@ class ChangePasswordFragment : Fragment() {
 
     }
 
-    fun changePassword(token:String,changePasswordRequest: ChangePasswordRequest){
+    private fun changePassword(token:String, changePasswordRequest: ChangePasswordRequest){
         viewModel.resetPasswordUser(token,changePasswordRequest).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {

@@ -2,20 +2,16 @@ package com.example.thefinalproject.network.api
 
 
 import com.example.thefinalproject.network.model.chapters.ChaptersById1Response
-import com.example.thefinalproject.network.model.chapters.ChaptersResponseList
 import com.example.thefinalproject.network.model.course.CategoryResponse
 import com.example.thefinalproject.network.model.course.DetailResponse
-import com.example.thefinalproject.network.model.course.FilterResponse
 import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.modules.ResponseModuleById1
-import com.example.thefinalproject.network.model.modules.all.ModulesResponseAll
 import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
 import com.example.thefinalproject.network.model.order.DeleteResponseOrder
 import com.example.thefinalproject.network.model.order.GetResponse
 import com.example.thefinalproject.network.model.order.PostResponse
 import com.example.thefinalproject.network.model.order.PutResponseOrder
 import com.example.thefinalproject.network.model.order.RequestPutOrder
-import com.example.thefinalproject.network.model.order.getById.OrderResponseById
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassRequest
 import com.example.thefinalproject.network.model.user.forgotpassword.postdata.PostForgotPassResponse
 import com.example.thefinalproject.network.model.user.forgotpassword.putdata.PutForgotPassRequest
@@ -49,15 +45,7 @@ interface ApiService {
     suspend fun getDataByCategory(
         @Query("category") category: String?): CategoryResponse
 
-    @GET("courses")
-    suspend fun getFiltersNew(
-        @Header("authorization") token : String?,
-        @Query("rating") rating: Double?,
-        @Query("level") level: String?,
-        @Query("createAt") terbaru: String?,
-        @Query("category") category: String?,
 
-    ): CategoryResponse
     @GET("courses/{id}")
     suspend fun getDataById(
         @Header("authorization") token : String?,
@@ -70,29 +58,20 @@ interface ApiService {
         @Path("id") id: String
     ): DetailResponse
 
-    @GET("chapters")
-    suspend fun getChapters(
-        @Query("courseId") courseId: String?
-    ): ChaptersResponseList
+
     @GET("chapters/{id}")
     suspend fun getChaptersById(
         @Header("authorization") token : String?,
         @Path("id") id: String
     ): ChaptersById1Response
 
-    @GET("modules")
-    suspend fun getModules(
-        @Query("chapterId") chapterId: String?
-    ): ModulesResponseAll
+
     @GET("modules/{id}")
     suspend fun getModulesById(
         @Header("authorization") token : String?,
         @Path("id") id: String
     ): ResponseModuleById1
-    @GET("courses")
-    suspend fun getCourseByTitle(
-        @Query("title") title: String?
-    ) : CategoryResponse
+
     @GET("courses")
     suspend fun getFilterCourse(
         @Header("authorization") token : String?,
@@ -103,13 +82,7 @@ interface ApiService {
         @Query("search") search: String?,
     ) : ListResponse
 
-    @GET("courses")
-    suspend fun filterGet(
-        @Query("category") category: String?,
-        @Query("level") level: String?,
-        @Query("createdAt") createdAt: String?,
-        @Query("rating") rating: String?
-    ) : FilterResponse
+
     //AUTH
     @POST("login")
     suspend fun loginUser(
@@ -156,11 +129,7 @@ interface ApiService {
         @Header("authorization") token : String?
     ) : GetResponse
 
-    @GET("orders/{id}")
-    suspend fun getOrdersById(
-        @Header("authorization") token : String?,
-        @Path("id") id: String?
-    ) : OrderResponseById
+
     @POST("orders/{id}")
     suspend fun ordersId(
         @Header("authorization") token : String?,

@@ -20,7 +20,6 @@ import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.ui.activity.MainActivity
 import com.example.thefinalproject.ui.fragment.itemPage.detail.DetailcourseTentangFragment
 import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelas
-import com.example.thefinalproject.ui.fragment.itemPage.detail.MateriKelasTESTER
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
 import com.google.android.material.tabs.TabLayoutMediator
@@ -122,12 +121,7 @@ class DetailCourse : Fragment() {
         binding.tvWaktucourse.text = "${courseData.totalDuration} Menit"
 
 
-        // Mendapatkan semua ID module dari semua chapter
 
-
-
-        //bundle.putString("chapterIds", chapterIds4String)
-        //bundle.putString("moduleIds", moduleIds4String)
         val chapterIdsList = mutableListOf<String?>()
         val moduleIdsList = mutableListOf<String?>()
         val bundle = Bundle()
@@ -159,8 +153,7 @@ class DetailCourse : Fragment() {
         val materiKelasFragment = MateriKelas()
         materiKelasFragment.arguments = bundle
 
-        val materiKelasFragmentTester = MateriKelasTESTER()
-        materiKelasFragmentTester.arguments = bundle
+
 
         val fragmentList = arrayListOf(tentangFragment, materiKelasFragment )
         binding.viewPager2Course.adapter = AdapterPageForDetail(fragmentList, requireActivity().supportFragmentManager, lifecycle)

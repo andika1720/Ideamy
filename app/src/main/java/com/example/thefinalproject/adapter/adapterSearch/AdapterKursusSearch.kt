@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemFreePremiumClassBinding
-import com.example.thefinalproject.databinding.ListTopicBinding
 import com.example.thefinalproject.network.model.course.DataCategory
-import com.example.thefinalproject.util.Utils
 
 class AdapterKursusSearch (private val onButtonClick: CourseClick): RecyclerView.Adapter<AdapterKursusSearch.ViewHolder>() {
 

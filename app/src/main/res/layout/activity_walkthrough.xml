@@ -13,25 +13,28 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_slogan" />
+        app:layout_constraintTop_toBottomOf="@id/tv_slogan"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vp_walkthrough"
+        app:tabGravity="center"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="10dp"
         app:tabMode="fixed"
-        app:tabGravity="center"
         app:tabRippleColor="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vp_walkthrough" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:contentDescription="@string/logoideamy"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,39 +72,44 @@
         android:id="@+id/nextbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/next"
-        android:background="@android:color/transparent"
         android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/next"
+        android:contentDescription="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <TextView
         android:id="@+id/tv_haveaccount"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="80dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/tanya_akun_regis"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nextbtn"/>
+        app:layout_constraintTop_toBottomOf="@id/nextbtn"
+        tools:ignore="TextSizeCheck" />
 
 
     <TextView
         android:id="@+id/txt_login"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/masuk_akun"
-        android:layout_marginTop="10dp"
         android:textColor="@color/navyblue"
+
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/tv_haveaccount"
-        app:layout_constraintTop_toBottomOf="@id/nextbtn"/>
+        app:layout_constraintTop_toBottomOf="@id/nextbtn"
+        tools:ignore="TextSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

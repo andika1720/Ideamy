@@ -22,7 +22,7 @@ class ResetPassword : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentResetPasswordBinding.inflate(inflater,container,false)
         return binding.root
@@ -48,14 +48,13 @@ class ResetPassword : Fragment() {
                 binding.etOldPass.error = "Password tidak sama"
                 binding.etNewPass.error = "Password tidak sama"
             }else{
-                val mbundle = Bundle()
 //                mbundle.putString("passwordForgot",passBaru)
 //                mbundle.putString("emailnext",emailForgot)
                 forgotPassword(emailForgot,passBaru)
             }
         }
     }
-    fun forgotPassword(email:String,password:String){
+    private fun forgotPassword(email:String, password:String){
         viewmodel.forgotPassword(PostForgotPassRequest(email)).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -84,17 +83,16 @@ class ResetPassword : Fragment() {
             }
         }
     }
-    fun moveFragment(fragment:Fragment){
+    private fun moveFragment(fragment:Fragment) {
         val bundle = Bundle()
 //    Ganti dengan nama fragment tujuan
-        val nextFragment = fragment
-        nextFragment.arguments = bundle
+        fragment.arguments = bundle
 //    Ganti dengan ID kontainer di mana Anda ingin menambahkan atau mengganti fragment
         val containerId = R.id.container3
 //    Lakukan transaksi fragment
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(containerId, nextFragment)
+        fragmentTransaction.replace(containerId, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }

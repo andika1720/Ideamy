@@ -1,5 +1,6 @@
 package com.example.thefinalproject.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -54,10 +55,11 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val data = dif.currentList[position]
-                    onButtonClick?.onCourseItemClick(data)
+                    onButtonClick.onCourseItemClick(data)
                 }
             }
         }
+        @SuppressLint("SetTextI18n")
         fun bind(data: DataCategory) {
             binding.apply {
                 Glide.with(itemView.context)
@@ -106,12 +108,9 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
             }
         }
     }
-    fun updateDataset(filteredData: List<DataCategory>) {
-        dif.submitList(filteredData)
-        dataset = filteredData
-        notifyDataSetChanged()
-    }
 
+
+    @SuppressLint("NotifyDataSetChanged")
     fun clearAndAddData(data: List<DataCategory>) {
         dif.submitList(data)
         dataset = data

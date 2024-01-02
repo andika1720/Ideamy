@@ -22,9 +22,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun getCurrentUser(token: String?) = apiService.currentUser(token)
     suspend fun getCategory(category: String?) = apiService.getDataByCategory(category)
 
-    suspend fun getFilter(token: String?,rating: Double?,category: String?,level: String?, terbaru: String?) = apiService.getFiltersNew(token, rating, level, terbaru, category)
-    suspend fun getChapters(courseId: String?) = apiService.getChapters(courseId)
-    suspend fun getModules(chapterId: String?) = apiService.getModules(chapterId)
+
     suspend fun getDataByid(token: String?,id: String)= apiService.getDataById(token,id)
 
     suspend fun getDataByid1(token: String?,id: String)= apiService.getDataById1(token,id)
@@ -33,11 +31,9 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getModulesById(token: String?,id: String) = apiService.getModulesById(token,id)
 
-    suspend fun getCoursesByTitle(title:String) = apiService.getCourseByTitle(title)
 
     suspend fun getFilter2(token: String?,rating: Double?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(token,rating,level,category,type,search)
 
-    suspend fun getFiltersCourse(category: String?,level: String?, createdAt:String?, rating:String) = apiService.filterGet(category,level,createdAt,rating)
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)
     suspend fun changePassword(token: String?,changePasswordRequest: ChangePasswordRequest)=apiService.resetPasswordUser(token,changePasswordRequest)
 
@@ -47,7 +43,6 @@ class Repository(private val apiService: ApiService) {
     //ORDER
     suspend fun getOrders(token: String?) = apiService.getOrders(token)
 
-    suspend fun getOrdersById(token: String?,id: String?) = apiService.getOrdersById(token,id)
 
     suspend fun ordersId(token: String?,id: String?) = apiService.ordersId(token, id)
 

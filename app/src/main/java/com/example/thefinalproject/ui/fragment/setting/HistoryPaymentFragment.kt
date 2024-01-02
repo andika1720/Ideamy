@@ -29,7 +29,7 @@ class HistoryPaymentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHistoryPaymentBinding.inflate(inflater, container, false)
         sharePref = SharePref
 
@@ -78,7 +78,7 @@ class HistoryPaymentFragment : Fragment() {
         authViewModel.deletePayment(sharePref.getPref(SharePref.Enum.PREF_NAME.value),id).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    it.data?.let { data ->
+                    it.data?.let { _ ->
                         showOrderCoroutines(sharePref.getPref(SharePref.Enum.PREF_NAME.value))
                         Utils.toastMessage(requireContext(), "Berhasil membatalkan pesanan")
                     }

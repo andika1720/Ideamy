@@ -53,6 +53,7 @@ class DetailcourseTentangFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("SameParameterValue")
     private fun showTentang(token:String?, id: String) {
         viewMode.getDataById("Bearer $token",id).observe(viewLifecycleOwner) {
             when (it.status) {
@@ -72,14 +73,14 @@ class DetailcourseTentangFragment : Fragment() {
         }
     }
     private fun showData(data: DetailResponse) {
-        val courseData: DataCourseById? = data.data
-        val audienceList = courseData?.audience
+        val courseData: DataCourseById = data.data
+        val audienceList = courseData.audience
         val formattedAudience = StringBuilder()
         audienceList?.forEachIndexed { index, audience ->
             formattedAudience.append("${index + 1}. $audience\n")
         }
 
-        binding.tvDeskripsiTentang.text = courseData?.description
+        binding.tvDeskripsiTentang.text = courseData.description
         binding.textView4.text = formattedAudience.toString()
     }
 }

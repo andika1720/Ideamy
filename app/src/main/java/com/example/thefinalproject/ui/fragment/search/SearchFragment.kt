@@ -36,7 +36,6 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
 
-        val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
         binding.etSearch.requestFocus()
         binding.imgSearch.setOnClickListener {
             hideKeyboardAndClearFocus()

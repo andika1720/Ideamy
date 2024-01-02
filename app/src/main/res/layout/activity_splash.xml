@@ -13,6 +13,7 @@
         android:layout_height="250dp"
         android:src="@drawable/logo_ideamy"
         app:tint="@android:color/white"
+        android:contentDescription="@string/logoideamy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

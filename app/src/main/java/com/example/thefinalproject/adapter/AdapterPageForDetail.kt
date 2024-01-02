@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class AdapterPageForDetail (
-    var fragmentList: ArrayList<Fragment>,
+    private var fragmentList: ArrayList<Fragment>,
     fm: FragmentManager,
     lifecycle: Lifecycle,
 

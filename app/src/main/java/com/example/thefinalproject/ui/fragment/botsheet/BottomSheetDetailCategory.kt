@@ -2,7 +2,6 @@ package com.example.thefinalproject.ui.fragment.botsheet
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +17,11 @@ import org.koin.android.ext.android.inject
 class BottomSheetDetailCategory : BottomSheetDialogFragment() {
     private var _binding: FragmentBottomSheetDetailCategoryBinding? = null
     private val binding get() = _binding!!
-    private lateinit var categoryAdapter: AdapterCategory
     private val viewModel: ViewModelAll by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
       _binding = FragmentBottomSheetDetailCategoryBinding.inflate(inflater, container, false)
 
 
@@ -32,6 +30,7 @@ class BottomSheetDetailCategory : BottomSheetDialogFragment() {
     }
 
 
+    @Suppress("SameParameterValue")
     private fun fetchCategory(category: String?) {
         viewModel.getAllCategory(category).observe(viewLifecycleOwner) {
             when (it.status) {

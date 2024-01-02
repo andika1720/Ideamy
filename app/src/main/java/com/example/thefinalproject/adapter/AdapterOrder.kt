@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.thefinalproject.R
 import com.example.thefinalproject.databinding.ItemOrderBinding
 import com.example.thefinalproject.network.model.order.DataPost
-import com.example.thefinalproject.util.Utils
 
 class AdapterOrder (private val onButtonClick: CourseClick): RecyclerView.Adapter<AdapterOrder.ViewHolder>() {
 
