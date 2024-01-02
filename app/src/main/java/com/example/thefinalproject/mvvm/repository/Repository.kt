@@ -35,7 +35,7 @@ class Repository(private val apiService: ApiService) {
 
     suspend fun getCoursesByTitle(title:String) = apiService.getCourseByTitle(title)
 
-    suspend fun getFilter2(token: String?,id: String?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(token,id,level,category,type,search)
+    suspend fun getFilter2(token: String?,rating: Double?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(token,rating,level,category,type,search)
 
     suspend fun getFiltersCourse(category: String?,level: String?, createdAt:String?, rating:String) = apiService.filterGet(category,level,createdAt,rating)
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)

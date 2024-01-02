@@ -1,6 +1,7 @@
 package com.example.thefinalproject.ui.fragment
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -32,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 
 import org.koin.android.ext.android.inject
+import java.util.Locale
 
 @Suppress("SameParameterValue")
 class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
@@ -43,7 +44,6 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
     private var valueAllCheckbox = ArrayList<String>()
     private var valueCheckBoxCategory = ArrayList<String>()
     private var valueCheckBoxLevel = ArrayList<String>()
-    private lateinit var adapter:AdapterMyCourseNew
 
 
 
@@ -118,8 +118,8 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         binding.tabLayoutKursus.addTab(freeTab)
     }
 
-    private fun fetchList(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     categorys = it.data?.data ?: emptyList()
@@ -204,8 +204,8 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         })
     }
 
-    private fun fetchListSearch(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchListSearch(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     val length = it.data?.data?.size
@@ -240,6 +240,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         binding.rvSearch.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvSearch.adapter = adapter
     }
+    @SuppressLint("InflateParams", "DefaultLocale")
     private fun botSheetFilter(){
         try {
             val dialog = BottomSheetDialog(requireContext())
@@ -252,17 +253,25 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             }
             var category1 = ""
             var level1 = ""
+            var rating = ""
+            val radioGroupSort = view.findViewById<RadioGroup>(R.id.filter1)
             val radioGroup = view.findViewById<RadioGroup>(R.id.filter2)
             val radioGroupLevel = view.findViewById<RadioGroup>(R.id.filter3)
 
-            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            radioGroupSort.setOnCheckedChangeListener { _, checkedId ->
+                val selectedRadioButton: RadioButton = view.findViewById(checkedId)
+                val selectedOption: String = selectedRadioButton.text.toString()
+                Log.e("filter tes", selectedOption)
+                rating = selectedOption
+            }
+            radioGroup.setOnCheckedChangeListener { _, checkedId ->
                 val selectedRadioButton: RadioButton = view.findViewById(checkedId)
                 val selectedOption: String = selectedRadioButton.text.toString()
                 Log.e("filter tes", selectedOption)
                 category1 = selectedOption
             }
 
-            radioGroupLevel.setOnCheckedChangeListener { group, checkedId ->
+            radioGroupLevel.setOnCheckedChangeListener { _, checkedId ->
                 val selectedRadioButton: RadioButton = view.findViewById(checkedId)
                 val selectedOption: String = selectedRadioButton.text.toString()
                 level1 = selectedOption
@@ -272,7 +281,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                 if (level1 == ""){
                     fetchList(null,null,null,category1,null,null)
                 }else if(category1 == ""){
-                    fetchList(null,null,level1.toLowerCase(),null,null,null)
+                    fetchList(null,null, level1.lowercase(Locale.getDefault()),null,null,null)
                 }else{
                     fetchList(null,null,level1,category1,null,null)
                 }

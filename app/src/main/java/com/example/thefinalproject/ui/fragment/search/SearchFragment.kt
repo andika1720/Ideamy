@@ -69,8 +69,8 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         binding.rvKursuspopuler.adapter = adapter
     }
 
-    private fun fetchList(token:String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)

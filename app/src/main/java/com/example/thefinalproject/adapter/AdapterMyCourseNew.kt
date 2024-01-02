@@ -67,6 +67,7 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
 
                 tvCourse.text = data.category
                 tvJudul.text = data.title
+                tvRate.text = data.rating.toString()
                 tvCreator.text = "by ${data.creator}"
                 tvFreeLvlCourse.text = data.level
                 tvFreeModuls.text = "${data.totalModule} Modul"
@@ -74,7 +75,15 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                 if (data.statusPayment) {
                     // Jika status pembayaran true, mulai kelas
                     btnMulaiKelas.text = "Mulai Kelas"
-                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
+                    playcircle?.setBounds(
+                        0,
+                        0,
+                        playcircle.intrinsicWidth / 2,
+                        playcircle.intrinsicHeight / 2
+                    )
+                    btnMulaiKelas.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.navyblue))
+                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
                 } else {
                     // Jika status pembayaran false, sesuaikan dengan tipe data
                     if (data.type == "premium") {

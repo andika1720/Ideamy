@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment.setting
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri

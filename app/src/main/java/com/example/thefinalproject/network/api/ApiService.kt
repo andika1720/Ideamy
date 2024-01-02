@@ -96,7 +96,7 @@ interface ApiService {
     @GET("courses")
     suspend fun getFilterCourse(
         @Header("authorization") token : String?,
-        @Query("id") id: String?,
+        @Query("rating") rating: Double?,
         @Query("category") category: String?,
         @Query("level") level: String?,
         @Query("type") type: String?,

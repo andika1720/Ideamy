@@ -67,15 +67,17 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-                when (tab.position) {
-                    0 -> fetchList(savedToken,null, null, null, null,null)
-                    1 -> fetchList(savedToken,null, null, "Web Development", null,null)
-                    2 -> fetchList(savedToken,null, null, "Android Development", null,null)
-                    3 -> fetchList(savedToken,null, null, "Data Science", null,null)
-                    4 -> fetchList(savedToken,null, null, "UI/UX Design", null,null)
-                    5 -> fetchList(savedToken,null, null, "Product Management", null,null)
-                    6 -> fetchList(savedToken,null, null, "IOS Development", null,null)
-                }
+
+                    when (tab.position) {
+                        0 -> fetchList(savedToken, 5.toDouble(), null, null, null, null)
+                        1 -> fetchList(savedToken, 5.toDouble(), null, "Web Development", null, null)
+                        2 -> fetchList(savedToken, 5.toDouble(), null, "Android Development", null, null)
+                        3 -> fetchList(savedToken, 4.5, null, "Data Science", null, null)
+                        4 -> fetchList(savedToken, 5.toDouble(), null, "UI/UX Design", null, null)
+                        5 -> fetchList(savedToken, 4.8, null, "Product Management", null, null)
+                        6 -> fetchList(savedToken, 4.4, null, "IOS Development", null, null)
+                    }
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -130,8 +132,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         }
     }
 
-    private fun fetchList(token: String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -157,7 +159,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         val adapter = AdapterKursusPopuler2(this)
 
         val uniqueCategories = data?.data?.distinctBy { it.category }
-        adapter.sendList(uniqueCategories ?: emptyList())
+        adapter.sendList(data?.data ?: emptyList())
         binding.rvKursuspopuler.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvKursuspopuler.adapter = adapter
@@ -274,8 +276,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         })
     }
 
-    private fun fetchCourseSearch(token: String?,id: String?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,id, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchCourseSearch(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     val dataLength = it.data?.data?.size

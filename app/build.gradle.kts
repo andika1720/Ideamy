@@ -108,4 +108,11 @@ dependencies {
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
 
+    //testing
+    testImplementation("com.google.truth:truth:1.1.5")
+    androidTestImplementation("com.google.truth:truth:1.1.5")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.5.0")
 }

@@ -192,6 +192,7 @@ class MyClassFragment : Fragment() {
                     binding.rvCategory.visibility = View.VISIBLE
                     binding.rvClassBerjalan.visibility = View.VISIBLE
                     binding.tv1.visibility = View.VISIBLE
+                    binding.kelasKosong.visibility = View.VISIBLE
                     binding.tvCategory.visibility = View.VISIBLE
                     binding.tabLayoutClass.visibility = View.VISIBLE
                     binding.rvSearch.visibility = View.GONE
@@ -201,6 +202,7 @@ class MyClassFragment : Fragment() {
                     binding.rvClassBerjalan.visibility = View.GONE
                     binding.tvCategory.visibility = View.GONE
                     binding.tv1.visibility = View.GONE
+                    binding.kelasKosong.visibility = View.GONE
                     binding.tabLayoutClass.visibility = View.GONE
                     fetchMyCourseSearch(savedToken,s.toString())
                 } else {
@@ -208,6 +210,7 @@ class MyClassFragment : Fragment() {
                     binding.rvClassBerjalan.visibility = View.VISIBLE
                     binding.tv1.visibility = View.VISIBLE
                     binding.tvCategory.visibility = View.VISIBLE
+                    binding.kelasKosong.visibility = View.VISIBLE
                     binding.tabLayoutClass.visibility = View.VISIBLE
                     binding.notFounds.visibility = View.GONE
                     binding.rvSearch.visibility = View.GONE
@@ -262,6 +265,7 @@ class MyClassFragment : Fragment() {
                 binding.kelasKosong.visibility = View.VISIBLE
                 binding.carikelas.setOnClickListener {
                     findNavController().navigate(R.id.action_myClassFragment2_to_myCourseFragment2)
+
                 }
 
             } else {
