@@ -83,14 +83,14 @@ class LoginActivity : AppCompatActivity() {
                         val token = it.data?.data?.token
                         sharePref.setPref(SharePref.Enum.PREF_NAME.value, token)
                         sharePref.setLoginStatus(true)
-                        Utils.toastMessage(this, "Login berhasil")
+                        Utils.toastMessage(this, "Login berhasil! Mengalihkan ke halaman Beranda...")
                         navigateToMainActivity()
                         Log.d("LoginBerhasil", "Token= $token")
                     }
                     Status.ERROR -> {
                         val errorMessage = it.message ?: "Error Occurred!"
                         Log.d("errorLogin", errorMessage)
-                        loginError(errorMessage)
+                        Utils.toastMessage(this, "Login gagal silahkan coba kembali...")
                     }
                     Status.LOADING -> {
                         Log.d("load", "Loading")
@@ -111,11 +111,11 @@ class LoginActivity : AppCompatActivity() {
 
         return when {
             email.isEmpty() -> {
-                emailTxf.error = "Please fill in all fields"
+                emailTxf.error = "Email Harus diisi"
                 false
             }
             !isValidEmail(email) -> {
-                emailTxf.error = "Email must be unique and valid"
+                emailTxf.error = "Format email tidak valid"
                 false
             }
             else -> {
@@ -128,11 +128,11 @@ class LoginActivity : AppCompatActivity() {
     private fun passwordValid(edPass: EditText, passTxf: TextInputLayout): Boolean {
         return when {
             edPass.text.toString().trim().isEmpty() -> {
-                passTxf.error = "Password cannot be empty"
+                passTxf.error = "Password harus diisi"
                 false
             }
             edPass.text.toString().trim().length < 8 -> {
-                passTxf.error = "Password must be at least 8 characters long"
+                passTxf.error = "Password harus terdiri dari 8-12 karakter"
                 false
             }
             else -> {
@@ -142,18 +142,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginError(message: String) {
-        if (message.contains("email")) {
-            binding.textInputEmailRegis.error = "Email not registered"
-        } else if (message.contains("password")) {
-            binding.textInputPasswordLogin.error = "Incorrect password"
-        } else if(message.contains("HTTP 404")){
-            Utils.toastMessage(this, "Email atau password tidak valid")
-        } else {
-            binding.textInputEmailRegis.error = null
-            binding.textInputPasswordLogin.error = null
-        }
-    }
 
     private fun isValidEmail(email: String): Boolean {
         val pattern = Patterns.EMAIL_ADDRESS

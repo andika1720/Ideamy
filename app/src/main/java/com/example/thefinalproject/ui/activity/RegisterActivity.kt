@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             // Memeriksa panjang nama
             if (namaText.length < 6) {
-                binding.etNamaRegis.error = "Name must be at least 6 characters"
+                binding.etNamaRegis.error = "Nama minimal 6 karakter"
                 binding.etNamaRegis.requestFocus()
                 return@setOnClickListener
             } else if (emailText.isBlank()) {
@@ -58,11 +58,11 @@ class RegisterActivity : AppCompatActivity() {
                 binding.etEmailRegis.requestFocus()
                 return@setOnClickListener
             } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-                binding.etEmailRegis.error = "Email tidak valid"
+                binding.etEmailRegis.error = "Format email tidak valid"
                 binding.etEmailRegis.requestFocus()
                 return@setOnClickListener
             } else if (noHpText.isBlank()) {
-                binding.etNohpRegis.error = "No HP harus diisi"
+                binding.etNohpRegis.error = "Nomor telepon harus diisi"
                 binding.etNohpRegis.requestFocus()
                 return@setOnClickListener
             } else if (noHpText.length < 11 || noHpText.length > 11) {
@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.etPasswordRegis.requestFocus()
                 return@setOnClickListener
             } else if (passwordText.length < 8 || passwordText.length > 12) {
-                binding.etPasswordRegis.error = "Password Harus Terdiri dari 8-12 Karakter"
+                binding.etPasswordRegis.error = "Password harus terdiri dari 8-12 karakter"
                 binding.etPasswordRegis.requestFocus()
                 return@setOnClickListener
             } else {
@@ -91,6 +91,7 @@ class RegisterActivity : AppCompatActivity() {
         viewmodel.regisUser(regisReq).observe(this) {
             when (it.status) {
                 Status.SUCCESS -> {
+                    Utils.toastMessage(this, "Registrasi berhasil! Mengalihkan ke halaman OTP...")
                     val fragment = OtpCode()
                     val bundle = Bundle()
                     bundle.putParcelable("dataRegis", regisReq)

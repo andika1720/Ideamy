@@ -41,15 +41,19 @@ class ResetPassword : Fragment() {
         binding.btnChangePassword.setOnClickListener {
             val passBaru = binding.etOldPass.text.toString()
             val validNewPass = binding.etNewPass.text.toString()
-            if(passBaru.length < 8 || passBaru.length > 12){
+            if(passBaru.isBlank()){
+                binding.etOldPass.error = "Password harus diisi"
+                binding.etOldPass.requestFocus()
+            }else if(passBaru.length < 8 || passBaru.length > 12) {
                 binding.etOldPass.error = "Password harus terdiri 8-12 karakter"
-
-            }else if (passBaru != validNewPass){
+                binding.etOldPass.requestFocus()
+            }else if(validNewPass.isBlank()){
+                binding.etNewPass.error = "Password harus diisi"
+                binding.etNewPass.requestFocus()
+            }else if (passBaru != validNewPass) {
                 binding.etOldPass.error = "Password tidak sama"
                 binding.etNewPass.error = "Password tidak sama"
             }else{
-//                mbundle.putString("passwordForgot",passBaru)
-//                mbundle.putString("emailnext",emailForgot)
                 forgotPassword(emailForgot,passBaru)
             }
         }
@@ -76,6 +80,8 @@ class ResetPassword : Fragment() {
                     val errorMessage = it.message ?: "Error Occurred!"
                     Log.d("errorOTP", errorMessage)
                     resetPassError(it.message.toString())
+                    val fragmet = InputEmail()
+                    moveFragment(fragmet)
                 }
                 Status.LOADING -> {
                     Log.d("load", "Loading")

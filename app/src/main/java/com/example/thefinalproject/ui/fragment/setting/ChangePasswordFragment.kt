@@ -49,7 +49,15 @@ class ChangePasswordFragment : Fragment() {
             val changePasswordRequest = ChangePasswordRequest(passBaru,passLama)
             if (passLama.isBlank() || passBaru.isBlank()  || validNewPass.isBlank()) {
                 Utils.toastMessage(requireContext(), "Semua field harus diisi")
-            } else if(passLama == passBaru){
+            }else if(passLama.length < 8 || passLama.length > 12){
+                binding.etOldPass.error = "Password harus terdiri 8-12 karakter"
+                binding.etOldPass.requestFocus()
+                return@setOnClickListener
+            }else if(passBaru.length < 8 || passBaru.length > 12) {
+                binding.etNewPass.error = "Password harus terdiri 8-12 karakter"
+                binding.etNewPass.requestFocus()
+                return@setOnClickListener
+            }else if(passLama == passBaru){
                 binding.etNewPass.error = "Password tidak boleh sama"
                 binding.etNewPass.requestFocus()
                 return@setOnClickListener
