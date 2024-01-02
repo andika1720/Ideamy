@@ -89,7 +89,14 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
 
         })
         binding.tvFilterKursus.setOnClickListener {
-            botSheetFilter(savedToken!!)
+            val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+            if (isLogin != null) {
+                botSheetFilter(savedToken!!)
+            } else {
+                val botsheetLogin = BotSheetLogin()
+                botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
+            }
+
         }
 
     }

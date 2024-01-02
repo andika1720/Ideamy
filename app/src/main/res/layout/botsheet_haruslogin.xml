@@ -43,8 +43,8 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/logo_ideamy"
             android:contentDescription="@string/logo"
+            android:src="@drawable/logo_ideamy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_regis_succses_botshet" />
@@ -71,7 +71,7 @@
             android:backgroundTint="@color/navyblue"
             android:text="@string/btn_masuk"
             app:cornerRadius="15dp"
-
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_maafAnda_botshet" />
