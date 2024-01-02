@@ -188,6 +188,6 @@
     <string name="oopss">Oopss!</string>
     <string name="logoideamy" />
     <string name="submit">\n</string>
-    <string name="kelas_free"/>
-    <string name="ikuti_sekarang"/>
+    <string name="kelas_free">Kelas Free</string>
+    <string name="ikuti_sekarang">Ikuti Sekarang</string>
 </resources>
