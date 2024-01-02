@@ -187,7 +187,7 @@
     <string name="maaf_anda_harus_login_terlebih_dahulu">Maaf,Anda harus login terlebih dahulu</string>
     <string name="oopss">Oopss!</string>
     <string name="logoideamy" />
-    <string name="submit">\n</string>
+    <string name="submit">Update Profile</string>
     <string name="kelas_free">Kelas Free</string>
     <string name="ikuti_sekarang">Ikuti Sekarang</string>
 </resources>

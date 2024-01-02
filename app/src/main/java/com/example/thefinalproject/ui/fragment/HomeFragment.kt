@@ -70,13 +70,14 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
+
                     when (tab.position) {
                         0 -> fetchList(savedToken, null, null, null, null, null)
                         1 -> fetchList(savedToken, null, null, "Web Development", null, null)
-                        2 -> fetchList(savedToken, null, null, "Android Development", null, null)
-                        3 -> fetchList(savedToken, null, null, "Data Science", null, null)
-                        4 -> fetchList(savedToken, null, null, "UI/UX Design", null, null)
-                        5 -> fetchList(savedToken, null, null, "Product Management", null, null)
+                        2 -> fetchList(savedToken, null, null, "Data Science", null, null)
+                        3 -> fetchList(savedToken, null, null, "UI/UX Design", null, null)
+                        4 -> fetchList(savedToken, null, null, "Product Management" , null, null)
+                        5 -> fetchList(savedToken, null, null, "Android Development" , null, null)
                         6 -> fetchList(savedToken, null, null, "IOS Development", null, null)
                     }
 
