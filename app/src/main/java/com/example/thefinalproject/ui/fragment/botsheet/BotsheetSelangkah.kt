@@ -1,6 +1,5 @@
 package com.example.thefinalproject.ui.fragment.botsheet
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -40,12 +39,12 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = BotsheetBelicourseDetailcourseBinding.inflate(inflater, container, false)
 
         sharePref = SharePref
         binding.icClose.setOnClickListener {
-           dismiss()
+            dismiss()
         }
 
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
@@ -58,26 +57,29 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
 
 
 
-    @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse) {
-        val courseData: DataCourseById = data.data
+        val courseData: DataCourseById? = data.data
 
-        binding.tvCategoryCourse.text = courseData.category
-        binding.tvTopicCourse.text = courseData.title
-        binding.types.text = courseData.type
-        binding.tvAuthorCourse.text = courseData.creator
-        if(courseData.type == "premium"){
-            val hargaAwal: Int? = courseData.price
-            binding.textView8.text = Utils.formatCurrency(hargaAwal)
-        }else{
-            val hargaFree = 0
-            binding.textView8.text = Utils.formatCurrency(hargaFree)
+        binding.tvCategoryCourse.text = courseData?.category
+        binding.tvTopicCourse.text = courseData?.title
+        binding.types.text = courseData?.type
+        binding.tvAuthorCourse.text = courseData?.creator
+        if(courseData?.type == "premium"){
+            val hargaAwal: Int? = courseData?.price
+            binding.textView8.text = "${Utils.formatCurrency(hargaAwal)}"
+            binding.textView3.text = getString(R.string.kelas_prem)
+            binding.btnBeliSekarang.text=getString(R.string.beli_sekarang)
+        } else if(courseData?.type == "free") {
+            // Jika jenisnya "free", set textView3 ke "Kelas Free"
+            binding.textView3.text = getString(R.string.kelas_free)
+            binding.btnBeliSekarang.text=getString(R.string.ikuti_sekarang)
+            binding.textView8.text = "${Utils.formatCurrency(0)}"
         }
-        binding.tvLevel.text = "${courseData.level} Level"
-        binding.tvWaktucourse.text = "${courseData.totalDuration} Menit"
-        binding.tvModule.text = "${courseData.totalModule} Modul"
+        binding.tvLevel.text = "${courseData?.level} Level"
+        binding.tvWaktucourse.text = "${courseData?.totalDuration} Menit"
+        binding.tvModule.text = "${courseData?.totalModule} Modul"
         Glide.with(this)
-            .load(courseData.image)
+            .load(courseData?.image)
             .fitCenter()
             .into(binding.imageView2)
 
@@ -137,5 +139,10 @@ class BotsheetSelangkah: BottomSheetDialogFragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    fun dismissBottomSheet() {
+        dismissAllowingStateLoss()
+    }
 }
+
+
+
