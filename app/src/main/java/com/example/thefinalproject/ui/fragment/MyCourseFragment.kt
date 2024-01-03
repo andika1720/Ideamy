@@ -261,7 +261,6 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             var category1 = ""
             var level1 = ""
             var rating = ""
-            var valueRating = 0.0
             val radioGroupSort = view.findViewById<RadioGroup>(R.id.filter1)
             val radioGroup = view.findViewById<RadioGroup>(R.id.filter2)
             val radioGroupLevel = view.findViewById<RadioGroup>(R.id.filter3)
@@ -286,9 +285,6 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             }
 
             btnNext.setOnClickListener {
-                if (rating == "Paling Populer"){
-                    valueRating = 5.0
-                }
 
                 if(rating == "" && category1=="" ){
                     fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),null,null,null,null)
@@ -297,18 +293,32 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                     fetchList(savedToken, null, null, category1, null, null,null)
 
                 }else if(category1 == "" && level1 == ""){
-                    fetchList(savedToken, valueRating, null, null, null, null,null)
+                    if (rating == "Terpopuler"){
+                        fetchListFilterPopuler(savedToken, null, null, null, null, null,null)
+                    }else if (rating == "Terbaru") {
+                        Log.e("tes log", "alo")
+                    }
+
                 } else if(rating == "" ){
                     fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),category1,null,null,null)
                 }else if (category1 == "") {
-                    fetchList(savedToken, valueRating,
-                        level1.lowercase(Locale.getDefault()), null, null, null,null)
-
+                    if (rating == "Terpopuler"){
+                        fetchListFilterPopuler(savedToken, null, level1.lowercase(Locale.getDefault()), null, null, null,null)
+                    }else if (rating == "Terbaru") {
+                        Log.e("tes log", "alo")
+                    }
                 }else if (level1 == ""){
-                    fetchList(savedToken,valueRating,null,category1,null,null,null)
+                    if (rating == "Terpopuler"){
+                        fetchListFilterPopuler(savedToken, null, null, category1, null, null,null)
+                    }else if (rating == "Terbaru") {
+                        Log.e("tes log", "alo")
+                    }
                 }else{
-                    fetchList(savedToken,valueRating,
-                        level1.lowercase(Locale.getDefault()),category1,null,null,null)
+                    if (rating == "Terpopuler"){
+                        fetchListFilterPopuler(savedToken, null, level1.lowercase(Locale.getDefault()), category1, null, null,null)
+                    }else if (rating == "Terbaru") {
+                        Log.e("tes log", "alo")
+                    }
                 }
                 Log.e("Isi Check Box Category",valueCheckBoxCategory.toString())
                 Log.e("Isi Check Box Level",valueCheckBoxLevel.toString())
@@ -321,6 +331,43 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
             Log.e("showbotFiltering", "ErrorBotsheet", e)
         }
     }
+
+    private fun fetchListFilterPopuler(
+        token: String?,
+        rating: Double?,
+        level: String?,
+        category: String?,
+        type: String?,
+        search: String?,
+        createAt: String?
+    ) {
+        viewMode.getFilterCourse(token, rating, level, category, type, search, createAt)
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        categorys = it.data?.data ?: emptyList()
+
+                        // Urutkan kursus berdasarkan rating dari terbesar ke terkecil
+                        val sortedData = it.data?.data?.sortedByDescending { course ->
+                            course.rating
+                        }
+
+                        showListHorizontal(ListResponse(sortedData!!, it.message, it.status.toString()))
+                        binding.progressbarCourse.isVisible = false
+                    }
+
+                    Status.ERROR -> {
+                        binding.progressbarCourse.isVisible = false
+                        Log.e("Errorr", it.message.toString())
+                    }
+
+                    Status.LOADING -> {
+                        binding.progressbarCourse.isVisible = true
+                    }
+                }
+            }
+    }
+
 
 }
 
