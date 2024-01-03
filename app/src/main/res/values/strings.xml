@@ -190,4 +190,7 @@
     <string name="submit">Update Profile</string>
     <string name="kelas_free">Kelas Free</string>
     <string name="ikuti_sekarang">Ikuti Sekarang</string>
+    <string name="terbaru">Terbaru</string>
+    <string name="terpopuler">Terpopuler</string>
+    <string name="urutkan">Urutkan</string>
 </resources>
