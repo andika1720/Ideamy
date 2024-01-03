@@ -1,5 +1,6 @@
 package com.example.thefinalproject.ui.fragment
 
+import android.annotation.SuppressLint
 import com.example.thefinalproject.util.SharePref
 import android.os.Bundle
 import android.text.Editable
@@ -65,18 +66,19 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
 
 
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("SuspiciousIndentation")
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
 
                     when (tab.position) {
-                        0 -> fetchList(savedToken, null, null, null, null, null)
-                        1 -> fetchList(savedToken, null, null, "Web Development", null, null)
-                        2 -> fetchList(savedToken, null, null, "Data Science", null, null)
-                        3 -> fetchList(savedToken, null, null, "UI/UX Design", null, null)
-                        4 -> fetchList(savedToken, null, null, "Product Management" , null, null)
-                        5 -> fetchList(savedToken, null, null, "Android Development" , null, null)
-                        6 -> fetchList(savedToken, null, null, "IOS Development", null, null)
+                        0 -> fetchList(savedToken, null, null, null, null, null,null)
+                        1 -> fetchList(savedToken, null, null, "Web Development", null, null,null)
+                        2 -> fetchList(savedToken, null, null, "Data Science", null, null,null)
+                        3 -> fetchList(savedToken, null, null, "UI/UX Design", null, null,null)
+                        4 -> fetchList(savedToken, null, null, "Product Management" , null, null,null)
+                        5 -> fetchList(savedToken, null, null, "Android Development" , null, null,null)
+                        6 -> fetchList(savedToken, null, null, "IOS Development", null, null,null)
                     }
 
             }
@@ -133,8 +135,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         }
     }
 
-    private fun fetchList(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?, createAt: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListHorizontal(it.data)
@@ -255,7 +257,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                     binding.lihatSemuaCategory.visibility = View.GONE
                     binding.tabLayoutKursus.visibility = View.GONE
                     binding.tvKursus.visibility = View.GONE
-                    fetchCourseSearch(savedToken, null, null,null,null, s.toString())
+                    fetchCourseSearch(savedToken, null, null,null,null, s.toString(),null)
                 } else {
                     binding.rvKursuspopuler.visibility = View.VISIBLE
                     binding.recycleviewCategory.visibility = View.VISIBLE
@@ -276,8 +278,8 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         })
     }
 
-    private fun fetchCourseSearch(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchCourseSearch(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?,createAt: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     val dataLength = it.data?.data?.size

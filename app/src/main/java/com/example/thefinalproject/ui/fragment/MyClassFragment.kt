@@ -8,28 +8,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefinalproject.R
 import com.example.thefinalproject.adapter.AdapterCategory
+import com.example.thefinalproject.adapter.AdapterKursusPopuler2
 import com.example.thefinalproject.adapter.adapterSearch.MyClassAdapter
 import com.example.thefinalproject.databinding.FragmentMyClassBinding
 import com.example.thefinalproject.mvvm.viewmmodel.AuthViewModel
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.CategoryResponse
+import com.example.thefinalproject.network.model.course.DataCategory
+import com.example.thefinalproject.network.model.course.ListResponse
 import com.example.thefinalproject.network.model.mycourse.Course
-import com.example.thefinalproject.network.model.mycourse.DataMyCourse
 import com.example.thefinalproject.network.model.mycourse.MyCourseResponse
+import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
+import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
-import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
 @Suppress("SameParameterValue")
-class MyClassFragment : Fragment() {
+class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopuler2.CourseClick {
     private var _binding: FragmentMyClassBinding? = null
     private val binding get() = _binding!!
     private val viewMode: ViewModelAll by inject()
@@ -59,18 +61,21 @@ class MyClassFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
-        fetchMyCourse(savedToken,null)
+        fetchMyCourse(savedToken,null, null)
 //        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
 //            override fun onTabSelected(tab: TabLayout.Tab) {
 //                when (tab.position) {
 //                    0 -> {
-//                        fetchMyCourse(savedToken,null)
+//                        fetchMyCourse(savedToken,null,null)
 //                    }
 //                    1 -> {
-//                        fetchMyCourse(savedToken,null)
+//                        fetchMyCourse(savedToken,null,"beginner")
 //                    }
 //                    2 -> {
-//                        fetchMyCourse(savedToken,null)
+//                        fetchMyCourse(savedToken,null,"intermediate")
+//                    }
+//                    3 -> {
+//                        fetchMyCourse(savedToken,null,"advance")
 //                    }
 //                }
 //            }
@@ -116,36 +121,37 @@ class MyClassFragment : Fragment() {
 
     private fun tabLayout(){
         val allTab = binding.tabLayoutClass.newTab()
-        allTab.text = "SemuaKelas"
+        allTab.text = "Semua Kelas"
         binding.tabLayoutClass.addTab(allTab)
 
         val premiumTab = binding.tabLayoutClass.newTab()
-        premiumTab.text = "In Progress"
+        premiumTab.text = "Beginner"
         binding.tabLayoutClass.addTab(premiumTab)
 
         val freeTab = binding.tabLayoutClass.newTab()
-        freeTab.text = "Selesai"
+        freeTab.text = "Intermediate"
         binding.tabLayoutClass.addTab(freeTab)
+
+        val advance = binding.tabLayoutClass.newTab()
+        advance.text = "Advance"
+        binding.tabLayoutClass.addTab(advance)
     }
 
 
-    private fun fetchMyCourse(token: String?,search: String?) {
-        authViewModel.myCourse(token,search).observe(viewLifecycleOwner) {
+    private fun fetchMyCourse(token: String?,search: String?,level: String?) {
+        authViewModel.myCourse(token,search,level).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListCourse(it.data)
                     Log.d("fetchCoursesucces", it.message.toString())
-                    binding.progressbarCategory.isVisible = false
 
                 }
 
                 Status.ERROR -> {
-                    binding.progressbarCategory.isVisible = false
                     Log.e("fetcherror", it.message.toString())
                 }
 
                 Status.LOADING -> {
-                    binding.progressbarCategory.isVisible = true
                     Log.d("fetchload", it.message.toString())
                 }
             }
@@ -155,9 +161,7 @@ class MyClassFragment : Fragment() {
 
 
     private fun showListCourse(data: MyCourseResponse?) {
-        val adapter = MyClassAdapter { clickedCourse ->
-            navigatoToCourse(clickedCourse)
-        }
+        val adapter = MyClassAdapter (this)
 
         data?.data?.let { dataMyCourse ->
             val courses = dataMyCourse.courses ?: emptyList()
@@ -204,7 +208,7 @@ class MyClassFragment : Fragment() {
                     binding.tv1.visibility = View.GONE
                     binding.kelasKosong.visibility = View.GONE
                     binding.tabLayoutClass.visibility = View.GONE
-                    fetchMyCourseSearch(savedToken,s.toString())
+                    fetchCourseSearch1(savedToken, null, null,null,null, s.toString(),null)
                 } else {
                     binding.rvCategory.visibility = View.VISIBLE
                     binding.rvClassBerjalan.visibility = View.VISIBLE
@@ -223,8 +227,8 @@ class MyClassFragment : Fragment() {
 
         })
     }
-    private fun fetchMyCourseSearch(token: String?,search: String?) {
-        authViewModel.myCourse(token,search).observe(viewLifecycleOwner) {
+    private fun fetchMyCourseSearch(token: String?,search: String?,level: String?) {
+        authViewModel.myCourse(token,search,level).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     val data1 = it.data?.data
@@ -242,7 +246,6 @@ class MyClassFragment : Fragment() {
                 }
 
                 Status.ERROR -> {
-                    binding.progressbarCategory.isVisible = false
                     Log.e("fetcherror", it.message.toString())
                 }
 
@@ -253,10 +256,44 @@ class MyClassFragment : Fragment() {
         }
     }
 
-    private fun showListCourseSearch(data: MyCourseResponse?) {
-        val adapter = MyClassAdapter { clickedCourse ->
-            navigatoToCourse(clickedCourse)
+    private fun fetchCourseSearch1(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?, createAt: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val dataLength = it.data?.data?.size
+                    if (dataLength!! < 1) {
+                        binding.notFounds.visibility = View.VISIBLE
+                        binding.rvSearch.visibility = View.GONE
+                    }else{
+                        showListHorizontal2(it.data)
+                        binding.rvSearch.visibility = View.VISIBLE
+                        binding.notFounds.visibility = View.GONE
+
+                    }
+                }
+
+                Status.ERROR -> {
+                    Log.e("error", it.message.toString())
+                }
+
+                Status.LOADING -> {
+                }
+            }
+
+
         }
+    }
+
+    private fun showListHorizontal2(data: ListResponse?) {
+        val adapter = AdapterKursusPopuler2(this)
+
+        adapter.sendList(data?.data ?: emptyList())
+        binding.rvSearch.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSearch.adapter = adapter
+    }
+    private fun showListCourseSearch(data: MyCourseResponse?) {
+        val adapter = MyClassAdapter (this)
 
         data?.data?.let { dataMyCourse ->
             val courses = dataMyCourse.courses ?: emptyList()
@@ -279,9 +316,33 @@ class MyClassFragment : Fragment() {
         binding.rvSearch.adapter = adapter
     }
 
-    private fun navigatoToCourse(data: Course){
+
+    override fun onCourseItemClick(data: Course) {
         val bundle = Bundle()
         bundle.putString("selectedId", data.id)
         findNavController().navigate(R.id.detailCourse,bundle)
+    }
+
+    override fun onCourseItemClick(data: DataCategory) {
+        val bundle = Bundle().apply {
+            putString("selectedId", data.id)
+        }
+        val isLogin = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
+        if (isLogin != null) {
+            if (data.statusPayment) {
+                // Jika statusPayment true, pindah ke navigation detailCourse
+                findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+                Log.d("CekStatus", "STATUS= $data")
+            } else {
+                // Jika statusPayment false, tampilkan bottom sheet
+                val bottomSheetSelangkah = BotsheetSelangkah()
+                bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
+                bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+            }
+        } else {
+            val botsheetLogin = BotSheetLogin()
+            botsheetLogin.show(childFragmentManager, botsheetLogin.tag)
+        }
+
     }
 }

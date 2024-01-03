@@ -63,18 +63,18 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-        fetchList(savedToken,null,null,null,null,null)
+        fetchList(savedToken,null,null,null,null,null,null)
         binding.tabLayoutKursus.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
                     0 -> {
-                        fetchList(savedToken,null,null,null,null,null)
+                        fetchList(savedToken,null,null,null,null,null,null)
                     }
                     1 -> {
-                        fetchList(savedToken,null,null,null,"premium",null)
+                        fetchList(savedToken,null,null,null,"premium",null,null)
                     }
                     else -> {
-                        fetchList(savedToken,null,null,null,"free",null)
+                        fetchList(savedToken,null,null,null,"free",null,null)
                     }
                 }
             }
@@ -125,8 +125,8 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         binding.tabLayoutKursus.addTab(freeTab)
     }
 
-    private fun fetchList(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchList(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?, createAt: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     categorys = it.data?.data ?: emptyList()
@@ -192,7 +192,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                     binding.tv1Topic.visibility = View.GONE
                     binding.tabLayoutKursus.visibility = View.GONE
                     binding.notFounds.visibility = View.GONE
-                    fetchListSearch(savedToken, null, null,null,null, s.toString())
+                    fetchListSearch(savedToken, null, null,null,null, s.toString(),null)
                 } else {
                     binding.rvCourse.visibility = View.VISIBLE
                     binding.tv1Topic.visibility = View.VISIBLE
@@ -211,8 +211,8 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
         })
     }
 
-    private fun fetchListSearch(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?) {
-        viewMode.getFilterCourse(token,rating, level,category, type, search).observe(viewLifecycleOwner) {
+    private fun fetchListSearch(token:String?,rating: Double?,level: String?,category: String?, type: String?, search: String?,createAt: String?) {
+        viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     val length = it.data?.data?.size
@@ -291,24 +291,24 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                 }
 
                 if(rating == "" && category1=="" ){
-                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),null,null,null)
+                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),null,null,null,null)
 
                 }else if(rating=="" && level1 == "") {
-                    fetchList(savedToken, null, null, category1, null, null)
+                    fetchList(savedToken, null, null, category1, null, null,null)
 
                 }else if(category1 == "" && level1 == ""){
-                    fetchList(savedToken, valueRating, null, null, null, null)
+                    fetchList(savedToken, valueRating, null, null, null, null,null)
                 } else if(rating == "" ){
-                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),category1,null,null)
+                    fetchList(savedToken,null, level1.lowercase(Locale.getDefault()),category1,null,null,null)
                 }else if (category1 == "") {
                     fetchList(savedToken, valueRating,
-                        level1.lowercase(Locale.getDefault()), null, null, null)
+                        level1.lowercase(Locale.getDefault()), null, null, null,null)
 
                 }else if (level1 == ""){
-                    fetchList(savedToken,valueRating,null,category1,null,null)
+                    fetchList(savedToken,valueRating,null,category1,null,null,null)
                 }else{
                     fetchList(savedToken,valueRating,
-                        level1.lowercase(Locale.getDefault()),category1,null,null)
+                        level1.lowercase(Locale.getDefault()),category1,null,null,null)
                 }
                 Log.e("Isi Check Box Category",valueCheckBoxCategory.toString())
                 Log.e("Isi Check Box Level",valueCheckBoxLevel.toString())

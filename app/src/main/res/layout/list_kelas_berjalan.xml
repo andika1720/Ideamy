@@ -22,6 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tv_namaKategory"
             android:layout_width="wrap_content"
@@ -30,15 +31,16 @@
             android:fontFamily="@font/poppins_bold"
             android:text="@string/nama_kategori"
             android:textSize="14sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_imageDefault" />
 
         <ImageView
             android:id="@+id/iv_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/star_rating"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
             android:contentDescription="@string/bintang"
+            android:src="@drawable/star_rating"
             app:layout_constraintBottom_toBottomOf="@id/tv_rating"
             app:layout_constraintEnd_toStartOf="@id/tv_rating"
             app:layout_constraintTop_toTopOf="@id/tv_rating" />
@@ -47,9 +49,10 @@
             android:id="@+id/tv_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="8dp"
             android:text="@string/kelas_rate"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_imageDefault" />
 
@@ -98,11 +101,35 @@
             android:fontFamily="@font/poppins_bold"
             android:text="@string/lvl_course"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/iv_tingkatKesulitan"
             app:layout_constraintTop_toBottomOf="@id/tv_publisher" />
 
-<!--        <ImageView-->
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            app:cornerRadius="18dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/navyblue"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/mulai_kelas"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_level" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/playcircle"
+            app:layout_constraintStart_toStartOf="@id/btn_play"
+            app:layout_constraintTop_toTopOf="@id/btn_play"
+            app:layout_constraintBottom_toBottomOf="@id/btn_play"
+            android:layout_margin="14dp" />
+
+        <!--        <ImageView-->
 <!--            android:id="@+id/iv_modul"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->

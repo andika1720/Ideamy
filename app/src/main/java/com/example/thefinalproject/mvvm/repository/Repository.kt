@@ -32,7 +32,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun getModulesById(token: String?,id: String) = apiService.getModulesById(token,id)
 
 
-    suspend fun getFilter2(token: String?,rating: Double?,category: String?,level: String?, type: String?, search: String?) = apiService.getFilterCourse(token,rating,level,category,type,search)
+    suspend fun getFilter2(token: String?,rating: Double?,category: String?,level: String?, type: String?, search: String?, createAt: String?) = apiService.getFilterCourse(token,rating,level,category,type,search,createAt)
 
     suspend fun checkOtp(otpRequest: OtpRequest) = apiService.checkOtp(otpRequest)
     suspend fun changePassword(token: String?,changePasswordRequest: ChangePasswordRequest)=apiService.resetPasswordUser(token,changePasswordRequest)
@@ -51,7 +51,7 @@ class Repository(private val apiService: ApiService) {
     suspend fun deletePayment(token: String?,id: String?) = apiService.deletePayment(token,id)
 
     //MyCourse
-    suspend fun myCourse(token: String?,search: String?) = apiService.myCourse(token,search)
+    suspend fun myCourse(token: String?,search: String?,level: String?) = apiService.myCourse(token,search,level)
 
     //UpdateProfile
     suspend fun updateProfile(token: String?,dataUser: ReqNewUser) = apiService.updateProfile(token,dataUser)

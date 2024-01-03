@@ -10,10 +10,9 @@ import com.bumptech.glide.Glide
 import com.example.thefinalproject.databinding.ListKelasBerjalanBinding
 import com.example.thefinalproject.network.model.mycourse.Course
 
-class MyClassAdapter(private val onItemClickListener: (Course) -> Unit) :
+class MyClassAdapter(private val onButtonClick: ClassClick) :
     RecyclerView.Adapter<MyClassAdapter.ViewHolder>() {
 
-    private val asyncDiffer: AsyncListDiffer<Course> = AsyncListDiffer(this, CourseDiffCallback())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -21,24 +20,33 @@ class MyClassAdapter(private val onItemClickListener: (Course) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val course = asyncDiffer.currentList[position]
+        val course = dif.currentList[position]
         holder.bind(course)
-        holder.itemView.setOnClickListener { onItemClickListener.invoke(course) }
+
     }
 
     override fun getItemCount(): Int {
-        return asyncDiffer.currentList.size
+        return dif.currentList.size
     }
 
     fun submitList(newCourses: List<Course?>) {
-        asyncDiffer.submitList(newCourses)
+        dif.submitList(newCourses)
     }
 
     inner class ViewHolder(private var binding: ListKelasBerjalanBinding):RecyclerView.ViewHolder(binding.root){
+
+        init {
+            binding.btnPlay.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val data = dif.currentList[position]
+                    onButtonClick.onCourseItemClick(data)
+                }
+            }
+        }
+
         @SuppressLint("SetTextI18n")
         fun bind(course: Course) {
-
-
             course.let { course1 ->
                 binding.apply {
                     Glide.with(this.ivImageDefault)
@@ -55,13 +63,19 @@ class MyClassAdapter(private val onItemClickListener: (Course) -> Unit) :
         }
     }
 
-    private class CourseDiffCallback : DiffUtil.ItemCallback<Course>() {
+    private val differ = object : DiffUtil.ItemCallback<Course>() {
         override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
+
     }
+    interface ClassClick {
+        fun onCourseItemClick(data: Course)
+    }
+
+    private val dif = AsyncListDiffer(this, differ)
 }

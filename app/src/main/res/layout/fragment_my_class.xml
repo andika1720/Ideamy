@@ -100,7 +100,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_class_berjalan"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="275dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +120,7 @@
 
             android:layout_width="200dp"
             android:layout_height="120dp"
+            android:visibility="gone"
             android:src="@drawable/logo_ideamy"
             android:layout_gravity="center"
             android:contentDescription="@string/logo"
@@ -129,12 +130,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:text="@string/upss_anda_belum_memiliki_sebuah_kelas"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/carikelas"
             android:layout_marginTop="10dp"
             android:layout_width="150dp"
+            android:visibility="gone"
             android:layout_height="50dp"
             android:text="@string/cari_kelas"
             android:backgroundTint="@color/navyblue"
@@ -170,6 +173,7 @@
         android:id="@+id/progressbar_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/rv_category"
         app:layout_constraintStart_toStartOf="@id/rv_category"
         app:layout_constraintTop_toTopOf="@id/rv_category"

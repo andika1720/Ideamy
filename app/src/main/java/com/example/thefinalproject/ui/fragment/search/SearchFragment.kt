@@ -29,7 +29,7 @@ import org.koin.android.ext.android.inject
 
 
 @Suppress("SameParameterValue")
-class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
+class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick, MyClassAdapter.ClassClick {
     private var _binding : FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharePref: SharePref
@@ -47,7 +47,7 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         binding.etSearch.requestFocus()
         binding.imgSearch.setOnClickListener {
             hideKeyboardAndClearFocus()
-            fetchMyCourse(savedToken,null)
+            fetchMyCourse(savedToken,null,null)
         }
         return binding.root
     }
@@ -67,9 +67,7 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
     private fun showListCourse(data: MyCourseResponse?) {
-        val adapter = MyClassAdapter { clickedCourse ->
-            navigatoToCourse(clickedCourse)
-        }
+        val adapter = MyClassAdapter (this)
 
         data?.data?.let { dataMyCourse ->
             val courses = dataMyCourse.courses ?: emptyList()
@@ -91,8 +89,8 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
         binding.rvKursuspopuler.adapter = adapter
     }
 
-    private fun fetchMyCourse(token: String?,search: String?) {
-        authViewModel.myCourse(token,search).observe(viewLifecycleOwner) {
+    private fun fetchMyCourse(token: String?,search: String?,level: String?) {
+        authViewModel.myCourse(token,search,level).observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     showListCourse(it.data)
@@ -135,13 +133,15 @@ class SearchFragment : Fragment(), AdapterKursusSearch.CourseClick {
 
 
     }
-    private fun navigatoToCourse(data: Course){
-        val bundle = Bundle()
-        bundle.putString("selectedId", data.id)
-        findNavController().navigate(R.id.detailCourse,bundle)
-    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCourseItemClick(data: Course) {
+        val bundle = Bundle()
+        bundle.putString("selectedId", data.id)
+        findNavController().navigate(R.id.detailCourse,bundle)
     }
 }

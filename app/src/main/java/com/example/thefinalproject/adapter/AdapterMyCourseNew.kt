@@ -74,20 +74,7 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                 tvFreeLvlCourse.text = data.level
                 tvFreeModuls.text = "${data.totalModule} Modul"
                 tvFreeDurasi.text = "${data.totalDuration} Menit"
-                if (data.statusPayment) {
-                    // Jika status pembayaran true, mulai kelas
-                    btnMulaiKelas.text = "Mulai Kelas"
-                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
-                    playcircle?.setBounds(
-                        0,
-                        0,
-                        playcircle.intrinsicWidth / 2,
-                        playcircle.intrinsicHeight / 2
-                    )
-                    btnMulaiKelas.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.navyblue))
-                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
-                } else {
-                    // Jika status pembayaran false, sesuaikan dengan tipe data
+                if (!data.statusPayment) {
                     if (data.type == "premium") {
                         // Jika tipe data premium, tampilkan teks dan gambar premium
                         val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
@@ -104,6 +91,20 @@ class AdapterMyCourseNew (private val onButtonClick: CourseClick): RecyclerView.
                         btnMulaiKelas.text = "Free"
                         btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                     }
+                    // Jika status pembayaran falsy, mulai kelas
+
+                } else {
+                    // Jika status pembayaran false, sesuaikan dengan tipe data
+                    btnMulaiKelas.text = "Mulai Kelas"
+                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
+                    playcircle?.setBounds(
+                        0,
+                        0,
+                        playcircle.intrinsicWidth / 2,
+                        playcircle.intrinsicHeight / 2
+                    )
+                    btnMulaiKelas.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.navyblue))
+                    btnMulaiKelas.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
                 }
             }
         }

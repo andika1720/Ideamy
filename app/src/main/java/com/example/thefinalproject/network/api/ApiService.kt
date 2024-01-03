@@ -80,6 +80,7 @@ interface ApiService {
         @Query("level") level: String?,
         @Query("type") type: String?,
         @Query("search") search: String?,
+        @Query("createAt") createAt: String?,
     ) : ListResponse
 
 
@@ -121,6 +122,7 @@ interface ApiService {
     suspend fun myCourse(
         @Header("authorization") token : String?,
         @Query("search") search: String?,
+        @Query("level") level: String?,
     ): MyCourseResponse
 
     //ORDER

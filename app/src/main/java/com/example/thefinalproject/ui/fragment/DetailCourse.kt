@@ -107,7 +107,9 @@ class DetailCourse : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse){
             val courseData: DataCourseById = data.data
-
+        val progrs = binding.progressbar
+        val textindicator = binding.textIndicator
+        val totalModule = courseData.totalModule
 
         Glide.with(this)
             .load(courseData.image)
@@ -145,6 +147,13 @@ class DetailCourse : Fragment() {
                 Log.d("kirimModule", "Module: $moduleId")
             }
         }
+        if (totalModule != null) {
+            val completedModules = courseData?.chapters?.sumBy { chapter -> chapter?.modules?.count { it?.done == true } ?: 0 } ?: 0
+            val progressPercentage = (completedModules.toDouble() / totalModule.toDouble()) * 100
+            progrs.progress = progressPercentage.toInt()
+            textindicator.text = "${progressPercentage.toInt()}% Complete"
+        }
+
 
 
         val tentangFragment = DetailcourseTentangFragment()
