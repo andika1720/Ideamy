@@ -296,6 +296,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                     if (rating == "Terpopuler"){
                         fetchListFilterPopuler(savedToken, null, null, null, null, null,null)
                     }else if (rating == "Terbaru") {
+                        fetchListFilterTerbaru(savedToken, null, null, null, null, null,null)
                         Log.e("tes log", "alo")
                     }
 
@@ -305,18 +306,21 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                     if (rating == "Terpopuler"){
                         fetchListFilterPopuler(savedToken, null, level1.lowercase(Locale.getDefault()), null, null, null,null)
                     }else if (rating == "Terbaru") {
+                        fetchListFilterTerbaru(savedToken, null, level1.lowercase(Locale.getDefault()), null, null, null,null)
                         Log.e("tes log", "alo")
                     }
                 }else if (level1 == ""){
                     if (rating == "Terpopuler"){
                         fetchListFilterPopuler(savedToken, null, null, category1, null, null,null)
                     }else if (rating == "Terbaru") {
+                        fetchListFilterTerbaru(savedToken, null, null, category1, null, null,null)
                         Log.e("tes log", "alo")
                     }
                 }else{
                     if (rating == "Terpopuler"){
                         fetchListFilterPopuler(savedToken, null, level1.lowercase(Locale.getDefault()), category1, null, null,null)
                     }else if (rating == "Terbaru") {
+                        fetchListFilterTerbaru(savedToken, null, level1.lowercase(Locale.getDefault()), category1, null, null,null)
                         Log.e("tes log", "alo")
                     }
                 }
@@ -367,6 +371,30 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                 }
             }
     }
+    private fun fetchListFilterTerbaru(token: String?, rating: Double?, level: String?, category: String?, type: String?, search: String?, createAt: String?) {
+        viewMode.getFilterCourse(token, rating, level, category, type, search, createAt)
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        categorys = it.data?.data ?: emptyList()
+                        val terbaru = categorys.asReversed()
+
+                        showListHorizontal(ListResponse(terbaru, it.message, it.status.toString()))
+                        binding.progressbarCourse.isVisible = false
+                    }
+
+                    Status.ERROR -> {
+                        binding.progressbarCourse.isVisible = false
+                        Log.e("Errorr", it.message.toString())
+                    }
+
+                    Status.LOADING -> {
+                        binding.progressbarCourse.isVisible = true
+                    }
+                }
+            }
+    }
+
 
 
 }
