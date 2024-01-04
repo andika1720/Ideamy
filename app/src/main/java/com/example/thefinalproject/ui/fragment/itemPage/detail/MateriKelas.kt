@@ -78,7 +78,8 @@ class MateriKelas : Fragment() {
                     Log.d("cek datatersedia", "chapter :${it.data}")
 
                     val data = it.data?.data
-                    data?.chapters?.forEach {chapter ->
+                    val sortedChapters = data?.chapters?.sortedBy { chapter -> chapter?.chapterNumber ?: 0 }
+                        sortedChapters?.forEach { chapter ->
                         if (chapter != null) {
                             materiList.add(chapter)
                             Log.d("dataChaps", "chapter :$chapter")
@@ -94,15 +95,21 @@ class MateriKelas : Fragment() {
                         putString("selectedId", data?.id)
                     }
                     adapter = AdapterDetail(materiList,
-                        clickListener  = { id ->
-                        if (data?.statusPayment != true){
-                            val bottomSheetSelangkah = BotsheetSelangkah()
-                            bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                            bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-                        }else {
-                            getModules(savedToken, id)
-                        }
-                        } )
+                        clickListener = { id ->
+                            if (data?.statusPayment != true) {
+
+                                val bottomSheetSelangkah = BotsheetSelangkah()
+                                bottomSheetSelangkah.setCourseId(
+                                    bundle.getString("selectedId") ?: ""
+                                )
+                                bottomSheetSelangkah.show(
+                                    childFragmentManager,
+                                    bottomSheetSelangkah.tag
+                                )
+                            } else {
+                                getModules(savedToken, id)
+                            }
+                        })
 
 
                     binding.rvMateri.adapter = adapter
@@ -112,7 +119,7 @@ class MateriKelas : Fragment() {
                         false
                     )
 
-                    Log.e("ListMateri",materiList.toString())
+                    Log.e("ListMateri", materiList.toString())
 
 
                 }

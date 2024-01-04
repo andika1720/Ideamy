@@ -28,7 +28,6 @@ import com.example.thefinalproject.ui.fragment.botsheet.BotSheetLogin
 import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 import com.example.thefinalproject.util.SharePref
 import com.example.thefinalproject.util.Status
-import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
 @Suppress("SameParameterValue")
@@ -45,12 +44,6 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
     ): View {
         _binding = FragmentMyClassBinding.inflate(layoutInflater, container, false)
         sharePref = SharePref
-        //tabLayout()
-//        binding.etSearch.setOnFocusChangeListener {_,focus ->
-//            if (focus){
-//                findNavController().navigate(R.id.searchFragment)
-//            }
-//        }
 
 
         fetchCategory(null)
@@ -63,31 +56,7 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
         val savedToken = sharePref.getPref(SharePref.Enum.PREF_NAME.value)
 
         fetchMyCourse(savedToken,null, null)
-//        binding.tabLayoutClass.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab) {
-//                when (tab.position) {
-//                    0 -> {
-//                        fetchMyCourse(savedToken,null,null)
-//                    }
-//                    1 -> {
-//                        fetchMyCourse(savedToken,null,"beginner")
-//                    }
-//                    2 -> {
-//                        fetchMyCourse(savedToken,null,"intermediate")
-//                    }
-//                    3 -> {
-//                        fetchMyCourse(savedToken,null,"advance")
-//                    }
-//                }
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//            }
-//
-//        })
+
     }
 
     private fun fetchCategory(category: String?) {
@@ -120,23 +89,7 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
         binding.rvCategory.adapter = adapter
     }
 
-    private fun tabLayout(){
-        val allTab = binding.tabLayoutClass.newTab()
-        allTab.text = "Semua Kelas"
-        binding.tabLayoutClass.addTab(allTab)
 
-        val premiumTab = binding.tabLayoutClass.newTab()
-        premiumTab.text = "Beginner"
-        binding.tabLayoutClass.addTab(premiumTab)
-
-        val freeTab = binding.tabLayoutClass.newTab()
-        freeTab.text = "Intermediate"
-        binding.tabLayoutClass.addTab(freeTab)
-
-        val advance = binding.tabLayoutClass.newTab()
-        advance.text = "Advance"
-        binding.tabLayoutClass.addTab(advance)
-    }
 
 
     private fun fetchMyCourse(token: String?,search: String?,level: String?) {
@@ -169,6 +122,9 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
             if (courses.isEmpty()) {
                 // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
                 binding.kelasKosong.visibility = View.VISIBLE
+                binding.ivLogo.visibility = View.VISIBLE
+                binding.tvUps.visibility = View.VISIBLE
+                binding.carikelas.visibility = View.VISIBLE
                 binding.carikelas.setOnClickListener {
                     findNavController().navigate(R.id.action_myClassFragment2_to_myCourseFragment2)
 
@@ -176,6 +132,9 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
             } else {
                 // Jika data tidak kosong, atur visibility kelasKosong menjadi GONE
                 binding.kelasKosong.visibility = View.GONE
+                binding.ivLogo.visibility = View.GONE
+                binding.tvUps.visibility = View.GONE
+                binding.carikelas.visibility = View.GONE
             }
             adapter.submitList(courses)
         }
@@ -228,34 +187,7 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
 
         })
     }
-    private fun fetchMyCourseSearch(token: String?,search: String?,level: String?) {
-        authViewModel.myCourse(token,search,level).observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    val data1 = it.data?.data
-                    val dataLength = data1?.courses?.size
-                    if (dataLength!! < 1) {
-                        binding.notFounds.visibility = View.VISIBLE
-                        binding.rvSearch.visibility = View.GONE
-                    }else{
-                        showListCourseSearch(it.data)
-                        Log.d("fetchCoursesucces", it.message.toString())
-                        binding.rvSearch.visibility = View.VISIBLE
-                        binding.notFounds.visibility = View.GONE
 
-                    }
-                }
-
-                Status.ERROR -> {
-                    Log.e("fetcherror", it.message.toString())
-                }
-
-                Status.LOADING -> {
-                    Log.d("fetchload", it.message.toString())
-                }
-            }
-        }
-    }
 
     private fun fetchCourseSearch1(token: String?,rating: Double?,level: String?,category: String?, type: String?, search: String?, createAt: String?) {
         viewMode.getFilterCourse(token,rating, level,category, type, search,createAt).observe(viewLifecycleOwner) {
@@ -291,29 +223,6 @@ class MyClassFragment : Fragment(), MyClassAdapter.ClassClick,AdapterKursusPopul
         adapter.sendList(data?.data ?: emptyList())
         binding.rvSearch.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSearch.adapter = adapter
-    }
-    private fun showListCourseSearch(data: MyCourseResponse?) {
-        val adapter = MyClassAdapter (this)
-
-        data?.data?.let { dataMyCourse ->
-            val courses = dataMyCourse.courses ?: emptyList()
-            if (courses.isEmpty()) {
-                // Jika data kosong, atur visibility kelasKosong menjadi VISIBLE
-                binding.kelasKosong.visibility = View.VISIBLE
-                binding.carikelas.setOnClickListener {
-                    findNavController().navigate(R.id.action_myClassFragment2_to_myCourseFragment2)
-
-                }
-
-            } else {
-                binding.kelasKosong.visibility = View.GONE
-
-            }
-            adapter.submitList(courses)
-        }
-
-        binding.rvSearch.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvSearch.adapter = adapter
     }
 

@@ -158,14 +158,7 @@ class MyCourseFragment : Fragment(), AdapterMyCourseNew.CourseClick {
                 // Jika statusPayment true, pindah ke navigation detailCourse
                 findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
             } else {
-                if (data.type == "premium") {
-                    val bottomSheetSelangkah = BotsheetSelangkah()
-                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-                }else {
-                    findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
-                }
-
+                findNavController().navigate(R.id.action_myCourseFragment2_to_detailCourse, bundle)
             }
         } else {
             val botsheetLogin = BotSheetLogin()

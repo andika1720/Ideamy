@@ -56,11 +56,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
         featureSearch()
         Log.d("Fitur", "Data = ${featureSearch()}")
 
-//        binding.etSearch.setOnFocusChangeListener {_,focus ->
-//            if (focus){
-//                findNavController().navigate(R.id.searchFragment)
-//            }
-//        }
+
         fetchCategory(null)
 
 
@@ -69,17 +65,16 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
             @SuppressLint("SuspiciousIndentation")
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val savedToken = SharePref.getPref(SharePref.Enum.PREF_NAME.value)
-
-
                     when (tab.position) {
                         0 -> fetchList(savedToken, null, null, null, null, null,null)
                         1 -> fetchList(savedToken, null, null, "Web Development", null, null,null)
-                        2 -> fetchList(savedToken, null, null, "Data Science", null, null,null)
-                        3 -> fetchList(savedToken, null, null, "UI/UX Design", null, null,null)
-                        4 -> fetchList(savedToken, null, null, "Product Management" , null, null,null)
-                        5 -> fetchList(savedToken, null, null, "Android Development" , null, null,null)
+                        2 -> fetchList(savedToken, null, null, "Android Development", null, null,null)
+                        3 -> fetchList(savedToken, null, null, "Data Science", null, null,null)
+                        4 -> fetchList(savedToken, null, null, "UI/UX Design" , null, null,null)
+                        5 -> fetchList(savedToken, null, null, "Product Management" , null, null,null)
                         6 -> fetchList(savedToken, null, null, "IOS Development", null, null,null)
                     }
+
 
             }
 
@@ -201,7 +196,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
     private fun navigatoToCourse(data: DataCategory){
 
         val bundle = bundleOf("key" to data)
-        findNavController().navigate(R.id.action_homeFragment2_to_myCourseFragment2,bundle)
+        findNavController().navigate(R.id.myCourseFragment2,bundle)
     }
 
     override fun onCourseItemClick(data: DataCategory) {
@@ -216,13 +211,7 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                 findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
                 Log.d("CekStatus", "STATUS= $data")
             } else {
-                if (data.type == "premium") {
-                    val bottomSheetSelangkah = BotsheetSelangkah()
-                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
-                }else {
                     findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
-                }
             }
         } else {
             val botsheetLogin = BotSheetLogin()

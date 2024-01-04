@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="80dp"
-            tools:ignore="RtlSymmetry,VisualLintTextFieldSize" />
+            tools:ignore="RtlSymmetry,VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -84,6 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
+        android:visibility="invisible"
         android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +105,8 @@
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv1" />
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        tools:ignore="TextSizeCheck" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/kelasKosong"
@@ -117,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="@id/rv_class_berjalan"
         app:layout_constraintTop_toTopOf="@id/rv_class_berjalan">
         <ImageView
-
+            android:id="@+id/iv_logo"
             android:layout_width="200dp"
             android:layout_height="120dp"
             android:visibility="gone"
@@ -128,17 +130,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
-            android:visibility="gone"
+            android:id="@+id/tv_ups"
             android:textColor="@color/black"
             android:text="@string/upss_anda_belum_memiliki_sebuah_kelas"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/carikelas"
             android:layout_marginTop="10dp"
             android:layout_width="150dp"
-            android:visibility="gone"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:text="@string/cari_kelas"
             android:backgroundTint="@color/navyblue"
             android:layout_gravity="center"

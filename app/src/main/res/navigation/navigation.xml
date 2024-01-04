@@ -144,5 +144,9 @@
         android:name="com.example.thefinalproject.ui.fragment.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/categoryAllFragment"
+        android:name="com.example.thefinalproject.ui.fragment.CategoryAllFragment"
+        android:label="CategoryAllFragment" />
 
 </navigation>

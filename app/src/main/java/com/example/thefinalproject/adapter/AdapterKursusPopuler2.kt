@@ -76,8 +76,18 @@ class AdapterKursusPopuler2 (private val onButtonClick: CourseClick): RecyclerVi
                 tvModul.text = "${data.totalModule} Modul"
                 btnBuy.text = "Beli  ${Utils.formatCurrency(data.price)}"
                 timerCourse.text = "${data.totalDuration} Menit"
-                if (!data.statusPayment) {
+                if (data.statusPayment) {
+                    btnBuy.text = "Mulai Kelas"
+                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
+                    playcircle?.setBounds(
+                        0,
+                        0,
+                        playcircle.intrinsicWidth / 2,
+                        playcircle.intrinsicHeight / 2
+                    )
+                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
                     // Jika status pembayaran true, mulai kelas
+                } else {
                     if (data.type == "premium") {
                         val premiumDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.diamond)
                         premiumDrawable?.setBounds(
@@ -96,18 +106,7 @@ class AdapterKursusPopuler2 (private val onButtonClick: CourseClick): RecyclerVi
                         btnBuy.text = "Free"
                         btnBuy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                     }
-                } else {
 
-                    val playcircle = ContextCompat.getDrawable(itemView.context, R.drawable.playcircle)
-                    playcircle?.setBounds(
-                        0,
-                        0,
-                        playcircle.intrinsicWidth / 2,
-                        playcircle.intrinsicHeight / 2
-                    )
-                    btnBuy.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.navyblue))
-                    btnBuy.text = "Mulai Kelas"
-                    btnBuy.setCompoundDrawablesWithIntrinsicBounds(playcircle, null, null, null)
                 }
             }
         }
