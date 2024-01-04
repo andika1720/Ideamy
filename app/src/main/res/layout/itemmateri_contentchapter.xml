@@ -49,14 +49,16 @@
         app:layout_constraintTop_toTopOf="@+id/circleiv"
         />
 
-    <ImageView
+    <TextView
         android:id="@+id/circleiv"
         android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:src="@drawable/list_titik"
+        android:layout_height="20dp"
+        android:background="@drawable/edit_text_border"
+        android:text="@string/_1"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="TextSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

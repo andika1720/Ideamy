@@ -14,6 +14,7 @@ import com.example.thefinalproject.network.model.course.ModuleById
 
 class AdapterDetail(private val data: List<Any>,private var clickListener: ((String) -> Unit)? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var moduleCounter = 0
     override fun getItemViewType(position: Int): Int {
         return when (data[position]) {
             is ChapterById -> ITEM_CHAPTER
@@ -38,27 +39,25 @@ class AdapterDetail(private val data: List<Any>,private var clickListener: ((Str
         init {
             binding.constraint.setOnClickListener {
                 val position = adapterPosition
-                if(position != RecyclerView.NO_POSITION){
+                if (position != RecyclerView.NO_POSITION) {
                     val clickedItem = data[position]
                     if (clickedItem is ModuleById) {
-
                         clickListener?.invoke(clickedItem.id)
-
                     }
                 }
-
             }
         }
+
         @Suppress("KotlinConstantConditions")
         fun onBind(data: ModuleById) {
+            // Menetapkan nomor urut sesuai dengan jumlah modul
+            binding.circleiv.text = "${++moduleCounter}"
             binding.tvNamaContentChapter.text = data.title
             Log.d("CekTrue", "done= $data")
-            if(data.done){
+            if (data.done) {
                 binding.icPlayContentChapter.setImageResource(R.drawable.doneplay)
                 Log.d("CekTrue", "done= ${data.done}")
             }
-
-
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
