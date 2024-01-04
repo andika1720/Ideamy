@@ -13,18 +13,18 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/chapter"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/tv_namaChapter"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/jdl_chap"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/tv_noChapter"
         app:layout_constraintTop_toTopOf="parent" />
 

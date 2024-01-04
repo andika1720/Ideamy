@@ -19,7 +19,7 @@
 
         android:fontFamily="@font/poppins_regular"
         android:text="@string/judul_sub"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/circleiv"
         app:layout_constraintStart_toEndOf="@+id/circleiv"
         app:layout_constraintTop_toTopOf="@+id/circleiv"
