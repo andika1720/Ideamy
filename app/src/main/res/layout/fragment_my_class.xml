@@ -75,7 +75,7 @@
         android:textSize="18sp"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintTop_toBottomOf="@id/item_searchView"
-        android:text="@string/kelas_berjalan"/>
+        android:text="Kelas Saya"/>
 
 
 
