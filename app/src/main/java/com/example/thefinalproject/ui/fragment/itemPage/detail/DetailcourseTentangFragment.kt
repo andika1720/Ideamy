@@ -14,7 +14,6 @@ import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
 import com.example.thefinalproject.network.model.course.DataCourseById
 import com.example.thefinalproject.network.model.course.DetailResponse
 import com.example.thefinalproject.util.Status
-import com.example.thefinalproject.util.Utils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.ext.android.inject
 
@@ -36,19 +35,6 @@ class DetailcourseTentangFragment : Fragment() {
 
         showTentang(null,args.toString())
 
-
-        binding.btnJoinTelegram.setOnClickListener {
-            args?.let { link ->
-                if (link.isNotBlank()) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-                    startActivity(intent)
-                } else {
-                    Utils.toastMessage(requireContext(), "Link telegram tidak tersedia")
-                }
-            } ?: run {
-                Utils.toastMessage(requireContext(), "Link telegram tidak tersedia")
-            }
-        }
 
         return binding.root
     }
@@ -79,7 +65,12 @@ class DetailcourseTentangFragment : Fragment() {
         audienceList?.forEachIndexed { index, audience ->
             formattedAudience.append("${index + 1}. $audience\n")
         }
-
+        binding.btnJoinTelegram.setOnClickListener {
+            val linkTele = courseData.telegram
+            val uri = Uri.parse(linkTele)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
         binding.tvDeskripsiTentang.text = courseData.description
         binding.textView4.text = formattedAudience.toString()
     }
