@@ -173,6 +173,7 @@
                 android:layout_height="wrap_content"
                 android:max="100"
                 android:progress="20"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 app:trackThickness="25dp"
                 app:trackCornerRadius="10dp"

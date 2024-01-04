@@ -29,6 +29,8 @@ data class DataCourseById(
     val rating: Double?,
     @SerializedName("title")
     val title: String?,
+    @SerializedName("statusPayment")
+    val statusPayment: Boolean,
     @SerializedName("totalDuration")
     val totalDuration: Int?,
     @SerializedName("totalModule")

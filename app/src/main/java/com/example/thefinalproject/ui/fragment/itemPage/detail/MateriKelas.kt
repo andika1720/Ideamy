@@ -17,6 +17,7 @@ import com.example.thefinalproject.adapter.dataAdapterDetail.AdapterDetail
 
 import com.example.thefinalproject.databinding.FragmentDetailcourseMateriBinding
 import com.example.thefinalproject.mvvm.viewmmodel.ViewModelAll
+import com.example.thefinalproject.ui.fragment.botsheet.BotsheetSelangkah
 import com.example.thefinalproject.util.SharePref
 
 
@@ -89,11 +90,20 @@ class MateriKelas : Fragment() {
 
                         }
                     }
-
+                    val bundle = Bundle().apply {
+                        putString("selectedId", data?.id)
+                    }
                     adapter = AdapterDetail(materiList,
                         clickListener  = { id ->
-                        getModules(savedToken,id)
+                        if (data?.statusPayment != true){
+                            val bottomSheetSelangkah = BotsheetSelangkah()
+                            bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
+                            bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+                        }else {
+                            getModules(savedToken, id)
+                        }
                         } )
+
 
                     binding.rvMateri.adapter = adapter
                     binding.rvMateri.layoutManager = LinearLayoutManager(

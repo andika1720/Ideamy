@@ -107,6 +107,11 @@ class DetailCourse : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun showData(data: DetailResponse){
             val courseData: DataCourseById = data.data
+        if (courseData.statusPayment){
+            binding.progressbar.visibility = View.VISIBLE
+        } else{
+            binding.progressbar.visibility = View.GONE
+        }
         val progrs = binding.progressbar
         val textindicator = binding.textIndicator
         val totalModule = courseData.totalModule

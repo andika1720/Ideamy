@@ -216,10 +216,13 @@ class HomeFragment : Fragment(), AdapterKursusPopuler2.CourseClick {
                 findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
                 Log.d("CekStatus", "STATUS= $data")
             } else {
-                // Jika statusPayment false, tampilkan bottom sheet
-                val bottomSheetSelangkah = BotsheetSelangkah()
-                bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
-                bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+                if (data.type == "premium") {
+                    val bottomSheetSelangkah = BotsheetSelangkah()
+                    bottomSheetSelangkah.setCourseId(bundle.getString("selectedId") ?: "")
+                    bottomSheetSelangkah.show(childFragmentManager, bottomSheetSelangkah.tag)
+                }else {
+                    findNavController().navigate(R.id.action_homeFragment2_to_detailCourse, bundle)
+                }
             }
         } else {
             val botsheetLogin = BotSheetLogin()
